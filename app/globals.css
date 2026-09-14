@@ -2,25 +2,908 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #000000;
+  --institutional-red: #8c1919;
+  --institutional-gold: #fdb400;
+  --content-width: 70vw;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-hind);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-hind), sans-serif;
+  margin: 0;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--institutional-gold);
+  outline-offset: 4px;
+}
+
+.home-showcase {
+  background: var(--background);
+  min-height: 100vh;
+}
+
+.hero {
+  height: min(395px, 58vw);
+  isolation: isolate;
+  overflow: hidden;
+  position: relative;
+}
+
+.hero-media,
+.hero-overlay {
+  inset: 0;
+  position: absolute;
+}
+
+.hero-media {
+  background: #000000;
+  z-index: -2;
+}
+
+.hero-image {
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 500ms ease;
+}
+
+.hero-image.is-active {
+  opacity: 1;
+}
+
+.hero-overlay {
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.35) 57%, rgba(0, 0, 0, 0.05) 100%);
+  z-index: -1;
+}
+
+.hero-content {
+  color: #ffffff;
+  margin: 0 auto;
+  max-width: var(--content-width);
+  padding: clamp(4rem, 8vw, 5rem) 1rem 5.5rem;
+}
+
+.hero-kicker {
+  font-family: var(--font-lora), serif;
+  font-size: 0.95rem;
+  margin: 0 0 0.65rem;
+}
+
+.hero h1 {
+  font-family: var(--font-titillium), sans-serif;
+  font-size: clamp(2rem, 4.2vw, 3.15rem);
+  font-weight: 700;
+  line-height: 1.08;
+  margin: 0;
+  max-width: 590px;
+}
+
+.hero-description {
+  font-size: clamp(1rem, 1.7vw, 1.25rem);
+  line-height: 1.25;
+  margin: 1rem 0 1.4rem;
+  max-width: 570px;
+}
+
+.hero-link {
+  background: var(--institutional-red);
+  border-radius: 5px;
+  color: #ffffff;
+  display: inline-block;
+  font-weight: 600;
+  padding: 0.65rem 1.05rem;
+  text-decoration: none;
+}
+
+.hero-link:hover {
+  background: #000000;
+  color: #fdb400;
+}
+
+.hero-controls {
+  bottom: 2rem;
+  display: flex;
+  gap: 0.65rem;
+  left: 50%;
+  position: absolute;
+  transform: translateX(-50%);
+}
+
+.hero-dot {
+  background: #ffffff;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 12px;
+  opacity: 0.75;
+  padding: 0;
+  width: 12px;
+}
+
+.hero-dot.is-active {
+  background: var(--institutional-red);
+  opacity: 1;
+}
+
+.audience-section {
+  padding: clamp(2.25rem, 4vw, 3.5rem) 1rem;
+}
+
+.audience-carousel {
+  align-items: center;
+  display: flex;
+  gap: clamp(0.75rem, 3vw, 2.25rem);
+  margin: 0 auto;
+  max-width: var(--content-width);
+}
+
+.audience-grid {
+  display: grid;
+  flex: 1;
+  gap: 1.25rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.audience-card {
+  aspect-ratio: 1.45 / 1;
+  color: #ffffff;
+  isolation: isolate;
+  overflow: hidden;
+  position: relative;
+  text-decoration: none;
+}
+
+.audience-card img {
+  object-fit: cover;
+  transition: transform 350ms ease;
+  z-index: -2;
+}
+
+.audience-card:hover img {
+  transform: scale(1.04);
+}
+
+.audience-shade {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.9), transparent 70%);
+  inset: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+.audience-title {
+  bottom: 2rem;
+  font-family: var(--font-titillium), sans-serif;
+  font-size: clamp(1.3rem, 2vw, 1.8rem);
+  font-weight: 700;
+  left: 2rem;
+  line-height: 0.95;
+  max-width: 8rem;
+  position: absolute;
+}
+
+.carousel-arrow {
+  background: transparent;
+  border: 0;
+  color: var(--institutional-red);
+  cursor: pointer;
+  font-family: Georgia, serif;
+  font-size: 4rem;
+  line-height: 1;
+  padding: 0;
+}
+
+.faculties-section {
+  background: var(--institutional-red);
+  color: #ffffff;
+  padding: clamp(1.75rem, 3vw, 2.5rem) 1rem;
+}
+
+.faculties-content {
+  align-items: start;
+  display: grid;
+  gap: clamp(2rem, 7vw, 7rem);
+  grid-template-columns: minmax(220px, 0.8fr) 1.7fr;
+  margin: 0 auto;
+  max-width: var(--content-width);
+}
+
+.faculties-intro h2,
+.news-section h2 {
+  font-family: var(--font-titillium), sans-serif;
+  font-size: clamp(2.25rem, 4.4vw, 3.25rem);
+  font-weight: 700;
+  line-height: 0.9;
+  margin: 0;
+}
+
+.faculties-link {
+  background: #ffffff;
+  border-radius: 5px;
+  color: var(--institutional-red);
+  display: inline-block;
+  font-weight: 600;
+  margin-top: 1.1rem;
+  padding: 0.65rem 1.05rem;
+  text-decoration: none;
+}
+
+.faculties-link:hover {
+  background: #000000;
+  color: #fdb400;
+}
+
+.faculties-list {
+  column-gap: clamp(2rem, 5vw, 5.5rem);
+  columns: 2;
+  list-style: none;
+  margin: 0;
+  padding: 0.15rem 0 0;
+}
+
+.faculties-list li {
+  break-inside: avoid;
+  font-size: 0.95rem;
+  margin-bottom: 0.8rem;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.faculties-list li::before {
+  background: var(--institutional-gold);
+  content: "";
+  height: 0.32rem;
+  left: 0;
+  position: absolute;
+  top: 0.5rem;
+  width: 0.32rem;
+}
+
+.faculties-list a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.faculties-list a:hover {
+  color: #fdb400;
+  text-decoration: underline;
+}
+
+.news-section {
+  background: #f5f5f5;
+  padding: clamp(2.5rem, 5vw, 3.75rem) 1rem;
+}
+
+.news-content {
+  margin: 0 auto;
+  max-width: var(--content-width);
+}
+
+.news-section h2 {
+  color: var(--institutional-red);
+  margin-bottom: 2rem;
+}
+
+.news-grid {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.news-card {
+  background: #ffffff;
+  border-radius: 0 0 1.1rem 1.1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.news-card > img {
+  display: block;
+  height: auto;
+  object-fit: cover;
+  transition: transform 350ms ease;
+  width: 100%;
+}
+
+.news-card-content {
+  padding: 1.7rem 1.6rem 1.8rem;
+}
+
+.news-card:hover > img {
+  transform: scale(1.04);
+}
+
+.news-card h3 {
+  color: var(--institutional-red);
+  font-family: var(--font-titillium), sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.05;
+  margin: 0 0 0.75rem;
+}
+
+.news-card p {
+  color: #000000;
+  font-size: 1rem;
+  line-height: 1.25;
+  margin: 0 0 1.25rem;
+}
+
+.news-card a {
+  color: var(--institutional-red);
+  text-decoration: none;
+}
+
+.news-card a:hover {
+  color: #000000;
+  text-decoration: underline;
+}
+
+.news-more-link {
+  background: var(--institutional-red);
+  border-radius: 5px;
+  color: #ffffff;
+  display: block;
+  font-weight: 600;
+  margin: 2.5rem auto 0;
+  padding: 0.7rem 2.7rem;
+  text-align: center;
+  text-decoration: none;
+  width: fit-content;
+}
+
+.news-more-link:hover {
+  background: #000000;
+  color: #fdb400;
+}
+
+.enrollment-section {
+  background: linear-gradient(105deg, #8c1919 0%, #a91616 48%, #e00000 100%);
+  color: #ffffff;
+  margin-bottom: 2.25rem;
+  overflow: visible;
+}
+
+.enrollment-content {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: var(--content-width);
+  min-height: 335px;
+  position: relative;
+}
+
+.enrollment-copy {
+  max-width: 540px;
+  padding: clamp(1.75rem, 3vw, 2.5rem) 0;
+  position: relative;
+  z-index: 1;
+}
+
+.enrollment-copy h2 {
+  font-family: var(--font-titillium), sans-serif;
+  font-size: clamp(2.4rem, 4.5vw, 3.4rem);
+  font-weight: 700;
+  line-height: 0.9;
+  margin: 0 0 1.2rem;
+}
+
+.enrollment-copy p {
+  font-size: 1.05rem;
+  line-height: 1.25;
+  margin: 0;
+  max-width: 510px;
+}
+
+.enrollment-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.enrollment-primary,
+.enrollment-secondary {
+  border-radius: 5px;
+  display: inline-block;
+  font-weight: 500;
+  padding: 0.7rem 1.35rem;
+  text-decoration: none;
+}
+
+.enrollment-primary {
+  background: #ffffff;
+  color: var(--institutional-red);
+}
+
+.enrollment-secondary {
+  border: 2px solid #ffffff;
+  color: #ffffff;
+}
+
+.enrollment-primary:hover,
+.enrollment-secondary:hover {
+  background: #000000;
+  border-color: #000000;
+  color: #fdb400;
+}
+
+.enrollment-image {
+  align-self: end;
+  height: auto;
+  margin-bottom: -3.4rem;
+  margin-right: 2rem;
+  max-width: min(42%, 390px);
+  object-fit: contain;
+}
+
+.student-services-section {
+  background: var(--institutional-gold);
+  color: #000000;
+  padding: clamp(1.75rem, 3vw, 2.5rem) 1rem;
+}
+
+.student-services-grid {
+  display: grid;
+  gap: clamp(2rem, 4vw, 4.5rem);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0 auto;
+  max-width: var(--content-width);
+}
+
+.student-service {
+  border-left: 1px solid rgba(0, 0, 0, 0.35);
+  color: #000000;
+  text-align: center;
+  text-decoration: none;
+}
+
+.student-service:first-child {
+  border-left: 0;
+}
+
+.student-service-icon {
+  display: block;
+  font-family: Georgia, serif;
+  font-size: 2.25rem;
+  height: 3.8rem;
+  line-height: 1;
+}
+
+.student-service h3 {
+  font-family: var(--font-titillium), sans-serif;
+  font-size: clamp(1.25rem, 2vw, 1.55rem);
+  font-weight: 400;
+  line-height: 1.1;
+  margin: 0 auto 1.2rem;
+  max-width: 17rem;
+}
+
+.student-service p {
+  font-size: 0.92rem;
+  line-height: 1.35;
+  margin: 0 auto;
+  max-width: 16rem;
+}
+
+.student-service:hover h3,
+.student-service:hover .student-service-icon {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2rem;
+}
+
+.services-section {
+  background: #f5f5f5;
+  padding: clamp(2.75rem, 5vw, 4.25rem) 1rem;
+}
+
+.services-content {
+  margin: 0 auto;
+  max-width: var(--content-width);
+}
+
+.services-heading {
+  margin: 0 auto clamp(2.5rem, 5vw, 3.75rem);
+  max-width: 510px;
+  text-align: center;
+}
+
+.services-heading h2 {
+  color: var(--institutional-red);
+  font-family: var(--font-titillium), sans-serif;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 0.95;
+  margin: 0 0 1rem;
+}
+
+.services-heading p {
+  color: #000000;
+  font-size: 0.95rem;
+  line-height: 1.25;
+  margin: 0;
+}
+
+.services-list {
+  display: grid;
+  gap: 1.1rem;
+}
+
+.service-card {
+  align-items: stretch;
+  background: #ffffff;
+  border-radius: 0 1rem 1rem 0;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  min-height: 150px;
+  overflow: hidden;
+}
+
+.service-card > img {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.service-card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1.25rem 1.5rem;
+}
+
+.service-card h3 {
+  color: var(--institutional-red);
+  font-family: var(--font-titillium), sans-serif;
+  font-size: clamp(1.5rem, 2.5vw, 1.8rem);
+  font-weight: 700;
+  line-height: 1;
+  margin: 0 0 0.8rem;
+}
+
+.service-card p {
+  color: #000000;
+  font-size: 0.9rem;
+  line-height: 1.25;
+  margin: 0 0 1rem;
+}
+
+.service-card a {
+  color: var(--institutional-red);
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.service-card a:hover {
+  color: #000000;
+  text-decoration: underline;
+}
+
+.university-promo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+}
+
+.promo-media {
+  min-height: 280px;
+  overflow: hidden;
+  position: relative;
+}
+
+.promo-media::after {
+  background: rgba(0, 0, 0, 0.32);
+  content: "";
+  inset: 0;
+  position: absolute;
+}
+
+.promo-video {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.promo-play {
+  align-items: center;
+  background: #ffffff;
+  border: 0;
+  border-radius: 50%;
+  color: var(--institutional-red);
+  cursor: pointer;
+  display: flex;
+  font-size: 1.35rem;
+  height: 4rem;
+  justify-content: center;
+  left: 50%;
+  padding-left: 0.2rem;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 4rem;
+  z-index: 1;
+}
+
+.promo-play:hover {
+  background: #000000;
+  color: #fdb400;
+}
+
+.promo-play.is-playing {
+  font-size: 1.1rem;
+}
+
+.promo-copy {
+  background: var(--institutional-red);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2.5rem clamp(2rem, 5vw, 4.5rem);
+}
+
+.promo-copy h2 {
+  font-family: var(--font-titillium), sans-serif;
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-weight: 700;
+  line-height: 0.95;
+  margin: 0 0 1rem;
+}
+
+.promo-copy p {
+  font-size: 0.9rem;
+  line-height: 1.35;
+  margin: 0;
+  max-width: 32rem;
+}
+
+.faculty-showcase {
+  background: #ffffff;
+  border-top: 1rem solid #ffffff;
+  display: block;
+  min-height: 215px;
+  position: relative;
+  padding: 0;
+  width: 100%;
+}
+
+.faculty-showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: 100%;
+  min-width: 0;
+}
+
+.faculty-showcase-card {
+  color: #ffffff;
+  isolation: isolate;
+  min-height: 215px;
+  overflow: hidden;
+  position: relative;
+  text-decoration: none;
+}
+
+.faculty-showcase-card img {
+  object-fit: cover;
+  transition: transform 350ms ease;
+  z-index: -2;
+}
+
+.faculty-showcase-card:hover img {
+  transform: scale(1.05);
+}
+
+.faculty-showcase-shade {
+  background: rgba(0, 0, 0, 0.3);
+  inset: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+.faculty-showcase-title {
+  bottom: 3.5rem;
+  font-size: 1rem;
+  left: 50%;
+  position: absolute;
+  text-align: center;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.faculty-play {
+  align-items: center;
+  background: var(--institutional-red);
+  border-radius: 50%;
+  display: flex;
+  font-size: 0.8rem;
+  height: 2.2rem;
+  justify-content: center;
+  left: 50%;
+  padding-left: 0.15rem;
+  position: absolute;
+  top: 45%;
+  transform: translate(-50%, -50%);
+  width: 2.2rem;
+}
+
+.faculty-arrow {
+  background: transparent;
+  border: 0;
+  color: #ffffff;
+  cursor: pointer;
+  font-family: Georgia, serif;
+  font-size: 4rem;
+  left: 0.5rem;
+  line-height: 1;
+  padding: 0;
+  position: absolute;
+  text-shadow: 2px 2px 4px #000000, -1px -1px 3px #000000;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.faculty-arrow-next {
+  left: auto;
+  right: 0.5rem;
+}
+
+.faculty-arrow:hover {
+  color: #fdb400;
+}
+
+.sr-only {
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+  .hero {
+    height: 520px;
+  }
+
+  .hero-content {
+    padding-top: 5rem;
+  }
+
+  .audience-carousel {
+    gap: 0.5rem;
+  }
+
+  .audience-grid {
+    gap: 0.75rem;
+    grid-template-columns: 1fr;
+  }
+
+  .audience-card {
+    aspect-ratio: 2.1 / 1;
+  }
+
+  .audience-card:not(:first-child) {
+    display: none;
+  }
+
+  .audience-title {
+    bottom: 1.25rem;
+    left: 1.25rem;
+  }
+
+  .carousel-arrow {
+    font-size: 3rem;
+  }
+
+  .faculties-content,
+  .news-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .faculties-list {
+    columns: 1;
+  }
+
+  .faculties-list li {
+    margin-bottom: 0.65rem;
+  }
+
+  .enrollment-content {
+    align-items: stretch;
+    min-height: 0;
+  }
+
+  .enrollment-copy {
+    max-width: none;
+    padding: clamp(1.75rem, 3vw, 2.5rem) 0;
+  }
+
+  .enrollment-copy p {
+    max-width: 32rem;
+  }
+
+  .enrollment-image {
+    margin: -1rem auto -3.4rem;
+    max-width: 12rem;
+  }
+
+  .student-services-section {
+    padding-top: clamp(1.75rem, 3vw, 2.5rem);
+  }
+
+  .student-services-grid {
+    gap: 2.5rem 1.25rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .service-card {
+    border-radius: 0 0 1rem 1rem;
+    grid-template-columns: 1fr;
+  }
+
+  .service-card > img {
+    height: 13rem;
+  }
+
+  .service-card-content {
+    padding: 1.5rem;
+  }
+
+  .university-promo {
+    grid-template-columns: 1fr;
+  }
+
+  .promo-media {
+    min-height: 15rem;
+  }
+
+  .faculty-showcase {
+    border-top-width: 0.75rem;
+  }
+
+  .faculty-showcase-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .faculty-showcase-card {
+    min-height: 14rem;
+  }
+
+  .faculty-showcase-card:not(:first-child) {
+    display: none;
+  }
+
+  .faculty-showcase-title {
+    bottom: 2.5rem;
+  }
 }
