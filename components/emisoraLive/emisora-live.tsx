@@ -12,7 +12,7 @@ export default function LiveEmisora() {
   const { isPlaying, isLoading, volume, togglePlay, changeVolume } = useRadio(RADIO_URL);
 
   return (
-    <div className={styles.Emisora}>
+    <div className={`${styles.Emisora}`}>
       <PlayButton
         isPlaying={isPlaying}
         isLoading={isLoading}
@@ -28,7 +28,7 @@ export default function LiveEmisora() {
       <VolumeSlider
         volume={volume}
         onChange={changeVolume}
-        className="w-20 accent-amber-500 ml-auto"
+        className="w-50 accent-amber-500 ml-auto"
       />
     </div>
   );

@@ -1,3 +1,7 @@
 .Emisora {
     background-color: var(--institutional-red);
+    display: flex; 
+    align-items: items-center; 
+    gap: 2rem;
+    padding: 12px;
 }
