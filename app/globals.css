@@ -10,6 +10,14 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-ud-rojo: #e4032e;
+  --color-ud-amarillo: #ffdf05;
+  --color-ud-azul: #1291c0;
+  --color-ud-verde: #00a859;
+  --color-ud-morado: #7f0087;
+  --color-ud-negro: #000000;
+  --color-ud-oscuro: #1a1a1a;
+  --color-ud-gris: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
