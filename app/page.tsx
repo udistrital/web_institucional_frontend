@@ -1,4 +1,5 @@
 import Header from "@/components/header/header";
+import Footer from "@/components/footer/footer";
 import styles from "@/components/home/home.module.css";
 import {
   EnrollmentSection,
@@ -27,6 +28,7 @@ export default function Home() {
         <UniversityPromoSection />
         <FacultyShowcaseSection />
       </main>
+      <Footer/>
     </>
   );
 }
