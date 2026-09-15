@@ -6,7 +6,7 @@ export default function Header() {
   return (
     <header className="w-full">
       <AudienceNav />
-      <div className="flex items-center justify-between bg-ud-gris px-6 py-3">
+      <div className="flex items-start justify-between bg-ud-gris px-6 py-3">
         <Brand />
         <MainMenu />
       </div>
