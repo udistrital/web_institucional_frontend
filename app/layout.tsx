@@ -1,23 +1,18 @@
 import type { Metadata } from "next";
-import { Hind, Lora, Titillium_Web } from "next/font/google";
+import { Lato, Montserrat } from "next/font/google";
+import ContactWidget from "@/components/contact-widget/contact-widget";
 import "./globals.css";
 
-const titillium = Titillium_Web({
-  variable: "--font-titillium",
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin"],
   weight: ["400", "600", "700"],
 });
 
-const hind = Hind({
-  variable: "--font-hind",
+const lato = Lato({
+  variable: "--font-lato",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
-
-const lora = Lora({
-  variable: "--font-lora",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
@@ -35,9 +30,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="es"
-      className={`${titillium.variable} ${hind.variable} ${lora.variable} h-full antialiased`}
+      className={`${montserrat.variable} ${lato.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {children}
+        <ContactWidget />
+      </body>
     </html>
   );
 }
