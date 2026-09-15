@@ -1,0 +1,9 @@
+export { default as EnrollmentSection } from "./EnrollmentSection";
+export { default as FacultiesSection } from "./FacultiesSection";
+export { default as FacultyShowcaseSection } from "./FacultyShowcaseSection";
+export { default as HeroSection } from "./HeroSection";
+export { default as NewsSection } from "./NewsSection";
+export { default as QuickLinksSection } from "./QuickLinksSection";
+export { default as ServicesSection } from "./ServicesSection";
+export { default as StudentServicesSection } from "./StudentServicesSection";
+export { default as UniversityPromoSection } from "./UniversityPromoSection";
