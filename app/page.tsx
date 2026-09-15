@@ -1,5 +1,32 @@
-import HomeShowcase from "@/app/components/home/HomeShowcase";
+import Header from "@/components/header/header";
+import styles from "@/components/home/home.module.css";
+import {
+  EnrollmentSection,
+  FacultiesSection,
+  FacultyShowcaseSection,
+  HeroSection,
+  NewsSection,
+  QuickLinksSection,
+  ServicesSection,
+  StudentServicesSection,
+  UniversityPromoSection,
+} from "@/components/home";
 
 export default function Home() {
-  return <HomeShowcase />;
+  return (
+    <>
+      <Header />
+      <main className={styles.homeShowcase}>
+        <HeroSection />
+        <QuickLinksSection />
+        <FacultiesSection />
+        <NewsSection />
+        <EnrollmentSection />
+        <StudentServicesSection />
+        <ServicesSection />
+        <UniversityPromoSection />
+        <FacultyShowcaseSection />
+      </main>
+    </>
+  );
 }
