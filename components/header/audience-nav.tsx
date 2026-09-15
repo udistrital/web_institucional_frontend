@@ -1,7 +1,7 @@
 import {
   audienceProfiles,
   institutionalLinks,
-} from "@/config/navigation"
+} from "@/navegation/audience"
 import styles from "./header.module.css"
 
 export default function AudienceNav() {

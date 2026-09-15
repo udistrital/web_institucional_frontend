@@ -1,0 +1,121 @@
+.linkList {
+    color: #9ca3af;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.subsection,
+.subsectionWithBorder,
+.contactBlock {
+    margin-top: 1rem;
+}
+
+.subsection:first-child,
+.subsectionWithBorder:first-child,
+.contactBlock:first-child {
+    margin-top: 0;
+}
+
+.underlinedTitle {
+    display: inline-block;
+    border-bottom: 1px solid #fff;
+    padding-bottom: 0.15rem;
+}
+
+.footerTitleLink {
+    display: inline-block;
+    align-self: flex-start;
+    width: fit-content;
+    margin-top: 1rem;
+    border-bottom: 1px solid #fff;
+    color: #fff;
+    font-weight: 700;
+}
+
+.contactBlock {
+    color: #9ca3af;
+    font-size: 0.875rem;
+}
+
+.socialLinks {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.socialLink {
+    color: #9ca3af;
+    transition: color 150ms ease;
+}
+
+.socialLink:hover {
+    color: var(--color-ud-rojo);
+}
+
+.alliesSection,
+.crestSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid #1f2937;
+    padding: 1rem 0;
+}
+
+.alliesGroups {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.alliesRow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.copyright {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-top: 1px solid #1f2937;
+    background: var(--color-ud-rojo);
+    padding: 1rem;
+    color: #fff;
+    font-size: 0.75rem;
+    text-align: center;
+}
+
+.legalLinks {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.legalLink {
+    color: #fff;
+    font-weight: 600;
+}
+
+.legalLink:hover,
+.footerTitleLink:hover {
+    text-decoration: underline;
+}
+
+@media (min-width: 768px) {
+    .copyright {
+        flex-direction: row;
+    }
+}
