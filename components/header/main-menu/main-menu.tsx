@@ -1,135 +1,151 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { useState } from "react"
-import { mainNavigation } from "@/config/navigation"
+import { useState, useMemo } from "react";
+import Buscador from "./buscador";
+import Campus from "./campus";
+import OfertaAcademica from "./oferta-academica";
+import NuestraUniversidad from "./nuestra-universidad";
+import VidaUniversitaria from "./vida-universitaria";
+import SearchResults, { type SearchResult } from "./search-results";
+import Aspirantes from "./aspirantes";
+import Investigacion from "./investigacion";
+import {
+  type NavigationItem,
+  campusNavigation,
+  nuestraUniversidadNavigation,
+  VidaUniversitariaNavigation,
+  ofertaAcademicaNavigation,
+} from "./navigation";
 
-export default function MainMenu() {
-  const [openItem, setOpenItem] = useState<string | null>(null)
+// 1. Unificamos todos los menús en un solo array
+const allNavigationItems: NavigationItem[] = [
+  nuestraUniversidadNavigation,
+  campusNavigation,
+  ofertaAcademicaNavigation,
+  VidaUniversitariaNavigation,
+];
+
+// 2. Normalización de acentos y caracteres
+function normalizeSearchText(text: string): string {
+  if (!text) return "";
+  return text
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+}
+
+function characterMatchScore(source: string, token: string): number {
+  if (!source || !token) return 0;
+  return source.includes(token) ? 1 : 0;
+}
+
+// 3. Función recursiva de búsqueda
+function searchNavigation(
+  items: NavigationItem[],
+  query: string,
+  parents: string[] = [],
+): SearchResult[] {
+  const tokens = normalizeSearchText(query).trim().split(/\s+/).filter(Boolean);
+  if (tokens.length === 0) return [];
+
+  return items
+    .reduce<SearchResult[]>((results, item) => {
+      const label = normalizeSearchText(item.label);
+      const context = normalizeSearchText([...parents, item.label].join(" "));
+
+      const scores = tokens.map((token) =>
+        Math.max(
+          characterMatchScore(label, token) * 2,
+          characterMatchScore(context, token),
+        ),
+      );
+
+      if (scores.every((score) => score > 0)) {
+        results.push({
+          item,
+          parents,
+          score: scores.reduce((total, score) => total + score, 0),
+        });
+      }
+
+      if (item.children && item.children.length > 0) {
+        results.push(
+          ...searchNavigation(item.children, query, [...parents, item.label]),
+        );
+      }
+
+      return results;
+    }, [])
+    .sort((first, second) => second.score - first.score);
+}
+
+export default function MainMenuPruv() {
+  const [openMenu, setOpenMenu] = useState<
+    "universidad" | "campus" | "oferta" | "vida" | null
+  >(null);
+
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const closeMenu = () => setOpenMenu(null);
+
+  // 4. Calculamos los resultados directamente desde allNavigationItems
+  const searchResults = useMemo(() => {
+    if (!searchQuery.trim()) return [];
+    return searchNavigation(allNavigationItems, searchQuery);
+  }, [searchQuery]);
 
   return (
-    <div className="relative flex flex-col items-end gap-3">
-      <form
-        role="search"
-        className="mt-2 flex h-10 w-64 items-center rounded-full border-2 border-ud-rojo bg-white px-3"
+    <div className="flex flex-col items-end gap-4">
+      {/* Contenedor relativo para posicionar el dropdown de resultados */}
+      <div className="relative">
+        <Buscador value={searchQuery} onChange={setSearchQuery} />
+
+        {searchQuery.trim().length > 0 && (
+          <SearchResults
+            results={searchResults}
+            onSelect={() => setSearchQuery("")}
+          />
+        )}
+      </div>
+
+      <nav
+        aria-label="Menú principal de navegación"
+        className="flex items-center gap-4"
       >
-        <label htmlFor="header-search" className="sr-only">
-          Buscar en el sitio
-        </label>
-        <input
-          id="header-search"
-          type="search"
-          name="q"
-          placeholder="Buscar"
-          className="min-w-0 flex-1 bg-transparent px-2 text-sm text-black outline-none"
+        
+        <Aspirantes onClose={closeMenu} />
+        <NuestraUniversidad
+          isOpen={openMenu === "universidad"}
+          onToggle={() =>
+            setOpenMenu((current) =>
+              current === "universidad" ? null : "universidad",
+            )
+          }
+          onClose={closeMenu}
         />
-        <button
-          type="submit"
-          aria-label="Buscar"
-          className="flex h-7 w-7 items-center justify-center text-ud-rojo"
-        >
-          <svg
-            aria-hidden="true"
-            className="h-5 w-5"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <circle cx="11" cy="11" r="7" />
-            <path d="m20 20-4-4" />
-          </svg>
-        </button>
-      </form>
-
-      <nav aria-label="Navegación principal" className="mr-15 mt-6">
-        <ul className="flex items-center justify-end gap-10">
-          {mainNavigation.map((item) => (
-            <li key={item.href} className="relative">
-              {item.children?.length ? (
-                <>
-                  <button
-                    type="button"
-                    aria-expanded={openItem === item.href}
-                    onClick={() => setOpenItem((current) => current === item.href ? null : item.href)}
-                    className="flex items-center gap-1 font-medium text-gray-800 transition-colors hover:text-ud-rojo"
-                  >
-                    {item.label}
-                    <svg
-                      aria-hidden="true"
-                      className={`h-4 w-4 transition-transform ${openItem === item.href ? "rotate-180" : ""}`}
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="m6 9 6 6 6-6" />
-                    </svg>
-                  </button>
-
-                  {openItem === item.href && (
-                    <div className="absolute left-1/2 top-full z-20 mt-3 w-max max-w-[90vw] -translate-x-1/2 bg-white p-8 text-right shadow-lg ring-1 ring-black/10">
-                      <span
-                        aria-hidden="true"
-                        className="absolute -top-2 left-1/2 h-4 w-4 -translate-x-1/2 rotate-45 bg-white ring-1 ring-gray-200"
-                      />
-                      <div
-                        className="grid items-stretch gap-8"
-                        style={{
-                          gridTemplateColumns: `repeat(${item.children.length}, minmax(180px, max-content))`,
-                        }}
-                      >
-                        {item.children.map((section, index) => (
-                          <section
-                            key={section.href}
-                            className={`p-4 ${index % 2 === 0 ? "bg-gray-100" : "bg-white"}`}
-                          >
-                            <Link
-                              href={section.href}
-                              onClick={() => setOpenItem(null)}
-                              className="block text-lg font-semibold text-gray-900 transition-colors hover:text-ud-rojo"
-                            >
-                              {section.label}
-                            </Link>
-
-                            {section.children?.length ? (
-                              <ul className="mt-3 space-y-2">
-                                {section.children.map((child) => (
-                                  <li key={child.href}>
-                                    <Link
-                                      href={child.href}
-                                      onClick={() => setOpenItem(null)}
-                                      className="block text-sm text-gray-600 transition-colors hover:text-ud-rojo"
-                                    >
-                                      {child.label}
-                                    </Link>
-                                  </li>
-                                ))}
-                              </ul>
-                            ) : null}
-                          </section>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </>
-              ) : (
-                <Link
-                  href={item.href}
-                  className="font-medium text-gray-800 transition-colors hover:text-ud-rojo"
-                >
-                  {item.label}
-                </Link>
-              )}
-            </li>
-          ))}
-        </ul>
+        <Campus
+          isOpen={openMenu === "campus"}
+          onToggle={() =>
+            setOpenMenu((current) => (current === "campus" ? null : "campus"))
+          }
+          onClose={closeMenu}
+        />
+        <OfertaAcademica
+          isOpen={openMenu === "oferta"}
+          onToggle={() =>
+            setOpenMenu((current) => (current === "oferta" ? null : "oferta"))
+          }
+          onClose={closeMenu}
+        />
+        <VidaUniversitaria
+          isOpen={openMenu === "vida"}
+          onToggle={() =>
+            setOpenMenu((current) => (current === "vida" ? null : "vida"))
+          }
+          onClose={closeMenu}
+        />
+        <Investigacion onClose={closeMenu} />
       </nav>
-
     </div>
-  )
+  );
 }

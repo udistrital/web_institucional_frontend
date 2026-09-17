@@ -13,6 +13,8 @@ export const institutionalLinks = [
 export type NavigationItem = {
   label: string
   href: string
+  overviewLabel?: string
+  layout?: "rows" | "columns"
   children?: NavigationItem[]
 }
 
@@ -30,6 +32,8 @@ export const mainNavigation: NavigationItem[] = [
   {
     label: "Nuestra Universidad",
     href: "/universidad",
+    overviewLabel: "Conoce toda nuestra universidad",
+    layout: "rows",
     children: [
       { label: "Quiénes somos", href: "/universidad/quienes-somos" },
       { label: "Direccionamiento estratégico", href: "/universidad/direccionamiento-estrategico" },
@@ -39,10 +43,13 @@ export const mainNavigation: NavigationItem[] = [
   {
     label: "Campus",
     href: "/campus",
+    overviewLabel: "Conoce todo nuestro campus",
+    layout: "columns",
     children: [
       {
         label: "Sedes",
         href: "/campus/sedes",
+        overviewLabel: "Conoce todas nuestras sedes",
         children: [
           { label: "Aduanilla de Paiba", href: "/campus/sedes/aduanilla-de-paiba" },
           { label: "Sede de Ingeniería", href: "/campus/sedes/ingenieria" },
@@ -55,10 +62,11 @@ export const mainNavigation: NavigationItem[] = [
           { label: "ILUD", href: "/campus/sedes/ilud" },
         ],
       },
-      { label: "Facultades", href: "/campus/facultades", children: faculties },
+      { label: "Facultades", href: "/campus/facultades", overviewLabel: "Conoce todas nuestras facultades", children: faculties },
       {
         label: "Museos",
         href: "/campus/museos",
+        overviewLabel: "Conoce todos nuestros museos",
         children: [
           { label: "Artes", href: "/campus/museos/artes" },
           { label: "Astronomía", href: "/campus/museos/astronomia" },
@@ -68,6 +76,7 @@ export const mainNavigation: NavigationItem[] = [
       {
         label: "Bibliotecas",
         href: "/campus/bibliotecas",
+        overviewLabel: "Conoce todas nuestras bibliotecas",
         children: [
           { label: "Bibliotecas", href: "/campus/bibliotecas" },
           { label: "Biblioteca digital", href: "/campus/biblioteca-digital" },
@@ -79,6 +88,7 @@ export const mainNavigation: NavigationItem[] = [
       {
         label: "Bienestar",
         href: "/campus/bienestar",
+        overviewLabel: "Conoce todo nuestro bienestar",
         children: [
           { label: "Apoyo alimentario", href: "/campus/bienestar/apoyo-alimentario" },
           { label: "Reliquidación de matrícula", href: "/campus/bienestar/reliquidacion" },
@@ -92,18 +102,23 @@ export const mainNavigation: NavigationItem[] = [
   {
     label: "Oferta academica",
     href: "/programas",
+    overviewLabel: "Conoce todos nuestros programas",
+    layout: "columns",
     children: [
-      { label: "Pregrado", href: "/programas/pregrado", children: faculties },
-      { label: "Posgrado", href: "/programas/posgrado", children: faculties },
+      { label: "Pregrado", href: "/programas/pregrado", overviewLabel: "Conoce nuestros programas de pregrado", children: faculties },
+      { label: "Posgrado", href: "/programas/posgrado", overviewLabel: "Conoce nuestros programas de posgrado", children: faculties },
     ],
   },
   {
     label: "Academia",
     href: "/academia",
+    overviewLabel: "Conoce toda nuestra academia",
+    layout: "columns",
     children: [
       {
         label: "Unidad de extensión",
         href: "/academia/extension",
+        overviewLabel: "Conoce nuestra unidad de extensión",
         children: [
           { label: "Cursos", href: "/academia/extension/cursos" },
           { label: "Servicios", href: "/academia/extension/servicios" },
@@ -113,6 +128,7 @@ export const mainNavigation: NavigationItem[] = [
       {
         label: "Instituto de idiomas ILUD",
         href: "/academia/ilud",
+        overviewLabel: "Conoce nuestro Instituto de Idiomas ILUD",
         children: [
           { label: "Estudia en ILUD", href: "/academia/ilud/estudia" },
           { label: "Academia", href: "/academia/ilud/academia" },
@@ -123,6 +139,7 @@ export const mainNavigation: NavigationItem[] = [
       {
         label: "Aulas virtuales",
         href: "/academia/aulas-virtuales",
+        overviewLabel: "Conoce nuestras aulas virtuales",
         children: [
           { label: "Aulas virtuales pregrado", href: "/academia/aulas-virtuales/pregrado" },
           { label: "Aulas virtuales posgrado", href: "/academia/aulas-virtuales/posgrado" },
@@ -134,6 +151,8 @@ export const mainNavigation: NavigationItem[] = [
   {
     label: "Investigación",
     href: "/investigacion",
+    overviewLabel: "Conoce toda nuestra investigación",
+    layout: "rows",
     children: [
       { label: "Revistas científicas", href: "/investigacion/revistas" },
       { label: "Libros de investigación", href: "/investigacion/libros" },
@@ -142,4 +161,20 @@ export const mainNavigation: NavigationItem[] = [
       { label: "Convocatorias", href: "/investigacion/convocatorias" },
     ],
   },
+]
+
+export const nuestraUniversidad = mainNavigation[0]
+export const campus = mainNavigation[1]
+export const ofertaAcademica = mainNavigation[2]
+export const academia = mainNavigation[3]
+export const admisiones = mainNavigation[4]
+export const investigacion = mainNavigation[5]
+
+export const menuButtons = [
+  nuestraUniversidad,
+  campus,
+  ofertaAcademica,
+  academia,
+  admisiones,
+  investigacion,
 ]
