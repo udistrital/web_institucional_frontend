@@ -1,0 +1,137 @@
+.menuTrigger {
+    border-radius: 0rem;
+    padding: 0.2rem 0.3rem;
+    color: #1f2937;
+    font-weight: 500;
+    font-size: small;
+    transition: background-color 150ms ease, color 150ms ease;
+}
+
+.menuTrigger:hover {
+    background-color: #f3f4f6;
+    color: var(--color-ud-rojo);
+}
+
+.menuWrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.menuTrigger {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.menuChevron,
+.menuChevronOpen {
+    width: 1.25rem;
+    height: 1.25rem;
+    display: inline-block;
+    transition: transform 150ms ease;
+    transform: rotate(-180deg);
+}
+
+.menuChevron {
+    transform: rotate(360deg);
+}
+
+
+.menuFullWidth {
+    position: fixed;
+    top: 170px;
+    left: 0;
+    z-index: 10;
+    display: grid;
+    width: 100vw;
+    max-width: none;
+    background: white;
+    box-shadow: 0 10px 25px rgb(0 0 0 / 12%);
+}
+
+.menuCompact {
+    position: absolute;
+    top: 100%;   /* justo debajo del botón */
+    right: 0;
+    z-index: 10;
+    display: grid;
+    width: 25vw;
+    max-width: none;
+    background: white;
+    box-shadow: 0 10px 25px rgb(0 0 0 / 12%);
+}
+
+.menuColumns {
+    display: grid;
+    align-items: stretch;
+    gap: 0;
+}
+
+.menuColumnGray,
+.menuColumnWhite {
+    min-width: 0;
+    padding: 0.5rem;
+}
+
+.menuColumnGray {
+    background: #f3f4f6;
+}
+
+.menuColumnWhite {
+    background: white;
+}
+
+.menuSectionLink {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #111827;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: color 150ms ease;
+}
+
+.menuSectionLink:hover,
+.menuItemLink:hover {
+    color: var(--color-ud-rojo);
+}
+
+.menuChildList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 0.75rem 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.menuItemLink {
+    display: block;
+    color: #374151;
+    font-size: 1rem;
+    transition: background-color 150ms ease, color 150ms ease;
+}
+
+.menuItemWithIcon {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.menuFeaturedLink {
+    display: block;
+    width: fit-content;
+    margin: 1.5rem auto;
+    border-radius: 9999px;
+    background: var(--color-ud-rojo);
+    padding: 0.75rem 1.5rem;
+    color: white;
+    font-weight: 600;
+    transition: background-color 150ms ease, transform 150ms ease;
+}
+
+.menuFeaturedLink:hover {
+    background: #b40024;
+    transform: translateY(-2px);
+}
+
