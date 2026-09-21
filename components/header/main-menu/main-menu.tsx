@@ -1,19 +1,17 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useEffect, useState, useMemo } from "react";
 import Buscador from "./buscador";
 import Campus from "./campus";
 import OfertaAcademica from "./oferta-academica";
 import NuestraUniversidad from "./nuestra-universidad";
-import VidaUniversitaria from "./vida-universitaria";
 import SearchResults, { type SearchResult } from "./search-results";
 import Aspirantes from "./aspirantes";
-import Investigacion from "./investigacion";
+import Internacionalizacion from "./internacionalizacion";
 import {
   type NavigationItem,
   campusNavigation,
   nuestraUniversidadNavigation,
-  VidaUniversitariaNavigation,
   ofertaAcademicaNavigation,
 } from "./navigation";
 
@@ -22,7 +20,6 @@ const allNavigationItems: NavigationItem[] = [
   nuestraUniversidadNavigation,
   campusNavigation,
   ofertaAcademicaNavigation,
-  VidaUniversitariaNavigation,
 ];
 
 // 2. Normalización de acentos y caracteres
@@ -88,6 +85,14 @@ export default function MainMenuPruv() {
 
   const closeMenu = () => setOpenMenu(null);
 
+  useEffect(() => {
+    const closeMenusOnScroll = () => setOpenMenu(null);
+
+    window.addEventListener("scroll", closeMenusOnScroll, { passive: true });
+
+    return () => window.removeEventListener("scroll", closeMenusOnScroll);
+  }, []);
+
   // 4. Calculamos los resultados directamente desde allNavigationItems
   const searchResults = useMemo(() => {
     if (!searchQuery.trim()) return [];
@@ -95,10 +100,14 @@ export default function MainMenuPruv() {
   }, [searchQuery]);
 
   return (
-    <div className="flex flex-col items-end gap-4">
+    <div className="contents">
       {/* Contenedor relativo para posicionar el dropdown de resultados */}
-      <div className="relative">
-        <Buscador value={searchQuery} onChange={setSearchQuery} />
+      <div className="relative col-start-2 row-start-2 self-center justify-self-end px-6 py-3">
+        <Buscador
+          value={searchQuery}
+          onChange={setSearchQuery}
+          onSearch={closeMenu}
+        />
 
         {searchQuery.trim().length > 0 && (
           <SearchResults
@@ -110,23 +119,14 @@ export default function MainMenuPruv() {
 
       <nav
         aria-label="Menú principal de navegación"
-        className="flex items-center gap-4"
+        className="relative col-span-2 row-start-3 flex items-center justify-end gap-4 bg-black px-6 py-3 font-extrabold text-white"
       >
-        
-        <Aspirantes onClose={closeMenu} />
         <NuestraUniversidad
           isOpen={openMenu === "universidad"}
           onToggle={() =>
             setOpenMenu((current) =>
               current === "universidad" ? null : "universidad",
             )
-          }
-          onClose={closeMenu}
-        />
-        <Campus
-          isOpen={openMenu === "campus"}
-          onToggle={() =>
-            setOpenMenu((current) => (current === "campus" ? null : "campus"))
           }
           onClose={closeMenu}
         />
@@ -137,14 +137,15 @@ export default function MainMenuPruv() {
           }
           onClose={closeMenu}
         />
-        <VidaUniversitaria
-          isOpen={openMenu === "vida"}
+        <Internacionalizacion onClose={closeMenu} />
+        <Aspirantes onClose={closeMenu} />
+                <Campus
+          isOpen={openMenu === "campus"}
           onToggle={() =>
-            setOpenMenu((current) => (current === "vida" ? null : "vida"))
+            setOpenMenu((current) => (current === "campus" ? null : "campus"))
           }
           onClose={closeMenu}
         />
-        <Investigacion onClose={closeMenu} />
       </nav>
     </div>
   );

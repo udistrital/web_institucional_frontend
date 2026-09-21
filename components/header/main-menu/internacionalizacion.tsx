@@ -6,8 +6,8 @@ type AnvestigacionProps = {
   onClose?: () => void
 }
 
-export default function Investigacion({
-  href = "/investigacion",
+export default function Internacionalizacion({
+  href = "/internacionalizacion",
   onClose,
 }: AnvestigacionProps) {
   return (
@@ -17,7 +17,7 @@ export default function Investigacion({
         onClick={onClose}
         className={styles.menuTrigger}
       >
-        INVESTIGACION
+        INTERNACIONZALIZACIÓN
       </Link>
     </div>
   )

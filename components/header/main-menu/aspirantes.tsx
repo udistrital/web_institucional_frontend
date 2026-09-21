@@ -17,7 +17,7 @@ export default function Aspirantes({
         onClick={onClose}
         className={styles.menuTrigger}
       >
-        ASPIRANTES
+          ESTUDIA EN LA UD
       </Link>
     </div>
   )

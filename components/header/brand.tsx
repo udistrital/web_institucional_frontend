@@ -6,6 +6,7 @@ export default function Brand() {
     <Link
     href="/"
     aria-label="Ir a la pagina principal"
+    className="col-start-1 row-start-2 inline-block w-fit ml-17"
     >
     <div className={styles.logo}>
       <img

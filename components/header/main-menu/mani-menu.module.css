@@ -1,15 +1,15 @@
 .menuTrigger {
-    border-radius: 0rem;
+    border-radius: 0.375rem;
     padding: 0.2rem 0.3rem;
-    color: #1f2937;
-    font-weight: 500;
-    font-size: small;
+    color: white;
+    font-weight: 800;
+    font-size: 0.875rem;
     transition: background-color 150ms ease, color 150ms ease;
 }
 
 .menuTrigger:hover {
-    background-color: #f3f4f6;
-    color: var(--color-ud-rojo);
+    background-color: var(--color-ud-rojo);
+    color: white;
 }
 
 .menuWrapper {
@@ -38,15 +38,19 @@
 
 
 .menuFullWidth {
-    position: fixed;
-    top: 170px;
+    position: absolute;
+    top: 100%;
     left: 0;
     z-index: 10;
     display: grid;
-    width: 100vw;
+    width: 100%;
     max-width: none;
     background: white;
     box-shadow: 0 10px 25px rgb(0 0 0 / 12%);
+}
+
+.menuWrapper:has(.menuFullWidth) {
+    position: static;
 }
 
 .menuCompact {
@@ -134,4 +138,3 @@
     background: #b40024;
     transform: translateY(-2px);
 }
-
