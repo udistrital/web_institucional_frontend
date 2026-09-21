@@ -81,16 +81,6 @@ export const nuestraUniversidadNavigation: NavigationItem = {
     { label: "Modelo de operacion", href: "/nuestra-universidad/modelo-de-operacion" },
   ]
 }
-export const VidaUniversitariaNavigation: NavigationItem = {
-  label: "vida-universitaria",
-  href: "/vida-universiatria",
-  children: [
-    { label: "Sistema de gestion academica", href: "/nuestra-universidad/SGA" },
-    { label: "Programa para el desarrollo integral", href: "/nuestra-universidad/programa-para-el-desarrollo-integral" },
-    { label: "Interinstitucional", href: "/nuestra-universidad/interinstitucional" },
-    { label: "Aulas virtuales", href: "/nuestra-universidad/aulas-virtuales" },
-  ]
-}
 export const ofertaAcademicaNavigation: NavigationItem = {
   label: "Oferta académica",
   href: "/oferta-academica",
