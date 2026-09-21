@@ -43,7 +43,7 @@ export default function HeroSection() {
         {/* <p className={styles["hero-kicker"]}>Universidad Distrital</p> */}
         <h1>{currentSlide.title}</h1>
         <p className={styles["hero-description"]}>{currentSlide.description}</p>
-        <a className={styles["hero-link"]} href="#audiencias">Ver más</a>
+        <a className={styles["hero-link"]} href="#audiencias">Explorar accesos por rol</a>
       </div>
       <div className={styles["hero-controls"]} aria-label="Seleccionar noticia destacada">
         {slides.map((slide, index) => (

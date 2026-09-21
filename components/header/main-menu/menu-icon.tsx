@@ -58,7 +58,7 @@ export default function MenuIcon({
     strokeWidth: "2",
     strokeLinecap: "round" as const,
     strokeLinejoin: "round" as const,
-    "aria-hidden": "true",
+    "aria-hidden": true,
     ...props,
   }
 

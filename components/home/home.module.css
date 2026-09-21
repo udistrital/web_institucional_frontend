@@ -1,10 +1,23 @@
 .homeShowcase {
   background: var(--background);
+  display: block;
   min-height: 100vh;
 }
 
-.homeShowcase {
-  display: block;
+/*
+  Ancho de contenido responsive.
+  --content-width se define en globals.css (:root) en 70vw para escritorio.
+  En pantallas intermedias y móviles se amplía para que las secciones no
+  queden comprimidas en una columna central estrecha.
+*/
+@media (max-width: 1024px) {
+  .homeShowcase { --content-width: 86vw; }
+}
+@media (max-width: 720px) {
+  .homeShowcase { --content-width: 90vw; }
+}
+@media (max-width: 480px) {
+  .homeShowcase { --content-width: 92vw; }
 }
 
 .hero { height: clamp(430px, 38vw, 500px); isolation: isolate; overflow: hidden; position: relative; }
@@ -14,12 +27,12 @@
 .hero-image.is-active { opacity: 1; }
 .hero-overlay { background: linear-gradient(90deg, rgba(0,0,0,.8), rgba(0,0,0,.35) 57%, rgba(0,0,0,.05)); z-index: -1; }
 .hero-content { color: #fff; height: 100%; margin: 0 auto; max-width: var(--content-width); padding: clamp(4rem, 8vw, 5rem) 1rem 6rem; }
-.hero-kicker { font-family: var(--font-montserrat), sans-serif; font-size: .95rem; margin: 0 0 .65rem; }
-.hero h1 { font-family: var(--font-montserrat), sans-serif; font-size: clamp(2rem, 4.2vw, 3.15rem); font-weight: 700; line-height: 1.08; margin: 0; max-width: 680px; }
-.hero-description { font-size: clamp(1rem, 1.7vw, 1.25rem); line-height: 1.3; margin: 1rem 0 1.4rem; max-width: 640px; }
+.hero-kicker { font-family: var(--font-montserrat), sans-serif; font-size: var(--fs-base); margin: 0 0 .65rem; }
+.hero h1 { font-family: var(--font-montserrat), sans-serif; font-size: var(--fs-h1); font-weight: 700; line-height: 1.08; margin: 0; max-width: 680px; }
+.hero-description { font-size: var(--fs-md); line-height: var(--lh-snug); margin: 1rem 0 1.4rem; max-width: 640px; }
 .hero-link, .faculties-link { border-radius: 5px; display: inline-block; font-weight: 600; padding: .65rem 1.05rem; text-decoration: none; }
 .hero-link { background: var(--institutional-red); color: #fff; }
-.hero-link:hover, .faculties-link:hover, .news-more-link:hover, .enrollment-primary:hover, .enrollment-secondary:hover { background: #000; color: var(--institutional-gold); }
+.hero-link:hover, .faculties-link:hover, .news-more-link:hover, .enrollment-primary:hover, .enrollment-secondary:hover { background: #fdb400; color: black; }
 .hero-controls { bottom: 2rem; display: flex; gap: .65rem; left: 50%; position: absolute; transform: translateX(-50%); }
 .hero-dot { background: #fff; border: 0; border-radius: 50%; cursor: pointer; height: 12px; opacity: .75; padding: 0; width: 12px; }
 .hero-dot.is-active { background: var(--institutional-red); opacity: 1; }
@@ -32,16 +45,16 @@
 .audience-card img, .faculty-showcase-card img { object-fit: cover; transition: transform 350ms ease; z-index: -2; }
 .audience-card:hover img, .faculty-showcase-card:hover img { transform: scale(1.04); }
 .audience-shade { background: linear-gradient(0deg, rgba(0,0,0,.9), transparent 70%); inset: 0; position: absolute; z-index: -1; }
-.audience-title { bottom: 2rem; font-family: var(--font-montserrat), sans-serif; font-size: clamp(1.3rem, 2vw, 1.8rem); font-weight: 700; left: 2rem; line-height: .95; max-width: 8rem; position: absolute; }
+.audience-title { bottom: 2rem; font-family: var(--font-montserrat), sans-serif; font-size: var(--fs-h3); font-weight: 700; left: 2rem; line-height: .95; max-width: 8rem; position: absolute; }
 .carousel-arrow, .faculty-arrow { background: transparent; border: 0; cursor: pointer; font-family: Georgia, serif; line-height: 1; padding: 0; }
 .carousel-arrow { color: var(--institutional-red); font-size: 4rem; }
 
-.faculties-section { background: var(--institutional-red); color: #fff; padding: clamp(1.75rem, 3vw, 2.5rem) 1rem; }
+.faculties-section { background: var(--institutional-red); color: #fff; padding: clamp(5rem, 3vw, 2.5rem) 1rem; }
 .faculties-content { align-items: start; display: grid; gap: clamp(2rem, 7vw, 7rem); grid-template-columns: minmax(220px, .8fr) 1.7fr; margin: 0 auto; max-width: var(--content-width); }
-.faculties-intro h2, .news-section h2 { font-family: var(--font-montserrat), sans-serif; font-size: clamp(2.25rem, 4.4vw, 3.25rem); font-weight: 700; line-height: .9; margin: 0; }
+.faculties-intro h2, .news-section h2 { font-family: var(--font-montserrat), sans-serif; font-size: var(--fs-h2); font-weight: 700; line-height: .9; margin: 0; }
 .faculties-link { background: #fff; color: var(--institutional-red); margin-top: 1.1rem; }
 .faculties-list { column-gap: clamp(2rem, 5vw, 5.5rem); columns: 2; list-style: none; margin: 0; padding: .15rem 0 0; }
-.faculties-list li { break-inside: avoid; font-size: .95rem; margin-bottom: .8rem; padding-left: 1rem; position: relative; }
+.faculties-list li { break-inside: avoid; font-size: var(--fs-base); margin-bottom: .8rem; padding-left: 1rem; position: relative; }
 .faculties-list li::before { background: var(--institutional-gold); content: ""; height: .32rem; left: 0; position: absolute; top: .5rem; width: .32rem; }
 .faculties-list a { color: #fff; text-decoration: none; }
 .faculties-list a:hover { color: var(--institutional-gold); text-decoration: underline; }
@@ -57,46 +70,50 @@
 .news-card:hover > img { transform: scale(1.04); }
 .news-card-content { padding: 1.7rem 1.6rem 1.8rem; }
 .news-card h3, .service-card h3 { color: var(--institutional-red); font-family: var(--font-montserrat), sans-serif; font-weight: 700; line-height: 1.05; }
-.news-card h3 { font-size: 1.35rem; margin: 0 0 .75rem; }
-.news-card p, .service-card p { color: #000; line-height: 1.25; margin: 0 0 1.25rem; }
+.news-card h3 { font-size: var(--fs-lg); margin: 0 0 .75rem; }
+.news-card p, .service-card p { color: #4d4d4d; line-height: var(--lh-snug); margin: 0 0 1.25rem; }
 .news-card a, .service-card a { color: var(--institutional-red); text-decoration: none; }
 .news-card a:hover, .service-card a:hover { color: #000; text-decoration: underline; }
 .news-more-link { background: var(--institutional-red); border-radius: 5px; color: #fff; display: block; font-weight: 600; margin: 2.5rem auto 0; padding: .7rem 2.7rem; text-align: center; text-decoration: none; width: fit-content; }
 
-.enrollment-section { background: linear-gradient(105deg, var(--institutional-red), #b40024 48%, #c90028); color: #fff; margin: 5rem 0 0; overflow: visible; position: relative; }
-.enrollment-content { align-items: center; display: flex; justify-content: space-between; margin: 0 auto; max-width: var(--content-width); min-height: 280px; padding: .75rem 0; position: relative; }
+
+
+
+/* Rojo medio del gradiente aclarado hasta #c60018 para lograr contraste 6.15:1 con texto blanco (WCAG AA >=4.5:1). */
+.enrollment-section { background: linear-gradient(105deg, var(--institutional-red), #c60018 78%, var(--institutional-red)); color: #fff; margin: 5rem 0 0; overflow: visible; position: relative; }
+.enrollment-content { align-items: center; display: flex; justify-content: space-between; margin: 0 auto; max-width: var(--content-width); min-height: 280px; padding: 3rem 0; position: relative; }
 .enrollment-copy { max-width: 540px; padding: 1.75rem 0; position: relative; z-index: 1; }
-.enrollment-copy h2 { font-family: var(--font-montserrat), sans-serif; font-size: clamp(2.4rem, 4.5vw, 3.4rem); font-weight: 700; line-height: .9; margin: 0 0 1.2rem; }
-.enrollment-copy p { font-size: 1.05rem; line-height: 1.25; margin: 0; max-width: 510px; }
+.enrollment-copy h2 { font-family: var(--font-montserrat), sans-serif; font-size: var(--fs-h2); font-weight: 700; line-height: .9; margin: 0 0 1.2rem; }
+.enrollment-copy p { font-size: var(--fs-md); line-height: var(--lh-snug); margin: 0; max-width: 510px; }
 .enrollment-actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
 .enrollment-primary, .enrollment-secondary { border-radius: 5px; display: inline-block; font-weight: 500; padding: .7rem 1.35rem; text-decoration: none; }
 .enrollment-primary { background: var(--background); color: var(--institutional-red); }
 .enrollment-secondary { border: 2px solid var(--institutional-gold); color: #fff; }
 .enrollment-image { height: auto; max-width: min(35%, 405px); object-fit: contain; position: absolute; right: 2rem; top: -5rem; }
 
-.student-services-section { background: var(--institutional-gold); border-top: 5rem solid #fff; color: #000; padding: 1.5rem 1rem; }
+.student-services-section { background: var(--institutional-gold); border-top: 5rem solid #fff; color: #000; padding: 5rem 1rem; }
 .student-services-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 0 auto; max-width: var(--content-width); }
-.student-service { align-items: center; border-left: 1px solid rgba(0,0,0,.35); color: #000; display: flex; flex-direction: column; min-height: 220px; padding: .25rem clamp(1rem, 2.5vw, 2rem) 0; text-align: center; text-decoration: none; }
+.student-service { align-items: flex-start; border-left: 1px solid rgba(0,0,0,.35); color: #000; display: flex; flex-direction: column; min-height: 200px; padding: .25rem clamp(1rem, 2.5vw, 2rem) 0; text-align: left; text-decoration: none; }
 .student-service:first-child { border-left: 0; }
 .student-service-icon { align-items: center; display: flex; font-family: Georgia, serif; font-size: 2.25rem; height: 3rem; justify-content: center; line-height: 1; margin-bottom: .75rem; }
-.student-service h3 { align-items: center; display: flex; font-family: var(--font-montserrat), sans-serif; font-size: clamp(1.15rem, 1.65vw, 1.45rem); font-weight: 400; justify-content: center; line-height: 1.1; margin: 0 0 1rem; max-width: 17rem; min-height: 3.2rem; }
-.student-service p { font-size: .92rem; line-height: 1.35; margin: 0; max-width: 17rem; }
+.student-service h3 { align-items: center; display: flex; font-family: var(--font-montserrat), sans-serif; font-size: var(--fs-lg); font-weight: 400; justify-content: flex-start; line-height: 1.1; margin: 0 0 1rem; max-width: 17rem; min-height: 3.2rem; }
+.student-service p { font-size: var(--fs-sm); line-height: 1.35; margin: 0; max-width: 17rem; }
 .student-service:hover h3, .student-service:hover .student-service-icon { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: .2rem; }
 
-.services-section { padding: clamp(2rem, 2.5vw, 2.25rem) 1rem; }
-.services-heading { margin: 0 auto clamp(1.25rem, 2vw, 1.75rem); max-width: 510px; text-align: center; }
-.services-heading h2 { color: var(--institutional-red); font-family: var(--font-montserrat), sans-serif; font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 700; line-height: .95; margin: 0 0 .75rem; }
-.services-heading p { color: #000; font-size: .95rem; line-height: 1.25; margin: 0; }
+.services-section { padding: clamp(5rem, 2.5vw, 2.25rem) 5rem; }
+.services-heading { margin: 0 auto clamp(4rem, 2vw, 1.75rem); max-width: 510px; text-align: left; }
+.services-heading h2 { color: var(--institutional-red); font-family: var(--font-montserrat), sans-serif; font-size: var(--fs-h2); font-weight: 700; line-height: .95; margin: 0 0 .75rem; }
+.services-heading p { color: #4d4d4d; font-size: var(--fs-base); line-height: var(--lh-snug); margin: 0; }
 .services-list { display: grid; gap: .75rem; }
 .service-card { border-radius: 0 .75rem .75rem 0; display: grid; grid-template-columns: 42% 58%; height: 300px; min-height: 0; }
 .service-card > img { height: 300px; }
 .service-card:nth-child(2) { border-radius: .75rem 0 0 .75rem; }
 .service-card:nth-child(2) > img { grid-column: 2; grid-row: 1; }
 .service-card:nth-child(2) .service-card-content { grid-column: 1; grid-row: 1; }
-.service-card-content { display: flex; flex-direction: column; justify-content: center; min-width: 0; overflow: hidden; padding: .75rem 1.15rem; }
-.service-card h3 { font-size: clamp(1.3rem, 2.2vw, 1.6rem); line-height: 1; margin: 0 0 .5rem; }
-.service-card p { font-size: .9rem; }
-.service-card a { font-size: .6rem; letter-spacing: .06em; text-transform: uppercase; }
+.service-card-content { display: flex; flex-direction: column; justify-content: center; min-width: 0; overflow: hidden; padding: .75rem 3rem; }
+.service-card h3 { font-size: var(--fs-h3); line-height: 1; margin: 0 0 .5rem; }
+.service-card p { font-size: var(--fs-sm); }
+.service-card a { font-size: var(--fs-2xs); letter-spacing: .06em; text-transform: uppercase; }
 
 .university-promo { display: grid; grid-template-columns: 1fr 1fr; width: 100%; }
 .promo-media { min-height: 280px; overflow: hidden; position: relative; }
@@ -106,19 +123,35 @@
 .promo-play:hover { background: #000; color: var(--institutional-gold); }
 .promo-play.is-playing { font-size: 1.1rem; }
 .promo-copy { background: var(--institutional-red); color: #fff; display: flex; flex-direction: column; justify-content: center; padding: 2.5rem clamp(2rem,5vw,4.5rem); }
-.promo-copy h2 { font-family: var(--font-montserrat), sans-serif; font-size: clamp(2rem,3.5vw,2.8rem); font-weight: 700; line-height: .95; margin: 0 0 1rem; }
-.promo-copy p { font-size: .9rem; line-height: 1.35; margin: 0; max-width: 32rem; }
+.promo-copy h2 { font-family: var(--font-montserrat), sans-serif; font-size: var(--fs-h2); font-weight: 700; line-height: .95; margin: 0 0 1rem; }
+.promo-copy p { font-size: var(--fs-sm); line-height: 1.35; margin: 0; max-width: 32rem; }
+.promo-transcript { margin-top: 1.25rem; max-width: 32rem; }
+.promo-transcript summary { cursor: pointer; font-weight: 600; text-decoration: underline; text-underline-offset: .2rem; }
+.promo-transcript p { font-size: var(--fs-xs); margin-top: .75rem; }
 
 .faculty-showcase { background: #fff; border-top: 1rem solid #fff; min-height: 215px; position: relative; width: 100%; }
 .faculty-showcase-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); min-width: 0; width: 100%; }
 .faculty-showcase-card { min-height: 215px; }
 .faculty-showcase-card:hover img { transform: scale(1.05); }
 .faculty-showcase-shade { background: rgba(0,0,0,.3); inset: 0; position: absolute; z-index: -1; }
-.faculty-showcase-title { bottom: 3.5rem; font-size: 1rem; left: 50%; position: absolute; text-align: center; transform: translateX(-50%); white-space: nowrap; }
+.faculty-showcase-title { bottom: 3.5rem; font-size: var(--fs-base); left: 50%; position: absolute; text-align: center; transform: translateX(-50%); white-space: nowrap; }
 .faculty-play { align-items: center; background: var(--institutional-red); border-radius: 50%; display: flex; font-size: .8rem; height: 2.2rem; justify-content: center; left: 50%; padding-left: .15rem; position: absolute; top: 45%; transform: translate(-50%,-50%); width: 2.2rem; }
 .faculty-arrow { color: #fff; font-size: 4rem; left: .5rem; position: absolute; text-shadow: 2px 2px 4px #000, -1px -1px 3px #000; top: 50%; transform: translateY(-50%); z-index: 1; }
 .faculty-arrow-next { left: auto; right: .5rem; }
 .faculty-arrow:hover { color: var(--institutional-gold); }
+
+/* ===== Tablet (721px - 1024px) ===== */
+@media (max-width: 1024px) and (min-width: 721px) {
+  .news-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .faculties-content { gap: clamp(1.5rem, 4vw, 3rem); grid-template-columns: minmax(180px, .9fr) 1.6fr; }
+  .student-services-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .student-service:nth-child(-n + 2) { border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 1.5rem; }
+  .student-service:nth-child(odd) { border-left: 0; }
+  .student-service { min-height: 0; }
+  /* La sección de servicios usa 5rem laterales en escritorio; se reduce en tablet. */
+  .services-section { padding: clamp(2.5rem, 4vw, 3.5rem) 2rem; }
+  .service-card, .service-card:nth-child(2) { grid-template-columns: 40% 60%; }
+}
 
 @media (max-width: 720px) {
   .hero { height: 520px; }
@@ -128,28 +161,52 @@
   .audience-card { aspect-ratio: 2.1 / 1; }
   .audience-card:not(:first-child) { display: none; }
   .audience-title { bottom: 1.25rem; left: 1.25rem; }
-  .carousel-arrow { font-size: 3rem; }
+  .carousel-arrow { font-size: 2.5rem; }
+  .faculties-section { padding: 3rem 1rem; }
   .faculties-content, .news-grid { grid-template-columns: 1fr; }
   .faculties-list { columns: 1; }
   .faculties-list li { margin-bottom: .65rem; }
-  .enrollment-section { margin-top: 7rem; }
-  .enrollment-content { align-items: stretch; flex-direction: column; min-height: 0; padding: 0 1rem 1rem; }
-  .enrollment-copy { max-width: none; padding: 1.25rem 0 .75rem; }
-  .enrollment-copy p { max-width: 32rem; }
-  .enrollment-image { max-width: 12rem; right: 50%; top: -6rem; transform: translateX(50%); }
-  .student-services-section { padding: 1rem; }
-  .student-services-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
-  .student-service { border-left: 0; min-height: 0; padding: 1rem .75rem 1.25rem; }
+  .enrollment-section { margin-top: 0; }
+  /* En móvil la imagen deja de estar posicionada de forma absoluta para no solaparse. */
+  .enrollment-content { align-items: stretch; flex-direction: column; gap: 1.5rem; min-height: 0; padding: 2.5rem 1rem; }
+  .enrollment-copy { max-width: none; padding: 0; }
+  .enrollment-copy p { max-width: none; }
+  .enrollment-actions { margin-top: 1.5rem; }
+  .enrollment-primary, .enrollment-secondary { flex: 1 1 auto; text-align: center; }
+  .enrollment-image { margin: 0 auto; max-width: 12rem; position: static; transform: none; }
+  .student-services-section { border-top-width: 2rem; padding: 2.5rem 1rem; }
+  .student-services-grid { gap: 0 1rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .student-service { align-items: flex-start; border-left: 0; max-width: none; min-height: 0; padding: 1.25rem .5rem; text-align: left; }
+  .student-service h3, .student-service p { max-width: none; }
+  .student-service h3 { min-height: 0; }
   .student-service:nth-child(n + 3) { border-top: 1px solid rgba(0,0,0,.25); }
+  /* Reset del padding lateral de 5rem que trae en escritorio. */
+  .services-section { padding: 2.5rem 1rem; }
+  .services-heading { margin: 0 auto 2rem; }
+  .services-list { gap: 1rem; }
   .service-card, .service-card:nth-child(2) { border-radius: 0 0 1rem 1rem; grid-template-columns: 1fr; height: auto; }
   .service-card:nth-child(2) > img, .service-card:nth-child(2) .service-card-content { grid-column: auto; grid-row: auto; }
   .service-card > img { height: 13rem; }
   .service-card-content { padding: 1.15rem 1.25rem; }
   .university-promo { grid-template-columns: 1fr; }
-  .promo-media { min-height: 15rem; }
+  .promo-media { min-height: 15rem; order: -1; }
+  .promo-copy { padding: 2rem 1.25rem; }
   .faculty-showcase { border-top-width: .75rem; }
   .faculty-showcase-grid { grid-template-columns: 1fr; }
   .faculty-showcase-card { min-height: 14rem; }
   .faculty-showcase-card:not(:first-child) { display: none; }
-  .faculty-showcase-title { bottom: 2.5rem; }
+  .faculty-showcase-title { bottom: 2.5rem; max-width: 90%; white-space: normal; }
+}
+
+/* ===== Móvil pequeño (<= 480px) ===== */
+@media (max-width: 480px) {
+  .hero { height: 460px; }
+  .hero-content { padding: 4rem 1rem 4rem; }
+  .student-services-grid { grid-template-columns: 1fr; }
+  .student-service { border-left: 0 !important; border-top: 1px solid rgba(0,0,0,.25); padding: 1.25rem .25rem; }
+  .student-service:first-child { border-top: 0; }
+  .enrollment-actions { flex-direction: column; }
+  .enrollment-primary, .enrollment-secondary { width: 100%; }
+  .news-card-content { padding: 1.25rem 1.25rem 1.4rem; }
+  .promo-copy { padding: 1.75rem 1rem; }
 }
