@@ -59,5 +59,24 @@ export function useRadio(streamUrl: string) {
     if (audioRef.current) audioRef.current.volume = v;
   }, []);
 
-  return { isPlaying, isLoading, volume, togglePlay, changeVolume };
+const [isMuted, setIsMuted] = useState(false);
+const toggleMute = useCallback(() => {
+  const audio = audioRef.current;
+  if (!audio) return;
+
+  const nextMuted = !isMuted;
+
+  audio.muted = nextMuted;
+  setIsMuted(nextMuted);
+}, [isMuted]);
+
+return {
+  isPlaying,
+  isLoading,
+  volume,
+  isMuted,
+  togglePlay,
+  toggleMute,
+  changeVolume,
+};
 }
