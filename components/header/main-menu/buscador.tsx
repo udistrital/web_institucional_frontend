@@ -1,14 +1,19 @@
 type BuscadorProps = {
   value: string
   onChange: (value: string) => void
+  onSearch: () => void
 }
 
-export default function Buscador({ value, onChange }: BuscadorProps) {
+export default function Buscador({ value, onChange, onSearch }: BuscadorProps) {
   return (
     <form
       role="search"
-      onSubmit={(event) => event.preventDefault()}
-      className="mt-2 flex h-10 w-90 items-center rounded-full border-2 border-ud-rojo bg-white px-3 transition-[width] duration-300 focus-within:w-[500px]"
+      onClick={onSearch}
+      onSubmit={(event) => {
+        event.preventDefault()
+        onSearch()
+      }}
+      className="mt-10 -translate-y-4 flex h-10 w-90 items-center rounded-full border-2 border-ud-rojo bg-white px-6 transition-[width] duration-300 focus-within:w-[500px]"
     >
       <label htmlFor="header-search" className="sr-only">
         Buscar en el sitio
@@ -20,7 +25,7 @@ export default function Buscador({ value, onChange }: BuscadorProps) {
         placeholder="Buscar"
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="min-w-0 flex-1 bg-transparent px-2 text-sm text-black outline-none"
+        className="min-w-0 flex-1 bg-transparent px-2 text-sm font-semibold text-black outline-none"
       />
       <button
         type="submit"

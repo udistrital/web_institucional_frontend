@@ -38,7 +38,7 @@ export async function generateStaticParams() {
 
   try {
     const response = await fetch(
-      `${process.env.DRUPAL_BASE_URL}/jsonapi/node/article?filter[status]=1&fields[node--article]=drupal_internal__nid,path`,
+      `${process.env.DRUPAL_BASE_URL || "http://localhost:8080"}/jsonapi/node/article?filter[status]=1&fields[node--article]=drupal_internal__nid,path`,
       { cache: "force-cache" },
     )
     if (!response.ok) throw new Error(`Drupal respondio con HTTP ${response.status}`)
@@ -70,7 +70,7 @@ export default async function ArticlePage({
   if (slug.length === 1 && slug[0] === "__no-content__") notFound()
   const nodeId = slug.length === 2 && slug[0] === "node" ? slug[1] : null
   const articleUrl = new URL(
-    `${process.env.DRUPAL_BASE_URL}/jsonapi/node/article`,
+    `${process.env.DRUPAL_BASE_URL || "http://localhost:8080"}/jsonapi/node/article`,
   )
   articleUrl.searchParams.set("include", "field_poster")
   if (nodeId && /^\d+$/.test(nodeId)) {

@@ -8,7 +8,7 @@ export default function AudienceNav() {
   return (
     <nav
       aria-label="Servicios para usuarios"
-      className={styles.audienceNav}
+      className={`${styles.audienceNav} col-span-2 row-start-1`}
     >
       <div className={styles.audienceProfiles}>
         {audienceProfiles.map((profile) => (
