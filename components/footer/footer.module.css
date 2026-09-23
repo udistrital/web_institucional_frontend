@@ -90,7 +90,7 @@
     justify-content: center;
     gap: 0.5rem;
     border-top: 1px solid #1f2937;
-    background: var(--color-ud-rojo);
+    background: var(--institutional-red);
     padding: 1rem;
     color: #fff;
     font-size: 0.75rem;
@@ -114,8 +114,70 @@
     text-decoration: underline;
 }
 
+/* ===== Accordion (checkbox hack) ===== */
+
+.accordionItem {
+    border-bottom: 1px solid #1f2937;
+    margin-top: 0 !important;
+}
+
+.accordionToggle {
+    /* input checkbox oculto */
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.accordionTitle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    padding: 0.75rem 0;
+    margin: 0;
+}
+
+.accordionTitle::after {
+    content: "+";
+    font-size: 1.25rem;
+    color: #9ca3af;
+    line-height: 1;
+}
+
+.accordionToggle:checked ~ .accordionTitle::after {
+    content: "−";
+}
+
+.accordionContent {
+    display: none;
+    padding-bottom: 1rem;
+}
+
+.accordionToggle:checked ~ .accordionContent {
+    display: block;
+}
+
 @media (min-width: 768px) {
     .copyright {
         flex-direction: row;
+    }
+
+    /* ===== Accordion desactivado en desktop: siempre abierto ===== */
+    .accordionItem {
+        border-bottom: none;
+    }
+
+    .accordionTitle {
+        cursor: default;
+        padding: 0;
+    }
+
+    .accordionTitle::after {
+        display: none;
+    }
+
+    .accordionContent {
+        display: block !important;
+        padding-bottom: 0;
     }
 }

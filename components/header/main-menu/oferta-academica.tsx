@@ -1,20 +1,33 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { ofertaAcademicaNavigation } from "./navigation"
-import styles from "./mani-menu.module.css"
-import { Rows, FacultyIcon } from "./icons"
+import Link from "next/link";
+import { AnimatePresence, motion } from "framer-motion";
+import { ofertaAcademicaNavigation } from "./navigation";
+import { fullWidthMenuVariants } from "../dropdown-motion";
+import styles from "./mani-menu.module.css";
+import { Rows, FacultyIcon } from "./icons";
 
 type OfertaAcademicaProps = {
-  isOpen: boolean
-  onToggle: () => void
-  onClose: () => void
-}
+  isOpen: boolean;
+  onToggle: () => void;
+  onClose: () => void;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
+};
 
-export default function OfertaAcademica({ isOpen, onToggle, onClose }: OfertaAcademicaProps) {
-
+export default function OfertaAcademica({
+  isOpen,
+  onToggle,
+  onClose,
+  onMouseEnter,
+  onMouseLeave,
+}: OfertaAcademicaProps) {
   return (
-    <div className={styles.menuWrapper}>
+    <div
+      className={`${styles.menuWrapper} ${isOpen ? styles.menuWrapperOpen : ""}`}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
       <button
         type="button"
         aria-expanded={isOpen}
@@ -25,8 +38,16 @@ export default function OfertaAcademica({ isOpen, onToggle, onClose }: OfertaAca
         <Rows isOpen={isOpen} />
       </button>
 
-      {isOpen && (
-        <div className={styles.menuFullWidth}>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className={styles.menuFullWidth}
+            variants={fullWidthMenuVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            style={{ transformOrigin: "top center" }}
+          >
           <div
             className={styles.menuColumns}
             style={{
@@ -36,7 +57,11 @@ export default function OfertaAcademica({ isOpen, onToggle, onClose }: OfertaAca
             {ofertaAcademicaNavigation.children?.map((section, index) => (
               <section
                 key={section.href}
-                className={index % 2 === 0 ? styles.menuColumnGray : styles.menuColumnWhite}
+                className={
+                  index % 2 === 0
+                    ? styles.menuColumnGray
+                    : styles.menuColumnWhite
+                }
               >
                 <Link
                   href={section.href}
@@ -72,8 +97,9 @@ export default function OfertaAcademica({ isOpen, onToggle, onClose }: OfertaAca
           >
             Conoce todos los programas
           </Link>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
-  )
+  );
 }

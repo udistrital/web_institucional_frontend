@@ -2,9 +2,10 @@ type BuscadorProps = {
   value: string
   onChange: (value: string) => void
   onSearch: () => void
+  className?: string
 }
 
-export default function Buscador({ value, onChange, onSearch }: BuscadorProps) {
+export default function Buscador({ value, onChange, onSearch, className }: BuscadorProps) {
   return (
     <form
       role="search"
@@ -13,7 +14,7 @@ export default function Buscador({ value, onChange, onSearch }: BuscadorProps) {
         event.preventDefault()
         onSearch()
       }}
-      className="mt-10 -translate-y-4 flex h-10 w-90 items-center rounded-full border-2 border-ud-rojo bg-white px-6 transition-[width] duration-300 focus-within:w-[500px]"
+      className={className ?? "flex h-10 w-90 items-center rounded-full border-2 border-ud-rojo bg-white px-6"}
     >
       <label htmlFor="header-search" className="sr-only">
         Buscar en el sitio

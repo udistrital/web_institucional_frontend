@@ -1,8 +1,8 @@
 export const audienceProfiles = [
   { label: "Aspirantes", href: "/aspirantes" },
   { label: "Estudiantes", href: "/estudiantes" },
-  { label: "Profesores", href: "/profesores" },
-  { label: "Funcionarios", href: "/funcionarios" },
+  { label: "Educadores", href: "/educadores" },
+  { label: "Administrativos", href: "/administrativos" }
 ]
 
 export const institutionalLinks = [
