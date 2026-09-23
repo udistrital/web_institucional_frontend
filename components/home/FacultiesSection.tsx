@@ -16,7 +16,7 @@ export default function FacultiesSection() {
       <div className={styles["faculties-content"]}>
         <div className={styles["faculties-intro"]}>
           <h2 id="faculties-title">Nuestras<br />Facultades</h2>
-          <a className={styles["faculties-link"]} href="#noticias">Ver programas académicos por facultad</a>
+          <a className={styles["faculties-link"]} href="#noticias">Ver programas</a>
         </div>
         <ul className={styles["faculties-list"]}>
           {faculties.map((faculty) => <li key={faculty}><a href="#noticias">{faculty}</a></li>)}
