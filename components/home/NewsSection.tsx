@@ -153,16 +153,16 @@ export default async function NewsSection() {
         <div className={styles["news-grid"]}>
           {news.map((item) => (
             <article className={styles["news-card"]} key={item.id}>
-              <Image src={item.image} alt={item.alt} width={640} height={360} unoptimized />
+              <Image src={item.image} alt={item.alt} width={640} height={360} />
               <div className={styles["news-card-content"]}>
                 <h3>{item.title}</h3>
                 <p>{item.description}</p>
-                <a href="#noticias">Ver más</a>
+                <a href="#noticias">Leer la noticia: {item.title}</a>
               </div>
             </article>
           ))}
         </div>
-        <a className={styles["news-more-link"]} href="#noticias">Ver más noticias</a>
+        <a className={styles["news-more-link"]} href="#noticias">Ver todas las noticias</a>
       </div>
     </section>
   );

@@ -58,9 +58,10 @@ export default function MenuIcon({
     fill: "none",
     stroke: "currentColor",
     strokeWidth: "2",
-    strokeLinecap: "round",
-    strokeLinejoin: "round",
-    "aria-hidden": ariaHidden ?? true,
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
+    "aria-hidden": true,
+    ...props,
   }
 
   switch (iconKey) {

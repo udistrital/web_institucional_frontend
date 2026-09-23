@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./home.module.css";
+import { useSwipe } from "./useSwipe";
 
 const slides = [
   {
@@ -30,20 +31,22 @@ export default function HeroSection() {
   }, []);
 
   const currentSlide = slides[activeSlide];
+  const swipe = useSwipe((direction) => setActiveSlide((current) => (current + direction + slides.length) % slides.length));
 
   return (
-    <section className={styles.hero} aria-label="Noticias destacadas">
+    <section className={styles.hero} aria-label="Noticias destacadas" onTouchStart={swipe.onTouchStart} onTouchEnd={swipe.onTouchEnd}>
       <div className={styles["hero-media"]}>
         {slides.map((slide, index) => (
           <Image key={slide.image} src={slide.image} alt={slide.alt} fill priority={index === 0} sizes="100vw" className={`${styles["hero-image"]} ${index === activeSlide ? styles["is-active"] : ""}`} />
         ))}
       </div>
       <div className={styles["hero-overlay"]} />
+      <a className={styles["hero-mobile-link"]} href="#audiencias" aria-label="Explorar accesos por rol"></a>
       <div className={styles["hero-content"]}>
         {/* <p className={styles["hero-kicker"]}>Universidad Distrital</p> */}
         <h1>{currentSlide.title}</h1>
         <p className={styles["hero-description"]}>{currentSlide.description}</p>
-        <a className={styles["hero-link"]} href="#audiencias">Ver más</a>
+        <a className={styles["hero-link"]} href="#audiencias">Explorar accesos por rol</a>
       </div>
       <div className={styles["hero-controls"]} aria-label="Seleccionar noticia destacada">
         {slides.map((slide, index) => (
