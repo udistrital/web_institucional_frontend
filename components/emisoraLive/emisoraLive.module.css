@@ -1,0 +1,184 @@
+.Emisora {
+    background-color: var(--institutional-red);
+    display: grid;
+    grid-template-columns: auto auto auto minmax(0, 1fr);
+    align-items: center;
+    gap: 0.75rem clamp(0.75rem, 2vw, 2rem);
+    padding: 0.75rem clamp(1rem, 6vw, 6.25rem);
+}
+
+.Programacion {
+    min-width: 0;
+    justify-self: end;
+}
+
+.Station {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.VolumeSlider {
+    justify-self: end;
+}
+
+.PlayButton,
+.MuteButton,
+.ShareButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+}
+
+.LiveBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.Badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    border: 1px solid #000;
+    border-radius: 999px;
+    padding: 0.125rem 0.5rem;
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.CopyMessage {
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    margin-left: 0.5rem;
+    transform: translateY(-50%);
+    white-space: nowrap;
+    color: #fff;
+    font-size: 0.75rem;
+}
+
+.ProgramacionContent {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.ProgramacionButton {
+    white-space: nowrap;
+    border-radius: 0.375rem;
+    background: #fbbf24;
+    padding: 0.375rem 0.75rem;
+    color: #000;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.ProgramacionButton:hover {
+    background: #fcd34d;
+}
+
+.ProgramacionButton:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+.VolumeControl {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.Range {
+    width: clamp(7rem, 12vw, 12rem);
+    cursor: pointer;
+    accent-color: #f59e0b;
+}
+
+.Range::-webkit-slider-thumb {
+    cursor: pointer;
+    transition: transform 150ms ease;
+}
+
+.Range:hover::-webkit-slider-thumb,
+.Range:focus-visible::-webkit-slider-thumb {
+    transform: scale(1.25);
+}
+
+.Range::-moz-range-thumb {
+    cursor: pointer;
+    transition: transform 150ms ease;
+}
+
+.Range:hover::-moz-range-thumb,
+.Range:focus-visible::-moz-range-thumb {
+    transform: scale(1.25);
+}
+
+@media (max-width: 900px) {
+    .Emisora {
+        grid-template-columns: auto minmax(0, 1fr) auto;
+    }
+
+    .Programacion {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        justify-self: stretch;
+    }
+
+    .ProgramacionContent {
+        justify-content: space-between;
+    }
+
+    .Station {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .VolumeSlider {
+        grid-column: 3;
+        grid-row: 1;
+    }
+}
+
+@media (max-width: 520px) {
+    .Emisora {
+        grid-template-columns: auto minmax(0, 1fr);
+    }
+
+    .Station {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .Programacion {
+        grid-row: 3;
+    }
+
+    .VolumeSlider {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        justify-self: stretch;
+    }
+
+    .VolumeControl {
+        width: 100%;
+    }
+
+    .Range {
+        width: 100%;
+    }
+
+    .ProgramacionContent {
+        width: 100%;
+        gap: 0.75rem;
+    }
+
+    .ProgramacionContent span {
+        min-width: 0;
+    }
+}

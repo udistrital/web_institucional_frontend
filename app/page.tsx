@@ -1,6 +1,8 @@
 import Header from "@/components/header/header";
 import Footer from "@/components/footer/footer";
 import styles from "@/components/home/home.module.css";
+import LiveEmisora from "@/components/emisoraLive/emisora-live";
+
 import {
   EnrollmentSection,
   FacultiesSection,
@@ -27,6 +29,7 @@ export default function Home() {
         <ServicesSection />
         <UniversityPromoSection />
         <FacultyShowcaseSection />
+        <LiveEmisora/>
       </main>
       <Footer/>
     </>
