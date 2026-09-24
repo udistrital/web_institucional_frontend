@@ -1,21 +1,27 @@
 "use client"
 
 import Link from "next/link"
+import { AnimatePresence, motion } from "framer-motion"
 import { campusNavigation } from "./navigation"
+import { fullWidthMenuVariants } from "../dropdown-motion"
 import styles from "./mani-menu.module.css"
 import { Rows } from "./icons"
 import MenuIcon from "./menu-icon"
 
 type CampusProps = {
   isOpen: boolean
-  onToggle: () => void
-  onClose: () => void
+  onToggle: () => void;
+  onClose: () => void;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
 }
 
-export default function Campus({ isOpen, onToggle, onClose }: CampusProps) {
+export default function Campus({ isOpen, onToggle, onClose, onMouseEnter, onMouseLeave }: CampusProps) {
 
   return (
-    <div className={styles.menuWrapper}>
+    <div className={`${styles.menuWrapper} ${isOpen ? styles.menuWrapperOpen : ""}`}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}>
       <button
         type="button"
         aria-expanded={isOpen}
@@ -26,8 +32,16 @@ export default function Campus({ isOpen, onToggle, onClose }: CampusProps) {
         <Rows isOpen={isOpen} />
       </button>
 
-      {isOpen && (
-        <div className={styles.menuFullWidth}>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className={styles.menuFullWidth}
+            variants={fullWidthMenuVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            style={{ transformOrigin: "top center" }}
+          >
           <div
             className={styles.menuColumns}
             style={{
@@ -73,8 +87,9 @@ export default function Campus({ isOpen, onToggle, onClose }: CampusProps) {
           >
             Campus virtual
           </Link>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }

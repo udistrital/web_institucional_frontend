@@ -1,7 +1,9 @@
 "use client"
 
 import Link from "next/link"
+import { AnimatePresence, motion } from "framer-motion"
 import { nuestraUniversidadNavigation} from "./navigation"
+import { compactMenuVariants } from "../dropdown-motion"
 import styles from "./mani-menu.module.css"
 import { Rows, FacultyIcon } from "./icons"
 
@@ -9,12 +11,16 @@ type NuestraUniversidadProps = {
   isOpen: boolean
   onToggle: () => void
   onClose: () => void
+  onMouseEnter?: () => void
+  onMouseLeave?: () => void
 }
 
-export default function NuestraUniversidad({ isOpen, onToggle, onClose }: NuestraUniversidadProps) {
+export default function NuestraUniversidad({ isOpen, onToggle, onClose, onMouseEnter, onMouseLeave }: NuestraUniversidadProps) {
 
   return (
-    <div className={styles.menuWrapper}>
+    <div className={`${styles.menuWrapper} ${isOpen ? styles.menuWrapperOpen : ""}`}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}>
       <button
         type="button"
         aria-expanded={isOpen}
@@ -25,8 +31,16 @@ export default function NuestraUniversidad({ isOpen, onToggle, onClose }: Nuestr
         <Rows isOpen={isOpen} />
       </button>
 
-      {isOpen && (
-        <div className={styles.menuCompact}>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className={styles.menuCompact}
+            variants={compactMenuVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            style={{ transformOrigin: "top right" }}
+          >
           <div
             className={styles.menuColumns}
             style={{
@@ -47,9 +61,10 @@ export default function NuestraUniversidad({ isOpen, onToggle, onClose }: Nuestr
                 </Link>
               </section>
             ))}
-          </div>
-        </div>
-      )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }

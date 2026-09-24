@@ -1,5 +1,7 @@
 import Link from "next/link"
-import type { NavigationItem } from "@/navegation/navigation"
+import { motion } from "framer-motion"
+import type { NavigationItem } from "./navigation"
+import { searchResultsVariants } from "../dropdown-motion"
 
 export type SearchResult = {
   item: NavigationItem
@@ -14,7 +16,14 @@ interface SearchResultsProps {
 
 export default function SearchResults({ results, onSelect }: SearchResultsProps) {
   return (
-    <div className="absolute right-0 top-14 z-30 max-h-80 w-[500px] max-w-[90vw] overflow-y-auto rounded-lg bg-white p-4 text-left shadow-lg ring-1 ring-black/10">
+    <motion.div
+      className="absolute right-0 top-14 z-30 max-h-80 w-[500px] max-w-[90vw] overflow-y-auto rounded-lg bg-white p-4 text-left shadow-lg ring-1 ring-black/10"
+      variants={searchResultsVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      style={{ transformOrigin: "top right" }}
+    >
       {results.length > 0 ? (
         <ul className="space-y-1">
           {results.map(({ item, parents }) => (
@@ -39,6 +48,6 @@ export default function SearchResults({ results, onSelect }: SearchResultsProps)
           No se encontraron resultados.
         </p>
       )}
-    </div>
+    </motion.div>
   )
 }
