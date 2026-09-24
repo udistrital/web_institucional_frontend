@@ -25,7 +25,7 @@ export const campusNavigation: NavigationItem = {
     },
     {
       label: "Facultades",
-      href: "/campus/facultades",
+      href: "/facultades",
       children: [
         { label: "Facultad de Artes ASAB", href: "/facultades/artes-asab" },
         { label: "Facultad de Ciencias de la Salud", href: "/facultades/ciencias-salud" },

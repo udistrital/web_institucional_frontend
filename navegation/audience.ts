@@ -48,7 +48,7 @@ export const mainNavigation: NavigationItem[] = [
     children: [
       {
         label: "Sedes",
-        href: "/campus/sedes",
+        href: "/sedes",
         overviewLabel: "Conoce todas nuestras sedes",
         children: [
           { label: "Aduanilla de Paiba", href: "/campus/sedes/aduanilla-de-paiba" },
@@ -62,7 +62,7 @@ export const mainNavigation: NavigationItem[] = [
           { label: "ILUD", href: "/campus/sedes/ilud" },
         ],
       },
-      { label: "Facultades", href: "/campus/facultades", overviewLabel: "Conoce todas nuestras facultades", children: faculties },
+      { label: "Facultades", href: "/facultades", overviewLabel: "Conoce todas nuestras facultades", children: faculties },
       {
         label: "Museos",
         href: "/campus/museos",

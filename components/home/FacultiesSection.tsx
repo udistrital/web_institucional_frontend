@@ -1,14 +1,6 @@
+import Link from "next/link";
+import { facultades } from "@/navegation/global";
 import styles from "./home.module.css";
-
-const faculties = [
-  "Facultad de Artes - ASAB",
-  "Facultad de Ciencias de la Salud",
-  "Facultad de Tecnológica",
-  "Facultad de Ingeniería",
-  "Facultad de Ciencias Matemáticas y Naturales",
-  "Facultad de Ciencias y Educación",
-  "Facultad del Medio Ambiente y Recursos Naturales",
-];
 
 export default function FacultiesSection() {
   return (
@@ -16,10 +8,14 @@ export default function FacultiesSection() {
       <div className={styles["faculties-content"]}>
         <div className={styles["faculties-intro"]}>
           <h2 id="faculties-title">Nuestras<br />Facultades</h2>
-          <a className={styles["faculties-link"]} href="#noticias">Ver programas</a>
+          <Link className={styles["faculties-link"]} href="/facultades">Ver facultades</Link>
         </div>
         <ul className={styles["faculties-list"]}>
-          {faculties.map((faculty) => <li key={faculty}><a href="#noticias">{faculty}</a></li>)}
+          {facultades.map((facultad) => (
+            <li key={facultad.href}>
+              <Link href={facultad.href}>{facultad.nombre}</Link>
+            </li>
+          ))}
         </ul>
       </div>
     </section>
