@@ -1,10 +1,23 @@
 .homeShowcase {
   background: var(--background);
+  display: block;
   min-height: 100vh;
 }
 
-.homeShowcase {
-  display: block;
+/*
+  Ancho de contenido responsive.
+  --content-width se define en globals.css (:root) en 70vw para escritorio.
+  En pantallas intermedias y móviles se amplía para que las secciones no
+  queden comprimidas en una columna central estrecha.
+*/
+@media (max-width: 1024px) {
+  .homeShowcase { --content-width: 86vw; }
+}
+@media (max-width: 720px) {
+  .homeShowcase { --content-width: 90vw; }
+}
+@media (max-width: 480px) {
+  .homeShowcase { --content-width: 92vw; }
 }
 
 .hero { height: clamp(430px, 38vw, 500px); isolation: isolate; overflow: hidden; position: relative; }
@@ -13,16 +26,21 @@
 .hero-image { object-fit: cover; opacity: 0; transition: opacity 500ms ease; }
 .hero-image.is-active { opacity: 1; }
 .hero-overlay { background: linear-gradient(90deg, rgba(0,0,0,.8), rgba(0,0,0,.35) 57%, rgba(0,0,0,.05)); z-index: -1; }
+.hero-mobile-link { display: none; }
 .hero-content { color: #fff; height: 100%; margin: 0 auto; max-width: var(--content-width); padding: clamp(4rem, 8vw, 5rem) 1rem 6rem; }
-.hero-kicker { font-family: var(--font-montserrat), sans-serif; font-size: .95rem; margin: 0 0 .65rem; }
-.hero h1 { font-family: var(--font-montserrat), sans-serif; font-size: clamp(2rem, 4.2vw, 3.15rem); font-weight: 700; line-height: 1.08; margin: 0; max-width: 680px; }
-.hero-description { font-size: clamp(1rem, 1.7vw, 1.25rem); line-height: 1.3; margin: 1rem 0 1.4rem; max-width: 640px; }
+.hero-kicker { font-family: var(--font-montserrat), sans-serif; font-size: var(--fs-base); margin: 0 0 .65rem; }
+.hero h1 { font-family: var(--font-montserrat), sans-serif; font-size: var(--fs-h1); font-weight: 700; line-height: 1.08; margin: 0; max-width: 680px; }
+.hero-description { font-size: var(--fs-md); line-height: var(--lh-snug); margin: 1rem 0 1.4rem; max-width: 640px; }
 .hero-link, .faculties-link { border-radius: 5px; display: inline-block; font-weight: 600; padding: .65rem 1.05rem; text-decoration: none; }
 .hero-link { background: var(--institutional-red); color: #fff; }
-.hero-link:hover, .faculties-link:hover, .news-more-link:hover, .enrollment-primary:hover, .enrollment-secondary:hover { background: #000; color: var(--institutional-gold); }
+.faculties-link { padding-left: 2.25rem; padding-right: 2.25rem; }
+.hero-link:hover, .faculties-link:hover, .news-more-link:hover, .enrollment-primary:hover, .enrollment-secondary:hover { background: #fdb400; color: black; }
 .hero-controls { bottom: 2rem; display: flex; gap: .65rem; left: 50%; position: absolute; transform: translateX(-50%); }
 .hero-dot { background: #fff; border: 0; border-radius: 50%; cursor: pointer; height: 12px; opacity: .75; padding: 0; width: 12px; }
 .hero-dot.is-active { background: var(--institutional-red); opacity: 1; }
+.carousel-dots { display: flex; gap: .55rem; justify-content: center; margin-top: 1.5rem; }
+.carousel-dot { background: rgba(0, 0, 0, .3); border: 0; border-radius: 50%; cursor: pointer; height: 11px; padding: 0; transition: background-color 200ms ease, transform 200ms ease; width: 11px; }
+.carousel-dot.is-active { background: var(--institutional-red); transform: scale(1.2); }
 
 .audience-section { padding: clamp(2.25rem, 4vw, 3.5rem) 1rem; }
 .audience-carousel { align-items: center; display: flex; gap: clamp(.75rem, 3vw, 2.25rem); margin: 0 auto; max-width: var(--content-width); }
@@ -32,16 +50,16 @@
 .audience-card img, .faculty-showcase-card img { object-fit: cover; transition: transform 350ms ease; z-index: -2; }
 .audience-card:hover img, .faculty-showcase-card:hover img { transform: scale(1.04); }
 .audience-shade { background: linear-gradient(0deg, rgba(0,0,0,.9), transparent 70%); inset: 0; position: absolute; z-index: -1; }
-.audience-title { bottom: 2rem; font-family: var(--font-montserrat), sans-serif; font-size: clamp(1.3rem, 2vw, 1.8rem); font-weight: 700; left: 2rem; line-height: .95; max-width: 8rem; position: absolute; }
+.audience-title { bottom: 2rem; font-family: var(--font-montserrat), sans-serif; font-size: var(--fs-h3); font-weight: 700; left: 2rem; line-height: .95; max-width: 8rem; position: absolute; }
 .carousel-arrow, .faculty-arrow { background: transparent; border: 0; cursor: pointer; font-family: Georgia, serif; line-height: 1; padding: 0; }
 .carousel-arrow { color: var(--institutional-red); font-size: 4rem; }
 
-.faculties-section { background: var(--institutional-red); color: #fff; padding: clamp(1.75rem, 3vw, 2.5rem) 1rem; }
+.faculties-section { background: var(--institutional-red); color: #fff; padding: clamp(5rem, 3vw, 2.5rem) 1rem; }
 .faculties-content { align-items: start; display: grid; gap: clamp(2rem, 7vw, 7rem); grid-template-columns: minmax(220px, .8fr) 1.7fr; margin: 0 auto; max-width: var(--content-width); }
-.faculties-intro h2, .news-section h2 { font-family: var(--font-montserrat), sans-serif; font-size: clamp(2.25rem, 4.4vw, 3.25rem); font-weight: 700; line-height: .9; margin: 0; }
+.faculties-intro h2, .news-section h2 { font-family: var(--font-montserrat), sans-serif; font-size: var(--fs-h2); font-weight: 700; line-height: .9; margin: 0; }
 .faculties-link { background: #fff; color: var(--institutional-red); margin-top: 1.1rem; }
 .faculties-list { column-gap: clamp(2rem, 5vw, 5.5rem); columns: 2; list-style: none; margin: 0; padding: .15rem 0 0; }
-.faculties-list li { break-inside: avoid; font-size: .95rem; margin-bottom: .8rem; padding-left: 1rem; position: relative; }
+.faculties-list li { break-inside: avoid; font-size: var(--fs-base); margin-bottom: .8rem; padding-left: 1rem; position: relative; }
 .faculties-list li::before { background: var(--institutional-gold); content: ""; height: .32rem; left: 0; position: absolute; top: .5rem; width: .32rem; }
 .faculties-list a { color: #fff; text-decoration: none; }
 .faculties-list a:hover { color: var(--institutional-gold); text-decoration: underline; }
@@ -52,104 +70,205 @@
 .news-grid { display: grid; gap: clamp(1.25rem, 2.5vw, 2rem); grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .news-card, .service-card { background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,.08); overflow: hidden; }
 .news-card { border-radius: 0 0 1.1rem 1.1rem; }
-.news-card > img, .service-card > img { display: block; object-fit: cover; width: 100%; }
-.news-card > img { height: auto; transition: transform 350ms ease; }
-.news-card:hover > img { transform: scale(1.04); }
+.news-card > img, .service-card > img { display: block; object-fit: cover; transition: transform 350ms ease; width: 100%; }
+.news-card > img { height: auto; }
+.news-card:hover > img, .service-card:hover > img { transform: scale(1.04); }
 .news-card-content { padding: 1.7rem 1.6rem 1.8rem; }
 .news-card h3, .service-card h3 { color: var(--institutional-red); font-family: var(--font-montserrat), sans-serif; font-weight: 700; line-height: 1.05; }
-.news-card h3 { font-size: 1.35rem; margin: 0 0 .75rem; }
-.news-card p, .service-card p { color: #000; line-height: 1.25; margin: 0 0 1.25rem; }
+.news-card h3 { font-size: var(--fs-lg); margin: 0 0 .75rem; }
+.news-card p, .service-card p { color: #4d4d4d; line-height: var(--lh-snug); margin: 0 0 1.25rem; }
 .news-card a, .service-card a { color: var(--institutional-red); text-decoration: none; }
 .news-card a:hover, .service-card a:hover { color: #000; text-decoration: underline; }
+
+/* Entre 1025px y 1300px las 3 tarjetas se ven muy alargadas: se muestran 2. */
+@media (max-width: 1400px) and (min-width: 1025px) {
+  .news-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .news-card:nth-child(n + 3) { display: none; }
+}
 .news-more-link { background: var(--institutional-red); border-radius: 5px; color: #fff; display: block; font-weight: 600; margin: 2.5rem auto 0; padding: .7rem 2.7rem; text-align: center; text-decoration: none; width: fit-content; }
 
-.enrollment-section { background: linear-gradient(105deg, var(--institutional-red), #b40024 48%, #c90028); color: #fff; margin: 5rem 0 0; overflow: visible; position: relative; }
-.enrollment-content { align-items: center; display: flex; justify-content: space-between; margin: 0 auto; max-width: var(--content-width); min-height: 280px; padding: .75rem 0; position: relative; }
-.enrollment-copy { max-width: 540px; padding: 1.75rem 0; position: relative; z-index: 1; }
-.enrollment-copy h2 { font-family: var(--font-montserrat), sans-serif; font-size: clamp(2.4rem, 4.5vw, 3.4rem); font-weight: 700; line-height: .9; margin: 0 0 1.2rem; }
-.enrollment-copy p { font-size: 1.05rem; line-height: 1.25; margin: 0; max-width: 510px; }
+
+
+
+/* Rojo medio del gradiente aclarado hasta #c60018 para lograr contraste 6.15:1 con texto blanco (WCAG AA >=4.5:1). */
+.enrollment-section { background: linear-gradient(105deg, var(--institutional-red), #c60018 78%, var(--institutional-red)); color: #fff; margin: 5rem 0 0; overflow: visible; position: relative; z-index: 1; }
+.enrollment-content { align-items: center; display: flex; justify-content: flex-start; margin: 0 auto; max-width: min(var(--content-width), 1180px); min-height: 420px; padding: 3rem 0; position: relative; }
+.enrollment-copy { margin-left: 3rem; max-width: 640px; padding: 1.75rem 0; position: relative; z-index: 2; }
+.enrollment-copy h2 { font-family: var(--font-montserrat), sans-serif; font-size: var(--fs-h2); font-weight: 700; line-height: .9; margin: 0 0 1.2rem; }
+.enrollment-copy p { font-size: var(--fs-md); line-height: var(--lh-snug); margin: 0; max-width: 550px; }
 .enrollment-actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
-.enrollment-primary, .enrollment-secondary { border-radius: 5px; display: inline-block; font-weight: 500; padding: .7rem 1.35rem; text-decoration: none; }
+.enrollment-primary, .enrollment-secondary { border-radius: 5px; display: inline-flex; align-items: center; justify-content: center; font-weight: 600; min-width: 16rem; padding: .65rem 2.25rem; text-align: center; text-decoration: none; }
 .enrollment-primary { background: var(--background); color: var(--institutional-red); }
-.enrollment-secondary { border: 2px solid var(--institutional-gold); color: #fff; }
-.enrollment-image { height: auto; max-width: min(35%, 405px); object-fit: contain; position: absolute; right: 2rem; top: -5rem; }
+.enrollment-secondary { border: 2px solid var(--background); color: #fff; }
+.enrollment-secondary:hover { border: 2px solid var(--institutional-gold); }
+.enrollment-image { bottom: -5rem; height: auto; max-height: 34rem; max-width: min(40vw, 480px); object-fit: contain; object-position: right center; position: absolute; right: 3rem; width: auto; z-index: 3; }
 
-.student-services-section { background: var(--institutional-gold); border-top: 5rem solid #fff; color: #000; padding: 1.5rem 1rem; }
-.student-services-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 0 auto; max-width: var(--content-width); }
-.student-service { align-items: center; border-left: 1px solid rgba(0,0,0,.35); color: #000; display: flex; flex-direction: column; min-height: 220px; padding: .25rem clamp(1rem, 2.5vw, 2rem) 0; text-align: center; text-decoration: none; }
-.student-service:first-child { border-left: 0; }
-.student-service-icon { align-items: center; display: flex; font-family: Georgia, serif; font-size: 2.25rem; height: 3rem; justify-content: center; line-height: 1; margin-bottom: .75rem; }
-.student-service h3 { align-items: center; display: flex; font-family: var(--font-montserrat), sans-serif; font-size: clamp(1.15rem, 1.65vw, 1.45rem); font-weight: 400; justify-content: center; line-height: 1.1; margin: 0 0 1rem; max-width: 17rem; min-height: 3.2rem; }
-.student-service p { font-size: .92rem; line-height: 1.35; margin: 0; max-width: 17rem; }
-.student-service:hover h3, .student-service:hover .student-service-icon { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: .2rem; }
+/*
+  A partir de 1350px hacia abajo (hasta tablet) la imagen deja de desbordar:
+  queda contenida dentro de EnrollmentSection, cubriendo la sección de arriba
+  a abajo y ajustándose al alto disponible según el tamaño de la pantalla.
+*/
+@media (max-width: 1380px) and (min-width: 721px) {
+  .enrollment-image {
+    bottom: 0;
+    top: 0;
+    right: 2rem;
+    height: 100%;
+    max-height: none;
+    max-width: 40vw;
+    width: auto;
+    object-fit: contain;
+    object-position: right bottom;
+    z-index: 1;
+  }
+}
 
-.services-section { padding: clamp(2rem, 2.5vw, 2.25rem) 1rem; }
-.services-heading { margin: 0 auto clamp(1.25rem, 2vw, 1.75rem); max-width: 510px; text-align: center; }
-.services-heading h2 { color: var(--institutional-red); font-family: var(--font-montserrat), sans-serif; font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 700; line-height: .95; margin: 0 0 .75rem; }
-.services-heading p { color: #000; font-size: .95rem; line-height: 1.25; margin: 0; }
+/*
+  Entre 721px y 1240px la imagen se oculta (el espacio no alcanza).
+  Vuelve a mostrarse en móvil (<=720px), donde se coloca en el flujo.
+*/
+@media (max-width: 1240px) and (min-width: 721px) {
+  .enrollment-image { display: none; }
+  /* Sin imagen, el texto se centra con un ancho contenido para no dejar tanto espacio. */
+  .enrollment-content { justify-content: center; }
+  .enrollment-copy { margin-left: 0; max-width: 720px; text-align: center; }
+  .enrollment-copy p { margin: 0 auto; max-width: 640px; }
+  .enrollment-actions { justify-content: center; }
+}
+
+.student-services-section { background: var(--institutional-gold); border-top: 5rem solid #fff; color: #000; padding: 3rem 0; position: relative; z-index: 0; }
+.services-lead-image { display: none; }
+.student-services-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 0; max-width: none; width: 100%; }
+.student-service { align-items: center; color: #000; display: flex; flex-direction: column; min-height: 200px; padding: 2rem clamp(1rem, 2.5vw, 2rem); text-align: center; text-decoration: none; transition: background-color 250ms ease, transform 250ms ease; }
+.student-service:not(:first-child) { box-shadow: inset 1px 0 0 rgba(0, 0, 0, .12); }
+.student-service-icon { align-items: center; color: #000; display: flex; height: 3.5rem; justify-content: center; line-height: 1; margin-bottom: 1rem; transition: transform 250ms ease; }
+.student-service h3 { align-items: center; display: flex; font-family: var(--font-montserrat), sans-serif; font-size: var(--fs-lg); font-weight: 600; justify-content: center; line-height: 1.1; margin: 0 0 1rem; max-width: 17rem; min-height: 3.2rem; }
+.student-service p { font-size: var(--fs-sm); line-height: 1.35; margin: 0; max-width: 17rem; }
+.student-service:hover { background-color: rgba(0, 0, 0, .08); transform: translateY(-4px); }
+.student-service:hover .student-service-icon { transform: scale(1.15); }
+
+.services-section { padding: clamp(5rem, 2.5vw, 2.25rem) 5rem; }
+.services-heading { margin: 0 auto clamp(4rem, 2vw, 1.75rem); max-width: 720px; text-align: center; }
+.services-heading h2 { color: var(--institutional-red); font-family: var(--font-montserrat), sans-serif; font-size: var(--fs-h2); font-weight: 700; line-height: .95; margin: 0 0 .75rem; white-space: nowrap; }
+.services-heading p { color: #4d4d4d; font-size: var(--fs-base); line-height: var(--lh-snug); margin: 0; }
 .services-list { display: grid; gap: .75rem; }
 .service-card { border-radius: 0 .75rem .75rem 0; display: grid; grid-template-columns: 42% 58%; height: 300px; min-height: 0; }
 .service-card > img { height: 300px; }
-.service-card:nth-child(2) { border-radius: .75rem 0 0 .75rem; }
+.service-card:nth-child(2) { border-radius: .75rem 0 0 .75rem; grid-template-columns: 58% 42%; }
 .service-card:nth-child(2) > img { grid-column: 2; grid-row: 1; }
 .service-card:nth-child(2) .service-card-content { grid-column: 1; grid-row: 1; }
-.service-card-content { display: flex; flex-direction: column; justify-content: center; min-width: 0; overflow: hidden; padding: .75rem 1.15rem; }
-.service-card h3 { font-size: clamp(1.3rem, 2.2vw, 1.6rem); line-height: 1; margin: 0 0 .5rem; }
-.service-card p { font-size: .9rem; }
-.service-card a { font-size: .6rem; letter-spacing: .06em; text-transform: uppercase; }
+.service-card-content { display: flex; flex-direction: column; justify-content: center; min-width: 0; overflow: hidden; padding: .75rem 3rem; }
+.service-card h3 { font-size: var(--fs-h3); line-height: 1; margin: 0 0 .5rem; }
+.service-card p { font-size: var(--fs-sm); }
+.service-card a { font-size: var(--fs-2xs); letter-spacing: .06em; text-transform: uppercase; }
 
 .university-promo { display: grid; grid-template-columns: 1fr 1fr; width: 100%; }
 .promo-media { min-height: 280px; overflow: hidden; position: relative; }
-.promo-media::after { background: rgba(0,0,0,.32); content: ""; inset: 0; position: absolute; }
 .promo-video { display: block; height: 100%; object-fit: cover; width: 100%; }
-.promo-play { align-items: center; background: #fff; border: 0; border-radius: 50%; color: var(--institutional-red); cursor: pointer; display: flex; font-size: 1.35rem; height: 4rem; justify-content: center; left: 50%; padding-left: .2rem; position: absolute; top: 50%; transform: translate(-50%,-50%); width: 4rem; z-index: 1; }
-.promo-play:hover { background: #000; color: var(--institutional-gold); }
-.promo-play.is-playing { font-size: 1.1rem; }
 .promo-copy { background: var(--institutional-red); color: #fff; display: flex; flex-direction: column; justify-content: center; padding: 2.5rem clamp(2rem,5vw,4.5rem); }
-.promo-copy h2 { font-family: var(--font-montserrat), sans-serif; font-size: clamp(2rem,3.5vw,2.8rem); font-weight: 700; line-height: .95; margin: 0 0 1rem; }
-.promo-copy p { font-size: .9rem; line-height: 1.35; margin: 0; max-width: 32rem; }
+.promo-copy h2 { font-family: var(--font-montserrat), sans-serif; font-size: var(--fs-h2); font-weight: 700; line-height: .95; margin: 0 0 1rem; }
+.promo-copy p { font-size: var(--fs-sm); line-height: 1.35; margin: 0; max-width: 32rem; }
 
 .faculty-showcase { background: #fff; border-top: 1rem solid #fff; min-height: 215px; position: relative; width: 100%; }
 .faculty-showcase-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); min-width: 0; width: 100%; }
 .faculty-showcase-card { min-height: 215px; }
 .faculty-showcase-card:hover img { transform: scale(1.05); }
 .faculty-showcase-shade { background: rgba(0,0,0,.3); inset: 0; position: absolute; z-index: -1; }
-.faculty-showcase-title { bottom: 3.5rem; font-size: 1rem; left: 50%; position: absolute; text-align: center; transform: translateX(-50%); white-space: nowrap; }
+.faculty-showcase-title { bottom: 3.5rem; font-size: var(--fs-base); left: 50%; position: absolute; text-align: center; transform: translateX(-50%); white-space: nowrap; }
 .faculty-play { align-items: center; background: var(--institutional-red); border-radius: 50%; display: flex; font-size: .8rem; height: 2.2rem; justify-content: center; left: 50%; padding-left: .15rem; position: absolute; top: 45%; transform: translate(-50%,-50%); width: 2.2rem; }
 .faculty-arrow { color: #fff; font-size: 4rem; left: .5rem; position: absolute; text-shadow: 2px 2px 4px #000, -1px -1px 3px #000; top: 50%; transform: translateY(-50%); z-index: 1; }
 .faculty-arrow-next { left: auto; right: .5rem; }
 .faculty-arrow:hover { color: var(--institutional-gold); }
+/* Dots superpuestos sobre las imágenes del carrusel de facultades. */
+.faculty-dots { bottom: 1rem; left: 50%; margin: 0; position: absolute; transform: translateX(-50%); z-index: 2; }
+.faculty-dots .carousel-dot { background: rgba(255, 255, 255, .55); }
+.faculty-dots .carousel-dot.is-active { background: #fff; }
+
+/* ===== Tablet (721px - 1024px) ===== */
+@media (max-width: 1024px) and (min-width: 721px) {
+  .news-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  /* Solo una fila: se oculta la noticia que bajaría a la segunda fila. */
+  .news-card:nth-child(n + 3) { display: none; }
+  .faculties-content { gap: clamp(1.5rem, 4vw, 3rem); grid-template-columns: minmax(180px, .9fr) 1.6fr; }
+  .student-services-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  /* La imagen contenida dentro de la sección la maneja el breakpoint <=1350px. */
+  .enrollment-content { min-height: 300px; }
+  .student-service { min-height: 0; }
+  /* La sección de servicios usa 5rem laterales en escritorio; se reduce en tablet. */
+  .services-section { padding: clamp(2.5rem, 4vw, 3.5rem) 2rem; }
+  .service-card { grid-template-columns: 40% 60%; }
+  .service-card:nth-child(2) { grid-template-columns: 60% 40%; }
+}
 
 @media (max-width: 720px) {
-  .hero { height: 520px; }
-  .hero-content { padding-top: 5rem; }
+  /* En móvil el alto del hero sigue la proporción de la imagen para minimizar el recorte. */
+  .hero { aspect-ratio: 16 / 10; height: auto; }
+  .hero-image { object-position: center; }
+  /* En móvil el hero no muestra texto ni botón; la imagen completa dirige al tocarla. */
+  .hero-content { display: none; }
+  .hero-overlay { display: none; }
+  .hero-mobile-link { display: block; inset: 0; position: absolute; z-index: 1; }
+  .hero-controls { z-index: 2; }
   .audience-carousel { gap: .5rem; }
   .audience-grid { gap: .75rem; grid-template-columns: 1fr; }
   .audience-card { aspect-ratio: 2.1 / 1; }
   .audience-card:not(:first-child) { display: none; }
   .audience-title { bottom: 1.25rem; left: 1.25rem; }
-  .carousel-arrow { font-size: 3rem; }
+  .carousel-arrow { display: none; }
+  .faculties-section { padding: 3rem 1rem; }
   .faculties-content, .news-grid { grid-template-columns: 1fr; }
+  /* Solo una fila en móvil: se muestra únicamente la primera noticia. */
+  .news-card:nth-child(n + 2) { display: none; }
   .faculties-list { columns: 1; }
   .faculties-list li { margin-bottom: .65rem; }
-  .enrollment-section { margin-top: 7rem; }
-  .enrollment-content { align-items: stretch; flex-direction: column; min-height: 0; padding: 0 1rem 1rem; }
-  .enrollment-copy { max-width: none; padding: 1.25rem 0 .75rem; }
-  .enrollment-copy p { max-width: 32rem; }
-  .enrollment-image { max-width: 12rem; right: 50%; top: -6rem; transform: translateX(50%); }
-  .student-services-section { padding: 1rem; }
-  .student-services-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
-  .student-service { border-left: 0; min-height: 0; padding: 1rem .75rem 1.25rem; }
-  .student-service:nth-child(n + 3) { border-top: 1px solid rgba(0,0,0,.25); }
+  .enrollment-section { margin-top: 0; }
+  /* Espacio inferior para que la imagen que sube desde servicios no tape el texto. */
+  .enrollment-content { align-items: stretch; flex-direction: column; gap: 1.5rem; min-height: 0; padding: 2.5rem 1rem calc(60vw + 1.5rem); }
+  .enrollment-copy { margin-left: 0; max-width: none; padding: 0; position: relative; z-index: 2; }
+  .enrollment-copy p { max-width: none; }
+  .enrollment-actions { margin-top: 1.5rem; }
+  .enrollment-primary, .enrollment-secondary { flex: 1 1 auto; min-width: 0; text-align: center; }
+  .enrollment-image { display: none; }
+  /* La imagen se ancla al inicio de StudentServicesSection y sube entrando en EnrollmentSection. */
+  .services-lead-image { bottom: 100%; display: block; height: auto; left: 50%; max-width: 40vw; position: absolute; transform: translateX(-50%); width: auto; z-index: 5; }
+  .student-services-section { border-top-width: 2rem; padding: 2.5rem 1rem; z-index: 2; }
+  .student-services-grid { gap: 1px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .student-service { align-items: center; max-width: none; min-height: 0; padding: 1.5rem .75rem; text-align: center; }
+  .student-service:not(:first-child) { box-shadow: none; }
+  .student-services-grid { background: rgba(0, 0, 0, .1); }
+  .student-service { background: var(--institutional-gold); }
+  .student-service h3, .student-service p { max-width: none; }
+  .student-service h3 { min-height: 0; }
+  /* Reset del padding lateral de 5rem que trae en escritorio. */
+  .services-section { padding: 2.5rem 1rem; }
+  .services-heading { margin: 0 auto 2rem; }
+  .services-heading h2 { white-space: normal; }
+  .services-list { gap: 1rem; }
   .service-card, .service-card:nth-child(2) { border-radius: 0 0 1rem 1rem; grid-template-columns: 1fr; height: auto; }
   .service-card:nth-child(2) > img, .service-card:nth-child(2) .service-card-content { grid-column: auto; grid-row: auto; }
   .service-card > img { height: 13rem; }
   .service-card-content { padding: 1.15rem 1.25rem; }
   .university-promo { grid-template-columns: 1fr; }
-  .promo-media { min-height: 15rem; }
+  .promo-media { min-height: 15rem; order: -1; }
+  .promo-copy { padding: 2rem 1.25rem; }
   .faculty-showcase { border-top-width: .75rem; }
   .faculty-showcase-grid { grid-template-columns: 1fr; }
   .faculty-showcase-card { min-height: 14rem; }
   .faculty-showcase-card:not(:first-child) { display: none; }
-  .faculty-showcase-title { bottom: 2.5rem; }
+  /* En móvil se navega deslizando; se ocultan las flechas. */
+  .faculty-arrow { display: none; }
+  .faculty-showcase-title { bottom: 2.5rem; max-width: 90%; white-space: normal; }
+}
+
+/* ===== Móvil pequeño (<= 480px) ===== */
+@media (max-width: 480px) {
+  .hero { aspect-ratio: 4 / 3; height: auto; }
+  .hero-content { padding: 4rem 1rem 4rem; }
+  .student-services-grid { grid-template-columns: 1fr; }
+  .student-service { padding: 1.5rem .75rem; }
+  .student-service:first-child { border-top: 0; }
+  .enrollment-actions { flex-direction: column; }
+  .enrollment-primary, .enrollment-secondary { width: 100%; }
+  .news-card-content { padding: 1.25rem 1.25rem 1.4rem; }
+  .promo-copy { padding: 1.75rem 1rem; }
 }

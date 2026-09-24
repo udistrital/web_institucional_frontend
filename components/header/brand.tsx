@@ -10,13 +10,13 @@ export default function Brand() {
     >
     <div className={`${styles.logo} flex-col md:flex-row`}>
       <img
-        src="/Escudos/escudo-ud-black.svg"
+        src="/escudos/escudo-ud-black.svg"
         alt="Escudo Universidad Distrital"
         className={styles.shield}
       />
       <div className={styles.nameBox}>
         <img
-          src="/Escudos/letter-ud-black.svg"
+          src="/escudos/letter-ud-black.svg"
           alt="Universidad Distrital Fransisco Jose de Caldas"
           className={styles.letter}
         />

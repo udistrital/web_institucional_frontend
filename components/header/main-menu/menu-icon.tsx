@@ -44,13 +44,15 @@ export default function MenuIcon({
   href,
   label,
   className = "h-5 w-5",
+  "aria-hidden": ariaHidden,
   ...props
 }: MenuIconProps) {
   const targetHref = item?.href || href || ""
   const targetLabel = item?.label || label || ""
   const iconKey = resolveIconKey(targetHref, targetLabel)
 
-  const commonProps = {
+  const commonProps: SVGProps<SVGSVGElement> = {
+    ...props,
     className,
     viewBox: "0 0 24 24",
     fill: "none",
