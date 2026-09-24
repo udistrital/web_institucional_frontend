@@ -3,21 +3,46 @@
 :root {
   --background: #ffffff;
   --foreground: #000000;
-  --institutional-red: #a1021f;
-  --institutional-gold: #ffdf05;
+  --institutional-red: #8c1919;
+  --institutional-gold: #fdb400;
   --content-width: 70vw;
+
+  /*
+    Escala tipográfica modular (base 16px, ratio 1.25 - tercera mayor).
+    Fuente única de tamaños de texto para estandarizar toda la interfaz.
+    Usar SIEMPRE estos tokens en lugar de valores rem sueltos.
+    Mínimo de texto legible: --fs-xs (0.875rem / 14px).
+  */
+  --fs-2xs: 0.75rem;   /* 12px  - micro-etiquetas en mayúsculas */
+  --fs-xs: 0.875rem;   /* 14px  - texto fino / notas */
+  --fs-sm: 0.9375rem;  /* 15px  - texto secundario / párrafos de tarjeta */
+  --fs-base: 1rem;     /* 16px  - cuerpo de texto */
+  --fs-md: 1.125rem;   /* 18px  - texto destacado / lead */
+  --fs-lg: 1.375rem;   /* 22px  - títulos de tarjeta (h3) */
+  --fs-xl: 1.75rem;    /* 28px  - títulos de sección pequeños */
+
+  /* Títulos fluidos (responsive) para encabezados de sección y hero. */
+  --fs-h1: clamp(2rem, 4.2vw, 3.15rem);   /* Hero (h1) */
+  --fs-h2: clamp(2rem, 4vw, 3.25rem);     /* Encabezados de sección (h2) */
+  --fs-h3: clamp(1.15rem, 2vw, 1.6rem);   /* Subtítulos destacados (h3) */
+
+  /* Interlineados estandarizados. */
+  --lh-tight: 1.1;   /* Títulos */
+  --lh-snug: 1.3;    /* Subtítulos / leads */
+  --lh-normal: 1.5;  /* Cuerpo de texto (recomendado por el protocolo de accesibilidad) */
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-lato);
-  --color-brand-red: #e4032e;
-  --color-brand-black: #000000;
-  --color-brand-yellow: #ffdf05;
-  --color-brand-blue: #1291c0;
-  --color-brand-green: #00a859;
-  --color-brand-purple: #7f0087;
+
+  /*
+    Paleta institucional oficial Universidad Distrital (UDFJC).
+    Fuente única de color de marca; usada por header, footer, buscador,
+    contact-widget y demás componentes vía tokens `ud-*`.
+    Los tokens `brand-*` duplicados se eliminaron por redundancia.
+  */
   --color-ud-rojo: #e4032e;
   --color-ud-amarillo: #ffdf05;
   --color-ud-azul: #1291c0;
@@ -25,7 +50,7 @@
   --color-ud-morado: #7f0087;
   --color-ud-negro: #000000;
   --color-ud-oscuro: #1a1a1a;
-  --color-ud-gris: #ffffff;
+  --color-ud-gris: #ffffff; /* Nombre heredado; corresponde a fondo blanco (bg-ud-gris en header). */
 }
 
 * {
@@ -40,6 +65,8 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-lato), sans-serif;
+  font-size: var(--fs-base);
+  line-height: var(--lh-normal);
   margin: 0;
 }
 
@@ -57,10 +84,18 @@ a {
   -webkit-tap-highlight-color: transparent;
 }
 
+/*
+  Indicador de foco visible (WCAG 2.2 AA - 2.4.11/2.4.13).
+  El dorado sobre blanco solo alcanza 1.79:1, por lo que se refuerza con un
+  contorno oscuro exterior (box-shadow) que garantiza visibilidad sobre
+  fondos claros y oscuros.
+*/
 a:focus-visible,
 button:focus-visible {
   outline: 3px solid var(--institutional-gold);
-  outline-offset: 4px;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px rgba(0, 0, 0, 0.65);
+  border-radius: 2px;
 }
 
 .sr-only {

@@ -6,21 +6,22 @@ export default function Brand() {
     <Link
     href="/"
     aria-label="Ir a la pagina principal"
+    className="col-start-1 row-start-2 inline-block w-fit mx-auto py-2 md:mx-0 md:ml-17 md:py-0 bg-white"
     >
-    <div className={styles.logo}>
+    <div className={`${styles.logo} flex-col md:flex-row`}>
       <img
-        src="/Escudos/escudo-ud-black.svg"
+        src="/escudos/escudo-ud-black.svg"
         alt="Escudo Universidad Distrital"
         className={styles.shield}
       />
       <div className={styles.nameBox}>
         <img
-          src="/Escudos/letter-ud-black.svg"
+          src="/escudos/letter-ud-black.svg"
           alt="Universidad Distrital Fransisco Jose de Caldas"
           className={styles.letter}
         />
       </div>
-      <div>
+      <div className="hidden md:block">
         <img
           src="/logotipos-ud/UDred.svg"
           alt="Logotipo Universidad Distrital Fransisco Jose de Caldas"
