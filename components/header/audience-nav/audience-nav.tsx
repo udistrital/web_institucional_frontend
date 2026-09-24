@@ -89,12 +89,14 @@ export default function AudienceNav() {
               exit="exit"
               style={{ transformOrigin: "top right" }}
             >
-              {audienceProfiles.map((profile, i) => (
-                <li
-                  key={profile.href}
-                  className={i % 2 === 0 ? styles.rowGray : styles.rowWhite}
-                >
-                  <a href={profile.href}>{profile.label}</a>
+              {audienceProfiles.map((profile) => (
+                <li key={profile.href} className={styles.dropdownItem}>
+                  <a href={profile.href} className={styles.dropdownLink}>
+                    <span>{profile.label}</span>
+                    <span aria-hidden="true" className={styles.arrow}>
+                      &rarr;
+                    </span>
+                  </a>
                 </li>
               ))}
             </motion.ul>

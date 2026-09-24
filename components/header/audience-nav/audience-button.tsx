@@ -118,20 +118,18 @@ export default function AudienceButton({ profile }: AudienceButtonProps) {
             exit="exit"
             style={{ transformOrigin: "top left" }}
           >
-          {preview.map((child, i) => (
-            <li
-              key={child.href}
-              className={i % 2 === 0 ? styles.rowGray : styles.rowWhite}
-            >
-              <a href={child.href}>{child.label}</a>
+          {preview.map((child) => (
+            <li key={child.href} className={styles.dropdownItem}>
+              <a href={child.href} className={styles.dropdownLink}>
+                <span>{child.label}</span>
+                <span aria-hidden="true" className={styles.arrow}>
+                  &rarr;
+                </span>
+              </a>
             </li>
           ))}
-          <li
-            className={
-              preview.length % 2 === 0 ? styles.rowGray : styles.rowWhite
-            }
-          >
-            <a href={profile.href} className={styles.viewAll}>
+          <li className={styles.dropdownFooter}>
+            <a href={profile.href} className={styles.viewAllPill}>
               Ver todos los servicios &rarr;
             </a>
           </li>
