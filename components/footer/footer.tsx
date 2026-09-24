@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { facultades } from "@/navegation/global";
 import styles from "./footer.module.css";
 
@@ -128,9 +129,9 @@ export default function Footer() {
               <ul className={`${styles.linkList} ${styles.accordionContent}`}>
                 {facultades.map((facultad) => (
                   <li key={facultad.nombre}>
-                    <a href={facultad.href} className={footerLinkClass}>
+                    <Link href={facultad.href} className={footerLinkClass}>
                       {facultad.nombre}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Lato, Montserrat } from "next/font/google";
 import ContactWidget from "@/components/contact-widget/contact-widget";
+import Footer from "@/components/footer/footer";
+import Header from "@/components/header/header";
 import "./globals.css";
 
 const montserrat = Montserrat({
@@ -33,7 +35,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${montserrat.variable} ${lato.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        {children}
+        <Header />
+        <main>{children}</main>
+        <Footer />
         <ContactWidget />
       </body>
     </html>

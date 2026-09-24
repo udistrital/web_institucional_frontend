@@ -150,8 +150,7 @@ export default function MainMenuPruv() {
         <NuestraUniversidad
           onMouseEnter={() => setOpenMenu("universidad")}
           onMouseLeave={() => setOpenMenu(null)}
-          isOpen={openMenu === "universidad"}
-          onToggle={() =>
+          isOpen={openMenu === "universidad"}          onToggle={() =>
             setOpenMenu((c) => (c === "universidad" ? null : "universidad"))
           }
           onClose={closeMenu}
@@ -277,25 +276,34 @@ export default function MainMenuPruv() {
                 return (
                   <li key={item.href}>
                     {hasChildren ? (
-                      <button
-                        type="button"
-                        onClick={() => setMobileStack((s) => [...s, item])}
-                        className={styles.mobileItemButton}
-                      >
-                        {item.label}
-                        <svg
-                          aria-hidden="true"
-                          className="h-4 w-4 shrink-0"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
+                      <div className={styles.mobileItemRow}>
+                        <Link
+                          href={item.href}
+                          onClick={closeMobileMenu}
+                          className={styles.mobileItemLink}
                         >
-                          <path d="m9 18 6-6-6-6" />
-                        </svg>
-                      </button>
+                          {item.label}
+                        </Link>
+                        <button
+                          type="button"
+                          onClick={() => setMobileStack((s) => [...s, item])}
+                          className={styles.mobileItemExpand}
+                          aria-label={`Abrir submenú de ${item.label}`}
+                        >
+                          <svg
+                            aria-hidden="true"
+                            className="h-4 w-4 shrink-0"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            <path d="m9 18 6-6-6-6" />
+                          </svg>
+                        </button>
+                      </div>
                     ) : (
                       <Link
                         href={item.href}
