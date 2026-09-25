@@ -94,7 +94,7 @@ export default function AudienceButton({ profile }: AudienceButtonProps) {
     };
   }, [open]);
 
-  const preview = (profile.children ?? []).slice(0, 3);
+  const preview = (profile.children ?? []).slice(0, 4);
 
   return (
     <div

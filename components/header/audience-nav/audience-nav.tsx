@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react"
 import { AnimatePresence, motion } from "framer-motion"
-import { audienceProfiles, institutionalLinks } from "@/navegation/audience"
+import { institutionalLinks } from "@/navegation/audience"
 import { mainNavigation } from "@/navegation/audience_services"
 import { audienceDropdownVariants } from "../dropdown-motion"
 import styles from "./audience-nav.module.css"
@@ -89,7 +89,7 @@ export default function AudienceNav() {
               exit="exit"
               style={{ transformOrigin: "top right" }}
             >
-              {audienceProfiles.map((profile) => (
+              {mainNavigation.map((profile) => (
                 <li key={profile.href} className={styles.dropdownItem}>
                   <a href={profile.href} className={styles.dropdownLink}>
                     <span>{profile.label}</span>
