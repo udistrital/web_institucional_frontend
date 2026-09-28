@@ -1,9 +1,11 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react"
-import { AnimatePresence, motion } from "framer-motion"
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion"
+
 import { institutionalLinks } from "@/navegation/audience"
 import { mainNavigation } from "@/navegation/audience_services"
+
 import { audienceDropdownVariants } from "../dropdown-motion"
 import styles from "./audience-nav.module.css"
 import AudienceButton from "./audience-button"
@@ -12,6 +14,7 @@ export default function AudienceNav() {
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
   const visibleProfiles = mainNavigation.slice(0, 4)
+  const reduceMotion = useReducedMotion()
 
   useEffect(() => {
     function handleClick(e: MouseEvent) {
@@ -88,6 +91,7 @@ export default function AudienceNav() {
               initial="hidden"
               animate="visible"
               exit="exit"
+              transition={reduceMotion ? { duration: 0 } : undefined}
               style={{ transformOrigin: "top right" }}
             >
               {visibleProfiles.map((profile) => (

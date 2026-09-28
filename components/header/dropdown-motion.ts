@@ -15,20 +15,26 @@ import type { Variants } from "framer-motion";
  */
 
 export const audienceDropdownVariants: Variants = {
-  hidden: { opacity: 0, y: -6, scale: 0.98, pointerEvents: "none" },
+  hidden: { opacity: 0, y: -4 },
   visible: {
     opacity: 1,
     y: 0,
-    scale: 1,
-    pointerEvents: "auto",
-    transition: { duration: 0.18, ease: "easeOut" },
+    transition: {
+      type: "spring",
+      stiffness: 520,
+      damping: 38,
+      mass: 0.7,
+    },
   },
   exit: {
     opacity: 0,
-    y: -6,
-    scale: 0.98,
-    pointerEvents: "none",
-    transition: { duration: 0.15, ease: "easeIn" },
+    y: -4,
+    transition: {
+      type: "spring",
+      stiffness: 640,
+      damping: 44,
+      mass: 0.6,
+    },
   },
 };
 

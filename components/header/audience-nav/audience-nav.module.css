@@ -36,7 +36,7 @@
     top: 100%;
     left: 0;
     right: 0;
-    height: 0.6rem;
+    height: 0.75rem;
     background: transparent;
 }
 
@@ -90,6 +90,8 @@
     z-index: 50;
     font-size: 0.9rem;
     line-height: 1.25rem;
+    will-change: opacity, transform;
+    backface-visibility: hidden;
 }
 
 /* Variante para anclar al borde derecho (ej. botón "Perfiles" en mobile,
@@ -163,4 +165,13 @@
     background-color: var(--institutional-red, #a1021f);
     color: #ffffff !important;
     outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .audienceButton,
+    .dropdownLink,
+    .arrow,
+    .viewAllPill {
+        transition: none;
+    }
 }

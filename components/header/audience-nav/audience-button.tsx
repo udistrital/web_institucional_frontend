@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import type { ServiceProfile } from "@/navegation/audience_services";
 import { audienceDropdownVariants } from "../dropdown-motion";
 import styles from "./audience-nav.module.css";
@@ -73,15 +73,45 @@ function ProfileIcon({ label }: { label: string }) {
 export default function AudienceButton({ profile }: AudienceButtonProps) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const openTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const closeTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const reduceMotion = useReducedMotion();
+
+  function clearHoverTimers() {
+    if (openTimeout.current) clearTimeout(openTimeout.current);
+    if (closeTimeout.current) clearTimeout(closeTimeout.current);
+    openTimeout.current = null;
+    closeTimeout.current = null;
+  }
+
+  function scheduleOpen() {
+    clearHoverTimers();
+    if (open) return;
+    openTimeout.current = setTimeout(() => setOpen(true), 70);
+  }
+
+  function scheduleClose() {
+    clearHoverTimers();
+    if (!open) return;
+    closeTimeout.current = setTimeout(() => setOpen(false), 180);
+  }
+
+  useEffect(() => {
+    return () => {
+      clearHoverTimers();
+    };
+  }, []);
 
   // Close on outside click or scroll (same as main-menu)
   useEffect(() => {
     function handleClick(e: MouseEvent) {
       if (ref.current && !ref.current.contains(e.target as Node)) {
+        clearHoverTimers();
         setOpen(false);
       }
     }
     function handleScroll() {
+      clearHoverTimers();
       setOpen(false);
     }
     if (open) {
@@ -100,8 +130,8 @@ export default function AudienceButton({ profile }: AudienceButtonProps) {
     <div
       className={`${styles.audienceButtonWrapper} ${open ? styles.audienceButtonWrapperOpen : ""}`}
       ref={ref}
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
+      onMouseEnter={scheduleOpen}
+      onMouseLeave={scheduleClose}
     >
       <button className={styles.audienceButton} aria-expanded={open}>
         <ProfileIcon label={profile.label} />
@@ -116,23 +146,24 @@ export default function AudienceButton({ profile }: AudienceButtonProps) {
             initial="hidden"
             animate="visible"
             exit="exit"
+            transition={reduceMotion ? { duration: 0 } : undefined}
             style={{ transformOrigin: "top left" }}
           >
-          {preview.map((child) => (
-            <li key={child.href} className={styles.dropdownItem}>
-              <a href={child.href} className={styles.dropdownLink}>
-                <span>{child.label}</span>
-                <span aria-hidden="true" className={styles.arrow}>
-                  &rarr;
-                </span>
+            {preview.map((child) => (
+              <li key={child.href} className={styles.dropdownItem}>
+                <a href={child.href} className={styles.dropdownLink}>
+                  <span>{child.label}</span>
+                  <span aria-hidden="true" className={styles.arrow}>
+                    &rarr;
+                  </span>
+                </a>
+              </li>
+            ))}
+            <li className={styles.dropdownFooter}>
+              <a href={profile.href} className={styles.viewAllPill}>
+                Ver todos los servicios &rarr;
               </a>
             </li>
-          ))}
-          <li className={styles.dropdownFooter}>
-            <a href={profile.href} className={styles.viewAllPill}>
-              Ver todos los servicios &rarr;
-            </a>
-          </li>
           </motion.ul>
         )}
       </AnimatePresence>
