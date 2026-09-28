@@ -11,6 +11,7 @@ import AudienceButton from "./audience-button"
 export default function AudienceNav() {
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
+  const visibleProfiles = mainNavigation.slice(0, 4)
 
   useEffect(() => {
     function handleClick(e: MouseEvent) {
@@ -36,7 +37,7 @@ export default function AudienceNav() {
     >
       {/* Desktop: original layout */}
       <div className={`${styles.audienceProfiles} hidden md:flex`}>
-        {mainNavigation.map((profile) => (
+        {visibleProfiles.map((profile) => (
           <AudienceButton key={profile.href} profile={profile} />
         ))}
       </div>
@@ -89,7 +90,7 @@ export default function AudienceNav() {
               exit="exit"
               style={{ transformOrigin: "top right" }}
             >
-              {mainNavigation.map((profile) => (
+              {visibleProfiles.map((profile) => (
                 <li key={profile.href} className={styles.dropdownItem}>
                   <a href={profile.href} className={styles.dropdownLink}>
                     <span>{profile.label}</span>

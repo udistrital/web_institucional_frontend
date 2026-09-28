@@ -1,0 +1,147 @@
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 0;
+  min-height: 16rem;
+  aspect-ratio: 8 / 8;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 25%);
+  transition: transform 250ms ease, box-shadow 250ms ease;
+}
+
+.Carruselcard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 0;
+  min-height: 16rem;
+  aspect-ratio: 16 / 8;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 25%);
+  transition: transform 250ms ease, box-shadow 250ms ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 1rem 2.5rem rgb(0 0 0 / 35%);
+}
+
+.card:focus-visible {
+  transform: translateY(-4px);
+}
+
+.imageWrapper {
+  position: absolute;
+  inset: 0;
+  background: #1a1a1a;
+}
+
+.image {
+  object-fit: cover;
+  transition: transform 300ms ease;
+}
+
+.card:hover .image {
+  transform: scale(1.06);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.75rem;
+  isolation: isolate;
+}
+
+.overlay::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 30%;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.88) 0%,
+    rgba(0, 0, 0, 0.5) 55%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(to top, black 65%, transparent);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.title {
+  position: relative;
+  margin: 0;
+  color: #ffffff;
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: clamp(1.75rem, 2.5vw, 2.25rem);
+  font-weight: 800;
+  line-height: var(--lh-tight);
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6);
+}
+
+.description {
+  position: relative;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-normal);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+
+  /* Desktop: oculto, visible en hover */
+  opacity: 0;
+  transform: translateY(10px);
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 250ms ease, transform 250ms ease, max-height 250ms ease;
+}
+
+.card:hover .description,
+.card:focus-visible .description {
+  opacity: 1;
+  transform: translateY(0);
+  max-height: 6rem;
+}
+
+/* Mobile: overviewLabel siempre visible */
+@media (max-width: 640px) {
+  .description {
+    opacity: 1;
+    transform: none;
+    max-height: 6rem;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .image,
+  .description {
+    transition: none;
+  }
+
+  .card:hover {
+    transform: none;
+  }
+
+  .card:hover .image {
+    transform: none;
+  }
+
+  .card:hover .description {
+    transform: none;
+  }
+}

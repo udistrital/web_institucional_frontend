@@ -10,7 +10,7 @@ export const mainNavigation: ServiceProfile[] = [
   {
     label: "Aspirantes",
     href: "/perfiles/aspirantes",
-    image: "/image/soy estudiante.jpeg",
+    image: "/image/soy aspirante.jpg",
     overviewLabel: "Proceso para aspirantes",
     layout: "rows",
     children: [
@@ -43,7 +43,7 @@ export const mainNavigation: ServiceProfile[] = [
   {
     label: "Educadores",
     href: "/perfiles/educadores",
-    image: "/image/soy estudiante.jpeg",
+    image: "/image/soy docente.jpeg",
     overviewLabel: "Servicios para educadores",
     layout: "columns",
     children: [
@@ -72,7 +72,7 @@ export const mainNavigation: ServiceProfile[] = [
   {
     label: "Administrativos",
     href: "/perfiles/administrativos",
-    image: "/image/soy estudiante.jpeg",
+    image: "/image/soy funcionario.jpeg",
     overviewLabel: "Servicios para funcionarios",
     layout: "columns",
     children: [
@@ -90,4 +90,39 @@ export const mainNavigation: ServiceProfile[] = [
       { label: "Subsisteam de responsabilidad social", href: "/perfiles/administrativos/subsistema-responsabilidad-social" },
     ],
   },
+  {
+    label: "Egresados",
+    href: "/perfiles/egresados",
+    image: "/image/soy egresado.jpeg",
+    overviewLabel: "Servicios para egresados",
+    layout: "rows",
+    children: [
+      { label: "Sistema de gestion academica (SGA) - Egresados", href: "/perfiles/egresados/sga" },
+      { label: "Inteligencia institucional", href: "/perfiles/egresados/inteligencia-institucional" },
+      { label: "Acciones judiciales", href: "/perfiles/egresados/acciones-judiciales" },
+    ],
+  },
+    {
+    label: "Visitantes",
+    href: "/perfiles/visitantes",
+    image: "/image/soy visitante.jpg",
+    overviewLabel: "Proceso para visitantes",
+    layout: "rows",
+    children: [
+      { label: "Cursos de extension", href: "/perfiles/egresados/cursos-extension" },
+      { label: "Cursos de idiomas", href: "/perfiles/egresados/cursos-idiomas" },
+      { label: "Editorial UD", href: "/perfiles/egresados/editorial-ud" },
+      { label: "Sistema de notificaciones", href: "/perfiles/egresados/sistema-de-notificaciones" },
+      { label: "Tramites y procedimientos", href: "/perfiles/egresados/tramites-procedimientos" },
+      { label: "Transparencia e informacion publica", href: "/perfiles/egresados/transparencia-publica" },
+      { label: "La UD FM", href: "/perfiles/egresados/emisora" },
+      { label: "Videos institucionales", href: "/perfiles/egresados/videos-institucionales" },
+      { label: "Propcesos contractuales", href: "/perfiles/egresados/procesos-contractuales" },
+      { label: "Tienda UD", href: "/perfiles/egresados/tienda-ud" },
+      { label: "Bogota te escucha", href: "/perfiles/egresados/bogota-te-escucha" },
+      { label: "Sistema de informacion de la secretaria general", href: "/perfiles/egresados/sisgral" },
+      { label: "Notificaciones Judiciales", href: "/perfiles/egresados/notificaciones-judiciales" },
+      { label: "Participacion Ciudadana", href: "/perfiles/egresados/participacion-ciudadana" },
+    ],
+  }
 ]
