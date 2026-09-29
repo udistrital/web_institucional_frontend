@@ -13,7 +13,7 @@
   transition: transform 250ms ease, box-shadow 250ms ease;
 }
 
-.Carruselcard {
+.carousel {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -28,12 +28,31 @@
   transition: transform 250ms ease, box-shadow 250ms ease;
 }
 
-.card:hover {
+.bento {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 0;
+  min-height: 12rem;
+  aspect-ratio: 4 / 3;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 25%);
+  transition: transform 250ms ease, box-shadow 250ms ease;
+}
+
+.card:hover,
+.carousel:hover,
+.bento:hover {
   transform: translateY(-4px);
   box-shadow: 0 1rem 2.5rem rgb(0 0 0 / 35%);
 }
 
-.card:focus-visible {
+.card:focus-visible,
+.carousel:focus-visible,
+.bento:focus-visible {
   transform: translateY(-4px);
 }
 
@@ -48,7 +67,9 @@
   transition: transform 300ms ease;
 }
 
-.card:hover .image {
+.card:hover .image,
+.carousel:hover .image,
+.bento:hover .image {
   transform: scale(1.06);
 }
 
@@ -110,10 +131,24 @@
 }
 
 .card:hover .description,
-.card:focus-visible .description {
+.carousel:hover .description,
+.bento:hover .description,
+.card:focus-visible .description,
+.carousel:focus-visible .description,
+.bento:focus-visible .description {
   opacity: 1;
   transform: translateY(0);
   max-height: 6rem;
+}
+
+/* Red overlay variant for bento cards */
+.overlayRed::before {
+  background: linear-gradient(
+    to top,
+    rgba(161, 2, 31, 0.95) 0%,
+    rgba(161, 2, 31, 0.45) 55%,
+    transparent 100%
+  );
 }
 
 /* Mobile: overviewLabel siempre visible */
@@ -128,20 +163,28 @@
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .card,
+  .carousel,
+  .bento,
   .image,
   .description {
     transition: none;
   }
 
-  .card:hover {
+  .card:hover,
+  .carousel:hover,
+  .bento:hover {
     transform: none;
   }
 
-  .card:hover .image {
+  .card:hover .image,
+  .carousel:hover .image,
+  .bento:hover .image {
     transform: none;
   }
 
-  .card:hover .description {
+  .card:hover .description,
+  .carousel:hover .description,
+  .bento:hover .description {
     transform: none;
   }
 }

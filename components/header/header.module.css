@@ -76,6 +76,7 @@
 .audienceRowOpen {
     max-height: 400px;
     opacity: 1;
+    overflow: visible;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -5,14 +5,22 @@ import styles from "./tarjet.module.css";
 
 type TarjetProps = {
   service: ServiceProfile;
+  variant?: "card" | "carousel" | "bento";
   className?: string;
 };
 
 export default function Tarjet({
   service,
+  variant = "card",
   className = "",
 }: TarjetProps) {
-  const cardClassName = [styles.card, className].filter(Boolean).join(" ");
+  const base =
+    variant === "carousel"
+      ? styles.carousel
+      : variant === "bento"
+        ? styles.bento
+        : styles.card;
+  const cardClassName = [base, className].filter(Boolean).join(" ");
 
   return (
     <Link className={cardClassName} href={service.href}>
@@ -23,12 +31,18 @@ export default function Tarjet({
             src={service.image}
             alt={service.label}
             fill
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            sizes={
+              variant === "carousel"
+                ? "(max-width: 720px) 88vw, 28vw"
+                : variant === "bento"
+                  ? "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  : "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            }
           />
         </div>
       ) : null}
 
-      <div className={styles.overlay}>
+      <div className={`${styles.overlay} ${variant === "bento" ? styles.overlayRed : ""}`}>
         <h2 className={styles.title}>{service.label}</h2>
         {service.overviewLabel ? (
           <p className={styles.description}>{service.overviewLabel}</p>
