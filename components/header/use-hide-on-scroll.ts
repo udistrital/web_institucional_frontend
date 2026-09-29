@@ -1,43 +1,68 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 /**
- * Header en dos etapas:
- * - headerVisible: false al bajar más allá de `hideAfter`, true al subir.
- * - showAudience: true solo cerca del tope (`y <= topEpsilon`).
- * La tolerancia `delta` evita parpadeos con micro-scrolls.
+ * Controla la visibilidad del header y de la franja de audience
+ * a partir de la dirección del scroll, con histéresis real y
+ * actualizaciones encadenadas por requestAnimationFrame.
+ *
+ * - headerVisible: true al subir o estar cerca del tope; false al bajar.
+ * - audienceVisible: solo visible en el tope absoluto.
  */
 export function useHideOnScroll(
-  hideAfter = 120,
-  topEpsilon = 8,
-  delta = 5,
+  hideAfter = 80,
+  topEpsilon = 6,
 ) {
   const [headerVisible, setHeaderVisible] = useState(true);
-  const [showAudience, setShowAudience] = useState(true);
+  const [audienceVisible, setAudienceVisible] = useState(true);
+
   const lastY = useRef(0);
+  const pendingShow = useRef<boolean | null>(null);
+  const rafId = useRef<number>(0);
+
+  const flush = useCallback(() => {
+    if (pendingShow.current === null) return;
+    const show = pendingShow.current;
+    pendingShow.current = null;
+    setHeaderVisible(show);
+  }, []);
 
   useEffect(() => {
     lastY.current = window.scrollY;
 
     const onScroll = () => {
       const y = window.scrollY;
-      const last = lastY.current;
+      const goingDown = y > lastY.current + 1;
+      const goingUp = y < lastY.current - 1;
 
-      if (y < hideAfter || y < last - delta) {
-        setHeaderVisible(true);
-      } else if (y > hideAfter && y > last + delta) {
-        setHeaderVisible(false);
+      // Histéresis: no reacciona a micro-movimientos
+      if (goingDown) {
+        pendingShow.current = y <= hideAfter;
+      } else if (goingUp) {
+        pendingShow.current = true;
+      } else {
+        // En zona muerta: conserva el estado actual
+        pendingShow.current = null;
       }
 
-      setShowAudience(y <= topEpsilon);
+      // Encadenar por RAF para evitar flicker
+      cancelAnimationFrame(rafId.current);
+      if (pendingShow.current !== null) {
+        rafId.current = requestAnimationFrame(flush);
+      }
+
+      // Audience solo en el tope
+      setAudienceVisible(y <= topEpsilon);
       lastY.current = y;
     };
 
-    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [hideAfter, topEpsilon, delta]);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(rafId.current);
+    };
+  }, [hideAfter, topEpsilon, flush]);
 
-  return { headerVisible, showAudience };
+  return { headerVisible, audienceVisible };
 }

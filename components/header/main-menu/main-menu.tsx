@@ -150,7 +150,8 @@ export default function MainMenuPruv() {
         <NuestraUniversidad
           onMouseEnter={() => setOpenMenu("universidad")}
           onMouseLeave={() => setOpenMenu(null)}
-          isOpen={openMenu === "universidad"}          onToggle={() =>
+          isOpen={openMenu === "universidad"}          
+          onToggle={() =>
             setOpenMenu((c) => (c === "universidad" ? null : "universidad"))
           }
           onClose={closeMenu}

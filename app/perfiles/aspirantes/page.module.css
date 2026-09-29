@@ -1,0 +1,32 @@
+.bento {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(4, 1fr);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: clamp(1rem, 4vw, 3rem) clamp(1rem, 4vw, 2rem);
+}
+
+/* 7 items: first 4 fill row 1, last 3 centered in row 2 */
+.bento > *:nth-child(n + 5) {
+  /* last 3 cards: centered by making them occupy middle columns */
+}
+
+@media (max-width: 1024px) {
+  .bento {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .bento {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .bento > * {
+    transition: none;
+  }
+}

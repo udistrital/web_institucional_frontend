@@ -1,9 +1,3 @@
-export const audienceProfiles = [
-  { label: "Aspirantes", href: "/aspirantes" },
-  { label: "Estudiantes", href: "/estudiantes" },
-  { label: "Educadores", href: "/educadores" },
-  { label: "Administrativos", href: "/administrativos" }
-]
 
 export const institutionalLinks = [
   { label: "Índices de transparencia", href: "/transparencia" },

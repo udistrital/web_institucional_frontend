@@ -1,0 +1,190 @@
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 0;
+  min-height: 16rem;
+  aspect-ratio: 8 / 8;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 25%);
+  transition: transform 250ms ease, box-shadow 250ms ease;
+}
+
+.carousel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 0;
+  min-height: 16rem;
+  aspect-ratio: 16 / 8;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 25%);
+  transition: transform 250ms ease, box-shadow 250ms ease;
+}
+
+.bento {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 0;
+  min-height: 12rem;
+  aspect-ratio: 4 / 3;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 25%);
+  transition: transform 250ms ease, box-shadow 250ms ease;
+}
+
+.card:hover,
+.carousel:hover,
+.bento:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 1rem 2.5rem rgb(0 0 0 / 35%);
+}
+
+.card:focus-visible,
+.carousel:focus-visible,
+.bento:focus-visible {
+  transform: translateY(-4px);
+}
+
+.imageWrapper {
+  position: absolute;
+  inset: 0;
+  background: #1a1a1a;
+}
+
+.image {
+  object-fit: cover;
+  transition: transform 300ms ease;
+}
+
+.card:hover .image,
+.carousel:hover .image,
+.bento:hover .image {
+  transform: scale(1.06);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.75rem;
+  isolation: isolate;
+}
+
+.overlay::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 30%;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.88) 0%,
+    rgba(0, 0, 0, 0.5) 55%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(to top, black 65%, transparent);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.title {
+  position: relative;
+  margin: 0;
+  color: #ffffff;
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: clamp(1.75rem, 2.5vw, 2.25rem);
+  font-weight: 800;
+  line-height: var(--lh-tight);
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6);
+}
+
+.description {
+  position: relative;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-normal);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+
+  /* Desktop: oculto, visible en hover */
+  opacity: 0;
+  transform: translateY(10px);
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 250ms ease, transform 250ms ease, max-height 250ms ease;
+}
+
+.card:hover .description,
+.carousel:hover .description,
+.bento:hover .description,
+.card:focus-visible .description,
+.carousel:focus-visible .description,
+.bento:focus-visible .description {
+  opacity: 1;
+  transform: translateY(0);
+  max-height: 6rem;
+}
+
+/* Red overlay variant for bento cards */
+.overlayRed::before {
+  background: linear-gradient(
+    to top,
+    rgba(161, 2, 31, 0.95) 0%,
+    rgba(161, 2, 31, 0.45) 55%,
+    transparent 100%
+  );
+}
+
+/* Mobile: overviewLabel siempre visible */
+@media (max-width: 640px) {
+  .description {
+    opacity: 1;
+    transform: none;
+    max-height: 6rem;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .carousel,
+  .bento,
+  .image,
+  .description {
+    transition: none;
+  }
+
+  .card:hover,
+  .carousel:hover,
+  .bento:hover {
+    transform: none;
+  }
+
+  .card:hover .image,
+  .carousel:hover .image,
+  .bento:hover .image {
+    transform: none;
+  }
+
+  .card:hover .description,
+  .carousel:hover .description,
+  .bento:hover .description {
+    transform: none;
+  }
+}

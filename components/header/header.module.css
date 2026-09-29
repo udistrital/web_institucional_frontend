@@ -61,3 +61,26 @@
     display: flex;
     gap: 1.5rem;
 }
+
+/* ---------- Audience row collapse ---------- */
+
+.audienceRow {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition:
+        max-height 0.28s ease-out,
+        opacity 0.22s ease-out;
+}
+
+.audienceRowOpen {
+    max-height: 400px;
+    opacity: 1;
+    overflow: visible;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .audienceRow {
+        transition: none;
+    }
+}

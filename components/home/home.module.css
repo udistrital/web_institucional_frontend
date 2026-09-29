@@ -45,12 +45,9 @@
 .audience-section { padding: clamp(2.25rem, 4vw, 3.5rem) 1rem; }
 .audience-carousel { align-items: center; display: flex; gap: clamp(.75rem, 3vw, 2.25rem); margin: 0 auto; max-width: var(--content-width); }
 .audience-grid { display: grid; flex: 1; gap: 1.25rem; grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.audience-card, .faculty-showcase-card { color: #fff; isolation: isolate; overflow: hidden; position: relative; text-decoration: none; }
-.audience-card { aspect-ratio: 1.45 / 1; }
-.audience-card img, .faculty-showcase-card img { object-fit: cover; transition: transform 350ms ease; z-index: -2; }
-.audience-card:hover img, .faculty-showcase-card:hover img { transform: scale(1.04); }
-.audience-shade { background: linear-gradient(0deg, rgba(0,0,0,.9), transparent 70%); inset: 0; position: absolute; z-index: -1; }
-.audience-title { bottom: 2rem; font-family: var(--font-montserrat), sans-serif; font-size: var(--fs-h3); font-weight: 700; left: 2rem; line-height: .95; max-width: 8rem; position: absolute; }
+.faculty-showcase-card { color: #fff; isolation: isolate; overflow: hidden; position: relative; text-decoration: none; }
+.faculty-showcase-card img { object-fit: cover; transition: transform 350ms ease; z-index: -2; }
+.faculty-showcase-card:hover img { transform: scale(1.04); }
 .carousel-arrow, .faculty-arrow { background: transparent; border: 0; cursor: pointer; font-family: Georgia, serif; line-height: 1; padding: 0; }
 .carousel-arrow { color: var(--institutional-red); font-size: 4rem; }
 
@@ -211,9 +208,7 @@
   .hero-controls { z-index: 2; }
   .audience-carousel { gap: .5rem; }
   .audience-grid { gap: .75rem; grid-template-columns: 1fr; }
-  .audience-card { aspect-ratio: 2.1 / 1; }
-  .audience-card:not(:first-child) { display: none; }
-  .audience-title { bottom: 1.25rem; left: 1.25rem; }
+  .audience-grid > *:not(:first-child) { display: none; }
   .carousel-arrow { display: none; }
   .faculties-section { padding: 3rem 1rem; }
   .faculties-content, .news-grid { grid-template-columns: 1fr; }
