@@ -52,7 +52,7 @@ a.hero-slide:focus-visible .hero-image { filter: brightness(1.06) saturate(1.05)
 .audience-section { padding: clamp(2.25rem, 4vw, 3.5rem) 1rem; }
 .audience-carousel { align-items: center; display: flex; gap: clamp(.75rem, 3vw, 2.25rem); margin: 0 auto; max-width: var(--content-width); }
 .audience-grid { display: grid; flex: 1; gap: 1.25rem; grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.faculty-showcase-card { color: #fff; isolation: isolate; overflow: hidden; position: relative; text-decoration: none; }
+.faculty-showcase-card { color: #fff; overflow: hidden; position: relative; text-decoration: none; }
 .faculty-showcase-card img { object-fit: cover; transition: transform 350ms ease; z-index: -2; }
 .faculty-showcase-card:hover img { transform: scale(1.04); }
 .carousel-arrow, .faculty-arrow { background: transparent; border: 0; cursor: pointer; font-family: Georgia, serif; line-height: 1; padding: 0; }
@@ -174,11 +174,11 @@ a.hero-slide:focus-visible .hero-image { filter: brightness(1.06) saturate(1.05)
 .promo-copy p { font-size: var(--fs-sm); line-height: 1.35; margin: 0; max-width: 32rem; }
 
 .faculty-showcase { background: #fff; border-top: 1rem solid #fff; min-height: 215px; position: relative; width: 100%; }
-.faculty-showcase-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); min-width: 0; width: 100%; }
+.faculty-showcase-grid { display: grid; gap: 4px; grid-template-columns: repeat(3,minmax(0,1fr)); width: 100%; }
 .faculty-showcase-card { min-height: 215px; }
 .faculty-showcase-card:hover img { transform: scale(1.05); }
 .faculty-showcase-shade { background: rgba(0,0,0,.3); inset: 0; position: absolute; z-index: -1; }
-.faculty-showcase-title { bottom: 3.5rem; font-size: var(--fs-base); left: 50%; position: absolute; text-align: center; transform: translateX(-50%); white-space: nowrap; }
+.faculty-showcase-title { bottom: 3.5rem; font-size: var(--fs-base); left: 50%; max-width: 90%; padding: 0 0.5rem; position: absolute; text-align: center; transform: translateX(-50%); white-space: normal; }
 .faculty-play { align-items: center; background: var(--institutional-red); border-radius: 50%; display: flex; font-size: .8rem; height: 2.2rem; justify-content: center; left: 50%; padding-left: .15rem; position: absolute; top: 45%; transform: translate(-50%,-50%); width: 2.2rem; }
 .faculty-arrow { color: #fff; font-size: 4rem; left: .5rem; position: absolute; text-shadow: 2px 2px 4px #000, -1px -1px 3px #000; top: 50%; transform: translateY(-50%); z-index: 1; }
 .faculty-arrow-next { left: auto; right: .5rem; }
