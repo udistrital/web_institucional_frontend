@@ -20,22 +20,29 @@
   .homeShowcase { --content-width: 92vw; }
 }
 
-.hero { height: clamp(430px, 38vw, 500px); isolation: isolate; overflow: hidden; position: relative; }
-.hero-media, .hero-overlay { inset: 0; position: absolute; }
-.hero-media { background: #000; z-index: -2; }
-.hero-image { object-fit: cover; opacity: 0; transition: opacity 500ms ease; }
-.hero-image.is-active { opacity: 1; }
-.hero-overlay { background: linear-gradient(90deg, rgba(0,0,0,.8), rgba(0,0,0,.35) 57%, rgba(0,0,0,.05)); z-index: -1; }
-.hero-mobile-link { display: none; }
-.hero-content { color: #fff; height: 100%; margin: 0 auto; max-width: var(--content-width); padding: clamp(4rem, 8vw, 5rem) 1rem 6rem; }
-.hero-kicker { font-family: var(--font-montserrat), sans-serif; font-size: var(--fs-base); margin: 0 0 .65rem; }
-.hero h1 { font-family: var(--font-montserrat), sans-serif; font-size: var(--fs-h1); font-weight: 700; line-height: 1.08; margin: 0; max-width: 680px; }
-.hero-description { font-size: var(--fs-md); line-height: var(--lh-snug); margin: 1rem 0 1.4rem; max-width: 640px; }
+/*
+  El banner muestra únicamente imágenes (sin texto), completas y sin recortes.
+  Escritorio: 1700x400 (4.25/1). Móvil: 400x400 (1/1). Se usa object-fit:
+  contain para mostrar la imagen íntegra.
+*/
+.hero { aspect-ratio: 1700 / 400; isolation: isolate; overflow: hidden; position: relative; width: 100%; }
+.hero-media { inset: 0; position: absolute; }
+.hero-media { background: #000; z-index: 0; }
+.hero-slide { display: block; inset: 0; position: absolute; }
+.hero-slide { opacity: 0; pointer-events: none; transition: opacity 500ms ease; }
+.hero-slide.is-active { opacity: 1; pointer-events: auto; }
+.hero-image { object-fit: contain; transition: filter 300ms ease; }
+/* Efecto hover sutil (sin agrandar) solo para banners que redireccionan */
+a.hero-slide { cursor: pointer; }
+a.hero-slide:hover .hero-image,
+a.hero-slide:focus-visible .hero-image { filter: brightness(1.06) saturate(1.05); }
+@media (prefers-reduced-motion: reduce) {
+  .hero-image { transition: none; }
+}
 .hero-link, .faculties-link { border-radius: 5px; display: inline-block; font-weight: 600; padding: .65rem 1.05rem; text-decoration: none; }
-.hero-link { background: var(--institutional-red); color: #fff; }
 .faculties-link { padding-left: 2.25rem; padding-right: 2.25rem; }
 .hero-link:hover, .faculties-link:hover, .news-more-link:hover, .enrollment-primary:hover, .enrollment-secondary:hover { background: #fdb400; color: black; }
-.hero-controls { bottom: 2rem; display: flex; gap: .65rem; left: 50%; position: absolute; transform: translateX(-50%); }
+.hero-controls { bottom: 2rem; display: flex; gap: .65rem; left: 50%; position: absolute; transform: translateX(-50%); z-index: 3; }
 .hero-dot { background: #fff; border: 0; border-radius: 50%; cursor: pointer; height: 12px; opacity: .75; padding: 0; width: 12px; }
 .hero-dot.is-active { background: var(--institutional-red); opacity: 1; }
 .carousel-dots { display: flex; gap: .55rem; justify-content: center; margin-top: 1.5rem; }
@@ -201,14 +208,10 @@
 }
 
 @media (max-width: 720px) {
-  /* En móvil el alto del hero sigue la proporción de la imagen para minimizar el recorte. */
-  .hero { aspect-ratio: 16 / 10; height: auto; }
-  .hero-image { object-position: center; }
-  /* En móvil el hero no muestra texto ni botón; la imagen completa dirige al tocarla. */
-  .hero-content { display: none; }
-  .hero-overlay { display: none; }
-  .hero-mobile-link { display: block; inset: 0; position: absolute; z-index: 1; }
-  .hero-controls { z-index: 2; }
+  /* En móvil se usa la misma imagen principal, ajustada al ancho de pantalla. */
+  .hero { aspect-ratio: 1700 / 400; height: auto; }
+  .hero-image { object-fit: contain; }
+  .hero-controls { z-index: 3; }
   .audience-carousel { gap: .5rem; }
   .audience-grid { gap: .75rem; grid-template-columns: 1fr; }
   .audience-card { aspect-ratio: 2.1 / 1; }
@@ -262,8 +265,7 @@
 
 /* ===== Móvil pequeño (<= 480px) ===== */
 @media (max-width: 480px) {
-  .hero { aspect-ratio: 4 / 3; height: auto; }
-  .hero-content { padding: 4rem 1rem 4rem; }
+  .hero { aspect-ratio: 1700 / 400; height: auto; }
   .student-services-grid { grid-template-columns: 1fr; }
   .student-service { padding: 1.5rem .75rem; }
   .student-service:first-child { border-top: 0; }
