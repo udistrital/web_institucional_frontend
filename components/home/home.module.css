@@ -50,8 +50,9 @@ a.hero-slide:focus-visible .hero-image { filter: brightness(1.06) saturate(1.05)
 .carousel-dot.is-active { background: var(--institutional-red); transform: scale(1.2); }
 
 .audience-section { padding: clamp(2.25rem, 4vw, 3.5rem) 1rem; }
-.audience-carousel { align-items: center; display: flex; gap: clamp(.75rem, 3vw, 2.25rem); margin: 0 auto; max-width: var(--content-width); }
-.audience-grid { display: grid; flex: 1; gap: 1.25rem; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.audience-carousel { align-items: center; display: flex; gap: clamp(.5rem, 2vw, 1.5rem); margin: 0 auto; max-width: 100%; width: 100%; }
+.audience-grid { display: flex; flex: 1; gap: 1.5rem; min-width: 0; }
+.audience-grid > * { flex: 1 1 0; min-width: 0; }
 .faculty-showcase-card { color: #fff; overflow: hidden; position: relative; text-decoration: none; }
 .faculty-showcase-card img { object-fit: cover; transition: transform 350ms ease; z-index: -2; }
 .faculty-showcase-card:hover img { transform: scale(1.04); }
@@ -174,8 +175,8 @@ a.hero-slide:focus-visible .hero-image { filter: brightness(1.06) saturate(1.05)
 .promo-copy p { font-size: var(--fs-sm); line-height: 1.35; margin: 0; max-width: 32rem; }
 
 .faculty-showcase { background: #fff; border-top: 1rem solid #fff; min-height: 215px; position: relative; width: 100%; }
-.faculty-showcase-grid { display: grid; gap: 4px; grid-template-columns: repeat(3,minmax(0,1fr)); width: 100%; }
-.faculty-showcase-card { min-height: 215px; }
+.faculty-showcase-grid { display: grid; gap: 4px; grid-template-columns: repeat(3, minmax(0, 1fr)); width: 100%; }
+.faculty-showcase-card { min-height: 215px; min-width: 0; }
 .faculty-showcase-card:hover img { transform: scale(1.05); }
 .faculty-showcase-shade { background: rgba(0,0,0,.3); inset: 0; position: absolute; z-index: -1; }
 .faculty-showcase-title { bottom: 3.5rem; font-size: var(--fs-base); left: 50%; max-width: 90%; padding: 0 0.5rem; position: absolute; text-align: center; transform: translateX(-50%); white-space: normal; }
@@ -202,6 +203,10 @@ a.hero-slide:focus-visible .hero-image { filter: brightness(1.06) saturate(1.05)
   .services-section { padding: clamp(2.5rem, 4vw, 3.5rem) 2rem; }
   .service-card { grid-template-columns: 40% 60%; }
   .service-card:nth-child(2) { grid-template-columns: 60% 40%; }
+  /* Tablet: 2 tarjetas visibles, tercera oculta. */
+  .audience-grid { overflow: hidden; scroll-snap-type: x mandatory; }
+  .audience-grid > * { flex: 0 0 calc((100% - 1.5rem) / 2); scroll-snap-align: start; }
+  .audience-grid > :nth-child(3) { display: none; }
 }
 
 @media (max-width: 720px) {
@@ -210,8 +215,9 @@ a.hero-slide:focus-visible .hero-image { filter: brightness(1.06) saturate(1.05)
   .hero-image { object-fit: contain; }
   .hero-controls { z-index: 3; }
   .audience-carousel { gap: .5rem; }
-  .audience-grid { gap: .75rem; grid-template-columns: 1fr; }
-  .audience-grid > *:not(:first-child) { display: none; }
+  .audience-grid { gap: 0; overflow: hidden; }
+  .audience-grid > * { flex: 0 0 100%; }
+  .audience-grid > :nth-child(2), .audience-grid > :nth-child(3) { display: none; }
   .carousel-arrow { display: none; }
   .faculties-section { padding: 3rem 1rem; }
   .faculties-content, .news-grid { grid-template-columns: 1fr; }
@@ -261,6 +267,7 @@ a.hero-slide:focus-visible .hero-image { filter: brightness(1.06) saturate(1.05)
 /* ===== Móvil pequeño (<= 480px) ===== */
 @media (max-width: 480px) {
   .hero { aspect-ratio: 1700 / 400; height: auto; }
+  .audience-grid > * { flex: 0 0 100%; }
   .student-services-grid { grid-template-columns: 1fr; }
   .student-service { padding: 1.5rem .75rem; }
   .student-service:first-child { border-top: 0; }
