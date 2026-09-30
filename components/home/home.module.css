@@ -167,8 +167,9 @@
 .promo-copy p { font-size: var(--fs-sm); line-height: 1.35; margin: 0; max-width: 32rem; }
 
 .faculty-showcase { background: #fff; border-top: 1rem solid #fff; min-height: 215px; position: relative; width: 100%; }
-.faculty-showcase-grid { display: grid; gap: 4px; grid-template-columns: repeat(3,minmax(0,1fr)); width: 100%; }
+.faculty-showcase-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); width: 100%; }
 .faculty-showcase-card { min-height: 215px; }
+.faculty-showcase-card + .faculty-showcase-card { border-left: 4px solid #fff; }
 .faculty-showcase-card:hover img { transform: scale(1.05); }
 .faculty-showcase-shade { background: rgba(0,0,0,.3); inset: 0; position: absolute; z-index: -1; }
 .faculty-showcase-title { bottom: 3.5rem; font-size: var(--fs-base); left: 50%; max-width: 90%; padding: 0 0.5rem; position: absolute; text-align: center; transform: translateX(-50%); white-space: normal; }
