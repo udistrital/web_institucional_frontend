@@ -3,8 +3,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import styles from "./home.module.css";
-import { useSwipe } from "./useSwipe";
+
+import styles from "../home.module.css";
+import { useSwipe } from "../useSwipe";
+import type { FacultyShowcaseSectionProps } from "./FacultyShowcaseSection.types";
 
 const faculties = [
   { title: "Facultad de Ingeniería", href: "/facultades/ingenieria", image: "/image/facultad ingenieria.jpg", alt: "Edificio de la Facultad de Ingeniería" },
@@ -15,14 +17,18 @@ const faculties = [
   { title: "Facultad del Medio Ambiente", href: "/facultades/medio-ambiente-recursos-naturales", image: "/image/facultad de medio ambiente.jpeg", alt: "Facultad del Medio Ambiente y Recursos Naturales" },
 ];
 
-export default function FacultyShowcaseSection() {
+export default function FacultyShowcaseSection({ className }: FacultyShowcaseSectionProps) {
   const [start, setStart] = useState(0);
   const move = (step: number) => setStart((current) => (current + step + faculties.length) % faculties.length);
   const visible = Array.from({ length: 3 }, (_, index) => faculties[(start + index) % faculties.length]);
   const swipe = useSwipe(move);
 
+  const sectionClassName = className
+    ? `${styles["faculty-showcase"]} ${className}`
+    : styles["faculty-showcase"];
+
   return (
-    <section className={styles["faculty-showcase"]} aria-labelledby="faculty-showcase-title">
+    <section className={sectionClassName} aria-labelledby="faculty-showcase-title">
       <h2 id="faculty-showcase-title" className="sr-only">Facultades de la Universidad Distrital</h2>
       <button className={`${styles["faculty-arrow"]} ${styles["faculty-arrow-previous"]}`} type="button" aria-label="Ver facultades anteriores" onClick={() => move(-1)}>‹</button>
       <div className={styles["faculty-showcase-grid"]} onTouchStart={swipe.onTouchStart} onTouchEnd={swipe.onTouchEnd}>

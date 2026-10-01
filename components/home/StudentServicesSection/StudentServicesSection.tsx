@@ -1,6 +1,8 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
-import styles from "./home.module.css";
+
+import styles from "../home.module.css";
+import type { StudentServicesSectionProps } from "./StudentServicesSection.types";
 
 const iconProps = {
   width: 40,
@@ -34,6 +36,10 @@ const studentServices: { icon: ReactNode; title: string; description: string }[]
   { icon: <ShieldCheckIcon />, title: "Aseguramiento de la calidad", description: "Comprometidos con tu futuro profesional, la UD cuenta con 36 programas con estándares de Alta Calidad." },
 ];
 
-export default function StudentServicesSection() {
-  return <section className={styles["student-services-section"]} aria-labelledby="student-services-title"><Image className={styles["services-lead-image"]} src="/image/inscripciones-trim.png" alt="" aria-hidden="true" width={1075} height={1770} sizes="34vw" /><h2 id="student-services-title" className="sr-only">Información para estudiantes</h2><div className={styles["student-services-grid"]}>{studentServices.map((service) => <a className={styles["student-service"]} href="#informacion" key={service.title}><span className={styles["student-service-icon"]} aria-hidden="true">{service.icon}</span><h3>{service.title}</h3><p>{service.description}</p></a>)}</div></section>;
+export default function StudentServicesSection({ className }: StudentServicesSectionProps) {
+  const sectionClassName = className
+    ? `${styles["student-services-section"]} ${className}`
+    : styles["student-services-section"];
+
+  return <section className={sectionClassName} aria-labelledby="student-services-title"><Image className={styles["services-lead-image"]} src="/image/inscripciones-trim.png" alt="" aria-hidden="true" width={1075} height={1770} sizes="34vw" /><h2 id="student-services-title" className="sr-only">Información para estudiantes</h2><div className={styles["student-services-grid"]}>{studentServices.map((service) => <a className={styles["student-service"]} href="#informacion" key={service.title}><span className={styles["student-service-icon"]} aria-hidden="true">{service.icon}</span><h3>{service.title}</h3><p>{service.description}</p></a>)}</div></section>;
 }

@@ -1,10 +1,17 @@
 import Link from "next/link";
-import { facultades } from "@/navegation/global";
-import styles from "./home.module.css";
 
-export default function FacultiesSection() {
+import { facultades } from "@/navegation/global";
+
+import styles from "../home.module.css";
+import type { FacultiesSectionProps } from "./FacultiesSection.types";
+
+export default function FacultiesSection({ className }: FacultiesSectionProps) {
+  const sectionClassName = className
+    ? `${styles["faculties-section"]} ${className}`
+    : styles["faculties-section"];
+
   return (
-    <section className={styles["faculties-section"]} aria-labelledby="faculties-title">
+    <section className={sectionClassName} aria-labelledby="faculties-title">
       <div className={styles["faculties-content"]}>
         <div className={styles["faculties-intro"]}>
           <h2 id="faculties-title">Nuestras<br />Facultades</h2>

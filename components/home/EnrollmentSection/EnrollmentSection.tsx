@@ -1,9 +1,15 @@
 import Image from "next/image";
-import styles from "./home.module.css";
 
-export default function EnrollmentSection() {
+import styles from "../home.module.css";
+import type { EnrollmentSectionProps } from "./EnrollmentSection.types";
+
+export default function EnrollmentSection({ className }: EnrollmentSectionProps) {
+  const sectionClassName = className
+    ? `${styles["enrollment-section"]} ${className}`
+    : styles["enrollment-section"];
+
   return (
-    <section className={styles["enrollment-section"]} aria-labelledby="enrollment-title">
+    <section className={sectionClassName} aria-labelledby="enrollment-title">
       <div className={styles["enrollment-content"]}>
         <div className={styles["enrollment-copy"]}><h2 id="enrollment-title">Inscribete o solicita información</h2><p>Si necesitas más información para estudiar en la UD, selecciona una opción y te enviaremos toda la información que necesites acerca del estudio de tu interés.</p><div className={styles["enrollment-actions"]}><a className={styles["enrollment-primary"]} href="#inscripciones">Quiero Inscribirme</a><a className={styles["enrollment-secondary"]} href="#informacion">Solicitar Información</a></div></div>
         <Image className={styles["enrollment-image"]} src="/image/inscripciones-trim.png" alt="Estudiante sonriente con una tableta y una mochila" width={1075} height={1770} sizes="(max-width: 720px) 12rem, (max-width: 1024px) 38vw, 46vw" />

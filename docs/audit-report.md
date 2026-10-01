@@ -4,9 +4,9 @@ Informe generado por el Sistema_Auditoria (`scripts/audit`). Agrupa los hallazgo
 
 ## Resumen
 
-- Elementos inventariados: 64
-- Hallazgos totales: 39
-  - Severidad alta: 0 · media: 39 · baja: 0
+- Elementos inventariados: 84
+- Hallazgos totales: 8
+  - Severidad alta: 0 · media: 8 · baja: 0
 - Reglas cumplidas: 6
 - Omisiones: 0
 
@@ -34,41 +34,10 @@ Informe generado por el Sistema_Auditoria (`scripts/audit`). Agrupa los hallazgo
 
 ### Skill · Estandarización de componentes
 
-39 hallazgos detectados.
+8 hallazgos detectados.
 
 | Archivo | Línea | Severidad | Descripción | Remediación |
 | --- | --- | --- | --- | --- |
-| components/home/EnrollmentSection.tsx | — | media | [nombre-tsx] El archivo `EnrollmentSection.tsx` no coincide en PascalCase con el nombre del directorio `home` (se esperaba `Home.tsx`). | Renombrar el archivo a `Home.tsx` para que coincida en PascalCase con el nombre del directorio del componente. |
-| components/home/EnrollmentSection.tsx | — | media | [archivo-types] El directorio del componente no contiene `EnrollmentSection.types.ts`. | Crear `components/home/EnrollmentSection.types.ts` con las interfaces y `type` de las props y el estado del componente. |
-| components/home/EnrollmentSection.tsx | — | media | [prop-classname] Las props del componente no incluyen soporte para una propiedad `className?: string` opcional. | Añadir `className?: string` a la interface de props del componente para permitir la composición en layouts mayores. |
-| components/home/FacultiesSection.tsx | — | media | [nombre-tsx] El archivo `FacultiesSection.tsx` no coincide en PascalCase con el nombre del directorio `home` (se esperaba `Home.tsx`). | Renombrar el archivo a `Home.tsx` para que coincida en PascalCase con el nombre del directorio del componente. |
-| components/home/FacultiesSection.tsx | — | media | [archivo-types] El directorio del componente no contiene `FacultiesSection.types.ts`. | Crear `components/home/FacultiesSection.types.ts` con las interfaces y `type` de las props y el estado del componente. |
-| components/home/FacultiesSection.tsx | — | media | [prop-classname] Las props del componente no incluyen soporte para una propiedad `className?: string` opcional. | Añadir `className?: string` a la interface de props del componente para permitir la composición en layouts mayores. |
-| components/home/FacultyShowcaseSection.tsx | — | media | [nombre-tsx] El archivo `FacultyShowcaseSection.tsx` no coincide en PascalCase con el nombre del directorio `home` (se esperaba `Home.tsx`). | Renombrar el archivo a `Home.tsx` para que coincida en PascalCase con el nombre del directorio del componente. |
-| components/home/FacultyShowcaseSection.tsx | — | media | [archivo-types] El directorio del componente no contiene `FacultyShowcaseSection.types.ts`. | Crear `components/home/FacultyShowcaseSection.types.ts` con las interfaces y `type` de las props y el estado del componente. |
-| components/home/FacultyShowcaseSection.tsx | — | media | [prop-classname] Las props del componente no incluyen soporte para una propiedad `className?: string` opcional. | Añadir `className?: string` a la interface de props del componente para permitir la composición en layouts mayores. |
-| components/home/HeroCarousel.tsx | — | media | [nombre-tsx] El archivo `HeroCarousel.tsx` no coincide en PascalCase con el nombre del directorio `home` (se esperaba `Home.tsx`). | Renombrar el archivo a `Home.tsx` para que coincida en PascalCase con el nombre del directorio del componente. |
-| components/home/HeroCarousel.tsx | — | media | [archivo-types] El directorio del componente no contiene `HeroCarousel.types.ts`. | Crear `components/home/HeroCarousel.types.ts` con las interfaces y `type` de las props y el estado del componente. |
-| components/home/HeroCarousel.tsx | — | media | [barrel-index] El barrel `components/home/index.ts` no exporta el componente `HeroCarousel`. | Añadir al barrel la reexportación del componente (p. ej. `export { default as HeroCarousel } from "./HeroCarousel";`). |
-| components/home/HeroCarousel.tsx | — | media | [prop-classname] Las props del componente no incluyen soporte para una propiedad `className?: string` opcional. | Añadir `className?: string` a la interface de props del componente para permitir la composición en layouts mayores. |
-| components/home/HeroSection.tsx | — | media | [nombre-tsx] El archivo `HeroSection.tsx` no coincide en PascalCase con el nombre del directorio `home` (se esperaba `Home.tsx`). | Renombrar el archivo a `Home.tsx` para que coincida en PascalCase con el nombre del directorio del componente. |
-| components/home/HeroSection.tsx | — | media | [archivo-types] El directorio del componente no contiene `HeroSection.types.ts`. | Crear `components/home/HeroSection.types.ts` con las interfaces y `type` de las props y el estado del componente. |
-| components/home/HeroSection.tsx | — | media | [prop-classname] Las props del componente no incluyen soporte para una propiedad `className?: string` opcional. | Añadir `className?: string` a la interface de props del componente para permitir la composición en layouts mayores. |
-| components/home/NewsSection.tsx | — | media | [nombre-tsx] El archivo `NewsSection.tsx` no coincide en PascalCase con el nombre del directorio `home` (se esperaba `Home.tsx`). | Renombrar el archivo a `Home.tsx` para que coincida en PascalCase con el nombre del directorio del componente. |
-| components/home/NewsSection.tsx | — | media | [archivo-types] El directorio del componente no contiene `NewsSection.types.ts`. | Crear `components/home/NewsSection.types.ts` con las interfaces y `type` de las props y el estado del componente. |
-| components/home/NewsSection.tsx | — | media | [prop-classname] Las props del componente no incluyen soporte para una propiedad `className?: string` opcional. | Añadir `className?: string` a la interface de props del componente para permitir la composición en layouts mayores. |
-| components/home/QuickLinksSection.tsx | — | media | [nombre-tsx] El archivo `QuickLinksSection.tsx` no coincide en PascalCase con el nombre del directorio `home` (se esperaba `Home.tsx`). | Renombrar el archivo a `Home.tsx` para que coincida en PascalCase con el nombre del directorio del componente. |
-| components/home/QuickLinksSection.tsx | — | media | [archivo-types] El directorio del componente no contiene `QuickLinksSection.types.ts`. | Crear `components/home/QuickLinksSection.types.ts` con las interfaces y `type` de las props y el estado del componente. |
-| components/home/QuickLinksSection.tsx | — | media | [prop-classname] Las props del componente no incluyen soporte para una propiedad `className?: string` opcional. | Añadir `className?: string` a la interface de props del componente para permitir la composición en layouts mayores. |
-| components/home/ServicesSection.tsx | — | media | [nombre-tsx] El archivo `ServicesSection.tsx` no coincide en PascalCase con el nombre del directorio `home` (se esperaba `Home.tsx`). | Renombrar el archivo a `Home.tsx` para que coincida en PascalCase con el nombre del directorio del componente. |
-| components/home/ServicesSection.tsx | — | media | [archivo-types] El directorio del componente no contiene `ServicesSection.types.ts`. | Crear `components/home/ServicesSection.types.ts` con las interfaces y `type` de las props y el estado del componente. |
-| components/home/ServicesSection.tsx | — | media | [prop-classname] Las props del componente no incluyen soporte para una propiedad `className?: string` opcional. | Añadir `className?: string` a la interface de props del componente para permitir la composición en layouts mayores. |
-| components/home/StudentServicesSection.tsx | — | media | [nombre-tsx] El archivo `StudentServicesSection.tsx` no coincide en PascalCase con el nombre del directorio `home` (se esperaba `Home.tsx`). | Renombrar el archivo a `Home.tsx` para que coincida en PascalCase con el nombre del directorio del componente. |
-| components/home/StudentServicesSection.tsx | — | media | [archivo-types] El directorio del componente no contiene `StudentServicesSection.types.ts`. | Crear `components/home/StudentServicesSection.types.ts` con las interfaces y `type` de las props y el estado del componente. |
-| components/home/StudentServicesSection.tsx | — | media | [prop-classname] Las props del componente no incluyen soporte para una propiedad `className?: string` opcional. | Añadir `className?: string` a la interface de props del componente para permitir la composición en layouts mayores. |
-| components/home/UniversityPromoSection.tsx | — | media | [nombre-tsx] El archivo `UniversityPromoSection.tsx` no coincide en PascalCase con el nombre del directorio `home` (se esperaba `Home.tsx`). | Renombrar el archivo a `Home.tsx` para que coincida en PascalCase con el nombre del directorio del componente. |
-| components/home/UniversityPromoSection.tsx | — | media | [archivo-types] El directorio del componente no contiene `UniversityPromoSection.types.ts`. | Crear `components/home/UniversityPromoSection.types.ts` con las interfaces y `type` de las props y el estado del componente. |
-| components/home/UniversityPromoSection.tsx | — | media | [prop-classname] Las props del componente no incluyen soporte para una propiedad `className?: string` opcional. | Añadir `className?: string` a la interface de props del componente para permitir la composición en layouts mayores. |
 | components/ti/TableroIframe.tsx | — | media | [nombre-tsx] El archivo `TableroIframe.tsx` no coincide en PascalCase con el nombre del directorio `ti` (se esperaba `Ti.tsx`). | Renombrar el archivo a `Ti.tsx` para que coincida en PascalCase con el nombre del directorio del componente. |
 | components/ti/TableroIframe.tsx | — | media | [archivo-types] El directorio del componente no contiene `TableroIframe.types.ts`. | Crear `components/ti/TableroIframe.types.ts` con las interfaces y `type` de las props y el estado del componente. |
 | components/ti/TableroIframe.tsx | — | media | [barrel-index] El directorio del componente no contiene un barrel `index.ts`. | Crear `components/ti/index.ts` que reexporte el componente (p. ej. `export { default as TableroIframe } from "./TableroIframe";`). |
@@ -84,7 +53,7 @@ Informe generado por el Sistema_Auditoria (`scripts/audit`). Agrupa los hallazgo
 
 ## Inventario
 
-64 elementos inventariados.
+84 elementos inventariados.
 
 | Archivo | Categoría | Ruta asociada |
 | --- | --- | --- |
@@ -131,17 +100,37 @@ Informe generado por el Sistema_Auditoria (`scripts/audit`). Agrupa los hallazgo
 | components/header/main-menu/oferta-academica.tsx | Componente contenedor | — |
 | components/header/main-menu/search-results.tsx | Componente contenedor | — |
 | components/header/use-hide-on-scroll.ts | Componente contenedor | — |
-| components/home/EnrollmentSection.tsx | Componente contenedor | — |
-| components/home/FacultiesSection.tsx | Componente contenedor | — |
-| components/home/FacultyShowcaseSection.tsx | Componente contenedor | — |
-| components/home/HeroCarousel.tsx | Componente contenedor | — |
-| components/home/HeroSection.tsx | Componente contenedor | — |
+| components/home/EnrollmentSection/EnrollmentSection.tsx | Componente contenedor | — |
+| components/home/EnrollmentSection/EnrollmentSection.types.ts | Componente presentacional | — |
+| components/home/EnrollmentSection/index.ts | Componente presentacional | — |
+| components/home/FacultiesSection/FacultiesSection.tsx | Componente contenedor | — |
+| components/home/FacultiesSection/FacultiesSection.types.ts | Componente presentacional | — |
+| components/home/FacultiesSection/index.ts | Componente presentacional | — |
+| components/home/FacultyShowcaseSection/FacultyShowcaseSection.tsx | Componente contenedor | — |
+| components/home/FacultyShowcaseSection/FacultyShowcaseSection.types.ts | Componente presentacional | — |
+| components/home/FacultyShowcaseSection/index.ts | Componente presentacional | — |
+| components/home/HeroCarousel/HeroCarousel.tsx | Componente contenedor | — |
+| components/home/HeroCarousel/HeroCarousel.types.ts | Componente presentacional | — |
+| components/home/HeroCarousel/index.ts | Componente presentacional | — |
+| components/home/HeroSection/HeroSection.tsx | Componente contenedor | — |
+| components/home/HeroSection/HeroSection.types.ts | Componente presentacional | — |
+| components/home/HeroSection/index.ts | Componente presentacional | — |
 | components/home/index.ts | Componente presentacional | — |
-| components/home/NewsSection.tsx | Componente contenedor | — |
-| components/home/QuickLinksSection.tsx | Componente contenedor | — |
-| components/home/ServicesSection.tsx | Componente contenedor | — |
-| components/home/StudentServicesSection.tsx | Componente contenedor | — |
-| components/home/UniversityPromoSection.tsx | Componente contenedor | — |
+| components/home/NewsSection/index.ts | Componente presentacional | — |
+| components/home/NewsSection/NewsSection.tsx | Componente contenedor | — |
+| components/home/NewsSection/NewsSection.types.ts | Componente presentacional | — |
+| components/home/QuickLinksSection/index.ts | Componente presentacional | — |
+| components/home/QuickLinksSection/QuickLinksSection.tsx | Componente contenedor | — |
+| components/home/QuickLinksSection/QuickLinksSection.types.ts | Componente presentacional | — |
+| components/home/ServicesSection/index.ts | Componente presentacional | — |
+| components/home/ServicesSection/ServicesSection.tsx | Componente contenedor | — |
+| components/home/ServicesSection/ServicesSection.types.ts | Componente presentacional | — |
+| components/home/StudentServicesSection/index.ts | Componente presentacional | — |
+| components/home/StudentServicesSection/StudentServicesSection.tsx | Componente contenedor | — |
+| components/home/StudentServicesSection/StudentServicesSection.types.ts | Componente presentacional | — |
+| components/home/UniversityPromoSection/index.ts | Componente presentacional | — |
+| components/home/UniversityPromoSection/UniversityPromoSection.tsx | Componente contenedor | — |
+| components/home/UniversityPromoSection/UniversityPromoSection.types.ts | Componente presentacional | — |
 | components/home/useSwipe.ts | Componente presentacional | — |
 | components/news-card/index.ts | Componente presentacional | — |
 | components/news-card/NewsCard.tsx | Componente contenedor | — |

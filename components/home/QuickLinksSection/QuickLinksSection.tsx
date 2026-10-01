@@ -1,14 +1,17 @@
 "use client";
 
 import { useState } from "react";
+
 import Tarjet from "@/components/tarjet/tarjet";
 import { mainNavigation } from "@/navegation/audience_services";
-import styles from "./home.module.css";
-import { useSwipe } from "./useSwipe";
+
+import styles from "../home.module.css";
+import { useSwipe } from "../useSwipe";
+import type { QuickLinksSectionProps } from "./QuickLinksSection.types";
 
 const profiles = mainNavigation.slice(0, 6);
 
-export default function QuickLinksSection() {
+export default function QuickLinksSection({ className }: QuickLinksSectionProps) {
   const [start, setStart] = useState(0);
   const total = profiles.length;
 
@@ -22,9 +25,13 @@ export default function QuickLinksSection() {
 
   const swipe = useSwipe(move);
 
+  const sectionClassName = className
+    ? `${styles["audience-section"]} ${className}`
+    : styles["audience-section"];
+
   return (
     <section
-      className={styles["audience-section"]}
+      className={sectionClassName}
       id="audiencias"
       aria-labelledby="audience-title"
     >

@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import styles from "./home.module.css";
 
-export default function UniversityPromoSection() {
+import styles from "../home.module.css";
+import type { UniversityPromoSectionProps } from "./UniversityPromoSection.types";
+
+export default function UniversityPromoSection({ className }: UniversityPromoSectionProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -28,8 +30,12 @@ export default function UniversityPromoSection() {
     return () => observer.disconnect();
   }, []);
 
+  const sectionClassName = className
+    ? `${styles["university-promo"]} ${className}`
+    : styles["university-promo"];
+
   return (
-    <section className={styles["university-promo"]} id="video-institucional" aria-labelledby="promo-title">
+    <section className={sectionClassName} id="video-institucional" aria-labelledby="promo-title">
       <div className={styles["promo-media"]}>
         <video
           ref={videoRef}

@@ -2,15 +2,14 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import styles from "./home.module.css";
+
 import type { HeroSlide } from "@/services/hero";
-import { useSwipe } from "./useSwipe";
+
+import styles from "../home.module.css";
+import { useSwipe } from "../useSwipe";
+import type { HeroCarouselProps } from "./HeroCarousel.types";
 
 const AUTOPLAY_INTERVAL_MS = 7000;
-
-type HeroCarouselProps = {
-  slides: HeroSlide[];
-};
 
 function SlideMedia({ slide, priority }: { slide: HeroSlide; priority: boolean }) {
   return (
@@ -25,7 +24,7 @@ function SlideMedia({ slide, priority }: { slide: HeroSlide; priority: boolean }
   );
 }
 
-export default function HeroCarousel({ slides }: HeroCarouselProps) {
+export default function HeroCarousel({ slides, className }: HeroCarouselProps) {
   const [activeSlide, setActiveSlide] = useState(0);
   const hasMultipleSlides = slides.length > 1;
 
@@ -45,9 +44,13 @@ export default function HeroCarousel({ slides }: HeroCarouselProps) {
 
   if (!slides.length) return null;
 
+  const sectionClassName = className
+    ? `${styles.hero} ${className}`
+    : styles.hero;
+
   return (
     <section
-      className={styles.hero}
+      className={sectionClassName}
       aria-label="Banner principal"
       onTouchStart={swipe.onTouchStart}
       onTouchEnd={swipe.onTouchEnd}
