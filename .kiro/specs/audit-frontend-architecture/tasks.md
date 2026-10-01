@@ -8,15 +8,15 @@ El lenguaje de implementación es **TypeScript** (el diseño lo usa de forma exp
 
 ## Tasks
 
-- [ ] 1. Configurar framework de pruebas y estructura del tooling de auditoría
-  - [ ] 1.1 Instalar y configurar Vitest + fast-check
+- [x] 1. Configurar framework de pruebas y estructura del tooling de auditoría
+  - [x] 1.1 Instalar y configurar Vitest + fast-check
     - Añadir `vitest`, `fast-check` y `@vitest/coverage` a `devDependencies` en `package.json` con versiones fijadas
     - Crear `vitest.config.ts` (entorno `node` para tooling/servicios, `jsdom` para pruebas de render presentacional)
     - Añadir scripts `"test": "vitest --run"` y `"test:watch": "vitest"` a `package.json`
     - Crear directorio `scripts/audit/` y `tests/` (o colocación `*.test.ts` junto a fuentes) según convención elegida
     - _Requirements: Testing Strategy (Configuración PBT)_
 
-  - [ ] 1.2 Definir el modelo de datos del informe de auditoría
+  - [x] 1.2 Definir el modelo de datos del informe de auditoría
     - Crear `scripts/audit/types.ts` con `Severidad`, `ReglaArquitectura`, `Hallazgo`, `Omision`, `ItemInventario`, `InformeAuditoria`
     - Todas las interfaces con tipado explícito, sin `any`
     - _Requirements: 7.1, 7.2, 7.3, 7.4_
