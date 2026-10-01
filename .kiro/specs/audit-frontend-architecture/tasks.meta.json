@@ -31,6 +31,449 @@
         "chatSessionId": "sess_9adf8aa6-2b92-4f22-b581-785331543e3c",
         "timestamp": 1790815948114
       }
+    ],
+    "2.1 Implementar el walker de `app/` y `components/`": [
+      {
+        "executionId": "d84ed818-74af-4e73-aef8-f6e320b9cecf",
+        "chatSessionId": "sess_65028c28-aaae-42ab-b7dd-ce74d99384e7",
+        "timestamp": 1790817117146
+      },
+      {
+        "executionId": "d84ed818-74af-4e73-aef8-f6e320b9cecf",
+        "chatSessionId": "sess_65028c28-aaae-42ab-b7dd-ce74d99384e7",
+        "timestamp": 1790817431078
+      }
+    ],
+    "2.2 Implementar el clasificador de inventario ordenado": [
+      {
+        "executionId": "d84ed818-74af-4e73-aef8-f6e320b9cecf",
+        "chatSessionId": "sess_65028c28-aaae-42ab-b7dd-ce74d99384e7",
+        "timestamp": 1790817435355
+      },
+      {
+        "executionId": "d84ed818-74af-4e73-aef8-f6e320b9cecf",
+        "chatSessionId": "sess_65028c28-aaae-42ab-b7dd-ce74d99384e7",
+        "timestamp": 1790817546369
+      }
+    ],
+    "2.3* Prueba de propiedad para la clasificación de inventario": [
+      {
+        "executionId": "d84ed818-74af-4e73-aef8-f6e320b9cecf",
+        "chatSessionId": "sess_65028c28-aaae-42ab-b7dd-ce74d99384e7",
+        "timestamp": 1790817547120
+      }
+    ],
+    "2. Implementar el recorrido de FS y el inventario del frontend": [
+      {
+        "executionId": "d84ed818-74af-4e73-aef8-f6e320b9cecf",
+        "chatSessionId": "sess_65028c28-aaae-42ab-b7dd-ce74d99384e7",
+        "timestamp": 1790817554591
+      }
+    ],
+    "8.1 Implementar `services/drupal-client.ts`": [
+      {
+        "executionId": "190a479f-a40e-46ab-9cdd-4f714fb0059e",
+        "chatSessionId": "sess_1a85db6d-7f54-4405-9ec9-a565217c362f",
+        "timestamp": 1790818150530
+      },
+      {
+        "executionId": "190a479f-a40e-46ab-9cdd-4f714fb0059e",
+        "chatSessionId": "sess_1a85db6d-7f54-4405-9ec9-a565217c362f",
+        "timestamp": 1790818351327
+      }
+    ],
+    "8.2* Prueba de propiedad para la resolución de URL de assets": [
+      {
+        "executionId": "190a479f-a40e-46ab-9cdd-4f714fb0059e",
+        "chatSessionId": "sess_1a85db6d-7f54-4405-9ec9-a565217c362f",
+        "timestamp": 1790818352234
+      }
+    ],
+    "9.1 Crear `services/news.types.ts` e implementar `services/news.ts`": [
+      {
+        "executionId": "190a479f-a40e-46ab-9cdd-4f714fb0059e",
+        "chatSessionId": "sess_1a85db6d-7f54-4405-9ec9-a565217c362f",
+        "timestamp": 1790818357361
+      },
+      {
+        "executionId": "190a479f-a40e-46ab-9cdd-4f714fb0059e",
+        "chatSessionId": "sess_1a85db6d-7f54-4405-9ec9-a565217c362f",
+        "timestamp": 1790818520370
+      }
+    ],
+    "10.1 Crear `services/articles.types.ts` e implementar `services/articles.ts`": [
+      {
+        "executionId": "190a479f-a40e-46ab-9cdd-4f714fb0059e",
+        "chatSessionId": "sess_1a85db6d-7f54-4405-9ec9-a565217c362f",
+        "timestamp": 1790818358314
+      },
+      {
+        "executionId": "190a479f-a40e-46ab-9cdd-4f714fb0059e",
+        "chatSessionId": "sess_1a85db6d-7f54-4405-9ec9-a565217c362f",
+        "timestamp": 1790818521881
+      }
+    ],
+    "11.1 Reubicar `tableros.ts` y `heroData.ts` a `services/`": [
+      {
+        "executionId": "190a479f-a40e-46ab-9cdd-4f714fb0059e",
+        "chatSessionId": "sess_1a85db6d-7f54-4405-9ec9-a565217c362f",
+        "timestamp": 1790818360019
+      },
+      {
+        "executionId": "190a479f-a40e-46ab-9cdd-4f714fb0059e",
+        "chatSessionId": "sess_1a85db6d-7f54-4405-9ec9-a565217c362f",
+        "timestamp": 1790818523550
+      }
+    ],
+    "9.3* Prueba de propiedad para la señalización de error del servicio de noticias": [
+      {
+        "executionId": "190a479f-a40e-46ab-9cdd-4f714fb0059e",
+        "chatSessionId": "sess_1a85db6d-7f54-4405-9ec9-a565217c362f",
+        "timestamp": 1790818521657
+      }
+    ],
+    "10.2* Prueba de propiedad para el mapper de artículos (sin fuga de estructura)": [
+      {
+        "executionId": "190a479f-a40e-46ab-9cdd-4f714fb0059e",
+        "chatSessionId": "sess_1a85db6d-7f54-4405-9ec9-a565217c362f",
+        "timestamp": 1790818522233
+      }
+    ],
+    "11. Reubicar los módulos de datos ya conformes a la Capa_Servicios": [
+      {
+        "executionId": "190a479f-a40e-46ab-9cdd-4f714fb0059e",
+        "chatSessionId": "sess_1a85db6d-7f54-4405-9ec9-a565217c362f",
+        "timestamp": 1790818524738
+      }
+    ],
+    "3.1 Implementar el detector de red": [
+      {
+        "executionId": "190a479f-a40e-46ab-9cdd-4f714fb0059e",
+        "chatSessionId": "sess_1a85db6d-7f54-4405-9ec9-a565217c362f",
+        "timestamp": 1790818531022
+      },
+      {
+        "executionId": "190a479f-a40e-46ab-9cdd-4f714fb0059e",
+        "chatSessionId": "sess_1a85db6d-7f54-4405-9ec9-a565217c362f",
+        "timestamp": 1790818796962
+      }
+    ],
+    "3.3 Implementar el detector JSON:API": [
+      {
+        "executionId": "190a479f-a40e-46ab-9cdd-4f714fb0059e",
+        "chatSessionId": "sess_1a85db6d-7f54-4405-9ec9-a565217c362f",
+        "timestamp": 1790818532335
+      },
+      {
+        "executionId": "190a479f-a40e-46ab-9cdd-4f714fb0059e",
+        "chatSessionId": "sess_1a85db6d-7f54-4405-9ec9-a565217c362f",
+        "timestamp": 1790818798227
+      }
+    ],
+    "5.1 Implementar el chequeo de la Capa_Servicios": [
+      {
+        "executionId": "190a479f-a40e-46ab-9cdd-4f714fb0059e",
+        "chatSessionId": "sess_1a85db6d-7f54-4405-9ec9-a565217c362f",
+        "timestamp": 1790819269847
+      },
+      {
+        "executionId": "190a479f-a40e-46ab-9cdd-4f714fb0059e",
+        "chatSessionId": "sess_1a85db6d-7f54-4405-9ec9-a565217c362f",
+        "timestamp": 1790819518686
+      }
+    ],
+    "5.2 Implementar el chequeo de tipado estricto": [
+      {
+        "executionId": "190a479f-a40e-46ab-9cdd-4f714fb0059e",
+        "chatSessionId": "sess_1a85db6d-7f54-4405-9ec9-a565217c362f",
+        "timestamp": 1790819271339
+      },
+      {
+        "executionId": "190a479f-a40e-46ab-9cdd-4f714fb0059e",
+        "chatSessionId": "sess_1a85db6d-7f54-4405-9ec9-a565217c362f",
+        "timestamp": 1790819518430
+      }
+    ],
+    "13.1 Crear los presentacionales `NewsList` y `NewsCard`": [
+      {
+        "executionId": "190a479f-a40e-46ab-9cdd-4f714fb0059e",
+        "chatSessionId": "sess_1a85db6d-7f54-4405-9ec9-a565217c362f",
+        "timestamp": 1790819272872
+      },
+      {
+        "executionId": "190a479f-a40e-46ab-9cdd-4f714fb0059e",
+        "chatSessionId": "sess_1a85db6d-7f54-4405-9ec9-a565217c362f",
+        "timestamp": 1790819522869
+      }
+    ],
+    "14.1 Crear el presentacional `Article` y refactorizar la ruta `[...slug]`": [
+      {
+        "executionId": "190a479f-a40e-46ab-9cdd-4f714fb0059e",
+        "chatSessionId": "sess_1a85db6d-7f54-4405-9ec9-a565217c362f",
+        "timestamp": 1790819274163
+      },
+      {
+        "executionId": "190a479f-a40e-46ab-9cdd-4f714fb0059e",
+        "chatSessionId": "sess_1a85db6d-7f54-4405-9ec9-a565217c362f",
+        "timestamp": 1790819520793
+      }
+    ],
+    "14.2* Prueba de ejemplo de render para `Article`": [
+      {
+        "executionId": "190a479f-a40e-46ab-9cdd-4f714fb0059e",
+        "chatSessionId": "sess_1a85db6d-7f54-4405-9ec9-a565217c362f",
+        "timestamp": 1790819521828
+      }
+    ],
+    "3.4 Implementar la evaluación de hallazgos y severidad de separación de responsabilidades": [
+      {
+        "executionId": "190a479f-a40e-46ab-9cdd-4f714fb0059e",
+        "chatSessionId": "sess_1a85db6d-7f54-4405-9ec9-a565217c362f",
+        "timestamp": 1790819528722
+      },
+      {
+        "executionId": "190a479f-a40e-46ab-9cdd-4f714fb0059e",
+        "chatSessionId": "sess_1a85db6d-7f54-4405-9ec9-a565217c362f",
+        "timestamp": 1790819614006
+      }
+    ],
+    "3.5* Prueba de propiedad para la asignación de severidad": [
+      {
+        "executionId": "190a479f-a40e-46ab-9cdd-4f714fb0059e",
+        "chatSessionId": "sess_1a85db6d-7f54-4405-9ec9-a565217c362f",
+        "timestamp": 1790819614287
+      }
+    ],
+    "3. Implementar los detectores de análisis estático": [
+      {
+        "executionId": "190a479f-a40e-46ab-9cdd-4f714fb0059e",
+        "chatSessionId": "sess_1a85db6d-7f54-4405-9ec9-a565217c362f",
+        "timestamp": 1790819623731
+      }
+    ],
+    "3.2* Prueba de propiedad para el detector de red": [
+      {
+        "executionId": "d40de992-729d-46f9-b2a9-efdfe1c182a0",
+        "chatSessionId": "sess_f6233d8f-c260-458b-809e-41fa68972ddb",
+        "timestamp": 1790820016088
+      },
+      {
+        "executionId": "d40de992-729d-46f9-b2a9-efdfe1c182a0",
+        "chatSessionId": "sess_f6233d8f-c260-458b-809e-41fa68972ddb",
+        "timestamp": 1790820171880
+      }
+    ],
+    "4. Checkpoint - Detectores e inventario": [
+      {
+        "executionId": "f88d5ce7-92a8-4e93-a81f-157ae62a2c09",
+        "chatSessionId": "sess_2c4b044f-b5ad-460d-8391-3e4196b68215",
+        "timestamp": 1790820329180
+      },
+      {
+        "executionId": "f88d5ce7-92a8-4e93-a81f-157ae62a2c09",
+        "chatSessionId": "sess_2c4b044f-b5ad-460d-8391-3e4196b68215",
+        "timestamp": 1790820368368
+      }
+    ],
+    "5.3 Implementar el chequeo estructural de componentes": [
+      {
+        "executionId": "ac5d405e-564d-425f-be6e-3672fc199503",
+        "chatSessionId": "sess_e08ea595-f3e3-4826-8961-32f5779b1d2a",
+        "timestamp": 1790821032184
+      },
+      {
+        "executionId": "ac5d405e-564d-425f-be6e-3672fc199503",
+        "chatSessionId": "sess_e08ea595-f3e3-4826-8961-32f5779b1d2a",
+        "timestamp": 1790821538728
+      }
+    ],
+    "5.4 Implementar el chequeo de estados de carga/error": [
+      {
+        "executionId": "ac5d405e-564d-425f-be6e-3672fc199503",
+        "chatSessionId": "sess_e08ea595-f3e3-4826-8961-32f5779b1d2a",
+        "timestamp": 1790821032949
+      },
+      {
+        "executionId": "ac5d405e-564d-425f-be6e-3672fc199503",
+        "chatSessionId": "sess_e08ea595-f3e3-4826-8961-32f5779b1d2a",
+        "timestamp": 1790821539749
+      }
+    ],
+    "5.5* Pruebas de ejemplo para los chequeos estructural y de tipado": [
+      {
+        "executionId": "ac5d405e-564d-425f-be6e-3672fc199503",
+        "chatSessionId": "sess_e08ea595-f3e3-4826-8961-32f5779b1d2a",
+        "timestamp": 1790821539947
+      }
+    ],
+    "6.1 Implementar el generador y el runner de auditoría": [
+      {
+        "executionId": "a85e4498-cec5-4da9-bab4-5f739ffb0b09",
+        "chatSessionId": "sess_d3c6b5ee-07bb-434b-8e52-757400662808",
+        "timestamp": 1790822828879
+      },
+      {
+        "executionId": "a85e4498-cec5-4da9-bab4-5f739ffb0b09",
+        "chatSessionId": "sess_d3c6b5ee-07bb-434b-8e52-757400662808",
+        "timestamp": 1790823334121
+      }
+    ],
+    "6.2 Generar el Informe_Auditoria inicial sobre el estado actual": [
+      {
+        "executionId": "a85e4498-cec5-4da9-bab4-5f739ffb0b09",
+        "chatSessionId": "sess_d3c6b5ee-07bb-434b-8e52-757400662808",
+        "timestamp": 1790823338556
+      },
+      {
+        "executionId": "a85e4498-cec5-4da9-bab4-5f739ffb0b09",
+        "chatSessionId": "sess_d3c6b5ee-07bb-434b-8e52-757400662808",
+        "timestamp": 1790823404515
+      }
+    ],
+    "6. Implementar el generador del Informe_Auditoria": [
+      {
+        "executionId": "a85e4498-cec5-4da9-bab4-5f739ffb0b09",
+        "chatSessionId": "sess_d3c6b5ee-07bb-434b-8e52-757400662808",
+        "timestamp": 1790823404736
+      }
+    ],
+    "7. Checkpoint - Tooling de auditoría completo": [
+      {
+        "executionId": "db13aa29-d66b-4be5-a227-e6067219b3bb",
+        "chatSessionId": "sess_328e7fab-13d5-4548-859b-186ac41f7e0d",
+        "timestamp": 1790887272820
+      },
+      {
+        "executionId": "db13aa29-d66b-4be5-a227-e6067219b3bb",
+        "chatSessionId": "sess_328e7fab-13d5-4548-859b-186ac41f7e0d",
+        "timestamp": 1790887394081
+      }
+    ],
+    "8. Crear el cliente Drupal centralizado de la Capa_Servicios": [
+      {
+        "executionId": "4bd30f77-5f27-4daf-84b5-e063c199b2fd",
+        "chatSessionId": "sess_034f645c-4518-4dcf-83ce-8b2e0ab18812",
+        "timestamp": 1790887730398
+      }
+    ],
+    "9. Implementar el servicio de noticias": [
+      {
+        "executionId": "2adbfedc-dfe6-4fea-969d-120956abe05b",
+        "chatSessionId": "sess_9955ffe4-3cf3-4ac1-a66a-38781f2e519c",
+        "timestamp": 1790887937876
+      }
+    ],
+    "9.2* Prueba de propiedad para el mapper de noticias (sin fuga de estructura)": [
+      {
+        "executionId": "e592fe30-690e-495e-bfd3-99f8aa2d5dd1",
+        "chatSessionId": "sess_d90539b9-1605-41ee-b4b0-e3d223e1b0d8",
+        "timestamp": 1790888015691
+      },
+      {
+        "executionId": "e592fe30-690e-495e-bfd3-99f8aa2d5dd1",
+        "chatSessionId": "sess_d90539b9-1605-41ee-b4b0-e3d223e1b0d8",
+        "timestamp": 1790888275501
+      }
+    ],
+    "10. Implementar el servicio de artículos": [
+      {
+        "executionId": "493d6971-8216-4e71-bb21-b5255120f3fa",
+        "chatSessionId": "sess_90cbc7bf-b14d-4f85-b00a-be8f60bbad9e",
+        "timestamp": 1790888888539
+      }
+    ],
+    "12. Checkpoint - Capa de servicios completa": [
+      {
+        "executionId": "9a07f354-c185-4800-9d26-f9fcfc3cef0e",
+        "chatSessionId": "sess_65715de0-5f25-4c19-8d0d-9582014b2789",
+        "timestamp": 1790889342286
+      },
+      {
+        "executionId": "9a07f354-c185-4800-9d26-f9fcfc3cef0e",
+        "chatSessionId": "sess_65715de0-5f25-4c19-8d0d-9582014b2789",
+        "timestamp": 1790889434127
+      }
+    ],
+    "13.2 Convertir `NewsSection` en contenedor en su carpeta estándar": [
+      {
+        "executionId": "51026385-e1f2-41fc-ab47-925806646946",
+        "chatSessionId": "sess_66cef142-9e67-49f8-a993-02775515703c",
+        "timestamp": 1790889581417
+      },
+      {
+        "executionId": "51026385-e1f2-41fc-ab47-925806646946",
+        "chatSessionId": "sess_66cef142-9e67-49f8-a993-02775515703c",
+        "timestamp": 1790889753207
+      }
+    ],
+    "13.3* Pruebas de ejemplo de render para `NewsList`/`NewsCard`": [
+      {
+        "executionId": "51026385-e1f2-41fc-ab47-925806646946",
+        "chatSessionId": "sess_66cef142-9e67-49f8-a993-02775515703c",
+        "timestamp": 1790889753551
+      }
+    ],
+    "14. Descomponer la ruta de artículo en contenedor + presentacional": [
+      {
+        "executionId": "b563e9dc-af12-40b1-8359-56ba325237d1",
+        "chatSessionId": "sess_d9793d19-02f9-4a4e-b66d-63b98f0d1fd7",
+        "timestamp": 1790890247103
+      },
+      {
+        "executionId": "b563e9dc-af12-40b1-8359-56ba325237d1",
+        "chatSessionId": "sess_d9793d19-02f9-4a4e-b66d-63b98f0d1fd7",
+        "timestamp": 1790890254969
+      }
+    ],
+    "15.1 Migrar las secciones restantes de `components/home/` a carpetas estándar": [
+      {
+        "executionId": "e1cbbe3e-f165-472e-8f5d-c53cae935519",
+        "chatSessionId": "sess_f3b0a858-9aa2-45e2-a8c8-e0725f684ebb",
+        "timestamp": 1790890357577
+      },
+      {
+        "executionId": "e1cbbe3e-f165-472e-8f5d-c53cae935519",
+        "chatSessionId": "sess_f3b0a858-9aa2-45e2-a8c8-e0725f684ebb",
+        "timestamp": 1790890666302
+      }
+    ],
+    "15. Estandarizar el resto de `components/home/*` al patrón por carpeta": [
+      {
+        "executionId": "e1cbbe3e-f165-472e-8f5d-c53cae935519",
+        "chatSessionId": "sess_f3b0a858-9aa2-45e2-a8c8-e0725f684ebb",
+        "timestamp": 1790890667607
+      }
+    ],
+    "16.1 Re-ejecutar la auditoría y confirmar la Verificacion_Conformidad": [
+      {
+        "executionId": "9823d627-1f44-4224-90f9-f3f794b016e9",
+        "chatSessionId": "sess_f29bde0f-c1a8-467c-b995-9892a27486c8",
+        "timestamp": 1790890851737
+      },
+      {
+        "executionId": "9823d627-1f44-4224-90f9-f3f794b016e9",
+        "chatSessionId": "sess_f29bde0f-c1a8-467c-b995-9892a27486c8",
+        "timestamp": 1790890963111
+      }
+    ],
+    "16.2* Pruebas de integración representativas contra Drupal JSON:API": [
+      {
+        "executionId": "9823d627-1f44-4224-90f9-f3f794b016e9",
+        "chatSessionId": "sess_f29bde0f-c1a8-467c-b995-9892a27486c8",
+        "timestamp": 1790890963403
+      }
+    ],
+    "17. Checkpoint final - Ensure all tests pass": [
+      {
+        "executionId": "ef896806-4866-459c-8461-7942420bed3f",
+        "chatSessionId": "sess_3d2c0b5c-5add-47f9-b01c-54db79279f74",
+        "timestamp": 1790891953437
+      },
+      {
+        "executionId": "ef896806-4866-459c-8461-7942420bed3f",
+        "chatSessionId": "sess_3d2c0b5c-5add-47f9-b01c-54db79279f74",
+        "timestamp": 1790892048378
+      }
     ]
   }
 }
