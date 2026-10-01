@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from "framer-motion"
 import { nuestraUniversidadNavigation} from "./navigation"
 import { compactMenuVariants } from "../dropdown-motion"
 import styles from "./mani-menu.module.css"
-import { Rows, FacultyIcon } from "./icons"
+import { Rows } from "./icons"
 
 type NuestraUniversidadProps = {
   isOpen: boolean

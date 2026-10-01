@@ -44,7 +44,6 @@ export default function MenuIcon({
   href,
   label,
   className = "h-5 w-5",
-  "aria-hidden": ariaHidden,
   ...props
 }: MenuIconProps) {
   const targetHref = item?.href || href || ""
