@@ -1,0 +1,48 @@
+/*
+ * Estilos encapsulados de NewsList.
+ *
+ * Replican las reglas visuales del Sistema_Diseno institucional usadas hoy en
+ * `components/home/home.module.css` (clase `news-grid` y sus reglas
+ * responsive), sin introducir nuevas dependencias visuales.
+ */
+
+.news-grid {
+  display: grid;
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* Entre 1025px y 1400px las 3 tarjetas se ven muy alargadas: se muestran 2. */
+@media (max-width: 1400px) and (min-width: 1025px) {
+  .news-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .news-grid > :nth-child(n + 3) {
+    display: none;
+  }
+}
+
+/* ===== Tablet (721px - 1024px) ===== */
+@media (max-width: 1024px) and (min-width: 721px) {
+  .news-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* Solo una fila: se oculta la noticia que bajaría a la segunda fila. */
+  .news-grid > :nth-child(n + 3) {
+    display: none;
+  }
+}
+
+/* ===== Móvil (<= 720px) ===== */
+@media (max-width: 720px) {
+  .news-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Solo una fila en móvil: se muestra únicamente la primera noticia. */
+  .news-grid > :nth-child(n + 2) {
+    display: none;
+  }
+}
