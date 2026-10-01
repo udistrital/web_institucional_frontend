@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./home.module.css";
-import type { HeroSlide } from "./heroData";
+import type { HeroSlide } from "@/services/hero";
 import { useSwipe } from "./useSwipe";
 
 const AUTOPLAY_INTERVAL_MS = 7000;

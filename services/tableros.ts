@@ -1,11 +1,12 @@
 import "server-only";
 
+import { getFetchOptions, resolveServerBaseUrl } from "@/services/drupal-client";
+
 /**
  * Capa de datos para los "tableros" (dashboards) y su taxonomía de categorías.
  *
- * Sigue el mismo patrón de obtención de datos de Drupal que NewsSection /
- * heroData: resolución de URL base según entorno (dev / docker), caché
- * condicional y valores de reserva ante fallos de conexión.
+ * Usa el `drupal-client` compartido para la resolución de URL base y las
+ * opciones de caché de `fetch`, con valores de reserva ante fallos de conexión.
  */
 
 export type TableroPlatform = string;
@@ -98,28 +99,8 @@ type DrupalTermResponse = {
 };
 
 // ---------------------------------------------------------------------------
-// Resolución de URL base (igual que NewsSection / heroData)
+// Utilidades de mapeo
 // ---------------------------------------------------------------------------
-
-function resolveServerBaseUrl(): string {
-  const isServerInsideDocker = Boolean(
-    process.env.DRUPAL_BASE_URL &&
-      !process.env.NEXT_PUBLIC_DRUPAL_BASE_URL?.includes("localhost"),
-  );
-
-  return (
-    (isServerInsideDocker
-      ? process.env.DRUPAL_BASE_URL
-      : process.env.NEXT_PUBLIC_DRUPAL_BASE_URL) ||
-    process.env.DRUPAL_BASE_URL ||
-    "http://localhost:8080"
-  );
-}
-
-function getFetchOptions(): RequestInit {
-  const isDev = process.env.NODE_ENV === "development";
-  return isDev ? { cache: "no-store" } : { next: { revalidate: 3600 } };
-}
 
 function toNumber(value: number | string | undefined | null): number | null {
   if (typeof value === "number") return value;

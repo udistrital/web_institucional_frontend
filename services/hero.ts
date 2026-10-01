@@ -1,5 +1,11 @@
 import "server-only";
 
+import {
+  getFetchOptions,
+  resolvePublicAssetUrl,
+  resolveServerBaseUrl,
+} from "@/services/drupal-client";
+
 export type HeroSlide = {
   id: string;
   title: string;
@@ -101,29 +107,7 @@ function resolveFileUrl(
   const relativeImagePath = fileItem?.attributes?.uri?.url;
   if (!relativeImagePath) return null;
 
-  const publicBaseUrl =
-    process.env.NEXT_PUBLIC_DRUPAL_BASE_URL || "http://localhost:8080";
-
-  try {
-    return new URL(relativeImagePath, publicBaseUrl).toString();
-  } catch {
-    return relativeImagePath;
-  }
-}
-
-function resolveServerBaseUrl(): string {
-  const isServerInsideDocker = Boolean(
-    process.env.DRUPAL_BASE_URL &&
-      !process.env.NEXT_PUBLIC_DRUPAL_BASE_URL?.includes("localhost"),
-  );
-
-  return (
-    (isServerInsideDocker
-      ? process.env.DRUPAL_BASE_URL
-      : process.env.NEXT_PUBLIC_DRUPAL_BASE_URL) ||
-    process.env.DRUPAL_BASE_URL ||
-    "http://localhost:8080"
-  );
+  return resolvePublicAssetUrl(relativeImagePath);
 }
 
 function mapResourceToSlide(
@@ -170,12 +154,8 @@ export async function getHeroSlides(): Promise<HeroSlide[]> {
   apiUrl.searchParams.set("include", "field_banner_principal,field_banner_movil");
   apiUrl.searchParams.set("sort", "-created");
 
-  const isDev = process.env.NODE_ENV === "development";
-
   try {
-    const response = await fetch(apiUrl.toString(), {
-      ...(isDev ? { cache: "no-store" } : { next: { revalidate: 3600 } }),
-    });
+    const response = await fetch(apiUrl.toString(), getFetchOptions());
 
     if (!response.ok) {
       console.error(

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Header from "@/components/header/header";
 import Footer from "@/components/footer/footer";
 import TablerosExplorer from "@/components/ti/TablerosExplorer";
-import { getTablerosData } from "@/components/ti/tableros";
+import { getTablerosData } from "@/services/tableros";
 
 export const metadata: Metadata = {
   title: "Tableros de Inteligencia Institucional",

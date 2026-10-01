@@ -1,5 +1,5 @@
 import HeroCarousel from "./HeroCarousel";
-import { getHeroSlides } from "./heroData";
+import { getHeroSlides } from "@/services/hero";
 
 export default async function HeroSection() {
   const slides = await getHeroSlides();
