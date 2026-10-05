@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import Header from "@/components/header/header";
-import Footer from "@/components/footer/footer";
 import TablerosExplorer from "@/components/ti/TablerosExplorer";
 import { getTablerosData } from "@/components/ti/tableros";
 
@@ -15,7 +13,6 @@ export default async function TablerosPage() {
 
   return (
     <>
-      <Header />
       <main className="mx-auto w-full max-w-[var(--content-width)] px-4 py-10 sm:py-14">
         <header className="mb-8">
           <h1 className="text-[length:var(--fs-h2)] font-bold leading-[var(--lh-tight)] text-[color:var(--institutional-red)]">
@@ -39,7 +36,6 @@ export default async function TablerosPage() {
           <TablerosExplorer categories={categories} uncategorized={uncategorized} />
         )}
       </main>
-      <Footer />
     </>
   );
 }
