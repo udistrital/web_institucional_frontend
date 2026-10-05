@@ -45,16 +45,16 @@ a.hero-slide:focus-visible .hero-image { filter: brightness(1.06) saturate(1.05)
 .hero-controls { bottom: 2rem; display: flex; gap: .65rem; left: 50%; position: absolute; transform: translateX(-50%); z-index: 3; }
 .hero-dot { background: #fff; border: 0; border-radius: 50%; cursor: pointer; height: 12px; opacity: .75; padding: 0; width: 12px; }
 .hero-dot.is-active { background: var(--institutional-red); opacity: 1; }
-.carousel-dots { display: flex; gap: .55rem; justify-content: center; margin-top: 1.5rem; }
+.carousel-dots { display: none; gap: .55rem; justify-content: center; margin-top: 1.5rem; }
 .carousel-dot { background: rgba(0, 0, 0, .3); border: 0; border-radius: 50%; cursor: pointer; height: 11px; padding: 0; transition: background-color 200ms ease, transform 200ms ease; width: 11px; }
 .carousel-dot.is-active { background: var(--institutional-red); transform: scale(1.2); }
 
 .audience-section { padding: clamp(2.25rem, 4vw, 3.5rem) 1rem; }
-.audience-carousel { align-items: center; display: flex; gap: clamp(.5rem, 2vw, 1.5rem); margin: 0 auto; max-width: 100%; width: 100%; }
+.audience-carousel { align-items: center; display: flex; gap: clamp(.5rem, 2vw, 1.5rem); margin: 0 auto; max-width: var(--content-width); width: 100%; }
 .audience-grid { display: flex; flex: 1; gap: 1.5rem; min-width: 0; }
 .audience-grid > * { flex: 1 1 0; min-width: 0; }
 .faculty-showcase-card { color: #fff; overflow: hidden; position: relative; text-decoration: none; }
-.faculty-showcase-card img { object-fit: cover; transition: transform 350ms ease; z-index: -2; }
+.faculty-showcase-card img { object-fit: cover; transition: transform 350ms ease; z-index: 0; }
 .faculty-showcase-card:hover img { transform: scale(1.04); }
 .carousel-arrow, .faculty-arrow { background: transparent; border: 0; cursor: pointer; font-family: Georgia, serif; line-height: 1; padding: 0; }
 .carousel-arrow { color: var(--institutional-red); font-size: 4rem; }
@@ -178,9 +178,9 @@ a.hero-slide:focus-visible .hero-image { filter: brightness(1.06) saturate(1.05)
 .faculty-showcase-grid { display: grid; gap: 4px; grid-template-columns: repeat(3, minmax(0, 1fr)); width: 100%; }
 .faculty-showcase-card { min-height: 215px; min-width: 0; }
 .faculty-showcase-card:hover img { transform: scale(1.05); }
-.faculty-showcase-shade { background: rgba(0,0,0,.3); inset: 0; position: absolute; z-index: -1; }
-.faculty-showcase-title { bottom: 3.5rem; font-size: var(--fs-base); left: 50%; max-width: 90%; padding: 0 0.5rem; position: absolute; text-align: center; transform: translateX(-50%); white-space: normal; }
-.faculty-play { align-items: center; background: var(--institutional-red); border-radius: 50%; display: flex; font-size: .8rem; height: 2.2rem; justify-content: center; left: 50%; padding-left: .15rem; position: absolute; top: 45%; transform: translate(-50%,-50%); width: 2.2rem; }
+.faculty-showcase-shade { background: rgba(0,0,0,.3); inset: 0; position: absolute; z-index: 1; }
+.faculty-showcase-title { bottom: 3.5rem; font-size: var(--fs-base); left: 50%; max-width: 90%; padding: 0 0.5rem; position: absolute; text-align: center; transform: translateX(-50%); white-space: normal; z-index: 2; }
+.faculty-play { align-items: center; background: var(--institutional-red); border-radius: 50%; display: flex; font-size: .8rem; height: 2.2rem; justify-content: center; left: 50%; padding-left: .15rem; position: absolute; top: 45%; transform: translate(-50%,-50%); width: 2.2rem; z-index: 2; }
 .faculty-arrow { color: #fff; font-size: 4rem; left: .5rem; position: absolute; text-shadow: 2px 2px 4px #000, -1px -1px 3px #000; top: 50%; transform: translateY(-50%); z-index: 1; }
 .faculty-arrow-next { left: auto; right: .5rem; }
 .faculty-arrow:hover { color: var(--institutional-gold); }
@@ -215,6 +215,7 @@ a.hero-slide:focus-visible .hero-image { filter: brightness(1.06) saturate(1.05)
   .hero-image { object-fit: contain; }
   .hero-controls { z-index: 3; }
   .audience-carousel { gap: .5rem; }
+  .carousel-dots { display: flex; }
   .audience-grid { gap: 0; overflow: hidden; }
   .audience-grid > * { flex: 0 0 100%; }
   .audience-grid > :nth-child(2), .audience-grid > :nth-child(3) { display: none; }
