@@ -1,4 +1,5 @@
 import type { NextConfig } from "next"
+import createMDX from "@next/mdx"
 
 const imageProtocol: "http" | "https" =
   process.env.NEXT_IMAGE_PROTOCOL === "https" ? "https" : "http"
@@ -34,6 +35,7 @@ const remotePatterns = [
 }))
 
 const nextConfig: NextConfig = {
+  pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   output: "export",
   trailingSlash: true,
   images: {
@@ -42,4 +44,6 @@ const nextConfig: NextConfig = {
   },
 }
 
-export default nextConfig
+const withMDX = createMDX()
+
+export default withMDX(nextConfig)

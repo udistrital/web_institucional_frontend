@@ -9,6 +9,10 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@mdx-js/loader": "^3.1.1",
+    "@mdx-js/react": "^3.1.1",
+    "@next/mdx": "^16.3.8",
+    "@types/mdx": "^2.0.14",
     "framer-motion": "^13.4.3",
     "lucide": "^1.47.0",
     "morphicons": "^1.7.1",

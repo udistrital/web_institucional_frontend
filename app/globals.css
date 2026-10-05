@@ -108,3 +108,11 @@ button:focus-visible {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
 }
+
+.admisiones-contenido details summary::-webkit-details-marker {
+  color: var(--institutional-red);
+}
+
+.admisiones-contenido a:hover {
+  color: #5f1010;
+}
