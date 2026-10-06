@@ -1,0 +1,30 @@
+import { periodo } from "../periodo"
+import { links } from "../links"
+import { Nota, PortalLink } from "@/app/perfiles/aspirantes/components/tramites/ContenidoMDX"
+
+La Universidad no reserva cupo para quien no se matricule en el periodo académico para el cual fue admitido, salvo los casos determinados por la ley y el Estatuto Estudiantil.
+
+Todo aspirante admitido adquiere la calidad de estudiante al completar las siguientes etapas.
+
+### Etapa 1: Legalización para generar el recibo de matrícula
+
+Debes diligenciar el <a href={links.legalizacionAdmitidos}>formulario de legalización de admitidos</a> y anexar la información solicitada en formato PDF. Las fechas son **{periodo.matriculaOpcion1Documentos}** para admitidos por opción N.° 1 y **{periodo.matriculaOpcionadosDocumentos}** para opcionados admitidos.
+
+Consulta los <a href={links.estratificacion}>pasos para obtener el certificado de estratificación</a> y el <a href={links.noDeclarante}>formato de no declarante</a> cuando corresponda.
+
+<Nota>
+  Gestiona la documentación con anticipación. No hay plazos adicionales para la entrega. La veracidad de la información socioeconómica determina el cálculo correcto del valor de matrícula. Consulta el <a href={links.acuerdo004}>Acuerdo 004 de 2006</a>.
+</Nota>
+
+### Etapa 2: Consulta y descarga de recibos
+
+Consulta y descarga el recibo en <PortalLink href={links.portal}>Consulta y Descarga de Recibos de Pago</PortalLink> con el usuario y clave utilizados en la inscripción.
+
+- Opción N.° 1: **{periodo.matriculaOpcion1Pago}**.
+- Opcionados admitidos por opción N.° 1: **{periodo.matriculaOpcionadosPago}**.
+
+El pago se realiza por PSE o en cualquier sucursal del Banco de Occidente. Las aclaraciones sobre recibos se reciben únicamente en <a href="mailto:admisiones@udistrital.edu.co">admisiones@udistrital.edu.co</a> dentro del plazo de pago.
+
+### Etapa 3: Inducción e inicio de clases
+
+La bienvenida general de estudiantes será el **{periodo.bienvenida}**.
