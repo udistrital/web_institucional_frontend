@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useMemo, useCallback } from "react";
 import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { mobilePanelVariants } from "../dropdown-motion";
 import Buscador from "./buscador";
 import Campus from "./campus";
@@ -97,12 +97,15 @@ export default function MainMenuPruv() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileStack, setMobileStack] = useState<NavigationItem[]>([]);
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
+  const [mobileDirection, setMobileDirection] = useState(1);
+  const reduceMotion = useReducedMotion();
 
   const closeMenu = () => setOpenMenu(null);
 
   const closeMobileMenu = useCallback(() => {
     setMobileOpen(false);
     setMobileStack([]);
+    setMobileDirection(1);
   }, []);
 
   useEffect(() => {
@@ -249,33 +252,59 @@ export default function MainMenuPruv() {
               exit="exit"
               style={{ transformOrigin: "top center" }}
             >
-            {mobileStack.length > 0 && (
-              <button
-                type="button"
-                onClick={() => setMobileStack((s) => s.slice(0, -1))}
-                className={styles.mobileBackButton}
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                key={mobileStack.length}
+                initial={reduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: mobileDirection * 32 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={reduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: mobileDirection * -32 }}
+                transition={reduceMotion ? { duration: 0 } : { duration: 0.22, ease: "easeOut" }}
               >
-                <svg
-                  aria-hidden="true"
-                  className="h-4 w-4"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+              {mobileStack.length > 0 && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMobileDirection(-1);
+                    setMobileStack((s) => s.slice(0, -1));
+                  }}
+                  className={styles.mobileBackButton}
                 >
-                  <path d="m15 18-6-6 6-6" />
-                </svg>
-                Volver
-              </button>
-            )}
+                  <svg
+                    aria-hidden="true"
+                    className="h-4 w-4"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="m15 18-6-6 6-6" />
+                  </svg>
+                  Volver
+                </button>
+              )}
 
-            <ul className={styles.mobileList}>
+            <motion.ul
+              className={styles.mobileList}
+              initial={reduceMotion ? false : "hidden"}
+              animate="visible"
+              variants={{
+                hidden: {},
+                visible: { transition: { staggerChildren: reduceMotion ? 0 : 0.035 } },
+              }}
+            >
               {currentMobileItems.map((item) => {
                 const hasChildren = item.children && item.children.length > 0;
                 return (
-                  <li key={item.href}>
+                  <motion.li
+                    key={item.href}
+                    variants={{
+                      hidden: { opacity: 0, x: reduceMotion ? 0 : 12 },
+                      visible: { opacity: 1, x: 0 },
+                    }}
+                    transition={reduceMotion ? { duration: 0 } : { duration: 0.18, ease: "easeOut" }}
+                  >
                     {hasChildren ? (
                       <div className={styles.mobileItemRow}>
                         <Link
@@ -287,7 +316,10 @@ export default function MainMenuPruv() {
                         </Link>
                         <button
                           type="button"
-                          onClick={() => setMobileStack((s) => [...s, item])}
+                          onClick={() => {
+                            setMobileDirection(1);
+                            setMobileStack((s) => [...s, item]);
+                          }}
                           className={styles.mobileItemExpand}
                           aria-label={`Abrir submenú de ${item.label}`}
                         >
@@ -314,10 +346,12 @@ export default function MainMenuPruv() {
                         {item.label}
                       </Link>
                     )}
-                  </li>
+                  </motion.li>
                 );
               })}
-            </ul>
+            </motion.ul>
+              </motion.div>
+            </AnimatePresence>
             </motion.div>
           )}
         </AnimatePresence>
