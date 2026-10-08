@@ -1,5 +1,5 @@
 import Link from "next/link"
-import styles from "./mani-menu.module.css"
+import styles from "../main-menu.module.css"
 
 type AspirantesProps = {
   href?: string

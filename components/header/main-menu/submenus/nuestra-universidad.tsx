@@ -2,14 +2,14 @@
 
 import Link from "next/link"
 import { AnimatePresence, motion } from "framer-motion"
-import { nuestraUniversidadNavigation} from "./navigation"
-import { compactMenuVariants } from "../dropdown-motion"
-import styles from "./mani-menu.module.css"
-import { Rows, FacultyIcon } from "./icons"
+import { nuestraUniversidadNavigation} from "../shared/navigation"
+import { compactMenuVariants, menuSectionVariants } from "../../dropdown-motion"
+import styles from "../main-menu.module.css"
+import { Rows, FacultyIcon } from "../shared/icons"
 
 type NuestraUniversidadProps = {
   isOpen: boolean
-  onToggle: () => void
+  onToggle?: () => void
   onClose: () => void
   onMouseEnter?: () => void
   onMouseLeave?: () => void
@@ -48,8 +48,9 @@ export default function NuestraUniversidad({ isOpen, onToggle, onClose, onMouseE
             }}
           >
             {nuestraUniversidadNavigation.children?.map((section, index) => (
-              <section
+              <motion.section
                 key={section.href}
+                variants={menuSectionVariants}
                 className={index % 2 === 0 ? styles.menuColumnGray : styles.menuColumnWhite}
               >
                 <Link
@@ -59,7 +60,7 @@ export default function NuestraUniversidad({ isOpen, onToggle, onClose, onMouseE
                 >
                   {section.label}
                 </Link>
-              </section>
+              </motion.section>
             ))}
             </div>
           </motion.div>
