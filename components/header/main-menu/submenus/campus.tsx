@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { AnimatePresence, motion } from "framer-motion"
 import { campusNavigation } from "../shared/navigation"
-import { fullWidthMenuVariants } from "../../dropdown-motion"
+import { fullWidthMenuVariants, menuSectionVariants } from "../../dropdown-motion"
 import styles from "../main-menu.module.css"
 import { Rows } from "../shared/icons"
 import MenuIcon from "../shared/menu-icon"
@@ -49,8 +49,9 @@ export default function Campus({ isOpen, onToggle, onClose, onMouseEnter, onMous
             }}
           >
             {campusNavigation.children?.map((section, index) => (
-              <section
+              <motion.section
                 key={section.href}
+                variants={menuSectionVariants}
                 className={index % 2 === 0 ? styles.menuColumnGray : styles.menuColumnWhite}
               >
                 <Link
@@ -77,7 +78,7 @@ export default function Campus({ isOpen, onToggle, onClose, onMouseEnter, onMous
                     ))}
                   </ul>
                 ) : null}
-              </section>
+              </motion.section>
             ))}
           </div>
                     <Link

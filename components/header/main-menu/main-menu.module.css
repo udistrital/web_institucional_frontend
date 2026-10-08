@@ -80,11 +80,13 @@
 
 .menuCompact {
     position: absolute;
-    top: calc(100% + 0.75rem); /* 100% = base del botón + py-3 del nav = borde inferior negro */
-    right: 0;
+    top: calc(100% + 3.2rem); 
+    left: -80%; 
+    transform: translateX(-50%); 
     z-index: 10;
     display: grid;
     width: 25vw;
+    min-width: 320px; 
     max-width: none;
     margin-top: 0;
     background: white;

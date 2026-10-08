@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { ofertaAcademicaNavigation } from "../shared/navigation";
-import { fullWidthMenuVariants } from "../../dropdown-motion";
+import { ofertaMenuVariants, ofertaSectionVariants } from "../../dropdown-motion";
 import styles from "../main-menu.module.css";
 import { Rows, FacultyIcon } from "../shared/icons";
 
@@ -42,7 +42,7 @@ export default function OfertaAcademica({
         {isOpen && (
           <motion.div
             className={styles.menuFullWidth}
-            variants={fullWidthMenuVariants}
+            variants={ofertaMenuVariants}
             initial="hidden"
             animate="visible"
             exit="exit"
@@ -55,8 +55,9 @@ export default function OfertaAcademica({
             }}
           >
             {ofertaAcademicaNavigation.children?.map((section, index) => (
-              <section
+              <motion.section
                 key={section.href}
+                variants={ofertaSectionVariants}
                 className={
                   index % 2 === 0
                     ? styles.menuColumnGray
@@ -87,7 +88,7 @@ export default function OfertaAcademica({
                     ))}
                   </ul>
                 ) : null}
-              </section>
+              </motion.section>
             ))}
           </div>
           <Link

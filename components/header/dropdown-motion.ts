@@ -45,7 +45,12 @@ export const compactMenuVariants: Variants = {
     y: 0,
     scale: 1,
     pointerEvents: "auto",
-    transition: { duration: 0.22, ease: "easeOut" },
+    transition: {
+      duration: 0.22,
+      ease: "easeOut",
+      delayChildren: 0.05,
+      staggerChildren: 0.06,
+    },
   },
   exit: {
     opacity: 0,
@@ -57,20 +62,91 @@ export const compactMenuVariants: Variants = {
 };
 
 export const fullWidthMenuVariants: Variants = {
-  hidden: { opacity: 0, y: -12, scale: 0.99, pointerEvents: "none" },
+  hidden: { opacity: 0, y: -12, pointerEvents: "none" },
   visible: {
     opacity: 1,
     y: 0,
-    scale: 1,
+    pointerEvents: "auto",
+    transition: {
+      duration: 0.2,
+      ease: "easeOut",
+      delayChildren: 0.05,
+      staggerChildren: 0.06,
+    },
+  },
+  exit: {
+    opacity: 0,
+    y: -12,
+    pointerEvents: "none",
+    transition: { duration: 0.15, ease: "easeIn" },
+  },
+};
+
+/**
+ * Versión acelerada de `fullWidthMenuVariants` para Oferta Académica:
+ * misma cascada pero con tiempos más cortos (apertura total ~0.3s).
+ */
+export const ofertaMenuVariants: Variants = {
+  hidden: { opacity: 0, y: -8, pointerEvents: "none" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    pointerEvents: "auto",
+    transition: {
+      duration: 0.15,
+      ease: "easeOut",
+      delayChildren: 0.02,
+      staggerChildren: 0.04,
+    },
+  },
+  exit: {
+    opacity: 0,
+    y: -8,
+    pointerEvents: "none",
+    transition: { duration: 0.12, ease: "easeIn" },
+  },
+};
+
+/**
+ * Hija de `ofertaMenuVariants`: igual que `menuSectionVariants` pero
+ * con duración reducida para acompañar la apertura rápida.
+ */
+export const ofertaSectionVariants: Variants = {
+  hidden: { opacity: 0, y: 8, pointerEvents: "none" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    pointerEvents: "auto",
+    transition: { duration: 0.18, ease: "easeOut" },
+  },
+  exit: {
+    opacity: 0,
+    y: 6,
+    pointerEvents: "none",
+    transition: { duration: 0.1, ease: "easeIn" },
+  },
+};
+
+/**
+ * Hija de `fullWidthMenuVariants`: cada columna (`<section>`) del mega menú
+ * entra flotando en cascada de izquierda a derecha. Usar como
+ * `<motion.section variants={menuSectionVariants}>` dentro del contenedor
+ * que usa `fullWidthMenuVariants` (sin `initial`/`animate` propios:
+ * los hereda del padre por propagación).
+ */
+export const menuSectionVariants: Variants = {
+  hidden: { opacity: 0, y: 12, pointerEvents: "none" },
+  visible: {
+    opacity: 1,
+    y: 0,
     pointerEvents: "auto",
     transition: { duration: 0.25, ease: "easeOut" },
   },
   exit: {
     opacity: 0,
-    y: -12,
-    scale: 0.99,
+    y: 8,
     pointerEvents: "none",
-    transition: { duration: 0.2, ease: "easeIn" },
+    transition: { duration: 0.12, ease: "easeIn" },
   },
 };
 
