@@ -12,7 +12,7 @@ export default function Header() {
   const { headerVisible, audienceVisible } = useHideOnScroll();
   const reduceMotion = useReducedMotion();
 
-  const headerRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLElement>(null);
   const [headerHeight, setHeaderHeight] = useState(0);
 
   useEffect(() => {
@@ -31,7 +31,7 @@ export default function Header() {
   return (
     <motion.header
       ref={headerRef}
-      className="sticky top-0 z-50 flex w-full flex-col md:grid md:grid-cols-[1fr_auto] bg-white"
+      className="sticky top-0 z-50 flex w-full flex-col bg-white"
       initial={false}
       animate={{ y: headerVisible ? 0 : -headerHeight }}
       transition={
@@ -40,11 +40,13 @@ export default function Header() {
           : { duration: 0.28, ease: "easeOut" }
       }
     >
-      <div className={`col-span-2 row-start-1 ${styles.audienceRow} ${audienceVisible ? styles.audienceRowOpen : ""}`}>
+      <div className={`w-full ${styles.audienceRow} ${audienceVisible ? styles.audienceRowOpen : ""}`}>
         <AudienceNav />
       </div>
-      <Brand />
-      <MainMenu />
+      <div className="relative flex w-full items-center justify-between gap-2 border-b border-gray-100 px-4 md:px-6">
+        <Brand />
+        <MainMenu />
+      </div>
     </motion.header>
   );
 }

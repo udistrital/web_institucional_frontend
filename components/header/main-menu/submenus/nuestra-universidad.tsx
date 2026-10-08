@@ -2,14 +2,14 @@
 
 import Link from "next/link"
 import { AnimatePresence, motion } from "framer-motion"
-import { nuestraUniversidadNavigation} from "./navigation"
-import { compactMenuVariants } from "../dropdown-motion"
-import styles from "./mani-menu.module.css"
-import { Rows, FacultyIcon } from "./icons"
+import { nuestraUniversidadNavigation} from "../shared/navigation"
+import { compactMenuVariants } from "../../dropdown-motion"
+import styles from "../main-menu.module.css"
+import { Rows, FacultyIcon } from "../shared/icons"
 
 type NuestraUniversidadProps = {
   isOpen: boolean
-  onToggle: () => void
+  onToggle?: () => void
   onClose: () => void
   onMouseEnter?: () => void
   onMouseLeave?: () => void
