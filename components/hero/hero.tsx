@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { motion, type Variants } from "framer-motion";
 
 interface HeroProps {
   title: string;
@@ -40,11 +43,32 @@ export default function Hero({
     right: "text-right items-end",
   };
 
+  const container: Variants = {
+    hidden: {},
+    show: {
+      transition: { staggerChildren: 0.15, delayChildren: 0.1 },
+    },
+  };
+
+  const item: Variants = {
+    hidden: { opacity: 0, y: 24 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
   return (
     <section
       className={`relative flex-col justify-center ${heightClases[height]} px-6 text-white overflow-hidden`}
     >
-      <div className="absolute inset-0 -z-10">
+      <motion.div
+        className="absolute inset-0 -z-10"
+        initial={{ scale: 1.08 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 1.4, ease: "easeOut" }}
+      >
         <Image
           src={backGroundImage}
           alt={title}
@@ -52,39 +76,63 @@ export default function Hero({
           priority
           className="object-cover object-center brightness-50"
         />
-      </div>
-      <div
+      </motion.div>
+      <motion.div
         className={`max-w-4xl mx-auto flex flex-col z-10 ${aligmentClases[alignment]}`}
+        variants={container}
+        initial="hidden"
+        animate="show"
       >
-        <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 drop-shadow-md">
+        <motion.h1
+          variants={item}
+          className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 drop-shadow-md"
+        >
           {title}
-        </h1>
+        </motion.h1>
         {subtitle && (
-          <p className="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl drop-shadow">
+          <motion.p
+            variants={item}
+            className="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl drop-shadow"
+          >
             {subtitle}
-          </p>
+          </motion.p>
         )}
         {(primaryButton || secundaryButton) && (
-          <div className="flex flex-wrap gap-4 mt-2">
+          <motion.div
+            variants={item}
+            className="flex flex-wrap gap-4 mt-2"
+          >
             {primaryButton && (
-              <Link
-                href={primaryButton.href}
-                className="bg-[#8c1919] hover:bg-[#fdb400] hover:text-black border border-white text-white font-extrabold px-6 py-3 rounded-lg transition text-2xl"
+              <motion.span
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.97 }}
+                className="inline-block"
               >
-                {primaryButton.text}
-              </Link>
+                <Link
+                  href={primaryButton.href}
+                  className="inline-block bg-[#8c1919] hover:bg-[#fdb400] hover:text-black border border-white text-white font-extrabold px-6 py-3 rounded-lg transition text-2xl"
+                >
+                  {primaryButton.text}
+                </Link>
+              </motion.span>
             )}
             {secundaryButton && (
-              <Link
-                href={secundaryButton.href}
-                className="bg-[#8c1919] hover:bg-[#fdb400] hover:text-black border border-white text-white font-extrabold px-6 py-3 rounded-lg transition text-2xl"
+              <motion.span
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.97 }}
+                className="inline-block"
               >
-                {secundaryButton.text}
-              </Link>
+                <Link
+                  href={secundaryButton.href}
+                  className="inline-block bg-[#8c1919] hover:bg-[#fdb400] hover:text-black border border-white text-white font-extrabold px-6 py-3 rounded-lg transition text-2xl"
+                >
+                  {secundaryButton.text}
+                </Link>
+              </motion.span>
             )}
-          </div>
+          </motion.div>
         )}
-      </div>
+      </motion.div>
     </section>
   );
 }
