@@ -35,7 +35,7 @@ export default function ServiciosAspirantesPage() {
         </h2>
         <div className="hidden sm:block h-[1px] flex-1 ml-6 bg-[#4a2e35]/60" />
       </div>
-      <div className="grid grid-cols-1 max-w-7xl mx-auto flex lg:grid-cols-2 gap-6 px-6 py-2 items-center justify-between">
+      <div className=" grid-cols-1 max-w-7xl mx-auto flex lg:grid-cols-2 gap-6 py-2 items-center justify-between">
         <InfoCard
           iconSrc="/logotipos-ud/UD-red-white.svg"
           title="Programas de pregrado"
@@ -52,7 +52,7 @@ export default function ServiciosAspirantesPage() {
         />
       </div>
       <TramitesSection />
-      <div className="grid grid-cols-1 gap-6 px-6 py-2">
+      <div className="grid items-center py-2 max-w-7xl mx-auto">
         <InfoCard
           iconSrc="/image/image-aspirantes/graduacion oportuna.jpg"
           iconAlt="Graduación oportuna"
