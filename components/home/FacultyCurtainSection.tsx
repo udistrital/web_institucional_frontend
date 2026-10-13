@@ -9,7 +9,7 @@ const faculties = [
   { title: "Facultad de Ciencias y Educación", href: "/facultades/ciencias-educacion", image: "/image/facultad ciencias y educacion.jpeg", alt: "Edificio de la Facultad de Ciencias y Educación" },
   { title: "Facultad de Ciencias de la Salud", href: "/facultades/ciencias-salud", image: "/image/facultad de ciencias de la salud.jpeg", alt: "Facultad de Ciencias de la Salud" },
   { title: "Facultad del Medio Ambiente", href: "/facultades/medio-ambiente-recursos-naturales", image: "/image/facultad de medio ambiente.jpeg", alt: "Facultad del Medio Ambiente y Recursos Naturales" },
-    { title: "Facultad de Ciencias Matemáticas y Naturales", href: "/facultades/ciencias-matematicas-naturales", image: "/image/facultad de matematicas y ciencias.jpeg", alt: "Facultad de Ciencias Matemáticas y Naturales" },
+  { title: "Facultad de Ciencias Matemáticas y Naturales", href: "/facultades/ciencias-matematicas-naturales", image: "/image/facultad de matematicas y ciencias.jpeg", alt: "Facultad de Ciencias Matemáticas y Naturales" },
 ];
 
 export default function FacultyCurtainSection() {

@@ -5,7 +5,6 @@ import RevealSection from "@/components/home/RevealSection";
 import {
   EnrollmentSection,
   FacultiesSection,
-  FacultyCurtainSection,
   FacultyShowcaseSection,
   HeroSection,
   NewsSection,
@@ -31,9 +30,6 @@ export default function Home() {
         <NewsSection />
       </RevealSection>
       <RevealSection delay={0.04}>
-        <FacultyCurtainSection />
-      </RevealSection>
-      <RevealSection delay={0.04}>
         <EnrollmentSection />
       </RevealSection>
       <RevealSection delay={0.04}>
@@ -44,9 +40,6 @@ export default function Home() {
       </RevealSection>
       <RevealSection delay={0.04}>
         <UniversityPromoSection />
-      </RevealSection>
-      <RevealSection delay={0.04}>
-        <FacultyShowcaseSection />
       </RevealSection>
       <RevealSection delay={0.04}>
         <LiveEmisora />
