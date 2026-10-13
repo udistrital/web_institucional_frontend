@@ -80,7 +80,7 @@
 
 .menuCompact {
     position: absolute;
-    top: calc(100% + 3.2rem); 
+    top: calc(100% + 3.9rem); 
     left: -80%; 
     transform: translateX(-50%); 
     z-index: 10;

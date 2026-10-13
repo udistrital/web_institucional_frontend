@@ -21,7 +21,7 @@ export default function ServiciosAspirantesPage() {
         alignment="right"
         primaryButton={{
           text: "Primer ingreso",
-          href: "/",
+          href: "#tramites",
         }}
         secundaryButton={{
           text: "Resultados de admisiones",
