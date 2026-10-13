@@ -14,11 +14,22 @@ const CalendarIcon = () => (
   </svg>
 );
 
+const estilos = [
+  {
+    card: "border-l-[#8c1919] bg-[#8c1919]/5",
+    icon: "bg-[#8c1919]/10 text-[#8c1919]",
+  },
+  {
+    card: "border-l-[#fdb400] bg-[#fdb400]/15",
+    icon: "bg-[#fdb400]/40 text-[#1F2937]",
+  },
+];
+
 export function Fechas({ tramite }: FechasProps) {
   return (
     <section
       aria-labelledby="tramite-fechas-titulo"
-      className="relative mb-8 border-b border-gray-200 pb-8 after:absolute after:-bottom-px after:left-0 after:h-0.5 after:w-12 after:bg-[#fdb400] after:content-['']"
+      className="mb-8 border-b border-gray-200 pb-8"
     >
       <div className="flex items-center gap-3 mb-4">
         <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#8c1919]/10 text-[#8c1919]">
@@ -28,7 +39,7 @@ export function Fechas({ tramite }: FechasProps) {
         </span>
         <h3
           id="tramite-fechas-titulo"
-          className="font-extrabold uppercase tracking-wide text-[#8c1919] text-[length:var(--fs-sm)]"
+          className="font-extrabold uppercase tracking-wide text-[#1F2937] text-[length:var(--fs-sm)]"
         >
           Fechas · {tramite.tituloFicha}
         </h3>
@@ -41,7 +52,7 @@ export function Fechas({ tramite }: FechasProps) {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -8 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
-          className="grid grid-cols-1 gap-4 sm:grid-cols-[repeat(auto-fit,minmax(180px,1fr))]"
+          className="grid grid-cols-1 gap-4 sm:grid-cols-[repeat(auto-fit,minmax(200px,1fr))]"
         >
           {tramite.fechas.map((fecha, i) => {
             const separator = fecha.indexOf(":");
@@ -49,20 +60,30 @@ export function Fechas({ tramite }: FechasProps) {
               separator > -1 ? fecha.slice(0, separator).trim() : null;
             const valor =
               separator > -1 ? fecha.slice(separator + 1).trim() : fecha;
+            const estilo = estilos[i % estilos.length];
 
             return (
               <li
                 key={i}
-                className="rounded-xl border border-gray-200 border-t-[3px] border-t-[#fdb400] bg-white p-4 transition-all hover:border-[#fdb400] hover:shadow-md"
+                className={`flex items-start gap-3 rounded-xl border border-gray-200 border-l-4 p-4 ${estilo.card}`}
               >
-                {etiqueta && (
-                  <span className="block text-[length:var(--fs-2xs)] font-bold uppercase tracking-wide text-gray-500">
-                    {etiqueta}
+                <span
+                  className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg ${estilo.icon}`}
+                >
+                  <span className="h-5 w-5">
+                    <CalendarIcon />
                   </span>
-                )}
-                <span className="block mt-1 font-extrabold text-[#8c1919] text-[length:var(--fs-md)] leading-[var(--lh-snug)]">
-                  {valor}
                 </span>
+                <div className="min-w-0">
+                  {etiqueta && (
+                    <span className="block text-[length:var(--fs-2xs)] font-bold uppercase tracking-wide text-[#64748B]">
+                      {etiqueta}
+                    </span>
+                  )}
+                  <span className="mt-1 block font-extrabold text-[#1F2937] text-[length:var(--fs-md)] leading-[var(--lh-snug)]">
+                    {valor}
+                  </span>
+                </div>
               </li>
             );
           })}

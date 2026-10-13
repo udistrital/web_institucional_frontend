@@ -91,7 +91,7 @@ export function FichaDerecha({ tramite }: FichaDerechaProps) {
           href="https://funcionarios.portaloas.udistrital.edu.co/admisiones/"
           target="_blank"
           rel="noreferrer"
-          className="w-full bg-[#fdb400] hover:bg-[#ffd75e] text-black font-extrabold text-[length:var(--fs-base)] py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer"
+          className="w-full bg-[#fdb400] hover:bg-[#ffd75e] text-[#1F2937] font-extrabold text-[length:var(--fs-base)] py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer"
         >
           Iniciar {tramite.nombreTab.toLowerCase()} →
         </a>

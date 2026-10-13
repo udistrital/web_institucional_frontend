@@ -57,20 +57,18 @@ export default function BreadCrumbs() {
         </ol>
       </nav>
       <div className="max-w-7xl mx-auto px-4 md:py-4 flex flex-row items-center justify-start gap-2">
-          <img
-            src="/logotipos-ud/UD-black-white.svg"
-            alt="Logo Universidad Distrital en negro"
-            className="w-12 md:w-34 h-auto"
-          />
-          <div>
-          <h1 className="flex-2 columns-1">
-            servicios
-          </h1>
+        <img
+          src="/logotipos-ud/UD-black-white.svg"
+          alt="Logo Universidad Distrital en negro"
+          className="w-12 md:w-34 h-auto"
+        />
+        <div>
+          <h1 className="flex-2 columns-1">servicios</h1>
           <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight">
             {currentTitle}
           </h1>
-          </div>
         </div>
+      </div>
     </>
   );
 }

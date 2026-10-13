@@ -14,7 +14,7 @@ export const mainNavigation: ServiceProfile[] = [
     overviewLabel: "Proceso para aspirantes",
     layout: "rows",
     children: [
-      { label: "primer ingreso", href: "/perfiles/aspirantes/primer-ingreso", image: "/image/image-aspirantes/primer ingreso.jpg", overviewLabel: "Inscribite por primera vez a un programa de pregrado de nuestra auniversidad" },
+      { label: "primer ingreso", href: "/perfiles/aspirantes/primer-ingreso", image: "/image/image-aspirantes/primer-ingreso-ficha.jpg", overviewLabel: "Inscribite por primera vez a un programa de pregrado de nuestra auniversidad" },
       { label: "resultado admisiones", href: "/perfiles/aspirantes/resultado-admisiones", image: "/image/image-aspirantes/resultado admisiones.jpg", overviewLabel:"Conoce si fuiste adminitido en la UD" },
       { label: "Reingreso", href: "/perfiles/aspirantes/reingreso", image: "/image/image-aspirantes/reingreso.jpg", overviewLabel:"Vuelve a la Distri, retoma tus estudios ahora!" },
       { label: "Tranferencias", href: "/perfiles/aspirantes/transferencias", image: "/image/image-aspirantes/tranferencias.jpg", overviewLabel:"Si eres graduado de Ingeniería en Distribución y Redes Eléctricas, graduado, egresado o estudiante activo de Ingeniería en Telecomunicaciones, Ingeniería en Control y Automatización, Ingeniería Mecánica o Ingeniería de Producción, consulta esta opción." },
