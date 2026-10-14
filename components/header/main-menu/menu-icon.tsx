@@ -1,5 +1,5 @@
 import type { SVGProps } from "react"
-import type { NavigationItem } from "@/navegation/navigation"
+import type { NavigationItem } from "./navigation"
 
 interface MenuIconProps extends SVGProps<SVGSVGElement> {
   item?: NavigationItem

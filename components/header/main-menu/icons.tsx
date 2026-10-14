@@ -1,4 +1,4 @@
-import styles from "./mani-menu.module.css"
+import styles from "./main-menu.module.css"
 
 type RowsProps = {
   isOpen: boolean

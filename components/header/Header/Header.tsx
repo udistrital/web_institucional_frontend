@@ -2,13 +2,14 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import AudienceNav from "./audience-nav/audience-nav";
-import Brand from "./brand";
-import MainMenu from "./main-menu/main-menu";
-import { useHideOnScroll } from "./use-hide-on-scroll";
-import styles from "./header.module.css";
+import { AudienceNav } from "../audience-nav/AudienceNav";
+import { Brand } from "../Brand";
+import MainMenu from "../main-menu/MainMenu";
+import { useHideOnScroll } from "../use-hide-on-scroll";
+import styles from "../header.module.css";
+import type { HeaderProps } from "./Header.types";
 
-export default function Header() {
+export default function Header({ className }: HeaderProps) {
   const { headerVisible, audienceVisible } = useHideOnScroll();
   const reduceMotion = useReducedMotion();
 
@@ -31,7 +32,12 @@ export default function Header() {
   return (
     <motion.header
       ref={headerRef}
-      className="sticky top-0 z-50 flex w-full flex-col md:grid md:grid-cols-[1fr_auto] bg-white"
+      className={[
+        "sticky top-0 z-50 flex w-full flex-col md:grid md:grid-cols-[1fr_auto] bg-white",
+        className,
+      ]
+        .filter(Boolean)
+        .join(" ")}
       initial={false}
       animate={{ y: headerVisible ? 0 : -headerHeight }}
       transition={
