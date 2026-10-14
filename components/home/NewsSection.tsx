@@ -157,7 +157,7 @@ export default async function NewsSection() {
               <div className={styles["news-card-content"]}>
                 <h3>{item.title}</h3>
                 <p>{item.description}</p>
-                <a href="#noticias">Leer la noticia: {item.title}</a>
+                <a href="#noticias">Ver mas</a>
               </div>
             </article>
           ))}

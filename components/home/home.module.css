@@ -193,13 +193,13 @@ a.hero-slide:focus-visible .hero-image { filter: brightness(1.06) saturate(1.05)
 .faculty-dots .carousel-dot.is-active { background: #fff; }
 
 .faculty-curtain { background: #fff; overflow: hidden; padding: 0 clamp(.5rem, 2vw, 1.5rem); width: 100%; }
-.faculty-curtain-track { display: flex; gap: .35rem; height: clamp(15rem, 100vw, 24rem); width: 100%; }
+.faculty-curtain-track { display: flex; gap: .35rem; height: clamp(30rem, 100vw, 24rem); width: 100%; }
 .faculty-curtain-panel { background: #222; color: #fff; flex: 1 1 0; min-width: 0; overflow: hidden; position: relative; text-decoration: none; transition: flex-grow 450ms ease; }
 .faculty-curtain-panel:hover, .faculty-curtain-panel:focus-visible { flex-grow: 2.4; }
 .faculty-curtain-panel img { object-fit: cover; transition: transform 450ms ease, filter 450ms ease; }
 .faculty-curtain-panel:hover img, .faculty-curtain-panel:focus-visible img { filter: brightness(.78); transform: scale(1.04); }
 .faculty-curtain-shade { background: linear-gradient(180deg, rgba(0,0,0,.05) 35%, rgba(0,0,0,.78) 100%); inset: 0; position: absolute; }
-.faculty-curtain-title { font-family: var(--font-montserrat), sans-serif; font-size: var(--fs-md); font-weight: 700; left: 50%; line-height: 1.1; max-width: 90%; opacity: 0; padding: .5rem .7rem; position: absolute; text-align: center; top: 50%; transform: translate(-50%, calc(-50% + 1rem)); transition: opacity 220ms ease, transform 350ms ease; transition-delay: 0s; width: min(90%, 18rem); }
+.faculty-curtain-title { font-family: var(--font-montserrat), sans-serif; font-size: var(--fs-md); font-weight: 700; left: 50%; line-height: 1.1; max-width: 90%; opacity: 0; padding: .5rem .7rem; position: absolute; text-align: center; text-shadow: 0 1px 3px #000, 0 0 5px rgba(0,0,0,.85); top: 50%; transform: translate(-50%, calc(-50% + 1rem)); transition: opacity 220ms ease, transform 350ms ease; transition-delay: 0s; width: min(90%, 18rem); }
 .faculty-curtain-panel:hover .faculty-curtain-title, .faculty-curtain-panel:focus-visible .faculty-curtain-title { opacity: 1; transform: translate(-50%, -50%); transition-delay: 200ms; }
 
 .faculties-desktop-curtain .faculty-curtain-track { height: clamp(15rem, 30vw, 24rem); }

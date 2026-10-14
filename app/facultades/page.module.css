@@ -1,0 +1,96 @@
+.page {
+  background: #f7f7f5;
+  min-height: 70vh;
+}
+
+.hero {
+  align-items: end;
+  background: var(--institutional-red);
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  min-height: 21rem;
+  overflow: hidden;
+  padding: clamp(3rem, 8vw, 7rem) max(6vw, 1.5rem) clamp(2.75rem, 6vw, 5rem);
+  position: relative;
+}
+
+.hero::after {
+  border: 1px solid rgba(255, 255, 255, .25);
+  border-radius: 50%;
+  content: "";
+  height: 28rem;
+  position: absolute;
+  right: -8rem;
+  top: -13rem;
+  width: 28rem;
+}
+
+.heroContent,
+.content {
+  margin: 0 auto;
+  max-width: 1180px;
+  width: 100%;
+}
+
+.heroContent { position: relative; z-index: 1; }
+.eyebrow,
+.sectionKicker {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: .1em;
+  margin: 0 0 1rem;
+  text-transform: uppercase;
+}
+
+.eyebrow { color: var(--institutional-gold); }
+.hero h1 { font-size: var(--fs-h1); line-height: var(--lh-tight); margin: 0; }
+.heroLead { font-size: var(--fs-md); line-height: var(--lh-snug); margin: 1.25rem 0 0; max-width: 36rem; }
+.heroNumber { color: rgba(255, 255, 255, .2); font-family: var(--font-montserrat), sans-serif; font-size: clamp(6rem, 16vw, 12rem); font-weight: 700; line-height: .7; position: relative; z-index: 1; }
+
+.content { padding: clamp(3rem, 6vw, 5.5rem) max(6vw, 1.5rem); }
+.sectionHeading { align-items: end; display: flex; gap: 2rem; justify-content: space-between; margin-bottom: 2rem; }
+.sectionKicker { color: var(--institutional-red); margin-bottom: .65rem; }
+.sectionHeading h2 { font-size: var(--fs-h2); line-height: var(--lh-tight); margin: 0; }
+.resultCount { color: #595959; font-size: var(--fs-sm); margin: 0 0 .35rem; white-space: nowrap; }
+.grid { display: grid; gap: 1.5rem; grid-template-columns: 1fr; }
+.card { background: #fff; box-shadow: 0 5px 18px rgba(0, 0, 0, .08); display: grid; grid-template-columns: minmax(11rem, 36%) 1fr; min-width: 0; }
+.cardImage { background: #252525; min-height: 100%; overflow: hidden; position: relative; }
+.image { object-fit: cover; transition: transform 350ms ease; }
+.card:hover .image { transform: scale(1.04); }
+.cardLabel { background: var(--institutional-gold); color: #000; font-size: var(--fs-2xs); font-weight: 700; left: 1rem; letter-spacing: .08em; padding: .35rem .55rem; position: absolute; text-transform: uppercase; top: 1rem; }
+.imageFallback { align-items: center; color: rgba(255, 255, 255, .7); display: flex; font-family: var(--font-montserrat), sans-serif; font-size: 4rem; font-weight: 700; height: 100%; justify-content: center; min-height: 13rem; }
+.cardBody { display: flex; flex-direction: column; min-width: 0; padding: clamp(1.25rem, 2.5vw, 2rem); }
+.card h3 { color: var(--institutional-red); font-size: var(--fs-lg); line-height: var(--lh-tight); margin: 0 0 1.25rem; }
+.dean { border-left: 3px solid var(--institutional-gold); display: flex; flex-direction: column; font-size: var(--fs-sm); gap: .2rem; margin: 0 0 1.25rem; padding-left: .75rem; }
+.dean span { color: #666; font-size: var(--fs-2xs); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.details { display: grid; gap: .9rem; margin: 0; }
+.details div { min-width: 0; }
+.details dt { color: #686868; font-size: var(--fs-2xs); font-weight: 700; letter-spacing: .05em; margin-bottom: .2rem; text-transform: uppercase; }
+.details dd { font-size: var(--fs-sm); margin: 0; overflow-wrap: anywhere; }
+.details a { color: #333; text-decoration: underline; text-decoration-color: var(--institutional-gold); text-underline-offset: 3px; }
+.details dd :global(p) { margin: 0; }
+.website { align-items: center; color: var(--institutional-red); display: inline-flex; font-size: var(--fs-sm); font-weight: 700; gap: .45rem; margin-top: auto; padding-top: 1.5rem; text-decoration: none; }
+.website:hover { color: #000; }
+.website span { font-size: 1.2rem; }
+.emptyState { background: #fff; border-left: 4px solid var(--institutional-gold); padding: 2rem; }
+.emptyState h2 { font-size: var(--fs-xl); margin: 0 0 .5rem; }
+.emptyState p { margin: 0; }
+
+@media (max-width: 900px) {
+  .grid { grid-template-columns: 1fr; }
+  .heroNumber { font-size: clamp(5rem, 20vw, 9rem); }
+}
+
+@media (max-width: 560px) {
+  .hero { min-height: 18rem; }
+  .heroNumber { display: none; }
+  .sectionHeading { align-items: start; flex-direction: column; gap: .75rem; }
+  .resultCount { margin: 0; }
+  .card { grid-template-columns: 1fr; }
+  .cardImage { min-height: 14rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .image { transition: none; }
+}
