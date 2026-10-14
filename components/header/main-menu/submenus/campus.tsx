@@ -1,40 +1,34 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
-import { ofertaAcademicaNavigation } from "./navigation";
-import { fullWidthMenuVariants } from "../dropdown-motion";
-import styles from "./mani-menu.module.css";
-import { Rows, FacultyIcon } from "./icons";
+import Link from "next/link"
+import { AnimatePresence, motion } from "framer-motion"
+import { campusNavigation } from "../shared/navigation"
+import { fullWidthMenuVariants, menuSectionVariants } from "../../dropdown-motion"
+import styles from "../main-menu.module.css"
+import { Rows } from "../shared/icons"
+import MenuIcon from "../shared/menu-icon"
 
-type OfertaAcademicaProps = {
-  isOpen: boolean;
-  onToggle: () => void;
+type CampusProps = {
+  isOpen: boolean
+  onToggle?: () => void;
   onClose: () => void;
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
-};
+}
 
-export default function OfertaAcademica({
-  isOpen,
-  onToggle,
-  onClose,
-  onMouseEnter,
-  onMouseLeave,
-}: OfertaAcademicaProps) {
+export default function Campus({ isOpen, onToggle, onClose, onMouseEnter, onMouseLeave }: CampusProps) {
+
   return (
-    <div
-      className={`${styles.menuWrapper} ${isOpen ? styles.menuWrapperOpen : ""}`}
+    <div className={`${styles.menuWrapper} ${isOpen ? styles.menuWrapperOpen : ""}`}
       onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-    >
+      onMouseLeave={onMouseLeave}>
       <button
         type="button"
         aria-expanded={isOpen}
         onClick={onToggle}
         className={styles.menuTrigger}
       >
-        OFERTA ACADEMICA
+        CAMPUS
         <Rows isOpen={isOpen} />
       </button>
 
@@ -51,35 +45,32 @@ export default function OfertaAcademica({
           <div
             className={styles.menuColumns}
             style={{
-              gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
+              gridTemplateColumns: `repeat(${campusNavigation.children?.length ?? 1}, minmax(0, 1fr))`,
             }}
           >
-            {ofertaAcademicaNavigation.children?.map((section, index) => (
-              <section
+            {campusNavigation.children?.map((section, index) => (
+              <motion.section
                 key={section.href}
-                className={
-                  index % 2 === 0
-                    ? styles.menuColumnGray
-                    : styles.menuColumnWhite
-                }
+                variants={menuSectionVariants}
+                className={index % 2 === 0 ? styles.menuColumnGray : styles.menuColumnWhite}
               >
                 <Link
                   href={section.href}
                   onClick={onClose}
                   className={styles.menuSectionLink}
                 >
-                  <FacultyIcon label={section.label} />
+                  <MenuIcon label={section.label} />
                   {section.label}
                 </Link>
 
                 {section.children?.length ? (
                   <ul className={styles.menuChildList}>
                     {section.children.map((child) => (
-                      <li key={`${section.href}-${child.href}`}>
+                      <li key={child.href}>
                         <Link
                           href={child.href}
                           onClick={onClose}
-                          className={styles.menuItemLink}
+                          className={`${styles.menuItemLink}`}
                         >
                           {child.label}
                         </Link>
@@ -87,19 +78,19 @@ export default function OfertaAcademica({
                     ))}
                   </ul>
                 ) : null}
-              </section>
+              </motion.section>
             ))}
           </div>
-          <Link
-            href={ofertaAcademicaNavigation.href}
+                    <Link
+            href={campusNavigation.href}
             onClick={onClose}
             className={styles.menuFeaturedLink}
           >
-            Conoce todos los programas
+            Campus virtual
           </Link>
           </motion.div>
         )}
       </AnimatePresence>
     </div>
-  );
+  )
 }

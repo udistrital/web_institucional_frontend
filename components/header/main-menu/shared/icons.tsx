@@ -1,4 +1,4 @@
-import styles from "./mani-menu.module.css"
+import styles from "../main-menu.module.css"
 
 type RowsProps = {
   isOpen: boolean
@@ -17,6 +17,28 @@ export function Rows({ isOpen }: RowsProps) {
       strokeLinejoin="round"
     >
       <path d="m6 9 6 6 6-6" />
+    </svg>
+  )
+}
+
+type SearchIconProps = {
+  className?: string
+}
+
+export function SearchIcon({ className = "h-5 w-5" }: SearchIconProps) {
+  return (
+    <svg
+      aria-hidden="true"
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <circle cx="11" cy="11" r="7" />
+      <path d="m20 20-4-4" />
     </svg>
   )
 }
