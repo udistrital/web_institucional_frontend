@@ -3,21 +3,22 @@
 import { useEffect, useState, useMemo, useCallback } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { mobilePanelVariants } from "../dropdown-motion";
-import Buscador from "./buscador";
-import Campus from "./campus";
-import OfertaAcademica from "./oferta-academica";
-import NuestraUniversidad from "./nuestra-universidad";
-import SearchResults, { type SearchResult } from "./search-results";
-import Aspirantes from "./aspirantes";
-import Internacionalizacion from "./internacionalizacion";
+import { mobilePanelVariants } from "../../dropdown-motion";
+import Buscador from "../Buscador";
+import Campus from "../Campus";
+import OfertaAcademica from "../OfertaAcademica";
+import NuestraUniversidad from "../NuestraUniversidad";
+import SearchResults, { type SearchResult } from "../SearchResults";
+import Aspirantes from "../Aspirantes";
+import Internacionalizacion from "../Internacionalizacion";
 import {
   type NavigationItem,
   campusNavigation,
   nuestraUniversidadNavigation,
   ofertaAcademicaNavigation,
-} from "./navigation";
-import styles from "./mani-menu.module.css";
+} from "../navigation";
+import styles from "../main-menu.module.css";
+import type { MainMenuProps } from "./MainMenu.types";
 
 // Todos los menús para búsqueda
 const allNavigationItems: NavigationItem[] = [
@@ -87,7 +88,7 @@ function searchNavigation(
     .sort((first, second) => second.score - first.score);
 }
 
-export default function MainMenuPruv() {
+export default function MainMenu({ className }: MainMenuProps = {}) {
   const [openMenu, setOpenMenu] = useState<
     "universidad" | "campus" | "oferta" | "vida" | null
   >(null);
@@ -122,8 +123,11 @@ export default function MainMenuPruv() {
       ? mobileMenuItems
       : mobileStack[mobileStack.length - 1].children ?? [];
 
+  const trimmedClassName = className?.trim();
+  const rootClassName = trimmedClassName ? `contents ${trimmedClassName}` : "contents";
+
   return (
-    <div className="contents">
+    <div className={rootClassName}>
       {/* ── Buscador DESKTOP (original) ── */}
       <div className="relative col-start-2 row-start-2 hidden self-center justify-self-end px-6 py-3 md:block">
         <Buscador

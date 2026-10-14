@@ -2,18 +2,11 @@
 
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { ofertaAcademicaNavigation } from "./navigation";
-import { fullWidthMenuVariants } from "../dropdown-motion";
-import styles from "./mani-menu.module.css";
-import { Rows, FacultyIcon } from "./icons";
-
-type OfertaAcademicaProps = {
-  isOpen: boolean;
-  onToggle: () => void;
-  onClose: () => void;
-  onMouseEnter?: () => void;
-  onMouseLeave?: () => void;
-};
+import { ofertaAcademicaNavigation } from "../navigation";
+import { fullWidthMenuVariants } from "../../dropdown-motion";
+import styles from "../main-menu.module.css";
+import { Rows, FacultyIcon } from "../icons";
+import type { OfertaAcademicaProps } from "./OfertaAcademica.types";
 
 export default function OfertaAcademica({
   isOpen,
@@ -21,10 +14,16 @@ export default function OfertaAcademica({
   onClose,
   onMouseEnter,
   onMouseLeave,
+  className,
 }: OfertaAcademicaProps) {
+  const trimmedClassName = className?.trim();
+  const rootClassName = `${styles.menuWrapper} ${isOpen ? styles.menuWrapperOpen : ""}${
+    trimmedClassName ? ` ${trimmedClassName}` : ""
+  }`;
+
   return (
     <div
-      className={`${styles.menuWrapper} ${isOpen ? styles.menuWrapperOpen : ""}`}
+      className={rootClassName}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >

@@ -1,11 +1,12 @@
-type BuscadorProps = {
-  value: string
-  onChange: (value: string) => void
-  onSearch: () => void
-  className?: string
-}
+import type { BuscadorProps } from "./Buscador.types";
+
+const baseClassName =
+  "flex h-10 w-90 items-center rounded-full border-2 border-ud-rojo bg-white px-6";
 
 export default function Buscador({ value, onChange, onSearch, className }: BuscadorProps) {
+  const trimmedClassName = className?.trim();
+  const rootClassName = trimmedClassName ? trimmedClassName : baseClassName;
+
   return (
     <form
       role="search"
@@ -14,7 +15,7 @@ export default function Buscador({ value, onChange, onSearch, className }: Busca
         event.preventDefault()
         onSearch()
       }}
-      className={className ?? "flex h-10 w-90 items-center rounded-full border-2 border-ud-rojo bg-white px-6"}
+      className={rootClassName}
     >
       <label htmlFor="header-search" className="sr-only">
         Buscar en el sitio

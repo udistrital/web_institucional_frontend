@@ -6,11 +6,12 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion"
 import { institutionalLinks } from "@/navegation/audience"
 import { mainNavigation } from "@/navegation/audience_services"
 
-import { audienceDropdownVariants } from "../dropdown-motion"
-import styles from "./audience-nav.module.css"
-import AudienceButton from "./audience-button"
+import { audienceDropdownVariants } from "../../dropdown-motion"
+import styles from "../audience-nav.module.css"
+import { AudienceButton } from "../AudienceButton"
+import type { AudienceNavProps } from "./AudienceNav.types"
 
-export default function AudienceNav() {
+export default function AudienceNav({ className }: AudienceNavProps) {
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
   const visibleProfiles = mainNavigation.slice(0, 4)
@@ -33,11 +34,12 @@ export default function AudienceNav() {
     }
   }, [open])
 
+  const navClassName = [styles.audienceNav, "col-span-2", "row-start-1", className]
+    .filter(Boolean)
+    .join(" ")
+
   return (
-    <nav
-      aria-label="Servicios para usuarios"
-      className={`${styles.audienceNav} col-span-2 row-start-1`}
-    >
+    <nav aria-label="Servicios para usuarios" className={navClassName}>
       {/* Desktop: original layout */}
       <div className={`${styles.audienceProfiles} hidden md:flex`}>
         {visibleProfiles.map((profile) => (

@@ -1,23 +1,20 @@
 import Link from "next/link"
 import { motion } from "framer-motion"
-import type { NavigationItem } from "./navigation"
-import { searchResultsVariants } from "../dropdown-motion"
+import { searchResultsVariants } from "../../dropdown-motion"
+import type { SearchResultsProps } from "./SearchResults.types"
 
-export type SearchResult = {
-  item: NavigationItem
-  parents: string[]
-  score: number
-}
+export type { SearchResult } from "./SearchResults.types"
 
-interface SearchResultsProps {
-  results: SearchResult[]
-  onSelect: () => void
-}
+const baseClassName =
+  "absolute right-0 top-14 z-30 max-h-80 w-[500px] max-w-[90vw] overflow-y-auto rounded-lg bg-white p-4 text-left shadow-lg ring-1 ring-black/10"
 
-export default function SearchResults({ results, onSelect }: SearchResultsProps) {
+export default function SearchResults({ results, onSelect, className }: SearchResultsProps) {
+  const trimmedClassName = className?.trim()
+  const rootClassName = trimmedClassName ? `${baseClassName} ${trimmedClassName}` : baseClassName
+
   return (
     <motion.div
-      className="absolute right-0 top-14 z-30 max-h-80 w-[500px] max-w-[90vw] overflow-y-auto rounded-lg bg-white p-4 text-left shadow-lg ring-1 ring-black/10"
+      className={rootClassName}
       variants={searchResultsVariants}
       initial="hidden"
       animate="visible"

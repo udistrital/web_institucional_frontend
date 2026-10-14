@@ -2,24 +2,21 @@
 
 import Link from "next/link"
 import { AnimatePresence, motion } from "framer-motion"
-import { campusNavigation } from "./navigation"
-import { fullWidthMenuVariants } from "../dropdown-motion"
-import styles from "./mani-menu.module.css"
-import { Rows } from "./icons"
-import MenuIcon from "./menu-icon"
+import { campusNavigation } from "../navigation"
+import { fullWidthMenuVariants } from "../../dropdown-motion"
+import styles from "../main-menu.module.css"
+import { Rows } from "../icons"
+import MenuIcon from "../menu-icon"
+import type { CampusProps } from "./Campus.types"
 
-type CampusProps = {
-  isOpen: boolean
-  onToggle: () => void;
-  onClose: () => void;
-  onMouseEnter?: () => void;
-  onMouseLeave?: () => void;
-}
-
-export default function Campus({ isOpen, onToggle, onClose, onMouseEnter, onMouseLeave }: CampusProps) {
+export default function Campus({ isOpen, onToggle, onClose, onMouseEnter, onMouseLeave, className }: CampusProps) {
+  const trimmedClassName = className?.trim()
+  const rootClassName = `${styles.menuWrapper} ${isOpen ? styles.menuWrapperOpen : ""}${
+    trimmedClassName ? ` ${trimmedClassName}` : ""
+  }`
 
   return (
-    <div className={`${styles.menuWrapper} ${isOpen ? styles.menuWrapperOpen : ""}`}
+    <div className={rootClassName}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}>
       <button

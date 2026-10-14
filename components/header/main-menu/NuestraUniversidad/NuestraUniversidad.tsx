@@ -2,23 +2,20 @@
 
 import Link from "next/link"
 import { AnimatePresence, motion } from "framer-motion"
-import { nuestraUniversidadNavigation} from "./navigation"
-import { compactMenuVariants } from "../dropdown-motion"
-import styles from "./mani-menu.module.css"
-import { Rows } from "./icons"
+import { nuestraUniversidadNavigation} from "../navigation"
+import { compactMenuVariants } from "../../dropdown-motion"
+import styles from "../main-menu.module.css"
+import { Rows } from "../icons"
+import type { NuestraUniversidadProps } from "./NuestraUniversidad.types"
 
-type NuestraUniversidadProps = {
-  isOpen: boolean
-  onToggle: () => void
-  onClose: () => void
-  onMouseEnter?: () => void
-  onMouseLeave?: () => void
-}
-
-export default function NuestraUniversidad({ isOpen, onToggle, onClose, onMouseEnter, onMouseLeave }: NuestraUniversidadProps) {
+export default function NuestraUniversidad({ isOpen, onToggle, onClose, onMouseEnter, onMouseLeave, className }: NuestraUniversidadProps) {
+  const trimmedClassName = className?.trim()
+  const rootClassName = `${styles.menuWrapper} ${isOpen ? styles.menuWrapperOpen : ""}${
+    trimmedClassName ? ` ${trimmedClassName}` : ""
+  }`
 
   return (
-    <div className={`${styles.menuWrapper} ${isOpen ? styles.menuWrapperOpen : ""}`}
+    <div className={rootClassName}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}>
       <button

@@ -2,13 +2,10 @@
 
 import { useState, useRef, useEffect } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import type { ServiceProfile } from "@/navegation/audience_services";
-import { audienceDropdownVariants } from "../dropdown-motion";
-import styles from "./audience-nav.module.css";
 
-type AudienceButtonProps = {
-  profile: ServiceProfile;
-};
+import { audienceDropdownVariants } from "../../dropdown-motion";
+import styles from "../audience-nav.module.css";
+import type { AudienceButtonProps } from "./AudienceButton.types";
 
 function ProfileIcon({ label }: { label: string }) {
   const key = label.toLowerCase();
@@ -70,7 +67,7 @@ function ProfileIcon({ label }: { label: string }) {
   );
 }
 
-export default function AudienceButton({ profile }: AudienceButtonProps) {
+export default function AudienceButton({ profile, className }: AudienceButtonProps) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const openTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -126,9 +123,17 @@ export default function AudienceButton({ profile }: AudienceButtonProps) {
 
   const preview = (profile.children ?? []).slice(0, 4);
 
+  const wrapperClassName = [
+    styles.audienceButtonWrapper,
+    open ? styles.audienceButtonWrapperOpen : "",
+    className,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
   return (
     <div
-      className={`${styles.audienceButtonWrapper} ${open ? styles.audienceButtonWrapperOpen : ""}`}
+      className={wrapperClassName}
       ref={ref}
       onMouseEnter={scheduleOpen}
       onMouseLeave={scheduleClose}
