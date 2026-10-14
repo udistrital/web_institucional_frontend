@@ -1,13 +1,7 @@
 "use client";
 
 import { useState } from "react";
-
-type TableroIframeProps = {
-  src: string;
-  title: string;
-  /** Si el tablero está visible (activo). Se mantiene montado aunque esté oculto. */
-  isActive: boolean;
-};
+import type { TableroIframeProps } from "./TableroIframe.types";
 
 /**
  * Incrusta un tablero (dashboard) en un iframe.
@@ -19,17 +13,25 @@ type TableroIframeProps = {
  * con opacidad + z-index + pointer-events. Así solo se cargan una vez y al
  * reseleccionarlos aparecen al instante, sin recargar y sin romper su layout.
  */
-export default function TableroIframe({ src, title, isActive }: TableroIframeProps) {
+export default function TableroIframe({
+  src,
+  title,
+  isActive,
+  className,
+}: TableroIframeProps) {
   const [isLoaded, setIsLoaded] = useState(false);
+
+  const rootClassName = [
+    "absolute inset-0 overflow-hidden rounded-lg border border-black/10 bg-neutral-50 transition-opacity duration-200",
+    isActive ? "z-10 opacity-100" : "pointer-events-none z-0 opacity-0",
+    className,
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   return (
     <div
-      className={[
-        "absolute inset-0 overflow-hidden rounded-lg border border-black/10 bg-neutral-50 transition-opacity duration-200",
-        isActive
-          ? "z-10 opacity-100"
-          : "pointer-events-none z-0 opacity-0",
-      ].join(" ")}
+      className={rootClassName}
       // Se oculta a lectores de pantalla cuando no está activo (sin colapsar tamaño).
       aria-hidden={isActive ? undefined : true}
       inert={!isActive}

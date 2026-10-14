@@ -1,13 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { ServiceProfile } from "@/navegation/audience_services";
-import styles from "./tarjet.module.css";
 
-type TarjetProps = {
-  service: ServiceProfile;
-  variant?: "card" | "carousel" | "bento";
-  className?: string;
-};
+import styles from "../tarjet.module.css";
+import type { TarjetProps } from "./Tarjet.types";
 
 export default function Tarjet({
   service,

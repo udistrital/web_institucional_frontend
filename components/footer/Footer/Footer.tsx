@@ -1,23 +1,58 @@
+import Image from "next/image";
 import Link from "next/link";
 import { facultades } from "@/navegation/global";
-import styles from "./footer.module.css";
+import styles from "../footer.module.css";
+import type { FooterProps } from "./Footer.types";
 
 const footerTitleClass = "mb-2 font-bold text-white";
 const footerLinkClass =
   "text-sm text-gray-400 transition-colors hover:text-ud-rojo";
 
-export default function Footer() {
+type Aliado = {
+  readonly number: number;
+  readonly width: number;
+  readonly height: number;
+};
+
+// Dimensiones intrínsecas (relación de aspecto) de cada SVG de aliado.
+// El tamaño renderizado lo controla la clase CSS `h-10 w-auto`; estos valores
+// solo fijan el aspect ratio para evitar layout shift y distorsión.
+const aliados: readonly Aliado[] = [
+  { number: 1, width: 142, height: 76 },
+  { number: 2, width: 232, height: 79 },
+  { number: 3, width: 149, height: 63 },
+  { number: 4, width: 184, height: 78 },
+  { number: 5, width: 222, height: 96 },
+  { number: 6, width: 136, height: 74 },
+  { number: 7, width: 169, height: 68 },
+  { number: 8, width: 181, height: 64 },
+  { number: 9, width: 190, height: 76 },
+  { number: 10, width: 224, height: 76 },
+  { number: 11, width: 192, height: 76 },
+];
+
+const aliadosRow1: readonly Aliado[] = aliados.slice(0, 6);
+const aliadosRow2: readonly Aliado[] = aliados.slice(6);
+
+export default function Footer({ className }: FooterProps) {
   return (
-    <footer className="border-t border-gray-800 bg-black pt-16 pb-8">
+    <footer
+      className={["border-t border-gray-800 bg-black pt-16 pb-8", className]
+        .filter(Boolean)
+        .join(" ")}
+    >
       <div className="mx-auto max-w-7xl px-4">
         {/* Grid principal */}
         <div className="mb-8 grid grid-cols-1 gap-12 md:grid-cols-4">
           {/* Info institucional */}
           <div className="flex flex-col items-center text-center">
-            <img
+            <Image
               src="/logotipos-ud/UDred.svg"
               alt="UDred footer"
+              width={247}
+              height={61}
               className="mb-4 h-10 w-auto"
+              unoptimized
             />
             <p className="mb-6 text-sm leading-6 text-gray-400">
               Sede Administrativa (Aduanilla de Paiba)
@@ -72,10 +107,13 @@ export default function Footer() {
             </div>
 
             <div className={styles.crestSection}>
-              <img
+              <Image
                 src="/escudos/escudo-ud-white.svg"
                 alt="Escudo Universidad Distrital Francisco José de Caldas"
+                width={297}
+                height={467}
                 className="h-45 opacity-80"
+                unoptimized
               />
             </div>
           </div>
@@ -252,22 +290,28 @@ export default function Footer() {
           </span>
           <div className={styles.alliesGroups}>
             <div className={styles.alliesRow}>
-              {[1, 2, 3, 4, 5, 6].map((number) => (
-                <img
-                  key={number}
-                  src={`/aliados/aliado${number}.svg`}
-                  alt={`Entidad aliada ${number}`}
+              {aliadosRow1.map((aliado) => (
+                <Image
+                  key={aliado.number}
+                  src={`/aliados/aliado${aliado.number}.svg`}
+                  alt={`Entidad aliada ${aliado.number}`}
+                  width={aliado.width}
+                  height={aliado.height}
                   className="h-10 w-auto"
+                  unoptimized
                 />
               ))}
             </div>
             <div className={styles.alliesRow}>
-              {[7, 8, 9, 10, 11].map((number) => (
-                <img
-                  key={number}
-                  src={`/aliados/aliado${number}.svg`}
-                  alt={`Entidad aliada ${number}`}
+              {aliadosRow2.map((aliado) => (
+                <Image
+                  key={aliado.number}
+                  src={`/aliados/aliado${aliado.number}.svg`}
+                  alt={`Entidad aliada ${aliado.number}`}
+                  width={aliado.width}
+                  height={aliado.height}
                   className="h-10 w-auto"
+                  unoptimized
                 />
               ))}
             </div>

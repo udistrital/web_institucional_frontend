@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import Tarjet from "@/components/tarjet/tarjet";
+import { Tarjet } from "@/components/tarjet/Tarjet";
 import { mainNavigation } from "@/navegation/audience_services";
 
 import styles from "../home.module.css";

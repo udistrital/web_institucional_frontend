@@ -2,12 +2,8 @@
 
 import { useEffect, useMemo, useState } from "react";
 import type { CategoryNode, Tablero } from "@/services/tableros";
-import TableroIframe from "./TableroIframe";
-
-type TablerosExplorerProps = {
-  categories: CategoryNode[];
-  uncategorized: Tablero[];
-};
+import { TableroIframe } from "../TableroIframe";
+import type { TablerosExplorerProps } from "./TablerosExplorer.types";
 
 /** Tablero acompañado de la ruta jerárquica de su categoría. */
 type FlatTablero = {
@@ -47,6 +43,7 @@ function flattenCategories(categories: CategoryNode[]): Group[] {
 export default function TablerosExplorer({
   categories,
   uncategorized,
+  className,
 }: TablerosExplorerProps) {
   const groups = useMemo(() => {
     const base = flattenCategories(categories);
@@ -149,8 +146,10 @@ export default function TablerosExplorer({
     return <p className="text-neutral-500">Aún no hay tableros disponibles.</p>;
   }
 
+  const rootClassName = ["flex flex-col gap-6", className].filter(Boolean).join(" ");
+
   return (
-    <div className="flex flex-col gap-6">
+    <div className={rootClassName}>
       {/* Navegación por dos listas en cascada: categoría → tablero */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>

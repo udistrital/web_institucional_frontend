@@ -1,7 +1,9 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import styles from "./contact-widget.module.css"
+
+import styles from "../contact-widget.module.css"
+import type { ContactWidgetProps } from "./ContactWidget.types"
 
 function CommunicationsIcon() {
   return (
@@ -39,7 +41,7 @@ function BotIcon() {
   )
 }
 
-export default function ContactWidget() {
+export default function ContactWidget({ className }: ContactWidgetProps) {
   const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
@@ -52,7 +54,7 @@ export default function ContactWidget() {
   }, [])
 
   return (
-    <div className={styles.widget}>
+    <div className={[styles.widget, className].filter(Boolean).join(" ")}>
       <div
         id="contact-options"
         className={`${styles.menu} ${isOpen ? styles.menuOpen : ""}`}

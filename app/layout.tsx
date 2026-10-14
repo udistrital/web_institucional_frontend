@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Lato, Montserrat } from "next/font/google";
-import ContactWidget from "@/components/contact-widget/contact-widget";
-import Footer from "@/components/footer/footer";
-import Header from "@/components/header/header";
+import { ContactWidget } from "@/components/contact-widget/ContactWidget";
+import { Footer } from "@/components/footer/Footer";
+import { Header } from "@/components/header/Header";
 import "./globals.css";
 
 const montserrat = Montserrat({

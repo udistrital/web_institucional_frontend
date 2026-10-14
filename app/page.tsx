@@ -1,5 +1,5 @@
 import styles from "@/components/home/home.module.css";
-import LiveEmisora from "@/components/emisoraLive/emisora-live";
+import { EmisoraLive } from "@/components/emisoraLive/EmisoraLive";
 
 import {
   EnrollmentSection,
@@ -25,7 +25,7 @@ export default function Home() {
       <ServicesSection />
       <UniversityPromoSection />
       <FacultyShowcaseSection />
-      <LiveEmisora />
+      <EmisoraLive />
     </div>
   );
 }
