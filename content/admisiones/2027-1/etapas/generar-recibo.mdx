@@ -1,0 +1,22 @@
+import { periodo } from "../periodo"
+import { links } from "../links"
+import { Acordeon, PortalLink, Nota } from "@/app/perfiles/aspirantes/components/tramites/ContenidoMDX"
+
+El pago de la inscripción del periodo académico **2027-1** debe realizarse entre el **{periodo.preregistro.desde}** y el **{periodo.preregistro.hasta}**, ingresando a <PortalLink href={links.portal}>Generar Recibo</PortalLink> con tu usuario y clave.
+
+**Valor de la inscripción:** {periodo.valorInscripcionLetras} ({periodo.valorInscripcion}).
+
+**Banco:** Banco de Occidente.
+
+<Acordeon titulo="Recomendaciones al momento de generar el recibo">
+
+- El usuario es el número del documento registrado en el pre-registro y la clave es la enviada al correo registrado.
+- Debes escoger el tipo de inscripción que deseas realizar.
+- El recibo puede pagarse por PSE o en cualquier sucursal del Banco de Occidente con el recibo impreso en impresora láser.
+- No realices el pago por corresponsales bancarios.
+
+</Acordeon>
+
+<Nota>
+  Por ningún motivo hay devolución de dinero si no utilizas el recibo de pago de inscripción. Consulta la <a href={links.res132}>Resolución 132 de 2017 del Consejo Académico</a>.
+</Nota>
