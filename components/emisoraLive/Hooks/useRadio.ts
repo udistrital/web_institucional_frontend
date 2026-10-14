@@ -5,7 +5,9 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 export function useRadio(streamUrl: string) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [hasError, setHasError] = useState(false);
   const [volume, setVolume] = useState(1);
+  const [isMuted, setIsMuted] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
@@ -14,10 +16,14 @@ export function useRadio(streamUrl: string) {
     audioRef.current = audio;
 
     const onWaiting = () => setIsLoading(true);
-    const onPlaying = () => setIsLoading(false);
+    const onPlaying = () => {
+      setIsLoading(false);
+      setHasError(false);
+    };
     const onError = () => {
       setIsLoading(false);
       setIsPlaying(false);
+      setHasError(true);
     };
 
     audio.addEventListener('waiting', onWaiting);
@@ -39,10 +45,12 @@ export function useRadio(streamUrl: string) {
 
     if (!isPlaying) {
       setIsLoading(true);
+      setHasError(false);
       audio.src = streamUrl;
       audio.play().catch(() => {
         setIsLoading(false);
         setIsPlaying(false);
+        setHasError(true);
       });
       setIsPlaying(true);
     } else {
@@ -53,30 +61,30 @@ export function useRadio(streamUrl: string) {
     }
   }, [isPlaying, streamUrl]);
 
+  const toggleMute = useCallback(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    const nextMuted = !isMuted;
+
+    audio.muted = nextMuted;
+    setIsMuted(nextMuted);
+  }, [isMuted]);
+
   const changeVolume = useCallback((val: string | number) => {
     const v = Math.max(0, Math.min(1, Number(val)));
     setVolume(v);
     if (audioRef.current) audioRef.current.volume = v;
   }, []);
 
-const [isMuted, setIsMuted] = useState(false);
-const toggleMute = useCallback(() => {
-  const audio = audioRef.current;
-  if (!audio) return;
-
-  const nextMuted = !isMuted;
-
-  audio.muted = nextMuted;
-  setIsMuted(nextMuted);
-}, [isMuted]);
-
-return {
-  isPlaying,
-  isLoading,
-  volume,
-  isMuted,
-  togglePlay,
-  toggleMute,
-  changeVolume,
-};
+  return {
+    isPlaying,
+    isLoading,
+    hasError,
+    volume,
+    isMuted,
+    togglePlay,
+    toggleMute,
+    changeVolume,
+  };
 }

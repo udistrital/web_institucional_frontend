@@ -4,8 +4,9 @@ import { useState } from 'react';
 import { Check, Share2 } from 'lucide';
 import { MorphIcon } from 'morphicons/react';
 import styles from './emisoraLive.module.css';
+import type { LiveBadgeProps } from './LiveBadge.types';
 
-export function LiveBadge({ isPlaying, label = 'EN VIVO' }) {
+export function LiveBadge({ isPlaying, label = 'EN VIVO', className = '' }: LiveBadgeProps) {
   const [isCopied, setIsCopied] = useState(false);
 
   const copyPageLink = async () => {
@@ -19,7 +20,7 @@ export function LiveBadge({ isPlaying, label = 'EN VIVO' }) {
   };
 
   return (
-    <div className={`relative ${styles.LiveBadge}`}>
+    <div className={`relative ${styles.LiveBadge} ${className}`}>
       <span className={styles.Badge}>
         <span className={`w-2 h-2 rounded-full bg-red-500 ${isPlaying ? 'animate-pulse' : 'opacity-30'}`} />
         {label}

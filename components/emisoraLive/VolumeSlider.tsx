@@ -1,6 +1,7 @@
 import { MorphIcon } from 'morphicons/react';
 import { Volume2, VolumeX } from 'lucide';
 import styles from './emisoraLive.module.css';
+import type { VolumeSliderProps } from './VolumeSlider.types';
 
 export function VolumeSlider({
   volume,
@@ -8,7 +9,7 @@ export function VolumeSlider({
   onChange,
   onToggleMute,
   className = '',
-}) {
+}: VolumeSliderProps) {
   return (
     <div className={styles.VolumeControl}>
       <button
