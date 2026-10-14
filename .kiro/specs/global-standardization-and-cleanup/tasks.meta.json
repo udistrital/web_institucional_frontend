@@ -1,0 +1,696 @@
+{
+  "pbtResults": {
+    "11.2 Property test de mapeo estado→UI en emisoraLive": {
+      "status": "passed",
+      "lastRunTimestamp": 1790967741664
+    }
+  },
+  "executionHistory": {
+    "1. Fase 0 — Capturar línea base de verificación": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790962836338
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790962957112
+      }
+    ],
+    "2.1 Verificar referencias y eliminar la ruta de ejemplo": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790963111824
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790963167276
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790963236243
+      }
+    ],
+    "2.2 Eliminar servicio y componente del ejemplo": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790963113350
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790963243299
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790963311814
+      }
+    ],
+    "2.3 Confirmar compilación tras la eliminación": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790963114471
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790963318547
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790963422445
+      }
+    ],
+    "3.1 Convertir `LiveBadge.jsx` a `LiveBadge.tsx` tipado": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790963116364
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790963891266
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790963991162
+      }
+    ],
+    "3.2 Convertir `PlayButton.jsx` a `PlayButton.tsx` tipado": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790963117760
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790963893086
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790963993544
+      }
+    ],
+    "3.3 Convertir `VolumeSlider.jsx` a `VolumeSlider.tsx` tipado": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790963120218
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790963894231
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790963994755
+      }
+    ],
+    "3.4 Reordenar hooks en `Hooks/useRadio.ts`": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790963121498
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790963999612
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790964063553
+      }
+    ],
+    "4.1 Mover lógica no visual de `main-menu/` a archivos dedicados": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790963122898
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790964071697
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790964167584
+      }
+    ],
+    "4.2 Estandarizar componentes individuales de `main-menu/`": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790963124596
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790964173116
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790964630107
+      }
+    ],
+    "4.3 Estandarizar componentes de `audience-nav/`": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790963126419
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790964174346
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790964633030
+      }
+    ],
+    "4.4 Verificar compilación de las hojas de navegación": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790963127913
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790964638303
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790964706628
+      }
+    ],
+    "5.1 Estandarizar `Brand`": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790963130112
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790964712286
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790964955020
+      }
+    ],
+    "5.2 Estandarizar `Header` e integrar hijos": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790963131486
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790964961157
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790965068702
+      }
+    ],
+    "5.3 Verificar compilación tras la raíz de navegación": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790963132898
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790965073746
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790965116118
+      }
+    ],
+    "6.1 Estandarizar `Footer`": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790963135245
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790965124157
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790965392213
+      }
+    ],
+    "6.2 Estandarizar `ContactWidget`": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790963136726
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790965125495
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790965457805
+      }
+    ],
+    "6.3 Estandarizar `Tarjet`": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790963138022
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790965126916
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790965395352
+      }
+    ],
+    "6.4 Estandarizar `Ti` (`TableroIframe`, `TablerosExplorer`)": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790963139462
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790965128446
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790965460804
+      }
+    ],
+    "6.5 Estandarizar `EmisoraLive`": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790963141555
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790965129743
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790965396605
+      }
+    ],
+    "6.6 Verificar compilación tras la Fase 3": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790963142970
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790965466148
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790965543680
+      }
+    ],
+    "7. Checkpoint — Verificar estado tras estandarización estructural": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790963144387
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790967881591
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790968039863
+      }
+    ],
+    "8.1 Migrar imágenes de `footer.tsx`": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790963146526
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790965559715
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790966649772
+      }
+    ],
+    "8.2 Migrar imágenes de `header/brand.tsx`": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790963148007
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790965557903
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790966652656
+      }
+    ],
+    "8.3 Verificar ausencia de advertencias de imagen": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790963149594
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790966658282
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790966736501
+      }
+    ],
+    "9.1 Eliminar usos de `any` y tipar props/estado/variables": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790963151885
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790966743250
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790966827115
+      }
+    ],
+    "9.2 Eliminar variables e importaciones sin uso": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790963153251
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790966832082
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790967096103
+      }
+    ],
+    "9.3 Verificar tipado y limpieza": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790963155715
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790967101135
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790967163573
+      }
+    ],
+    "12. Fase 6 — Validacion_Final y preservación visual": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790963156989
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790968045615
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790968262433
+      }
+    ],
+    "13. Checkpoint final — Ensure all tests pass": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790963158301
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790968267612
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790968348733
+      }
+    ],
+    "2. Fase 1 — Eliminación segura del Componente_Ejemplo_Article": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790963423897
+      }
+    ],
+    "10.3 Verificación determinista de ausencia de referencias a artefactos eliminados": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790963657547
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790963880569
+      }
+    ],
+    "10. Pruebas deterministas de árbol fuente (Propiedades 1–6)": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790963881930
+      }
+    ],
+    "3. Fase 2 — Convertir `.jsx` de emisoraLive a `.tsx` tipado": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790964065108
+      }
+    ],
+    "4. Fase 3 (hojas) — Estandarizar hijos de `main-menu/` y `audience-nav/`": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790964706778
+      }
+    ],
+    "5. Fase 3 (raíz de navegación) — Estandarizar `Header` y `Brand`": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790965117575
+      }
+    ],
+    "6. Fase 3 (independientes) — Estandarizar `Footer`, `ContactWidget`, `Tarjet`, `Ti`, `EmisoraLive`": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790965545592
+      }
+    ],
+    "8. Fase 4 — Migrar `<img>` a `next/image`": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790966738042
+      }
+    ],
+    "9. Fase 5 — Tipado estricto global y limpieza de código sin uso": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790967165052
+      }
+    ],
+    "10.1 Verificación determinista de estructura de componente": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790967191459
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790967516048
+      }
+    ],
+    "10.2 Verificación determinista de integridad de importaciones": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790967194791
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790967517396
+      }
+    ],
+    "10.4 Verificación determinista de ausencia de `<img>` nativas": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790967196004
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790967519704
+      }
+    ],
+    "10.5 Verificación determinista de ausencia del tipo `any`": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790967197339
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790967520987
+      }
+    ],
+    "10.6 Verificación determinista de ausencia de `.jsx`": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790967199106
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790967522271
+      }
+    ],
+    "11.1 Property test de composición mediante `className`": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790967528443
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790967858472
+      }
+    ],
+    "11.2 Property test de mapeo estado→UI en emisoraLive": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790967529675
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790967860109
+      }
+    ],
+    "11.3 Property test de aplanamiento JSON:API": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790967541367
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790967863364
+      }
+    ],
+    "11. Pruebas property-based con fast-check (Propiedades 7–9)": [
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790967862095
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790967864607
+      },
+      {
+        "executionId": "0679608e-8a5f-4721-b1bb-5ea49d7807e2",
+        "chatSessionId": "sess_0d331b12-a496-45df-9a92-8a17f9b1bbdb",
+        "timestamp": 1790967867164
+      }
+    ]
+  }
+}
