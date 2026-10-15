@@ -1,11 +1,10 @@
 import styles from "@/components/home/home.module.css";
-import LiveEmisora from "@/components/emisoraLive/emisora-live";
+import LiveEmisora from "@/components/ui/emisoraLive/emisora-live";
 import RevealSection from "@/components/home/RevealSection";
 
 import {
   EnrollmentSection,
   FacultiesSection,
-  FacultyShowcaseSection,
   HeroSection,
   NewsSection,
   QuickLinksSection,

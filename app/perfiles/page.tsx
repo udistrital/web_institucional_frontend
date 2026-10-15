@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Tarjet from "@/components/tarjet/tarjet";
+import Tarjet from "@/components/ui/tarjet/tarjet";
 import { mainNavigation } from "@/navegation/audience_services";
 import styles from "./page.module.css";
 
