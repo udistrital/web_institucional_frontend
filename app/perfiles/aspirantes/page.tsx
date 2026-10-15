@@ -5,6 +5,7 @@ import Hero from "@/components/hero/hero";
 import BreadCrumbs from "@/components/bread-crumbs/bread-crumbs";
 import InfoCard from "./components/InfoCard";
 import { TramitesSection } from "./components/tramites";
+import Buttomsheet from "@/components/buttomSheet/buttomSheet";
 
 export const metadata: Metadata = {
   title: "Servicios - Aspirantes",
@@ -21,7 +22,7 @@ export default function ServiciosAspirantesPage() {
         alignment="right"
         primaryButton={{
           text: "Primer ingreso",
-          href: "/",
+          href: "#tramites",
         }}
         secundaryButton={{
           text: "Resultados de admisiones",
@@ -29,14 +30,15 @@ export default function ServiciosAspirantesPage() {
         }}
       />
       <BreadCrumbs />
-      <TramitesSection/>
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        <h2 className="text-xl sm:text-2xl font-semibold tracking-wide">
+        <h2 className="text-xl sm:text-2xl font-semibold tracking-wide text-[#1a1a1a]">
           Conoce nuestros programas
         </h2>
-        <div className="hidden sm:block h-[1px] flex-1 ml-6 bg-[#4a2e35]/60" />
+        <div className="relative hidden sm:block h-px flex-1 ml-6 bg-gray-200">
+          <span className="absolute left-0 top-0 h-0.5 w-12 -translate-y-1/4 bg-[#fdb400]" />
+        </div>
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 px-6 py-2">
+      <div className=" grid-cols-1 max-w-7xl mx-auto flex lg:grid-cols-2 gap-6 py-8 items-center justify-between">
         <InfoCard
           iconSrc="/logotipos-ud/UD-red-white.svg"
           title="Programas de pregrado"
@@ -52,7 +54,8 @@ export default function ServiciosAspirantesPage() {
           buttonHref="/programas/posgrado"
         />
       </div>
-      <div className="grid grid-cols-1 gap-6 px-6 py-2">
+      <TramitesSection />
+      <div className="grid items-center py-8 max-w-7xl mx-auto">
         <InfoCard
           iconSrc="/image/image-aspirantes/graduacion oportuna.jpg"
           iconAlt="Graduación oportuna"
@@ -63,6 +66,22 @@ export default function ServiciosAspirantesPage() {
           variant="image"
         />
       </div>
+      <section className="max-w-7xl mx-auto px-6 pb-12">
+        <h2 className="text-xl sm:text-2xl font-semibold tracking-wide text-[#1a1a1a] mb-4">
+          Enlaces de interés
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 w-full">
+          <Buttomsheet link="#" Style="red" variant="big" className="w-full">
+            Preguntas frecuentes
+          </Buttomsheet>
+          <Buttomsheet link="#" Style="red" variant="big" className="w-full">
+            Cupos especiales
+          </Buttomsheet>
+          <Buttomsheet link="#" Style="red" variant="big" className="w-full">
+            Inhabilidades
+          </Buttomsheet>
+        </div>
+      </section>
     </main>
   );
 }

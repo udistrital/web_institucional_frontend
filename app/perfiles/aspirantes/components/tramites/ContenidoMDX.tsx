@@ -5,7 +5,7 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 export function PortalLink({ href, children }: { href: string; children: ReactNode }) {
-  return <a href={href} target="_blank" rel="noreferrer" className="font-bold text-[#8c1919] underline decoration-[#fdb400] decoration-2 underline-offset-2">{children}</a>;
+  return <a href={href} target="_blank" rel="noreferrer" className="font-bold text-[#8c1919] underline decoration-[#fdb400] decoration-2 underline-offset-2 hover:text-[#5f1010]">{children}</a>;
 }
 
 export function Acordeon({ titulo, children }: { titulo: string; children: ReactNode }) {

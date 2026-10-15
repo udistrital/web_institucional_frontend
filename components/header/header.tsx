@@ -1,51 +1,30 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import { motion, useReducedMotion } from "framer-motion";
-import AudienceNav from "./audience-nav/audience-nav";
 import Brand from "./brand";
 import MainMenu from "./main-menu/main-menu";
 import { useHideOnScroll } from "./use-hide-on-scroll";
-import styles from "./header.module.css";
 
 export default function Header() {
-  const { headerVisible, audienceVisible } = useHideOnScroll();
+  const { headerVisible } = useHideOnScroll();
   const reduceMotion = useReducedMotion();
-
-  const headerRef = useRef<HTMLElement>(null);
-  const [headerHeight, setHeaderHeight] = useState(0);
-
-  useEffect(() => {
-    const el = headerRef.current;
-    if (!el) return;
-
-    setHeaderHeight(el.getBoundingClientRect().height);
-
-    const ro = new ResizeObserver(([entry]) => {
-      setHeaderHeight(entry.contentRect.height);
-    });
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, [audienceVisible]);
-
   return (
     <motion.header
-      ref={headerRef}
-      className="sticky top-0 z-50 flex w-full flex-col bg-white"
+      className="sticky top-0 z-50 flex w-full flex-col bg-white border-b border-gray-100"
       initial={false}
-      animate={{ y: headerVisible ? 0 : -headerHeight }}
+      animate={{ y: headerVisible ? 0 : "-100%" }}
       transition={
-        reduceMotion
-          ? { duration: 0 }
-          : { duration: 0.28, ease: "easeOut" }
+        reduceMotion ? { duration: 0 } : { duration: 0.28, ease: "easeOut" }
       }
     >
-      <div className={`w-full ${styles.audienceRow} ${audienceVisible ? styles.audienceRowOpen : ""}`}>
-        <AudienceNav />
-      </div>
-      <div className="relative flex w-full items-center justify-between gap-2 border-b border-gray-100 px-4 md:px-6">
-        <Brand />
-        <MainMenu />
+      <div className="relative flex w-full mx-auto items-center justify-between gap-2 md:gap-4 px-4 md:px-6 bg-white py-2">
+        <div className="shrink-0">
+          <Brand />
+        </div>
+        <div className="flex-1 flex justify-end min-w-0">
+          <MainMenu />
+        </div>
       </div>
     </motion.header>
   );

@@ -36,6 +36,7 @@ export const tramitesData: Tramite[] = [
       id: "primer-ingreso",
       nombreTab: "Primer ingreso",
       tituloFicha: "Primer ingreso",
+      imagen: "/image/image-aspirantes/primer-ingreso-ficha.jpg",
       quienPuedeAplicar: "Aspirantes bachilleres que desean iniciar su formación universitaria en la Universidad Distrital.",
       fechas: [...fechasComunes, `Resultados opción N.° 1: ${periodo.resultadosOpcion1}`],
     },
@@ -45,12 +46,14 @@ export const tramitesData: Tramite[] = [
     id: "reingreso",
     nombreTab: "Reingreso",
     tituloFicha: "Reingreso",
+    imagen: "/image/image-aspirantes/reingreso-ficha.jpg",
     quienPuedeAplicar: "Estudiantes que desean retomar sus estudios en la Universidad Distrital.",
   }),
   crearTramite({
     id: "transferencias",
     nombreTab: "Transferencias",
     tituloFicha: "Transferencias",
+    imagen: "/image/image-aspirantes/transferencias-ficha.jpg",
     quienPuedeAplicar: "Aspirantes que solicitan transferencia interna o externa conforme a los requisitos de la convocatoria.",
   }),
   crearTramite(
@@ -58,6 +61,7 @@ export const tramitesData: Tramite[] = [
       id: "doble-programa",
       nombreTab: "Doble programa",
       tituloFicha: "Doble programa",
+      imagen: "/image/image-aspirantes/doble programa-ficha.jpg",
       quienPuedeAplicar: "Estudiantes, egresados y graduados de los programas definidos en la convocatoria.",
       QuienPuedeContent: QuienPuedeDoblePrograma,
     },
@@ -67,6 +71,7 @@ export const tramitesData: Tramite[] = [
     id: "doble-titulacion",
     nombreTab: "Doble titulación",
     tituloFicha: "Doble titulación",
+    imagen: "/image/image-aspirantes/doble titulacion-ficha.jpg",
     quienPuedeAplicar: "Aspirantes que cumplen los requisitos académicos e institucionales de la convocatoria.",
   }),
 ];

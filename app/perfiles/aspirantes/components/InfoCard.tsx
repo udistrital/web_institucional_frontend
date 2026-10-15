@@ -26,7 +26,7 @@ export default function InfoCard({
 }: InfoCardProps) {
   if (variant === 'image') {
     return (
-      <div className="flex flex-col sm:flex-row bg-[#2a1215] border border-[#8c1919]/60 hover:border-[#8c1919] rounded-lg overflow-hidden w-full transition-colors">
+      <div className="flex flex-col sm:flex-row bg-[#1a1a1a] border border-white/10 border-t-[3px] border-t-[#8c1919] hover:border-[#fdb400] rounded-lg overflow-hidden w-full transition-colors">
         {/* Izquierda: Imagen a todo lo alto desde el borde */}
         <div className="relative w-full h-44 sm:h-auto sm:w-72 lg:w-80 shrink-0">
           <Image
@@ -40,12 +40,12 @@ export default function InfoCard({
         <div className="flex flex-1 flex-col sm:flex-row items-start sm:items-center justify-between p-6 gap-6 w-full">
           <div className="flex flex-col gap-1">
             <h3 className="text-white font-bold text-lg sm:text-xl">{title}</h3>
-            <p className="text-gray-300 text-sm sm:text-base">{subtitle}</p>
+            <p className="text-white/75 text-sm sm:text-base">{subtitle}</p>
           </div>
           <div className="w-full sm:w-auto flex justify-end sm:justify-start">
             <Link
               href={buttonHref}
-              className="text-[#ff5252] hover:text-[#ff7b7b] font-semibold text-sm sm:text-base transition-colors inline-flex items-center gap-1"
+              className="text-[#fdb400] hover:text-[#ffd75e] font-semibold text-sm sm:text-base transition-colors inline-flex items-center gap-1"
             >
               {buttonText} →
             </Link>
@@ -56,11 +56,11 @@ export default function InfoCard({
   }
 
   return (
-    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between bg-[#2a1215] border border-[#8c1919]/60 hover:border-[#8c1919] p-6 rounded-lg gap-6 w-full transition-colors">
+    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between bg-[#1a1a1a] border border-white/10 border-t-[3px] border-t-[#8c1919] hover:border-[#fdb400] p-6 rounded-lg gap-6 w-full transition-colors">
       {/* Izquierda: Icono, Título y Subtítulo */}
       <div className="flex items-center gap-5">
         <div
-          className={`relative w-16 h-16 sm:w-20 sm:h-20 shrink-0 border border-[#8c1919]/40 bg-[#170a0b] flex items-center justify-center rounded ${imageContainerClassName ?? ''}`}
+          className={`relative w-16 h-16 sm:w-20 sm:h-20 shrink-0 border border-white/10 bg-white/5 flex items-center justify-center rounded ${imageContainerClassName ?? ''}`}
         >
           <Image
             src={iconSrc}
@@ -71,7 +71,7 @@ export default function InfoCard({
         </div>
         <div className="flex flex-col gap-1">
           <h3 className="text-white font-bold text-lg sm:text-xl">{title}</h3>
-          <p className="text-gray-300 text-sm sm:text-base">{subtitle}</p>
+          <p className="text-white/75 text-sm sm:text-base">{subtitle}</p>
         </div>
       </div>
 
@@ -79,7 +79,7 @@ export default function InfoCard({
       <div className="w-full sm:w-auto flex justify-end sm:justify-start">
         <Link
           href={buttonHref}
-          className="text-[#ff5252] hover:text-[#ff7b7b] font-semibold text-sm sm:text-base transition-colors inline-flex items-center gap-1"
+          className="text-[#fdb400] hover:text-[#ffd75e] font-semibold text-sm sm:text-base transition-colors inline-flex items-center gap-1"
         >
           {buttonText} →
         </Link>

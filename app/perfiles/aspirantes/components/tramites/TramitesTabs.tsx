@@ -19,7 +19,7 @@ export function TramitesTabs({
       <div className="md:hidden">
         <label
           htmlFor="tramite-mobile"
-          className="mb-3 block text-[length:var(--fs-md)] font-extrabold text-[#1a1a1a]"
+          className="mb-3 block text-[length:var(--fs-md)] font-extrabold text-[#1F2937]"
         >
           Selecciona un trámite
         </label>
@@ -27,7 +27,7 @@ export function TramitesTabs({
           id="tramite-mobile"
           value={activeTabId}
           onChange={(event) => onChange(event.target.value)}
-          className="w-full rounded-xl border-2 border-[#fdb400] bg-[#fdb400]/15 px-5 py-4 text-lg font-extrabold text-[#8c1919] shadow-sm outline-none focus:border-[#8c1919] focus:ring-4 focus:ring-[#fdb400]/25"
+          className="w-full rounded-xl border-2 border-[#8c1919] bg-white px-5 py-4 text-lg font-extrabold text-[#8c1919] shadow-sm outline-none focus:ring-4 focus:ring-[#fdb400]/50"
         >
           {tramites.map((tramite) => (
             <option key={tramite.id} value={tramite.id}>
@@ -41,26 +41,40 @@ export function TramitesTabs({
       <div
         role="tablist"
         aria-label="Tipos de trámite"
-        className="hidden w-full gap-2 overflow-x-auto border-b-2 border-gray-200 pb-1 md:flex"
+        onKeyDown={(event) => {
+          if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
+          event.preventDefault();
+          const current = tramites.findIndex((t) => t.id === activeTabId);
+          const step = event.key === "ArrowRight" ? 1 : -1;
+          const next = tramites[(current + step + tramites.length) % tramites.length];
+          onChange(next.id);
+          requestAnimationFrame(() =>
+            document.getElementById(`tab-${next.id}`)?.focus(),
+          );
+        }}
+        className="hidden w-full gap-2 overflow-x-auto pb-2 md:flex"
       >
         {tramites.map((tramite) => {
         const isSelected = activeTabId === tramite.id;
         return (
           <motion.button
             key={tramite.id}
+            id={`tab-${tramite.id}`}
             role="tab"
             aria-selected={isSelected}
+            tabIndex={isSelected ? 0 : -1}
             onClick={() => onChange(tramite.id)}
-            className={`relative shrink-0 px-6 py-4 -mb-[2px] uppercase tracking-wide text-[length:var(--fs-md)] font-extrabold cursor-pointer transition-colors ${
+            className={`relative shrink-0 rounded-xl px-5 py-3 uppercase tracking-wide text-[length:var(--fs-sm)] font-extrabold cursor-pointer transition-colors active:scale-[0.98] ${
               isSelected
-                ? "text-[#8c1919]"
-                : "text-gray-500 hover:text-[#8c1919] hover:bg-gray-50"
+                ? "bg-[#8c1919] text-white shadow-sm"
+                : "bg-white border border-gray-200 text-[#1F2937] hover:border-[#8c1919] hover:text-[#8c1919]"
             }`}
           >
             {isSelected && (
               <motion.span
                 layoutId="tramites-active-pill"
-                className="absolute inset-0 bg-[#8c1919]/10 rounded-t-md border-b-[3px] border-[#8c1919]"
+                aria-hidden="true"
+                className="absolute inset-x-4 -bottom-0.5 h-1 rounded-full bg-[#fdb400]"
                 transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
               />
             )}
@@ -70,7 +84,7 @@ export function TramitesTabs({
                 <span
                   title="Nuevo ingreso"
                   aria-label="Nuevo ingreso"
-                  className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[#fdb400]/25 text-[#8c1919]"
+                  className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[#fdb400] text-[#1F2937]"
                 >
                   <svg
                     viewBox="0 0 24 24"

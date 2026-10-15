@@ -1,18 +1,12 @@
 "use client";
 
-import { motion } from "framer-motion";
+import Image from "next/image";
+import { AnimatePresence, motion } from "framer-motion";
 import { Tramite } from "@/navegation/tramites-admisiones";
 
 interface FichaDerechaProps {
   tramite: Tramite;
 }
-
-const CalendarIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className="w-full h-full">
-    <rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" strokeWidth="2" />
-    <path d="M3 10h18M8 3v4M16 3v4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-  </svg>
-);
 
 const UserIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className="w-full h-full">
@@ -30,63 +24,64 @@ export function FichaDerecha({ tramite }: FichaDerechaProps) {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.45, ease: "easeOut" }}
-      className="order-1 lg:order-2 w-full border-t border-gray-100 pt-8 lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0"
+      className="relative order-1 lg:order-2 w-full h-[560px] lg:h-[640px] shrink-0 overflow-hidden rounded-2xl bg-[#1a1a1a] text-white lg:sticky lg:top-46 lg:self-start"
     >
-      <div className="px-0 pb-4 border-b border-gray-100">
-        <h3 className="font-extrabold text-[length:var(--fs-lg)] leading-[var(--lh-tight)] mt-1">
+      {/* Imagen de fondo del trámite ocupando toda la ficha */}
+      <AnimatePresence initial={false}>
+        <motion.div
+          key={tramite.id}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+          className="absolute inset-0"
+        >
+          <Image
+            src={tramite.imagen}
+            alt=""
+            fill
+            sizes="(min-width: 1024px) 380px, 100vw"
+            className="object-cover"
+          />
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Difuminado inferior para garantizar la legibilidad del texto */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 bottom-0 h-[65%] bg-linear-to-t from-black/95 via-black/70 to-transparent"
+      />
+
+      {/* Difuminado superior para el título */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 top-0 h-[40%] bg-linear-to-b from-black/80 via-black/40 to-transparent"
+      />
+
+      <div className="absolute inset-x-0 top-0 z-10 p-6 lg:p-8">
+        <span aria-hidden="true" className="mb-3 block h-1 w-12 bg-[#fdb400]" />
+        <h3 className="line-clamp-3 font-extrabold uppercase tracking-tight text-[length:var(--fs-h3)] leading-[var(--lh-tight)] drop-shadow-lg">
           {tramite.tituloFicha}
         </h3>
       </div>
 
-      <div className="px-0 pt-6 flex flex-col gap-6">
-        <div className="flex flex-col gap-4">
-          <div className="flex items-center gap-2 mb-2">
-            <span className="w-5 h-5 text-[#8c1919] shrink-0">
-              <CalendarIcon />
-            </span>
-            <h4 className="font-extrabold uppercase tracking-wide text-[#8c1919] text-[length:var(--fs-sm)]">
-              Fechas
-            </h4>
-          </div>
-          <ul className="flex flex-col gap-3">
-            {tramite.fechas.map((fecha, i) => {
-              const separator = fecha.indexOf(":");
-              const etiqueta =
-                separator > -1 ? fecha.slice(0, separator).trim() : null;
-              const valor =
-                separator > -1 ? fecha.slice(separator + 1).trim() : fecha;
-
-              return (
-                <li key={i} className="border-l-4 border-[#fdb400] pl-3 py-0.5">
-                  {etiqueta && (
-                    <span className="block text-[length:var(--fs-2xs)] font-bold uppercase tracking-wide text-gray-500">
-                      {etiqueta}
-                    </span>
-                  )}
-                  <span className="block font-bold text-[#8c1919] text-[length:var(--fs-base)] leading-[var(--lh-snug)]">
-                    {valor}
-                  </span>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
+      <div className="relative z-10 flex h-full flex-col justify-end gap-5 p-6 lg:p-8">
 
         <div>
           <div className="flex items-center gap-2 mb-2">
-            <span className="w-4 h-4 text-[#8c1919] shrink-0">
+            <span className="w-4 h-4 text-[#fdb400] shrink-0">
               <UserIcon />
             </span>
-            <h4 className="font-bold text-[length:var(--fs-sm)] text-[#8c1919]">
+            <h4 className="font-bold text-[length:var(--fs-sm)] text-[#fdb400]">
               ¿Quién puede aplicar?
             </h4>
           </div>
           {QuienPuedeContent ? (
-            <div className="admisiones-contenido text-[length:var(--fs-sm)] leading-[var(--lh-normal)] text-gray-600">
+            <div className="admisiones-contenido text-[length:var(--fs-sm)] leading-[var(--lh-normal)] text-white/90">
               <QuienPuedeContent />
             </div>
           ) : (
-            <p className="text-[length:var(--fs-sm)] leading-[var(--lh-normal)] text-gray-600">
+            <p className="text-[length:var(--fs-sm)] leading-[var(--lh-normal)] text-white/90">
               {tramite.quienPuedeAplicar}
             </p>
           )}
@@ -96,7 +91,7 @@ export function FichaDerecha({ tramite }: FichaDerechaProps) {
           href="https://funcionarios.portaloas.udistrital.edu.co/admisiones/"
           target="_blank"
           rel="noreferrer"
-          className="w-full bg-[#fdb400] hover:bg-[#ffd75e] text-black font-extrabold text-[length:var(--fs-base)] py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer"
+          className="w-full bg-[#fdb400] hover:bg-[#ffd75e] text-[#1F2937] font-extrabold text-[length:var(--fs-base)] py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer"
         >
           Iniciar {tramite.nombreTab.toLowerCase()} →
         </a>
