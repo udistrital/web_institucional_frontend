@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 import { Lato, Montserrat } from "next/font/google";
-import ContactWidget from "@/components/contact-widget/contact-widget";
-import Footer from "@/components/footer/footer";
-import FooterReveal from "@/components/footer/footer-reveal";
-import Header from "@/components/header/header";
-import AudienceNav from "@/components/header/audience-nav/audience-nav";
+import ContactWidget from "@/components/ui/contact-widget/contact-widget";
+import Footer from "@/components/layout/footer/footer";
+import FooterReveal from "@/components/layout/footer/footer-reveal";
+import Header from "@/components/layout/header/header";
+import AudienceNav from "@/components/layout/header/audience-nav/audience-nav";
 import "./globals.css";
-import BreadCrumbs from "@/components/bread-crumbs/bread-crumbs";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
