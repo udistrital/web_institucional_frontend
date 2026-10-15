@@ -5,6 +5,7 @@ import Hero from "@/components/hero/hero";
 import BreadCrumbs from "@/components/bread-crumbs/bread-crumbs";
 import InfoCard from "./components/InfoCard";
 import { TramitesSection } from "./components/tramites";
+import Buttomsheet from "@/components/buttomSheet/buttomSheet";
 
 export const metadata: Metadata = {
   title: "Servicios - Aspirantes",
@@ -65,6 +66,22 @@ export default function ServiciosAspirantesPage() {
           variant="image"
         />
       </div>
+      <section className="max-w-7xl mx-auto px-6 pb-12">
+        <h2 className="text-xl sm:text-2xl font-semibold tracking-wide text-[#1a1a1a] mb-4">
+          Enlaces de interés
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 w-full">
+          <Buttomsheet link="#" Style="red" variant="big" className="w-full">
+            Preguntas frecuentes
+          </Buttomsheet>
+          <Buttomsheet link="#" Style="red" variant="big" className="w-full">
+            Cupos especiales
+          </Buttomsheet>
+          <Buttomsheet link="#" Style="red" variant="big" className="w-full">
+            Inhabilidades
+          </Buttomsheet>
+        </div>
+      </section>
     </main>
   );
 }

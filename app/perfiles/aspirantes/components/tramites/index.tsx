@@ -79,7 +79,7 @@ export const TramitesSection: React.FC = () => {
     <MotionConfig reducedMotion="user">
       <section
         id="tramites"
-        className="w-full scroll-mt-32 border-y border-gray-200 bg-[#F8FAFC] py-20 overflow-x-hidden"
+        className="w-full scroll-mt-32 border-y border-gray-200 bg-[#F8FAFC] py-8 overflow-x-clip"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <header className="flex flex-col gap-3 mb-8">

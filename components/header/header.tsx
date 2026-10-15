@@ -22,7 +22,6 @@ export default function Header() {
         <div className="shrink-0">
           <Brand />
         </div>
-
         <div className="flex-1 flex justify-end min-w-0">
           <MainMenu />
         </div>

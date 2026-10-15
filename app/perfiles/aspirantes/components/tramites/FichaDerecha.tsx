@@ -24,7 +24,7 @@ export function FichaDerecha({ tramite }: FichaDerechaProps) {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.45, ease: "easeOut" }}
-      className="relative order-1 lg:order-2 w-full h-[560px] lg:h-[640px] shrink-0 overflow-hidden rounded-2xl bg-[#1a1a1a] text-white"
+      className="relative order-1 lg:order-2 w-full h-[560px] lg:h-[640px] shrink-0 overflow-hidden rounded-2xl bg-[#1a1a1a] text-white lg:sticky lg:top-46 lg:self-start"
     >
       {/* Imagen de fondo del trámite ocupando toda la ficha */}
       <AnimatePresence initial={false}>

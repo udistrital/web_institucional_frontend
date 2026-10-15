@@ -6,6 +6,7 @@ import FooterReveal from "@/components/footer/footer-reveal";
 import Header from "@/components/header/header";
 import AudienceNav from "@/components/header/audience-nav/audience-nav";
 import "./globals.css";
+import BreadCrumbs from "@/components/bread-crumbs/bread-crumbs";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
