@@ -44,8 +44,24 @@ el nombre del servicio interno de Compose, no `localhost`:
 ```env
 DRUPAL_BASE_URL=http://backend:80
 NEXT_PUBLIC_DRUPAL_BASE_URL=http://localhost:8080
-NEXT_IMAGE_DOMAIN=backend
+NEXT_IMAGE_DOMAIN=localhost
 ```
+
+Si abres el frontend desde un celular u otro equipo de la red local, `localhost`
+apunta a ese dispositivo y las imágenes no podrán cargarse. Define la URL y el
+dominio públicos de Drupal con la IP LAN del equipo donde corre Docker antes de
+levantar Compose:
+
+```bash
+NEXT_PUBLIC_DRUPAL_BASE_URL=http://10.80.0.173:8080 \
+NEXT_IMAGE_DOMAIN=10.80.0.173 \
+docker compose up --build
+```
+
+La IP debe reemplazarse por la que tenga tu equipo en la red y el puerto `8080`
+debe ser accesible desde el celular. Si el sitio usa HTTPS, configura también
+`NEXT_IMAGE_PROTOCOL=https` y usa una URL HTTPS para Drupal para evitar contenido
+mixto.
 
 La estructura esperada por el Compose local es:
 
