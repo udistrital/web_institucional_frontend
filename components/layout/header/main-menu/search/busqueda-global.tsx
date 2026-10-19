@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import Buscador from "./buscador";
@@ -19,6 +20,11 @@ export default function BusquedaGlobal({
   navigationItems,
 }: BusquedaGlobalProps) {
   const [searchQuery, setSearchQuery] = useState("");
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
 
   const searchResults = useMemo(() => {
     if (!searchQuery.trim()) return [];
@@ -52,11 +58,13 @@ export default function BusquedaGlobal({
     onClose();
   };
 
-  return (
+  if (!mounted) return null;
+
+  return createPortal(
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 z-[60] flex flex-col bg-black/70 backdrop-blur-md"
+          className="fixed inset-0 z-[70] flex flex-col bg-black/70 backdrop-blur-md"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, transition: { duration: 0.2 } }}
           exit={{ opacity: 0, transition: { duration: 0.15 } }}
@@ -122,6 +130,7 @@ export default function BusquedaGlobal({
           </div>
         </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 }

@@ -6,9 +6,9 @@ export default function Brand() {
     <Link
     href="/"
     aria-label="Ir a la pagina principal"
-    className="inline-block w-fit shrink-0 py-2 md:py-0 bg-white"
+    className="inline-block w-fit shrink-0 bg-white"
     >
-    <div className={`${styles.logo} flex-col md:flex-row`}>
+    <div className={styles.logo}>
       <img
         src="/escudos/escudo-ud-black.svg"
         alt="Escudo Universidad Distrital"

@@ -24,7 +24,6 @@ function ProfileIcon({ label }: { label: string }) {
   };
 
   if (key.includes("aspirante")) {
-    // Star / aspiring icon
     return (
       <svg {...common}>
         <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
@@ -33,7 +32,6 @@ function ProfileIcon({ label }: { label: string }) {
   }
 
   if (key.includes("estudiante")) {
-    // Book icon
     return (
       <svg {...common}>
         <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
@@ -43,7 +41,6 @@ function ProfileIcon({ label }: { label: string }) {
   }
 
   if (key.includes("educador")) {
-    // Chalkboard / teaching icon
     return (
       <svg {...common}>
         <path d="M12 20h9" />
@@ -53,7 +50,6 @@ function ProfileIcon({ label }: { label: string }) {
   }
 
   if (key.includes("administrativo")) {
-    // Briefcase icon
     return (
       <svg {...common}>
         <rect width="20" height="14" x="2" y="7" rx="2" ry="2" />
@@ -62,7 +58,6 @@ function ProfileIcon({ label }: { label: string }) {
     );
   }
 
-  // Fallback
   return (
     <svg {...common}>
       <circle cx="12" cy="12" r="10" />
@@ -75,6 +70,7 @@ export default function AudienceButton({ profile }: AudienceButtonProps) {
   const ref = useRef<HTMLDivElement>(null);
   const openTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
   const closeTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const isHoveringRef = useRef(false);
   const reduceMotion = useReducedMotion();
 
   function clearHoverTimers() {
@@ -130,8 +126,14 @@ export default function AudienceButton({ profile }: AudienceButtonProps) {
     <div
       className={`${styles.audienceButtonWrapper} ${open ? styles.audienceButtonWrapperOpen : ""}`}
       ref={ref}
-      onMouseEnter={scheduleOpen}
-      onMouseLeave={scheduleClose}
+      onMouseEnter={() => {
+        isHoveringRef.current = true;
+        scheduleOpen();
+      }}
+      onMouseLeave={() => {
+        isHoveringRef.current = false;
+        scheduleClose();
+      }}
     >
       <button className={styles.audienceButton} aria-expanded={open}>
         <ProfileIcon label={profile.label} />
@@ -148,11 +150,19 @@ export default function AudienceButton({ profile }: AudienceButtonProps) {
             exit="exit"
             transition={reduceMotion ? { duration: 0 } : undefined}
             style={{ transformOrigin: "top left" }}
+            onMouseEnter={() => {
+              isHoveringRef.current = true;
+              clearHoverTimers();
+            }}
+            onMouseLeave={() => {
+              isHoveringRef.current = false;
+              scheduleClose();
+            }}
           >
             {preview.map((child) => (
               <li key={child.href} className={styles.dropdownItem}>
                 <a href={child.href} className={styles.dropdownLink}>
-                  <span>{child.label}</span>
+                  <span>{profile.children?.length ? child.label : child.label}</span>
                   <span aria-hidden="true" className={styles.arrow}>
                     &rarr;
                   </span>

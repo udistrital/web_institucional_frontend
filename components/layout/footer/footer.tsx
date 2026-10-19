@@ -20,13 +20,13 @@ export default function Footer() {
               className="mb-4 h-10 w-auto"
             />
             <p className="mb-6 text-sm leading-6 text-gray-400">
-              Sede Administrativa (Aduanilla de Paiba)
+              <span>Sede Administrativa (Aduanilla de Paiba)</span>
               <br />
-              Carrera 32 No. 12 - 70
+              <span>Carrera 32 No. 12 - 70</span>
               <br />
-              Bogotá D.C., Colombia
+              <span>Bogotá D.C., Colombia</span>
               <br />
-              PBX: (+57 601) 323 9300
+              <span>{"PBX: (+57 601) 323 9300"}</span>
             </p>
             <div className={styles.socialLinks}>
               <a href="#" className={styles.socialLink} aria-label="Facebook">

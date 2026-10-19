@@ -9,3 +9,4 @@ export default function CienciasMatematicasNaturalesPage() {
     <>{/* Contenido de la Facultad de Ciencias Matemáticas y Naturales */}</>
   );
 }
+

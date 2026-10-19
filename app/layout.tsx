@@ -3,8 +3,7 @@ import { Lato, Montserrat } from "next/font/google";
 import ContactWidget from "@/components/ui/contact-widget/contact-widget";
 import Footer from "@/components/layout/footer/footer";
 import FooterReveal from "@/components/layout/footer/footer-reveal";
-import Header from "@/components/layout/header/header";
-import AudienceNav from "@/components/layout/header/audience-nav/audience-nav";
+import HeaderContainer from "@/components/layout/header/header-container";
 import "./globals.css";
 
 const montserrat = Montserrat({
@@ -38,8 +37,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col">
         <FooterReveal footer={<Footer />}>
-          <AudienceNav />
-          <Header />
+          <HeaderContainer />
           <main>{children}</main>
         </FooterReveal>
         <ContactWidget />
