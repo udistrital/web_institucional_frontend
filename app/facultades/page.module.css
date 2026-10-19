@@ -11,7 +11,7 @@
   justify-content: space-between;
   min-height: 21rem;
   overflow: hidden;
-  padding: clamp(3rem, 8vw, 7rem) max(6vw, 1.5rem) clamp(2.75rem, 6vw, 5rem);
+  padding: clamp(3rem, 8vw, 7rem) max(2vw, 1rem) clamp(2.75rem, 6vw, 5rem);
   position: relative;
 }
 
@@ -29,7 +29,7 @@
 .heroContent,
 .content {
   margin: 0 auto;
-  max-width: 1180px;
+  max-width: 1400px;
   width: 100%;
 }
 
@@ -48,23 +48,31 @@
 .heroLead { font-size: var(--fs-md); line-height: var(--lh-snug); margin: 1.25rem 0 0; max-width: 36rem; }
 .heroNumber { color: rgba(255, 255, 255, .2); font-family: var(--font-montserrat), sans-serif; font-size: clamp(6rem, 16vw, 12rem); font-weight: 700; line-height: .7; position: relative; z-index: 1; }
 
-.content { padding: clamp(3rem, 6vw, 5.5rem) max(6vw, 1.5rem); }
+.content { padding: clamp(3rem, 6vw, 5.5rem) max(2vw, 1rem); }
 .sectionHeading { align-items: end; display: flex; gap: 2rem; justify-content: space-between; margin-bottom: 2rem; }
 .sectionKicker { color: var(--institutional-red); margin-bottom: .65rem; }
 .sectionHeading h2 { font-size: var(--fs-h2); line-height: var(--lh-tight); margin: 0; }
 .resultCount { color: #595959; font-size: var(--fs-sm); margin: 0 0 .35rem; white-space: nowrap; }
 .grid { display: grid; gap: 1.5rem; grid-template-columns: 1fr; }
-.card { background: #fff; box-shadow: 0 5px 18px rgba(0, 0, 0, .08); display: grid; grid-template-columns: minmax(11rem, 36%) 1fr; min-width: 0; }
-.cardImage { background: #252525; min-height: 100%; overflow: hidden; position: relative; }
+.card { background: #fff; box-shadow: 0 5px 18px rgba(0, 0, 0, .08); display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(20rem, 1fr); min-width: 0; }
+.mediaColumn { display: flex; flex-direction: column; gap: 1.5rem; grid-column: 2; grid-row: 1; min-width: 0; padding: 2rem; }
+.cardImage { aspect-ratio: 3 / 2; background: #252525; overflow: hidden; position: relative; }
 .image { object-fit: cover; transition: transform 350ms ease; }
 .card:hover .image { transform: scale(1.04); }
 .cardLabel { background: var(--institutional-gold); color: #000; font-size: var(--fs-2xs); font-weight: 700; left: 1rem; letter-spacing: .08em; padding: .35rem .55rem; position: absolute; text-transform: uppercase; top: 1rem; }
 .imageFallback { align-items: center; color: rgba(255, 255, 255, .7); display: flex; font-family: var(--font-montserrat), sans-serif; font-size: 4rem; font-weight: 700; height: 100%; justify-content: center; min-height: 13rem; }
-.cardBody { display: flex; flex-direction: column; min-width: 0; padding: clamp(1.25rem, 2.5vw, 2rem); }
+.cardBody { display: flex; flex-direction: column; grid-column: 1; grid-row: 1; min-width: 0; padding: clamp(2rem, 3vw, 3rem); }
 .card h3 { color: var(--institutional-red); font-size: var(--fs-lg); line-height: var(--lh-tight); margin: 0 0 1.25rem; }
 .dean { border-left: 3px solid var(--institutional-gold); display: flex; flex-direction: column; font-size: var(--fs-sm); gap: .2rem; margin: 0 0 1.25rem; padding-left: .75rem; }
 .dean span { color: #666; font-size: var(--fs-2xs); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
-.details { display: grid; gap: .9rem; margin: 0; }
+.desktopInfo { display: block; }
+.infoPanel { display: none; }
+.infoPanel summary { color: var(--institutional-red); cursor: pointer; display: none; font-size: var(--fs-sm); font-weight: 700; list-style: none; }
+.infoPanel summary::-webkit-details-marker { display: none; }
+.infoPanel summary::after { content: "+"; font-size: 1.35rem; line-height: 1; }
+.infoPanel[open] summary::after { content: "-"; }
+.infoContent { display: block; }
+.details { display: grid; gap: .9rem; grid-template-columns: 1fr; margin: 0; }
 .details div { min-width: 0; }
 .details dt { color: #686868; font-size: var(--fs-2xs); font-weight: 700; letter-spacing: .05em; margin-bottom: .2rem; text-transform: uppercase; }
 .details dd { font-size: var(--fs-sm); margin: 0; overflow-wrap: anywhere; }
@@ -73,6 +81,10 @@
 .website { align-items: center; color: var(--institutional-red); display: inline-flex; font-size: var(--fs-sm); font-weight: 700; gap: .45rem; margin-top: auto; padding-top: 1.5rem; text-decoration: none; }
 .website:hover { color: #000; }
 .website span { font-size: 1.2rem; }
+.mapBlock { margin-top: 0; }
+.mobileMap { display: none; }
+.mapTitle { color: #686868; font-size: var(--fs-2xs); font-weight: 700; letter-spacing: .05em; margin: 0 0 .5rem; text-transform: uppercase; }
+.map { border: 0; display: block; height: 13rem; width: 100%; }
 .emptyState { background: #fff; border-left: 4px solid var(--institutional-gold); padding: 2rem; }
 .emptyState h2 { font-size: var(--fs-xl); margin: 0 0 .5rem; }
 .emptyState p { margin: 0; }
@@ -82,13 +94,25 @@
   .heroNumber { font-size: clamp(5rem, 20vw, 9rem); }
 }
 
-@media (max-width: 560px) {
+@media (max-width: 720px) {
   .hero { min-height: 18rem; }
   .heroNumber { display: none; }
   .sectionHeading { align-items: start; flex-direction: column; gap: .75rem; }
   .resultCount { margin: 0; }
   .card { grid-template-columns: 1fr; }
+  .mediaColumn,
+  .cardBody { grid-column: 1; }
+  .mediaColumn { grid-row: 1; }
+  .cardBody { grid-row: 2; padding: clamp(1.25rem, 2.5vw, 2rem); }
+  .mediaColumn { padding: 1rem; }
   .cardImage { min-height: 14rem; }
+  .details { grid-template-columns: 1fr; }
+  .desktopInfo { display: none; }
+  .infoPanel { border-top: 1px solid #e4e4e4; display: block; margin-top: 0; padding-top: 1rem; }
+  .infoPanel summary { align-items: center; display: flex; justify-content: space-between; }
+  .infoContent { padding-top: 1.25rem; }
+  .desktopMap { display: none; }
+  .mobileMap { display: block; margin-top: 1.25rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

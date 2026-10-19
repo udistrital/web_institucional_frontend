@@ -108,8 +108,7 @@ npm run build     # Genera la exportacion estatica en out/
 
 ## Estructura principal
 
-- `app/page.tsx`: listado de articulos publicados.
-- `app/[...slug]/page.tsx`: pagina individual por alias de Drupal.
+- `app/page.tsx`: pagina principal institucional.
 - `app/acerca-de/page.tsx`: pagina institucional fija.
 - `lib/drupal.ts`: cliente centralizado de `next-drupal`.
 - `next.config.ts`: salida estática y dominios autorizados para imágenes.
