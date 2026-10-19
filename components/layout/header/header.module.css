@@ -44,6 +44,17 @@
     transition: transform 0.4s ease, opacity 0.15s ease;
 }
 
+@media (max-width: 767px) {
+    .shield {
+        width: 44px;
+    }
+
+    .nameBox {
+        width: 160px;
+        height: 22px;
+    }
+}
+
 @media (min-width: 910px) {
     .logo:hover .letter {
         transform: translateX(-100%);

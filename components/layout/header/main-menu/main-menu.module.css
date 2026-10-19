@@ -225,23 +225,102 @@
     transform: scale(0.95);
 }
 
+.mobileBackdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 79;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(2px);
+}
+
 .mobilePanel {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 20;
+    position: fixed;
+    inset: 0;
+    z-index: 80;
+    display: flex;
+    flex-direction: column;
     width: 100%;
+    height: 100dvh;
     background: white;
-    box-shadow: 0 10px 25px rgb(0 0 0 / 12%);
+    will-change: transform;
+}
+
+.mobilePanelBody {
+    flex: 1;
+    overflow: hidden;
+    overscroll-behavior: contain;
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+.mobileLevel {
+    height: 100%;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    will-change: transform, opacity;
+}
+
+.mobilePanelTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 3.5rem;
+    padding: 0.5rem 0.75rem 0.5rem 1.25rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.mobilePanelLabel {
+    color: #111827;
+    font-weight: 800;
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.mobileCloseButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 9999px;
+    color: #111827;
+}
+
+.mobileCloseButton:active {
+    background: #f3f4f6;
+}
+
+.mobilePanelBody {
+    flex: 1;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+.mobileLevelTitle {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 1.25rem;
+    border-bottom: 1px solid #e5e7eb;
+    background: #f9fafb;
+    color: var(--color-ud-rojo);
+    font-size: 1.25rem;
+    font-weight: 800;
+    line-height: 1.3;
+}
+
+.mobileLevelTitleHint {
+    color: #4b5563;
+    font-size: 0.8rem;
+    font-weight: 600;
 }
 
 .mobileBackButton {
     display: flex;
     align-items: center;
     gap: 0.25rem;
-    width: 100%;
-    padding: 0.75rem 1.25rem;
-    background: #f3f4f6;
+    padding: 0.5rem 0;
     color: var(--color-ud-rojo);
     font-weight: 700;
     font-size: 0.875rem;
@@ -270,24 +349,4 @@
 
 .mobileItemLink {
     justify-content: flex-start;
-}
-
-.mobileItemRow {
-    display: flex;
-    align-items: stretch;
-    border-bottom: 1px solid #e5e7eb;
-}
-
-.mobileItemRow .mobileItemLink {
-    flex: 1;
-    border-bottom: none;
-}
-
-.mobileItemExpand {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 1.25rem;
-    color: #111827;
-    border-left: 1px solid #e5e7eb;
 }
