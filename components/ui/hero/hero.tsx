@@ -61,10 +61,10 @@ export default function Hero({
 
   return (
     <section
-      className={`relative flex-col justify-center ${heightClases[height]} px-6 text-white overflow-hidden`}
+      className={`relative isolate flex flex-col justify-center ${heightClases[height]} px-6 text-white overflow-hidden`}
     >
       <motion.div
-        className="absolute inset-0 -z-10"
+        className="absolute inset-0 z-0"
         initial={{ scale: 1.08 }}
         animate={{ scale: 1 }}
         transition={{ duration: 1.4, ease: "easeOut" }}
@@ -74,11 +74,11 @@ export default function Hero({
           alt={title}
           fill
           priority
-          className="object-cover object-center brightness-50"
+          className="object-cover object-center brightness-50 md:object-[65%_center]"
         />
       </motion.div>
       <motion.div
-        className={`max-w-4xl mx-auto flex flex-col z-10 ${aligmentClases[alignment]}`}
+        className={`relative z-10 max-w-4xl mx-auto flex flex-col ${aligmentClases[alignment]}`}
         variants={container}
         initial="hidden"
         animate="show"
@@ -100,17 +100,17 @@ export default function Hero({
         {(primaryButton || secundaryButton) && (
           <motion.div
             variants={item}
-            className="flex flex-wrap gap-4 mt-2"
+            className="mt-2 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:gap-4"
           >
             {primaryButton && (
               <motion.span
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.97 }}
-                className="inline-block"
+                className="inline-block w-full sm:w-auto"
               >
                 <Link
                   href={primaryButton.href}
-                  className="inline-block bg-[#8c1919] hover:bg-[#fdb400] hover:text-black border border-white text-white font-extrabold px-6 py-3 rounded-lg transition text-2xl"
+                  className="inline-block w-full rounded-lg border border-white bg-[#8c1919] px-4 py-3 text-center text-base font-extrabold text-white transition hover:bg-[#fdb400] hover:text-black sm:w-auto sm:px-6 sm:text-lg md:text-xl"
                 >
                   {primaryButton.text}
                 </Link>
@@ -120,11 +120,11 @@ export default function Hero({
               <motion.span
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.97 }}
-                className="inline-block"
+                className="inline-block w-full sm:w-auto"
               >
                 <Link
                   href={secundaryButton.href}
-                  className="inline-block bg-[#8c1919] hover:bg-[#fdb400] hover:text-black border border-white text-white font-extrabold px-6 py-3 rounded-lg transition text-2xl"
+                  className="inline-block w-full rounded-lg border border-white bg-[#8c1919] px-4 py-3 text-center text-base font-extrabold text-white transition hover:bg-[#fdb400] hover:text-black sm:w-auto sm:px-6 sm:text-lg md:text-xl"
                 >
                   {secundaryButton.text}
                 </Link>

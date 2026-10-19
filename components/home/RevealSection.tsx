@@ -13,7 +13,9 @@ export default function RevealSection({ children, delay = 0 }: RevealSectionProp
 
   return (
     <motion.div
-      initial={reduceMotion ? false : { opacity: 0, y: 32 }}
+      // Mantiene el contenido visible incluso si la animación de viewport no
+      // llega a ejecutarse (por ejemplo, antes de hidratar o en móviles).
+      initial={reduceMotion ? false : { opacity: 1, y: 12 }}
       whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.16, margin: "0px 0px -8%" }}
       transition={
