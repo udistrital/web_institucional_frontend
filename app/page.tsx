@@ -34,7 +34,7 @@ export default async function Home() {
       <RevealSection delay={0.04}>
         <EnrollmentSection />
       </RevealSection>
-      <RevealSection delay={0.04}>
+      <RevealSection delay={0.04} disableMotion>
         <StudentServicesSection />
       </RevealSection>
       <RevealSection delay={0.04}>

@@ -1,10 +1,10 @@
-import Image from "next/image";
-import styles from "./home.module.css";
+import NewsCarousel from "./NewsCarousel";
 
 type DrupalNewsResource = {
   id?: string;
   attributes?: {
     title?: string;
+    created?: string;
     field_resumen?: string | null;
     path?: {
       alias?: string | null;
@@ -45,6 +45,7 @@ const fallbackNews = [
     description: "Conoce todos los detalles de esta actividad cultural de la Universidad Distrital.",
     image: "/image/vida universitaria.jpeg",
     alt: "Afiche de una actividad cultural universitaria",
+    publishedAt: "2026-10-20T00:00:00Z",
   },
   {
     id: "fallback-2",
@@ -52,6 +53,7 @@ const fallbackNews = [
     description: "Consulta las novedades y actividades de nuestra comunidad universitaria.",
     image: "/image/compromiso social.jpeg",
     alt: "Comunidad universitaria participando en una actividad",
+    publishedAt: "2026-10-13T00:00:00Z",
   },
   {
     id: "fallback-3",
@@ -59,6 +61,23 @@ const fallbackNews = [
     description: "Conoce los proyectos y avances que nacen de la investigación universitaria.",
     image: "/image/investigacion.jpeg",
     alt: "Estudiante consultando material de investigación",
+    publishedAt: "2026-10-06T00:00:00Z",
+  },
+  {
+    id: "fallback-4",
+    title: "La comunidad universitaria construye nuevas oportunidades",
+    description: "Descubre las iniciativas que fortalecen la vida universitaria.",
+    image: "/image/vida universitaria.jpeg",
+    alt: "Integrantes de la comunidad universitaria",
+    publishedAt: "2026-09-29T00:00:00Z",
+  },
+  {
+    id: "fallback-5",
+    title: "Nuevas experiencias para aprender y compartir",
+    description: "Explora las actividades que enriquecen la experiencia universitaria.",
+    image: "/image/compromiso social.jpeg",
+    alt: "Comunidad universitaria reunida",
+    publishedAt: "2026-09-22T00:00:00Z",
   },
 ];
 
@@ -97,7 +116,7 @@ async function getNews() {
   apiUrl.searchParams.set("filter[status]", "1");
   apiUrl.searchParams.set("include", "field_imagen");
   apiUrl.searchParams.set("sort", "-created");
-  apiUrl.searchParams.set("page[limit]", "3");
+  apiUrl.searchParams.set("page[limit]", "8");
 
   const isDev = process.env.NODE_ENV === "development";
 
@@ -131,10 +150,12 @@ async function getNews() {
           description,
           image: image || fallbackNews[0].image,
           alt,
+          publishedAt: resource.attributes?.created || new Date().toISOString(),
+          href: resource.attributes?.path?.alias || "#noticias",
         };
       })
       .filter((item) => item.title && item.description)
-      .slice(0, 3);
+      .slice(0, 8);
 
     return items.length ? items : fallbackNews;
   } catch (error) {
@@ -143,26 +164,35 @@ async function getNews() {
   }
 }
 
+export type NewsItem = {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  alt: string;
+  publishedAt: string;
+  href?: string;
+}
+
 export default async function NewsSection() {
   const news = await getNews();
 
   return (
-    <section className={styles["news-section"]} id="noticias" aria-labelledby="news-title">
-      <div className={styles["news-content"]}>
-        <h2 id="news-title">Noticias</h2>
-        <div className={styles["news-grid"]}>
-          {news.map((item) => (
-            <article className={styles["news-card"]} key={item.id}>
-              <Image src={item.image} alt={item.alt} width={640} height={360} />
-              <div className={styles["news-card-content"]}>
-                <h3>{item.title}</h3>
-                <p>{item.description}</p>
-                <a href="#noticias">Ver mas</a>
-              </div>
-            </article>
-          ))}
-        </div>
-        <a className={styles["news-more-link"]} href="#noticias">Ver todas las noticias</a>
+    <section className="bg-[#f5f5f5] px-4 py-[clamp(2rem,3.5vw,2.75rem)]" id="noticias" aria-labelledby="news-title">
+      <div className="mx-auto max-w-[var(--content-width)]">
+        <h2
+          className="mb-8 font-[var(--font-montserrat)] text-[length:var(--fs-h2)] font-bold leading-[.9] text-[var(--institutional-red)]"
+          id="news-title"
+        >
+          Noticias
+        </h2>
+        <NewsCarousel news={news} />
+        <a
+          className="mx-auto mt-10 block w-fit rounded-[5px] bg-[var(--institutional-red)] px-11 py-3 font-semibold text-white transition-colors hover:bg-[var(--institutional-gold)] hover:text-black focus-visible:outline-none"
+          href="#noticias"
+        >
+          Ver todas las noticias
+        </a>
       </div>
     </section>
   );
