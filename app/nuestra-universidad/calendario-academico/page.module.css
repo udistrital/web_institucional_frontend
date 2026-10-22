@@ -1,0 +1,138 @@
+.page {
+  background: #f7f7f5;
+  min-height: 70vh;
+}
+
+.hero {
+  align-items: end;
+  background: var(--institutional-red);
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  min-height: 21rem;
+  overflow: hidden;
+  padding: clamp(3rem, 8vw, 7rem) max(6vw, 1.5rem)
+    clamp(2.75rem, 6vw, 5rem);
+  position: relative;
+}
+
+.hero::after {
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  content: "";
+  height: 28rem;
+  position: absolute;
+  right: -8rem;
+  top: -13rem;
+  width: 28rem;
+}
+
+.heroContent,
+.content {
+  margin: 0 auto;
+  max-width: 1180px;
+  width: 100%;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+}
+
+.eyebrow,
+.sectionKicker {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin: 0 0 1rem;
+  text-transform: uppercase;
+}
+
+.eyebrow {
+  color: var(--institutional-gold);
+}
+
+.hero h1 {
+  font-size: var(--fs-h1);
+  line-height: var(--lh-tight);
+  margin: 0;
+}
+
+.heroLead {
+  font-size: var(--fs-md);
+  line-height: var(--lh-snug);
+  margin: 1.25rem 0 0;
+  max-width: 38rem;
+}
+
+.heroNumber {
+  color: rgba(255, 255, 255, 0.2);
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: clamp(6rem, 16vw, 12rem);
+  font-weight: 700;
+  line-height: 0.7;
+  position: relative;
+  z-index: 1;
+}
+
+.content {
+  padding: clamp(3rem, 6vw, 5.5rem) max(6vw, 1.5rem);
+  max-width: 1400px;
+}
+
+.sectionHeading {
+  align-items: end;
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.sectionKicker {
+  color: var(--institutional-red);
+  margin-bottom: 0.65rem;
+}
+
+.sectionHeading h2 {
+  font-size: var(--fs-h2);
+  line-height: var(--lh-tight);
+  margin: 0;
+}
+
+.unavailable {
+  background: #fff;
+  border-left: 4px solid var(--institutional-gold);
+  padding: 2rem;
+}
+
+.unavailable h2 {
+  font-size: var(--fs-xl);
+  margin: 0 0 0.5rem;
+}
+
+.unavailable p {
+  color: #555;
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .heroNumber {
+    font-size: clamp(5rem, 20vw, 9rem);
+  }
+}
+
+@media (max-width: 560px) {
+  .hero {
+    min-height: 18rem;
+  }
+
+  .heroNumber {
+    display: none;
+  }
+
+  .sectionHeading {
+    align-items: start;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}
