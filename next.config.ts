@@ -35,7 +35,7 @@ const remotePatterns = [
 }))
 
 const nextConfig: NextConfig = {
-  allowedDevOrigins: ["10.80.0.173", "10.80.0.147"],
+  allowedDevOrigins: ["54.196.46.148"],
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   output: "export",
   trailingSlash: true,
