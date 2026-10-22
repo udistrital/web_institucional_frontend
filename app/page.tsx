@@ -1,6 +1,7 @@
 import styles from "@/components/home/home.module.css";
 import LiveEmisora from "@/components/ui/emisoraLive/emisora-live";
 import RevealSection from "@/components/home/RevealSection";
+import { getFaculties } from "@/lib/faculties";
 
 import {
   EnrollmentSection,
@@ -13,7 +14,9 @@ import {
   UniversityPromoSection,
 } from "@/components/home";
 
-export default function Home() {
+export default async function Home() {
+  const faculties = await getFaculties();
+
   return (
     <div className={styles.homeShowcase}>
       <RevealSection>
@@ -23,7 +26,7 @@ export default function Home() {
         <QuickLinksSection />
       </RevealSection>
       <RevealSection delay={0.04}>
-        <FacultiesSection />
+        <FacultiesSection faculties={faculties} />
       </RevealSection>
       <RevealSection delay={0.04}>
         <NewsSection />
@@ -31,7 +34,7 @@ export default function Home() {
       <RevealSection delay={0.04}>
         <EnrollmentSection />
       </RevealSection>
-      <RevealSection delay={0.04}>
+      <RevealSection delay={0.04} disableMotion>
         <StudentServicesSection />
       </RevealSection>
       <RevealSection delay={0.04}>

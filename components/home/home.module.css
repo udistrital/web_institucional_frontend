@@ -20,18 +20,17 @@
   .homeShowcase { --content-width: 92vw; }
 }
 
-/*
-  El banner muestra únicamente imágenes (sin texto), completas y sin recortes.
-  Escritorio: 1700x400 (4.25/1). Móvil: 400x400 (1/1). Se usa object-fit:
-  contain para mostrar la imagen íntegra.
-*/
+/* El banner conserva la proporción de la variante activa para que los controles
+   queden siempre sobre el borde inferior de la imagen visible. */
 .hero { aspect-ratio: 1700 / 400; isolation: isolate; overflow: hidden; position: relative; width: 100%; }
 .hero-media { inset: 0; position: absolute; }
 .hero-media { background: #000; z-index: 0; }
 .hero-slide { display: block; inset: 0; position: absolute; }
 .hero-slide { opacity: 0; pointer-events: none; transition: opacity 500ms ease; }
 .hero-slide.is-active { opacity: 1; pointer-events: auto; }
+.hero-picture { display: block; inset: 0; position: absolute; }
 .hero-image { object-fit: contain; transition: filter 300ms ease; }
+.hero-image-mobile { display: none; }
 /* Efecto hover sutil (sin agrandar) solo para banners que redireccionan */
 a.hero-slide { cursor: pointer; }
 a.hero-slide:hover .hero-image,
@@ -232,8 +231,10 @@ a.hero-slide:focus-visible .hero-image { filter: brightness(1.06) saturate(1.05)
 
 @media (max-width: 720px) {
   /* En móvil se usa la misma imagen principal, ajustada al ancho de pantalla. */
-  .hero { aspect-ratio: 1700 / 400; height: auto; }
-  .hero-image { object-fit: contain; }
+  .hero { aspect-ratio: 1 / 1; height: auto; }
+  .hero-image-desktop { display: none; }
+  .hero-image-mobile { display: block; }
+  .hero-image { height: 100% !important; max-height: 100%; max-width: 100%; object-fit: contain; width: 100% !important; }
   .hero-controls { z-index: 3; }
   .audience-carousel { gap: .5rem; }
   .carousel-dots { display: flex; }
@@ -261,8 +262,8 @@ a.hero-slide:focus-visible .hero-image { filter: brightness(1.06) saturate(1.05)
   .enrollment-primary, .enrollment-secondary { flex: 1 1 auto; min-width: 0; text-align: center; }
   .enrollment-image { display: none; }
   /* La imagen se ancla al inicio de StudentServicesSection y sube entrando en EnrollmentSection. */
-  .services-lead-image { bottom: 100%; display: block; height: auto; left: 50%; max-width: 40vw; position: absolute; transform: translateX(-50%); width: auto; z-index: 5; }
-  .student-services-section { border-top-width: 2rem; padding: 2.5rem 1rem; z-index: 2; }
+  .services-lead-image { bottom: 100%; display: block; height: auto; left: 50%; max-width: 40vw; position: absolute; transform: translateX(-50%); width: auto; z-index: 10; }
+  .student-services-section { border-top-width: 2rem; isolation: isolate; padding: 2.5rem 1rem; z-index: 3; }
   .student-services-grid { gap: 1px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .student-service { align-items: center; max-width: none; min-height: 0; padding: 1.5rem .75rem; text-align: center; }
   .student-service:not(:first-child) { box-shadow: none; }
@@ -296,7 +297,7 @@ a.hero-slide:focus-visible .hero-image { filter: brightness(1.06) saturate(1.05)
 
 /* ===== Móvil pequeño (<= 480px) ===== */
 @media (max-width: 480px) {
-  .hero { aspect-ratio: 1700 / 400; height: auto; }
+  .hero { aspect-ratio: 1 / 1; height: auto; }
   .audience-grid > * { flex: 0 0 100%; }
   .student-services-grid { grid-template-columns: 1fr; }
   .student-service { padding: 1.5rem .75rem; }

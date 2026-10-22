@@ -14,14 +14,25 @@ type HeroCarouselProps = {
 
 function SlideMedia({ slide, priority }: { slide: HeroSlide; priority: boolean }) {
   return (
-    <Image
-      src={slide.image}
-      alt={slide.alt}
-      fill
-      priority={priority}
-      sizes="100vw"
-      className={styles["hero-image"]}
-    />
+    <div className={styles["hero-picture"]}>
+      <Image
+        src={slide.image}
+        alt={slide.alt}
+        fill
+        priority={priority}
+        sizes="100vw"
+        className={`${styles["hero-image"]} ${styles["hero-image-desktop"]}`}
+      />
+      <Image
+        src={slide.mobileImage}
+        alt=""
+        fill
+        priority={priority}
+        sizes="100vw"
+        className={`${styles["hero-image"]} ${styles["hero-image-mobile"]}`}
+        aria-hidden="true"
+      />
+    </div>
   );
 }
 

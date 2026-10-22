@@ -64,6 +64,10 @@ function resolveImageUrl(path: string | undefined, baseUrl: string) {
   }
 }
 
+function getPublicBaseUrl() {
+  return process.env.NEXT_PUBLIC_DRUPAL_BASE_URL || getServerBaseUrl();
+}
+
 function getMapUrl(address: string | null | undefined) {
   if (!address) return null;
 
@@ -128,7 +132,7 @@ async function getFaculties(): Promise<Faculty[]> {
 
     const json = (await response.json()) as FacultiesResponse;
     const included = json.included ?? [];
-    const baseUrl = getServerBaseUrl();
+    const imageBaseUrl = getPublicBaseUrl();
 
     return (json.data ?? []).map((faculty) => {
       const imageReference = faculty.relationships?.field_imagen_facultad?.data;
@@ -138,7 +142,7 @@ async function getFaculties(): Promise<Faculty[]> {
 
       return {
         ...faculty,
-        imageUrl: resolveImageUrl(imageFile?.attributes?.uri?.url, baseUrl),
+        imageUrl: resolveImageUrl(imageFile?.attributes?.uri?.url, imageBaseUrl),
         imageAlt: imageReference?.meta?.alt || faculty.attributes.title || "Facultad",
       };
     });
