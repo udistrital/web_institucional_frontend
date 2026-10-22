@@ -55,7 +55,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   } catch (error) {
     if (!allowEmptyExport) throw error
   }
-  const staticUrls = ["/", "/acerca-de/"].map((path) =>
+  const staticUrls = [
+    "/",
+    "/acerca-de/",
+    "/nuestra-universidad/calendario-academico/",
+  ].map((path) =>
     new URL(path, siteUrl).toString(),
   )
 
