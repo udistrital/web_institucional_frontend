@@ -2,15 +2,32 @@ export type Faculty = {
   id: string;
   title: string;
   href: string;
+  attributes: {
+    title: string;
+    field_correo_electronico?: string | null;
+    field_direccion?: string | null;
+    field_horario?: string | null;
+    field_nombre_decano?: string | null;
+    field_pagina_web?: { uri?: string | null } | null;
+    field_pbx?: { processed?: string | null } | null;
+  };
   imageUrl: string | null;
   imageAlt: string;
 };
+
+import { fetchJson, getPublicBaseUrl, getServerBaseUrl, resolveUrl } from "./api";
 
 type FacultyResource = {
   id: string;
   attributes: {
     title?: string;
     path?: { alias?: string | null } | null;
+    field_correo_electronico?: string | null;
+    field_direccion?: string | null;
+    field_horario?: string | null;
+    field_nombre_decano?: string | null;
+    field_pagina_web?: { uri?: string | null } | null;
+    field_pbx?: { processed?: string | null } | null;
   };
   relationships?: {
     field_imagen_facultad?: {
@@ -30,33 +47,6 @@ type FacultiesResponse = {
   included?: IncludedFile[];
 };
 
-function getServerBaseUrl() {
-  const isDocker = Boolean(
-    process.env.DRUPAL_BASE_URL &&
-      !process.env.NEXT_PUBLIC_DRUPAL_BASE_URL?.includes("localhost"),
-  );
-
-  return (
-    (isDocker ? process.env.DRUPAL_BASE_URL : process.env.NEXT_PUBLIC_DRUPAL_BASE_URL) ||
-    process.env.DRUPAL_BASE_URL ||
-    "http://localhost:8080"
-  );
-}
-
-function resolveImageUrl(path: string | undefined, baseUrl: string) {
-  if (!path) return null;
-
-  try {
-    return new URL(path, baseUrl).toString();
-  } catch {
-    return null;
-  }
-}
-
-function getPublicBaseUrl() {
-  return process.env.NEXT_PUBLIC_DRUPAL_BASE_URL || getServerBaseUrl();
-}
-
 export async function getFaculties(): Promise<Faculty[]> {
   const apiUrl = new URL("/jsonapi/node/facultades", getServerBaseUrl());
   apiUrl.searchParams.set("filter[status]", "1");
@@ -64,16 +54,7 @@ export async function getFaculties(): Promise<Faculty[]> {
   apiUrl.searchParams.set("sort", "title");
 
   try {
-    const response = await fetch(
-      apiUrl.toString(),
-      process.env.NODE_ENV === "development"
-        ? { cache: "no-store" }
-        : { next: { revalidate: 3600 } },
-    );
-
-    if (!response.ok) return [];
-
-    const json = (await response.json()) as FacultiesResponse;
+    const json = await fetchJson<FacultiesResponse>(apiUrl);
     const included = json.included ?? [];
     const imageBaseUrl = getPublicBaseUrl();
 
@@ -88,7 +69,16 @@ export async function getFaculties(): Promise<Faculty[]> {
         id: faculty.id,
         title,
         href: faculty.attributes.path?.alias || `/facultades/${faculty.id}`,
-        imageUrl: resolveImageUrl(imageFile?.attributes?.uri?.url, imageBaseUrl),
+        attributes: {
+          title,
+          field_correo_electronico: faculty.attributes.field_correo_electronico,
+          field_direccion: faculty.attributes.field_direccion,
+          field_horario: faculty.attributes.field_horario,
+          field_nombre_decano: faculty.attributes.field_nombre_decano,
+          field_pagina_web: faculty.attributes.field_pagina_web,
+          field_pbx: faculty.attributes.field_pbx,
+        },
+        imageUrl: resolveUrl(imageFile?.attributes?.uri?.url, imageBaseUrl),
         imageAlt: imageReference?.meta?.alt || title,
       };
     });

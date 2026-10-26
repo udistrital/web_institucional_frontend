@@ -1,9 +1,9 @@
-import type { ActividadAcademica } from "@/lib/calendario-academico";
+import type { ActividadAcademica } from "@/types/domain";
 import {
   estadoEvento,
   formatearRangoFechas,
   slugCategoria,
-} from "@/lib/calendario-academico";
+} from "@/lib/calendario";
 import styles from "./CalendarioAcademico.module.css";
 
 type TarjetaActividadProps = {

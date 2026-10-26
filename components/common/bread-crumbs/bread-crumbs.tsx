@@ -12,7 +12,6 @@ export default function BreadCrumbs() {
   };
 
   if (segments.length === 0) return null;
-  const currentTitle = formatLabel(segments[segments.length - 1]);
   return (
     <>
       <nav

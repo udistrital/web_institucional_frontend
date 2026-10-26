@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import type { CategoryNode, Tablero } from "@/components/ti/tableros";
+import type { CategoryNode, Tablero } from "@/types/domain";
 import TableroIframe from "./TableroIframe";
 
 type TablerosExplorerProps = {

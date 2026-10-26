@@ -3,9 +3,8 @@ import "server-only";
 /**
  * Capa de datos para los "tableros" (dashboards) y su taxonomía de categorías.
  *
- * Sigue el mismo patrón de obtención de datos de Drupal que NewsSection /
- * heroData: resolución de URL base según entorno (dev / docker), caché
- * condicional y valores de reserva ante fallos de conexión.
+ * Sigue el patrón común de servicios: DTOs de dominio y respuestas Drupal
+ * privadas para los consumidores de la interfaz.
  */
 
 export type TableroPlatform = string;
@@ -97,29 +96,7 @@ type DrupalTermResponse = {
   data?: DrupalTermResource[];
 };
 
-// ---------------------------------------------------------------------------
-// Resolución de URL base (igual que NewsSection / heroData)
-// ---------------------------------------------------------------------------
-
-function resolveServerBaseUrl(): string {
-  const isServerInsideDocker = Boolean(
-    process.env.DRUPAL_BASE_URL &&
-      !process.env.NEXT_PUBLIC_DRUPAL_BASE_URL?.includes("localhost"),
-  );
-
-  return (
-    (isServerInsideDocker
-      ? process.env.DRUPAL_BASE_URL
-      : process.env.NEXT_PUBLIC_DRUPAL_BASE_URL) ||
-    process.env.DRUPAL_BASE_URL ||
-    "http://localhost:8080"
-  );
-}
-
-function getFetchOptions(): RequestInit {
-  const isDev = process.env.NODE_ENV === "development";
-  return isDev ? { cache: "no-store" } : { next: { revalidate: 3600 } };
-}
+import { fetchJson, getServerBaseUrl } from "./api";
 
 function toNumber(value: number | string | undefined | null): number | null {
   if (typeof value === "number") return value;
@@ -266,11 +243,7 @@ async function fetchTableros(baseUrl: string): Promise<Tablero[]> {
   url.searchParams.set("include", "field_categoria");
   url.searchParams.set("sort", "field_peso_orden,title");
 
-  const response = await fetch(url.toString(), getFetchOptions());
-  if (!response.ok) {
-    throw new Error(`Drupal respondió con HTTP ${response.status} (tableros)`);
-  }
-  const json = (await response.json()) as DrupalTableroResponse;
+  const json = await fetchJson<DrupalTableroResponse>(url);
   return (json.data ?? []).map(mapTablero).filter((t) => t.id && t.embedUrl);
 }
 
@@ -280,16 +253,12 @@ async function fetchCategories(baseUrl: string) {
   url.searchParams.set("include", "parent");
   url.searchParams.set("sort", "weight,name");
 
-  const response = await fetch(url.toString(), getFetchOptions());
-  if (!response.ok) {
-    throw new Error(`Drupal respondió con HTTP ${response.status} (categorías)`);
-  }
-  const json = (await response.json()) as DrupalTermResponse;
+  const json = await fetchJson<DrupalTermResponse>(url);
   return (json.data ?? []).map(mapTerm).filter((t) => t.tid);
 }
 
 export async function getTablerosData(): Promise<TablerosData> {
-  const baseUrl = resolveServerBaseUrl();
+  const baseUrl = getServerBaseUrl();
 
   try {
     const [tableros, terms] = await Promise.all([

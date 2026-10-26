@@ -1,38 +1,25 @@
-import { drupal } from "@/lib/drupal"
+import { getAboutPage } from "@/services/acerca"
 
 export default async function AcercaDePage() {
-  let page: { title: string; body: { processed: string } } | null = null
   const aboutPageUuid = process.env.DRUPAL_ABOUT_PAGE_UUID
 
   if (!aboutPageUuid) {
     return <p>Contenido no disponible.</p>
   }
 
+  let page = null
   try {
-    const result = await drupal.getResource(
-      "node--page",
-      aboutPageUuid,
-      {
-        params: { "fields[node--page]": "title,body" },
-        next: { revalidate: 3600 },
-      }
-    )
-    
-    if (result) {
-      page = result as unknown as { title: string; body: { processed: string } }
-    }
+    page = await getAboutPage(aboutPageUuid)
   } catch {
-    // Drupal no disponible en build time
+    page = null
   }
 
-  if (!page) {
-    return <p>Contenido no disponible.</p>
-  }
+  if (!page) return <p>Contenido no disponible.</p>
 
   return (
     <article>
       <h1>{page.title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: page.body.processed }} />
+      <div dangerouslySetInnerHTML={{ __html: page.bodyHtml }} />
     </article>
   )
 }

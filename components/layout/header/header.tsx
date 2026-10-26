@@ -1,5 +1,3 @@
-"use client";
-
 import Brand from "./brand";
 import MainMenu from "./main-menu/main-menu";
 

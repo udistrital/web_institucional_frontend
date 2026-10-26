@@ -1,6 +1,6 @@
 "use client";
 
-import type { FiltrosCalendario as Filtros } from "@/lib/calendario-academico";
+import type { FiltrosCalendario as Filtros } from "@/types/domain";
 import styles from "./CalendarioAcademico.module.css";
 
 type FiltrosCalendarioProps = {
