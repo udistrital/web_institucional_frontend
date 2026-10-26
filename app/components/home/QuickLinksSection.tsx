@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Tarjet from "@/components/ui/tarjet/tarjet";
+import Tarjet from "@/components/common/tarjet/tarjet";
 import { mainNavigation } from "@/navegation/audience_services";
 import styles from "./home.module.css";
 import { useSwipe } from "./useSwipe";

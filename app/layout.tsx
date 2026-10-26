@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Lato, Montserrat } from "next/font/google";
-import ContactWidget from "@/components/ui/contact-widget/contact-widget";
+import ContactWidget from "@/components/layout/contact-widget/contact-widget";
 import Footer from "@/components/layout/footer/footer";
 import FooterReveal from "@/components/layout/footer/footer-reveal";
 import HeaderContainer from "@/components/layout/header/header-container";

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
-import type { NewsItem } from "./NewsSection";
+import type { NewsItem } from "@/types/domain";
 
 const ROTATION_INTERVAL = 7000;
 const dateFormatter = new Intl.DateTimeFormat("es-CO", {

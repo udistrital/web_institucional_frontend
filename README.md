@@ -126,8 +126,30 @@ npm run build     # Genera la exportacion estatica en out/
 
 - `app/page.tsx`: pagina principal institucional.
 - `app/acerca-de/page.tsx`: pagina institucional fija.
-- `lib/drupal.ts`: cliente centralizado de `next-drupal`.
+- `app/components/`: componentes exclusivos de la página principal, incluidos
+  sus carruseles, secciones y el reproductor de la emisora.
+- `app/**/components/`: componentes exclusivos de una ruta, como calendario,
+  tableros y aspirantes.
+- `components/ui/`: primitivas visuales reutilizables, sin lógica de dominio.
+- `components/layout/`: Header, Footer, navegación global y widgets
+  estructurales del portal.
+- `components/common/`: componentes de dominio reutilizados por más de una
+  ruta, como tarjetas y breadcrumbs.
+- `services/`: única capa de acceso a Drupal JSON:API. Contiene el cliente
+  compartido, adaptadores por dominio y DTOs que ocultan la estructura
+  `attributes`/`relationships` de Drupal a las páginas y componentes.
+- `lib/calendario.ts`: reglas puras del dominio del calendario; `services/`
+  conserva exclusivamente adaptadores y peticiones de datos.
+- `services/sitemap.ts`: catálogo de rutas públicas y construcción del sitemap;
+  `app/sitemap.ts` solo expone la ruta de Next.js.
 - `next.config.ts`: salida estática y dominios autorizados para imágenes.
+
+Las páginas `app/**/page.tsx` y los layouts son Server Components. Son los
+únicos que invocan servicios y entregan DTOs por props. Los componentes son
+Server Components por defecto; `'use client'` se reserva para hojas que usan
+estado, efectos, eventos del DOM o APIs del navegador. Los barriles solo se
+mantienen cuando todos sus exports comparten la misma frontera Server/Client;
+no se mezclan ambas fronteras en un mismo `index.ts`.
 
 ## Variables de entorno
 

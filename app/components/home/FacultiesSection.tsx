@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import styles from "./home.module.css";
 import { useSwipe } from "./useSwipe";
-import type { Faculty } from "@/lib/faculties";
+import type { Faculty } from "@/types/domain";
 
 export default function FacultiesSection({ faculties }: { faculties: Faculty[] }) {
   const [start, setStart] = useState(0);

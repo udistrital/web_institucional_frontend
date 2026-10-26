@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import CalendarioAcademico from "@/components/calendario-academico";
-import { cargarActividadesAcademicas } from "@/lib/drupal-actividades";
-import { fechaHoyBogota } from "@/lib/calendario-academico";
+import CalendarioAcademico from "./components/calendario-academico/CalendarioAcademico";
+import { cargarActividadesAcademicas } from "@/services/actividades";
+import { fechaHoyBogota } from "@/lib/calendario";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {

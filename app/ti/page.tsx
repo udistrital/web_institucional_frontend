@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import TablerosExplorer from "@/components/ti/TablerosExplorer";
-import { getTablerosData } from "@/components/ti/tableros";
+import TablerosExplorer from "./components/ti/TablerosExplorer";
+import { getTablerosData } from "@/services/tableros";
 
 export const metadata: Metadata = {
   title: "Tableros de Inteligencia Institucional",

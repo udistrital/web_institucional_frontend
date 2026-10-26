@@ -1,4 +1,5 @@
 import "server-only";
+import { fetchJson, getPublicBaseUrl, getServerBaseUrl } from "./api";
 
 export type HeroSlide = {
   id: string;
@@ -101,29 +102,13 @@ function resolveFileUrl(
   const relativeImagePath = fileItem?.attributes?.uri?.url;
   if (!relativeImagePath) return null;
 
-  const publicBaseUrl =
-    process.env.NEXT_PUBLIC_DRUPAL_BASE_URL || "http://localhost:8080";
+  const publicBaseUrl = getPublicBaseUrl();
 
   try {
     return new URL(relativeImagePath, publicBaseUrl).toString();
   } catch {
     return relativeImagePath;
   }
-}
-
-function resolveServerBaseUrl(): string {
-  const isServerInsideDocker = Boolean(
-    process.env.DRUPAL_BASE_URL &&
-      !process.env.NEXT_PUBLIC_DRUPAL_BASE_URL?.includes("localhost"),
-  );
-
-  return (
-    (isServerInsideDocker
-      ? process.env.DRUPAL_BASE_URL
-      : process.env.NEXT_PUBLIC_DRUPAL_BASE_URL) ||
-    process.env.DRUPAL_BASE_URL ||
-    "http://localhost:8080"
-  );
 }
 
 function mapResourceToSlide(
@@ -163,7 +148,7 @@ function mapResourceToSlide(
 }
 
 export async function getHeroSlides(): Promise<HeroSlide[]> {
-  const serverBaseUrl = resolveServerBaseUrl();
+  const serverBaseUrl = getServerBaseUrl();
 
   const apiUrl = new URL("/jsonapi/node/banner_hero", serverBaseUrl);
   apiUrl.searchParams.set("filter[status]", "1");
@@ -173,18 +158,7 @@ export async function getHeroSlides(): Promise<HeroSlide[]> {
   const isDev = process.env.NODE_ENV === "development";
 
   try {
-    const response = await fetch(apiUrl.toString(), {
-      ...(isDev ? { cache: "no-store" } : { next: { revalidate: 3600 } }),
-    });
-
-    if (!response.ok) {
-      console.error(
-        `[Drupal Error] Status: ${response.status} en la URL: ${apiUrl.toString()}`,
-      );
-      return fallbackHeroSlides;
-    }
-
-    const json = (await response.json()) as DrupalBannerResponse;
+    const json = await fetchJson<DrupalBannerResponse>(apiUrl, isDev ? { cache: "no-store" } : { next: { revalidate: 3600 } });
     const included = json.included ?? [];
 
     const slides = (json.data ?? [])

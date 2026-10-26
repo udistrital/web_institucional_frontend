@@ -1,9 +1,11 @@
 import type { JsonApiResponse } from "next-drupal";
-import { drupal } from "./drupal";
+import { createDrupalClient } from "./drupal-client";
 import {
   ordenarActividades,
   type ActividadAcademica,
-} from "./calendario-academico";
+} from "../lib/calendario";
+
+const drupal = createDrupalClient();
 
 type ReferenciaTermino = {
   id?: string;

@@ -1,72 +1,12 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import styles from "./page.module.css";
-import BreadCrumbs from "@/components/ui/bread-crumbs/bread-crumbs";
+import BreadCrumbs from "@/components/common/bread-crumbs/bread-crumbs";
+import { getFaculties, type Faculty } from "@/services/facultades";
 
 export const metadata: Metadata = {
   title: "Facultades",
 };
-
-type FacultyResource = {
-  id: string;
-  attributes: {
-    title?: string;
-    field_correo_electronico?: string | null;
-    field_direccion?: string | null;
-    field_horario?: string | null;
-    field_nombre_decano?: string | null;
-    field_pagina_web?: { uri?: string | null } | null;
-    field_pbx?: { processed?: string | null } | null;
-  };
-  relationships?: {
-    field_imagen_facultad?: {
-      data?: { id?: string; meta?: { alt?: string } } | null;
-    };
-  };
-};
-
-type IncludedFile = {
-  type?: string;
-  id?: string;
-  attributes?: { uri?: { url?: string } };
-};
-
-type FacultiesResponse = {
-  data?: FacultyResource[];
-  included?: IncludedFile[];
-};
-
-type Faculty = FacultyResource & {
-  imageUrl: string | null;
-  imageAlt: string;
-};
-
-function getServerBaseUrl() {
-  const isDocker = Boolean(
-    process.env.DRUPAL_BASE_URL &&
-      !process.env.NEXT_PUBLIC_DRUPAL_BASE_URL?.includes("localhost"),
-  );
-
-  return (
-    (isDocker ? process.env.DRUPAL_BASE_URL : process.env.NEXT_PUBLIC_DRUPAL_BASE_URL) ||
-    process.env.DRUPAL_BASE_URL ||
-    "http://localhost:8080"
-  );
-}
-
-function resolveImageUrl(path: string | undefined, baseUrl: string) {
-  if (!path) return null;
-
-  try {
-    return new URL(path, baseUrl).toString();
-  } catch {
-    return null;
-  }
-}
-
-function getPublicBaseUrl() {
-  return process.env.NEXT_PUBLIC_DRUPAL_BASE_URL || getServerBaseUrl();
-}
 
 function getMapUrl(address: string | null | undefined) {
   if (!address) return null;
@@ -78,7 +18,7 @@ function getMapUrl(address: string | null | undefined) {
 function FacultyContactDetails({
   attributes,
 }: {
-  attributes: FacultyResource["attributes"];
+  attributes: Faculty["attributes"];
 }) {
   return (
     <dl className={styles.details}>
@@ -112,43 +52,6 @@ function FacultyContactDetails({
       )}
     </dl>
   );
-}
-
-async function getFaculties(): Promise<Faculty[]> {
-  const apiUrl = new URL("/jsonapi/node/facultades", getServerBaseUrl());
-  apiUrl.searchParams.set("filter[status]", "1");
-  apiUrl.searchParams.set("include", "field_imagen_facultad");
-  apiUrl.searchParams.set("sort", "title");
-
-  try {
-    const response = await fetch(
-      apiUrl.toString(),
-      process.env.NODE_ENV === "development"
-        ? { cache: "no-store" }
-        : { next: { revalidate: 3600 } },
-    );
-
-    if (!response.ok) return [];
-
-    const json = (await response.json()) as FacultiesResponse;
-    const included = json.included ?? [];
-    const imageBaseUrl = getPublicBaseUrl();
-
-    return (json.data ?? []).map((faculty) => {
-      const imageReference = faculty.relationships?.field_imagen_facultad?.data;
-      const imageFile = included.find(
-        (item) => item.type === "file--file" && item.id === imageReference?.id,
-      );
-
-      return {
-        ...faculty,
-        imageUrl: resolveImageUrl(imageFile?.attributes?.uri?.url, imageBaseUrl),
-        imageAlt: imageReference?.meta?.alt || faculty.attributes.title || "Facultad",
-      };
-    });
-  } catch {
-    return [];
-  }
 }
 
 export default async function FacultadesPage() {

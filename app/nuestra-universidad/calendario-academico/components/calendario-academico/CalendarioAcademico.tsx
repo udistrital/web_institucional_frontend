@@ -8,7 +8,7 @@ import {
   opcionesUnicas,
   type ActividadAcademica,
   type FiltrosCalendario as Filtros,
-} from "@/lib/calendario-academico";
+} from "@/lib/calendario";
 import FiltrosCalendario from "./FiltrosCalendario";
 import FiltrosFechas from "./FiltrosFechas";
 import FiltrosSemestre from "./FiltrosSemestre";

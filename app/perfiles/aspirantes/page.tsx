@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import Hero from "@/components/ui/hero/hero";
-import BreadCrumbs from "@/components/ui/bread-crumbs/bread-crumbs";
+import Hero from "./components/hero/hero";
+import BreadCrumbs from "@/components/common/bread-crumbs/bread-crumbs";
 import InfoCard from "./components/InfoCard";
 import { TramitesSection } from "./components/tramites";
-import Buttomsheet from "@/components/ui/buttomSheet/buttomSheet";
+import Buttomsheet from "./components/buttomSheet/buttomSheet";
 
 export const metadata: Metadata = {
   title: "Servicios - Aspirantes",
