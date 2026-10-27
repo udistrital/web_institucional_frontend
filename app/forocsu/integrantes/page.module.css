@@ -1,0 +1,249 @@
+.page {
+  background: #f7f7f5;
+  min-height: 70vh;
+}
+
+.hero {
+  align-items: end;
+  background: var(--institutional-red);
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  min-height: 21rem;
+  overflow: hidden;
+  padding: clamp(3rem, 8vw, 7rem) max(2vw, 1rem) clamp(2.75rem, 6vw, 5rem);
+  position: relative;
+}
+
+.hero::after {
+  border: 1px solid rgba(255, 255, 255, .25);
+  border-radius: 50%;
+  content: "";
+  height: 28rem;
+  position: absolute;
+  right: -8rem;
+  top: -13rem;
+  width: 28rem;
+}
+
+.heroContent,
+.content {
+  margin: 0 auto;
+  max-width: 1400px;
+  width: 100%;
+}
+
+.heroContent { position: relative; z-index: 1; }
+.eyebrow,
+.sectionKicker {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: .1em;
+  margin: 0 0 1rem;
+  text-transform: uppercase;
+}
+
+.eyebrow { color: var(--institutional-gold); }
+.hero h1 { font-size: var(--fs-h1); line-height: var(--lh-tight); margin: 0; }
+.heroLead { font-size: var(--fs-md); line-height: var(--lh-snug); margin: 1.25rem 0 0; max-width: 40rem; }
+.heroNumber { color: rgba(255, 255, 255, .2); font-family: var(--font-montserrat), sans-serif; font-size: clamp(6rem, 16vw, 12rem); font-weight: 700; line-height: .7; position: relative; z-index: 1; }
+
+.content { padding: clamp(3rem, 6vw, 5.5rem) max(2vw, 1rem); }
+.sectionHeading { align-items: end; display: flex; gap: 2rem; justify-content: space-between; margin-bottom: 2rem; }
+.sectionKicker { color: var(--institutional-red); margin-bottom: .65rem; }
+.sectionHeading h2 { font-size: var(--fs-h2); line-height: var(--lh-tight); margin: 0; }
+.resultCount { color: #595959; font-size: var(--fs-sm); margin: 0 0 .35rem; white-space: nowrap; }
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.card {
+  background: #fff;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, .08);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.cardImage {
+  aspect-ratio: 1 / 1;
+  background: #252525;
+  overflow: hidden;
+  position: relative;
+}
+
+.image { object-fit: cover; transition: transform 350ms ease; }
+.card:hover .image { transform: scale(1.04); }
+
+.imageFallback {
+  align-items: center;
+  color: rgba(255, 255, 255, .7);
+  display: flex;
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  height: 100%;
+  justify-content: center;
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-width: 0;
+  padding: clamp(1.25rem, 2.5vw, 1.75rem);
+}
+
+.card h3 { color: var(--institutional-red); font-size: var(--fs-lg); line-height: var(--lh-tight); margin: 0 0 1rem; }
+
+.puesto {
+  border-left: 3px solid var(--institutional-gold);
+  display: flex;
+  flex-direction: column;
+  font-size: var(--fs-sm);
+  gap: .2rem;
+  margin: 0 0 1rem;
+  padding-left: .75rem;
+}
+
+.puesto span { color: #666; font-size: var(--fs-2xs); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+
+.bioTrigger {
+  align-items: center;
+  background: none;
+  border: 0;
+  border-top: 1px solid #e4e4e4;
+  color: var(--institutional-red);
+  cursor: pointer;
+  display: flex;
+  font: inherit;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  gap: .45rem;
+  justify-content: space-between;
+  margin-top: auto;
+  padding: 1rem 0 0;
+  text-align: left;
+  width: 100%;
+}
+.bioTrigger span { font-size: 1.1rem; transition: transform 200ms ease; }
+.bioTrigger:hover { color: #000; }
+.bioTrigger:hover span { transform: translateX(3px); }
+
+/* ---- Modal de trayectoria ---- */
+.overlay {
+  background: rgba(0, 0, 0, .7);
+  backdrop-filter: blur(4px);
+  inset: 0;
+  position: fixed;
+  z-index: 80;
+}
+
+/*
+  La modal se centra respecto al viewport con position: fixed + translate,
+  en lugar de depender del flujo flex del overlay. Así el centrado es estable
+  aunque la página esté scrolleada o algún ancestro cree un stacking context.
+*/
+.modal {
+  background: #fff;
+  border-radius: .5rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .3);
+  display: flex;
+  flex-direction: column;
+  left: 50%;
+  max-height: 85vh;
+  max-height: 85dvh;
+  position: fixed;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(44rem, calc(100vw - 3rem));
+  z-index: 81;
+}
+
+.modalClose {
+  align-items: center;
+  background: rgba(0, 0, 0, .05);
+  border: 0;
+  border-radius: 50%;
+  color: #333;
+  cursor: pointer;
+  display: flex;
+  height: 2.5rem;
+  justify-content: center;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  transition: background 200ms ease;
+  width: 2.5rem;
+  z-index: 1;
+}
+.modalClose:hover { background: rgba(0, 0, 0, .12); }
+.modalClose svg { height: 1.25rem; width: 1.25rem; }
+
+.modalHeader {
+  align-items: center;
+  border-bottom: 1px solid #ececec;
+  display: flex;
+  gap: 1.25rem;
+  padding: clamp(1.5rem, 4vw, 2.25rem);
+  padding-right: 4rem;
+}
+
+.modalAvatar {
+  background: #252525;
+  border-radius: 50%;
+  flex-shrink: 0;
+  height: 5rem;
+  overflow: hidden;
+  position: relative;
+  width: 5rem;
+}
+.modalAvatar .imageFallback { font-size: 1.75rem; }
+
+.modalName { color: var(--institutional-red); font-size: var(--fs-xl); line-height: var(--lh-tight); margin: 0 0 .35rem; }
+.modalPuesto { color: #444; font-size: var(--fs-sm); line-height: var(--lh-snug); margin: 0; }
+
+.modalBody {
+  overflow-y: auto;
+  padding: clamp(1.5rem, 4vw, 2.25rem);
+}
+.modalBody p { color: #333; font-size: var(--fs-base); line-height: var(--lh-normal); margin: 0 0 1rem; }
+.modalBody p:last-child { margin-bottom: 0; }
+
+.emptyState { background: #fff; border-left: 4px solid var(--institutional-gold); padding: 2rem; }
+.emptyState h2 { font-size: var(--fs-xl); margin: 0 0 .5rem; }
+.emptyState p { margin: 0; }
+
+@media (max-width: 720px) {
+  .hero { min-height: 18rem; }
+  .heroNumber { display: none; }
+  .sectionHeading { align-items: start; flex-direction: column; gap: .75rem; }
+  .resultCount { margin: 0; }
+  .grid { grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); }
+
+  /* Modal a pantalla completa en móvil para biografías largas */
+  .modal {
+    border-radius: 0;
+    height: 100dvh;
+    left: 0;
+    max-height: 100dvh;
+    top: 0;
+    transform: none;
+    width: 100vw;
+  }
+  .modalHeader { gap: 1rem; }
+  .modalAvatar { height: 3.5rem; width: 3.5rem; }
+  .modalAvatar .imageFallback { font-size: 1.25rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .image { transition: none; }
+}
