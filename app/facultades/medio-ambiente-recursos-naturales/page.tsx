@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
+import Hero from "@/components/ui/hero/hero";
+import { getHero } from "@/lib/drupal/hero";
 
 export const metadata: Metadata = {
   title: "Facultad de Medio Ambiente y Recursos Naturales",
 };
 
-export default function MedioAmbienteRecursosNaturalesPage() {
+export default async function MedioAmbienteRecursosNaturalesPage() {
+  const hero = await getHero("HERO_FMYRN");
   return (
-    <>{/* Contenido de la Facultad de Medio Ambiente y Recursos Naturales */}</>
+    <main>
+      {hero && <Hero {...hero} />}
+    </main>
   );
 }

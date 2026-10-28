@@ -36,7 +36,7 @@ const PARAMETROS = {
   "filter[status]": "1",
   include:
     "field_periodo,field_categoria,field_tematica,field_responsables,field_audiencia",
-  sort: "field_fechas",
+  sort: "field_fechas,id",
   "page[limit]": "50",
 };
 
@@ -141,7 +141,11 @@ export async function getActividadesAcademicas(): Promise<ActividadAcademica[]> 
     pagina = await getPagina(siguiente);
   }
 
-  return recursos.map(normalizarActividad).sort(ordenarActividades);
+  const recursosUnicos = Array.from(
+    new Map(recursos.map((recurso) => [recurso.id, recurso])).values(),
+  );
+
+  return recursosUnicos.map(normalizarActividad).sort(ordenarActividades);
 }
 
 /**
