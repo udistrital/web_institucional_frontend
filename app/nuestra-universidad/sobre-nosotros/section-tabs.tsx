@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import type { SectionLink } from "./content";
+import { SectionIcon } from "./icons";
 import styles from "./page.module.css";
 
 type SectionTabsProps = {
@@ -97,6 +98,7 @@ export default function SectionTabs({ sections, panels }: SectionTabsProps) {
                 onClick={() => seleccionar(section.id)}
                 onKeyDown={onKeyDown}
               >
+                <SectionIcon id={section.id} className={styles.sectionNavIcon} />
                 {section.label}
               </button>
             );

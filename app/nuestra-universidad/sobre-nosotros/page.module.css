@@ -3,49 +3,11 @@
   min-height: 70vh;
 }
 
-/* ---- Hero (consistente con facultades/integrantes) ---- */
-.hero {
-  align-items: end;
-  background: var(--institutional-red);
-  color: #fff;
-  display: flex;
-  justify-content: space-between;
-  min-height: 21rem;
-  overflow: hidden;
-  padding: clamp(3rem, 8vw, 7rem) max(2vw, 1rem) clamp(2.75rem, 6vw, 5rem);
-  position: relative;
-}
-
-.hero::after {
-  border: 1px solid rgba(255, 255, 255, .25);
-  border-radius: 50%;
-  content: "";
-  height: 28rem;
-  position: absolute;
-  right: -8rem;
-  top: -13rem;
-  width: 28rem;
-}
-
-.heroContent,
 .content {
   margin: 0 auto;
   max-width: 1200px;
   width: 100%;
 }
-
-.heroContent { position: relative; z-index: 1; }
-.eyebrow {
-  color: var(--institutional-gold);
-  font-size: var(--fs-xs);
-  font-weight: 700;
-  letter-spacing: .1em;
-  margin: 0 0 1rem;
-  text-transform: uppercase;
-}
-.hero h1 { font-size: var(--fs-h1); line-height: var(--lh-tight); margin: 0; }
-.heroLead { font-size: var(--fs-md); line-height: var(--lh-snug); margin: 1.25rem 0 0; max-width: 40rem; }
-.heroNumber { color: rgba(255, 255, 255, .2); font-family: var(--font-montserrat), sans-serif; font-size: clamp(6rem, 16vw, 12rem); font-weight: 700; line-height: .7; position: relative; z-index: 1; }
 
 /* Ancla invisible: marca el inicio del bloque de pestañas para el scroll. */
 .tabsAnchor { display: block; height: 0; }
@@ -68,15 +30,17 @@
   padding: 0 max(2vw, 1rem);
 }
 .sectionNavLink {
+  align-items: center;
   background: none;
   border: 0;
   border-bottom: 3px solid transparent;
   color: #444;
   cursor: pointer;
-  display: inline-block;
+  display: inline-flex;
   font: inherit;
   font-size: var(--fs-sm);
   font-weight: 700;
+  gap: .5rem;
   padding: 1rem .9rem;
   text-decoration: none;
   transition: color 150ms ease, border-color 150ms ease;
@@ -87,6 +51,7 @@
   border-bottom-color: var(--institutional-gold);
   color: var(--institutional-red);
 }
+.sectionNavIcon { flex-shrink: 0; height: 1.15rem; width: 1.15rem; }
 
 /* ---- Estructura general ---- */
 .content { padding: clamp(2.5rem, 6vw, 5rem) max(2vw, 1rem); }
@@ -94,13 +59,30 @@
    duplicado sobre el contenedor (los controles internos ya son enfocables). */
 .content > [role="tabpanel"]:focus { outline: none; }
 
-.sectionHeading { margin-bottom: 2rem; }
+.sectionHeading {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.sectionHeadingIcon {
+  align-items: center;
+  background: var(--institutional-red);
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  flex-shrink: 0;
+  height: 3rem;
+  justify-content: center;
+  width: 3rem;
+}
+.sectionHeadingIcon svg { height: 1.5rem; width: 1.5rem; }
 .sectionKicker {
   color: var(--institutional-red);
   font-size: var(--fs-xs);
   font-weight: 700;
   letter-spacing: .1em;
-  margin: 0 0 .65rem;
+  margin: 0 0 .35rem;
   text-transform: uppercase;
 }
 .sectionHeading h2 { font-size: var(--fs-h2); line-height: var(--lh-tight); margin: 0; }
@@ -108,12 +90,41 @@
 .prose { max-width: 60rem; }
 .prose p { color: #333; font-size: var(--fs-base); line-height: var(--lh-normal); margin: 0 0 1.1rem; }
 
+/* Párrafos introductorios sobre tarjeta blanca para contrastar con el fondo. */
+.proseCard {
+  background: #fff;
+  border-left: 4px solid var(--institutional-gold);
+  box-shadow: 0 5px 18px rgba(0, 0, 0, .08);
+  margin: 0 0 2rem;
+  max-width: 70rem;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+}
+.proseCard p { color: #333; font-size: var(--fs-base); line-height: var(--lh-normal); margin: 0 0 1.1rem; }
+.proseCard p:last-child { margin-bottom: 0; }
+
 /* ---- 1. Funciones misionales ---- */
 .funcionesGrid {
   display: grid;
   gap: 1.5rem;
   grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-  margin: 2rem 0 0;
+  margin: 0;
+}
+.subheading {
+  align-items: center;
+  color: #1a1a1a;
+  display: flex;
+  font-size: var(--fs-h3);
+  gap: .75rem;
+  line-height: var(--lh-tight);
+  margin: 2.25rem 0 1.25rem;
+}
+.subheading::before {
+  background: var(--institutional-gold);
+  border-radius: 2px;
+  content: "";
+  display: inline-block;
+  height: 1.4em;
+  width: .35rem;
 }
 .funcionCard {
   background: #fff;
@@ -122,16 +133,22 @@
   display: flex;
   flex-direction: column;
   padding: clamp(1.5rem, 2.5vw, 2rem);
+  transition: box-shadow 220ms ease, transform 220ms ease;
 }
-.funcionNumber {
+.funcionCard:hover { box-shadow: 0 12px 28px rgba(0, 0, 0, .14); transform: translateY(-4px); }
+.funcionIcon {
+  align-items: center;
+  background: rgba(140, 25, 25, .08);
+  border-radius: 12px;
   color: var(--institutional-red);
-  font-family: var(--font-montserrat), sans-serif;
-  font-size: 2.5rem;
-  font-weight: 700;
-  line-height: 1;
-  opacity: .25;
+  display: flex;
+  height: 3rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+  width: 3rem;
 }
-.funcionCard h3 { color: var(--institutional-red); font-size: var(--fs-lg); line-height: var(--lh-tight); margin: .5rem 0 .75rem; }
+.funcionIcon svg { height: 1.5rem; width: 1.5rem; }
+.funcionCard h3 { color: var(--institutional-red); font-size: var(--fs-lg); line-height: var(--lh-tight); margin: 0 0 .75rem; }
 .funcionCard p { color: #333; font-size: var(--fs-sm); line-height: var(--lh-normal); margin: 0; }
 
 .fuente {
@@ -149,6 +166,7 @@
 
 /* ---- 2. Directivos ---- */
 .rectorCard {
+  align-items: stretch;
   background: #fff;
   box-shadow: 0 5px 18px rgba(0, 0, 0, .08);
   display: grid;
@@ -158,12 +176,12 @@
   overflow: hidden;
 }
 .rectorImage {
-  aspect-ratio: 4 / 5;
   background: #252525;
+  min-height: 24rem;
   overflow: hidden;
   position: relative;
 }
-.rectorImageInner { object-fit: cover; }
+.rectorImageInner { object-fit: cover; object-position: center; }
 .rectorFallback {
   align-items: center;
   color: rgba(255, 255, 255, .7);
@@ -198,10 +216,35 @@
   display: flex;
   flex-direction: column;
   padding: clamp(1.5rem, 2.5vw, 2rem);
+  transition: box-shadow 220ms ease, transform 220ms ease;
 }
-.organoCard h3 { color: var(--institutional-red); font-size: var(--fs-lg); line-height: var(--lh-tight); margin: 0 0 .9rem; }
+.organoCard:hover { box-shadow: 0 12px 28px rgba(0, 0, 0, .14); transform: translateY(-4px); }
+.organoCard h3 {
+  color: var(--institutional-red);
+  font-size: var(--fs-lg);
+  line-height: var(--lh-tight);
+  margin: 0 0 .9rem;
+  padding-bottom: .75rem;
+  position: relative;
+}
+.organoCard h3::after {
+  background: var(--institutional-gold);
+  bottom: 0;
+  content: "";
+  height: 3px;
+  left: 0;
+  position: absolute;
+  width: 2.5rem;
+}
 .organoDesc { color: #333; font-size: var(--fs-sm); line-height: var(--lh-normal); margin: 0 0 1rem; }
-.organoList { color: #333; display: flex; flex-direction: column; font-size: var(--fs-sm); gap: .6rem; line-height: var(--lh-snug); margin: 0 0 1.25rem; padding-left: 1.1rem; }
+.organoList { color: #333; display: flex; flex-direction: column; font-size: var(--fs-sm); gap: .6rem; line-height: var(--lh-snug); list-style: none; margin: 0 0 1.25rem; padding-left: 1.25rem; }
+.organoList li { position: relative; }
+.organoList li::before {
+  color: var(--institutional-gold);
+  content: "▸";
+  left: -1.25rem;
+  position: absolute;
+}
 .organoLink {
   align-items: center;
   color: var(--institutional-red);
@@ -238,7 +281,7 @@
   width: 50%;
 }
 .timelineItem:last-child { margin-bottom: 0; }
-.timelineLeft { padding-right: 2.75rem; text-align: right; }
+.timelineLeft { padding-right: 2.75rem; }
 .timelineRight { margin-left: 50%; padding-left: 2.75rem; }
 
 .timelineDot {
@@ -254,13 +297,39 @@
 .timelineLeft .timelineDot { right: -0.55rem; }
 .timelineRight .timelineDot { left: -0.55rem; }
 
+/* Tarjeta compacta: fecha y título a la izquierda, miniatura a la derecha. */
 .timelineCard {
+  align-items: stretch;
   background: #fff;
+  border: 0;
   box-shadow: 0 5px 18px rgba(0, 0, 0, .08);
-  display: inline-block;
-  padding: clamp(1.25rem, 2.2vw, 1.75rem);
+  cursor: pointer;
+  display: flex;
+  font: inherit;
+  gap: 0;
+  overflow: hidden;
   text-align: left;
+  transition: box-shadow 220ms ease, transform 220ms ease;
+  width: 100%;
 }
+.timelineCard:hover { box-shadow: 0 12px 28px rgba(0, 0, 0, .14); transform: translateY(-3px); }
+.timelineContent {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: .4rem;
+  min-width: 0;
+  padding: clamp(1.1rem, 2vw, 1.5rem);
+}
+/* Miniatura: ancho fijo a la derecha, no afecta el tamaño del texto. */
+.timelineThumb {
+  background: #f1f1ee;
+  display: block;
+  flex: 0 0 7rem;
+  overflow: hidden;
+  position: relative;
+}
+.timelineThumbInner { object-fit: cover; object-position: center; }
 .timelineYear {
   color: var(--institutional-red);
   font-family: var(--font-montserrat), sans-serif;
@@ -268,33 +337,166 @@
   font-weight: 700;
   line-height: 1;
 }
-.timelineTitle { font-size: var(--fs-lg); line-height: var(--lh-tight); margin: .5rem 0 .6rem; }
-.timelineText { color: #333; font-size: var(--fs-sm); line-height: var(--lh-normal); margin: 0; }
+.timelineTitle { color: #1a1a1a; font-size: var(--fs-lg); line-height: var(--lh-tight); }
+.timelineMore {
+  align-items: center;
+  color: var(--institutional-red);
+  display: inline-flex;
+  font-size: var(--fs-2xs);
+  font-weight: 700;
+  gap: .3rem;
+  letter-spacing: .04em;
+  margin-top: .35rem;
+  text-transform: uppercase;
+}
+.timelineMore svg { height: .9rem; width: .9rem; }
+
+/* ---- Modal de hito histórico ---- */
+.overlay {
+  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, .7);
+  inset: 0;
+  position: fixed;
+  z-index: 80;
+}
+.modal {
+  background: #fff;
+  border-radius: .5rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .3);
+  display: flex;
+  flex-direction: column;
+  left: 50%;
+  max-height: 88vh;
+  max-height: 88dvh;
+  overflow: hidden;
+  position: fixed;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(46rem, calc(100vw - 3rem));
+  z-index: 81;
+}
+.modalClose {
+  align-items: center;
+  background: rgba(0, 0, 0, .5);
+  border: 0;
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  height: 2.5rem;
+  justify-content: center;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  transition: background 200ms ease;
+  width: 2.5rem;
+  z-index: 1;
+}
+.modalClose:hover { background: rgba(0, 0, 0, .75); }
+.modalClose svg { height: 1.25rem; width: 1.25rem; }
+.modalImage {
+  aspect-ratio: 16 / 9;
+  background: #f1f1ee;
+  flex-shrink: 0;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+.modalImageInner { object-fit: contain; object-position: center; }
+.modalBody { overflow-y: auto; padding: clamp(1.5rem, 4vw, 2.25rem); }
+.modalYear {
+  color: var(--institutional-red);
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  line-height: 1;
+}
+.modalTitle { font-size: var(--fs-h3); line-height: var(--lh-tight); margin: .5rem 0 1rem; }
+.modalText { color: #333; font-size: var(--fs-base); line-height: var(--lh-normal); margin: 0; }
+.modalCaption {
+  border-top: 1px solid #ececec;
+  color: #777;
+  font-size: var(--fs-2xs);
+  font-style: italic;
+  margin: 1.25rem 0 0;
+  padding-top: 1rem;
+}
 
 /* ---- 4. Símbolos ---- */
+/* Himno: video a un lado y carrusel de estrofas al otro. */
 .himno {
+  align-items: center;
   display: grid;
   gap: 2rem;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
   margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
 }
 .himnoVideo {
   aspect-ratio: 16 / 9;
   background: #000;
   box-shadow: 0 5px 18px rgba(0, 0, 0, .12);
-  height: fit-content;
   overflow: hidden;
-  position: sticky;
-  top: 5rem;
 }
 .himnoVideo iframe { border: 0; display: block; height: 100%; width: 100%; }
-.himnoLetra h3 { color: var(--institutional-red); font-size: var(--fs-xl); line-height: var(--lh-tight); margin: 0 0 1.25rem; }
-.estrofas { columns: 2; column-gap: 2rem; }
-.estrofa { break-inside: avoid; color: #333; font-size: var(--fs-sm); line-height: var(--lh-snug); margin: 0 0 1.1rem; }
-.estrofa span { display: block; }
 
-.otrosHimnos { border-top: 1px solid #e4e4e4; margin-top: 1rem; padding-top: 1.5rem; }
-.otrosHimnosTitle { color: #666; font-size: var(--fs-2xs); font-weight: 700; letter-spacing: .08em; margin: 0 0 .75rem; text-transform: uppercase; }
+.himnoLetra { display: flex; flex-direction: column; gap: 1rem; }
+.estrofaCarrusel { display: flex; }
+.estrofa {
+  align-items: center;
+  background: #fff;
+  border-left: 3px solid var(--institutional-gold);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, .07);
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  justify-content: center;
+  min-height: 11rem;
+  padding: 1.5rem 1.75rem;
+  text-align: center;
+  width: 100%;
+}
+.estrofaNumero {
+  color: var(--institutional-red);
+  font-size: var(--fs-2xs);
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.estrofaVersos { color: #333; font-size: var(--fs-base); line-height: var(--lh-normal); margin: 0; text-align: center; }
+.estrofaVersos span { display: block; }
+
+/* Controles del carrusel */
+.carruselControles { align-items: center; display: flex; gap: 1rem; justify-content: center; }
+.carruselBtn {
+  align-items: center;
+  background: var(--institutional-red);
+  border: 0;
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  flex-shrink: 0;
+  height: 2.5rem;
+  justify-content: center;
+  transition: background 180ms ease;
+  width: 2.5rem;
+}
+.carruselBtn:hover { background: #6f1313; }
+.carruselBtn svg { height: 1.25rem; width: 1.25rem; }
+.carruselPuntos { display: flex; gap: .5rem; list-style: none; margin: 0; padding: 0; }
+.carruselPunto {
+  background: #cfcfcf;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  height: .6rem;
+  padding: 0;
+  transition: background 180ms ease, transform 180ms ease;
+  width: .6rem;
+}
+.carruselPunto:hover { background: var(--institutional-gold); }
+.carruselPuntoActivo { background: var(--institutional-red); transform: scale(1.3); }
+
 .otrosHimnos ul { display: flex; flex-direction: column; gap: .6rem; list-style: none; margin: 0; padding: 0; }
 .otrosHimnos a { color: var(--institutional-red); font-size: var(--fs-sm); font-weight: 600; text-decoration: underline; text-decoration-color: var(--institutional-gold); text-underline-offset: 3px; }
 .otrosHimnos a:hover { color: #000; }
@@ -313,7 +515,7 @@
 }
 .graficoMedia {
   align-items: center;
-  background: #f1f1ee;
+  background: #fff;
   display: flex;
   justify-content: center;
   padding: 1.5rem;
@@ -333,26 +535,39 @@
 /* ---- Responsive ---- */
 @media (max-width: 820px) {
   .rectorCard { grid-template-columns: 1fr; }
-  .rectorImage { aspect-ratio: 3 / 2; }
+  .rectorImage { aspect-ratio: 3 / 2; min-height: 0; }
   .himno { grid-template-columns: 1fr; }
-  .himnoVideo { position: static; }
   .graficoCard { grid-template-columns: 1fr; }
   .graficoMedia { padding: 2rem; }
 }
 
 @media (max-width: 720px) {
-  .hero { min-height: 18rem; }
-  .heroNumber { display: none; }
-  .estrofas { columns: 1; }
-
   /* Timeline a una sola columna en móvil */
   .timeline::before { left: .55rem; transform: none; }
-  .timelineItem { margin-left: 0; padding-left: 2rem; padding-right: 0; text-align: left; width: 100%; }
-  .timelineLeft { text-align: left; }
+  .timelineItem { margin-left: 0; padding-left: 2rem; padding-right: 0; width: 100%; }
   .timelineLeft .timelineDot,
   .timelineRight .timelineDot { left: 0; right: auto; }
+  .timelineThumb { flex-basis: 5.5rem; }
+
+  /* Modal a pantalla completa en móvil */
+  .modal {
+    border-radius: 0;
+    height: 100dvh;
+    left: 0;
+    max-height: 100dvh;
+    top: 0;
+    transform: none;
+    width: 100vw;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .rectorImageInner { transition: none; }
+  .funcionCard,
+  .organoCard,
+  .timelineCard { transition: none; }
+  .funcionCard:hover,
+  .organoCard:hover,
+  .timelineCard:hover { transform: none; }
+  .carruselPunto { transition: none; }
 }

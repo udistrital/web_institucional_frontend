@@ -6,6 +6,8 @@ import BreadCrumbs from "@/components/common/bread-crumbs/bread-crumbs";
 import { getRector } from "@/services/integrantes";
 import SectionTabs from "./section-tabs";
 import HistoriaTimeline from "./historia-timeline";
+import Himno from "./himno";
+import { SectionIcon, FUNCION_ICONS } from "./icons";
 import {
   SECTIONS,
   FUNCIONES,
@@ -46,28 +48,36 @@ export default async function SobreNosotrosPage() {
   const funcionesPanel: ReactNode = (
     <article className={styles.block} aria-labelledby="funciones-misionales-title">
       <div className={styles.sectionHeading}>
+        <span className={styles.sectionHeadingIcon} aria-hidden="true">
+          <SectionIcon id="funciones-misionales" />
+        </span>
         <div>
           <p className={styles.sectionKicker}>Nuestra razón de ser</p>
           <h2 id="funciones-misionales-title">Funciones misionales</h2>
         </div>
       </div>
 
-      <div className={styles.prose}>
+      <div className={styles.proseCard}>
         {FUNCIONES_INTRO.map((parrafo, index) => (
           <p key={index}>{parrafo}</p>
         ))}
       </div>
 
+      <h3 className={styles.subheading}>Funciones generales</h3>
+
       <div className={styles.funcionesGrid}>
-        {FUNCIONES.map((funcion, index) => (
-          <div className={styles.funcionCard} key={funcion.titulo}>
-            <span className={styles.funcionNumber} aria-hidden="true">
-              {String(index + 1).padStart(2, "0")}
-            </span>
-            <h3>{funcion.titulo}</h3>
-            <p>{funcion.descripcion}</p>
-          </div>
-        ))}
+        {FUNCIONES.map((funcion, index) => {
+          const Icono = FUNCION_ICONS[index] ?? FUNCION_ICONS[0];
+          return (
+            <div className={styles.funcionCard} key={funcion.titulo}>
+              <span className={styles.funcionIcon} aria-hidden="true">
+                <Icono />
+              </span>
+              <h3>{funcion.titulo}</h3>
+              <p>{funcion.descripcion}</p>
+            </div>
+          );
+        })}
       </div>
 
       <p className={styles.fuente}>
@@ -81,6 +91,9 @@ export default async function SobreNosotrosPage() {
   const directivosPanel: ReactNode = (
     <article className={styles.block} aria-labelledby="directivos-title">
       <div className={styles.sectionHeading}>
+        <span className={styles.sectionHeadingIcon} aria-hidden="true">
+          <SectionIcon id="directivos" />
+        </span>
         <div>
           <p className={styles.sectionKicker}>Equipo de dirección</p>
           <h2 id="directivos-title">Directivos</h2>
@@ -143,13 +156,16 @@ export default async function SobreNosotrosPage() {
   const historiaPanel: ReactNode = (
     <article className={styles.block} aria-labelledby="historia-title">
       <div className={styles.sectionHeading}>
+        <span className={styles.sectionHeadingIcon} aria-hidden="true">
+          <SectionIcon id="historia" />
+        </span>
         <div>
           <p className={styles.sectionKicker}>Más de 70 años de historia</p>
           <h2 id="historia-title">Historia</h2>
         </div>
       </div>
 
-      <div className={styles.prose}>
+      <div className={styles.proseCard}>
         {HISTORIA_INTRO.map((parrafo, index) => (
           <p key={index}>{parrafo}</p>
         ))}
@@ -163,45 +179,27 @@ export default async function SobreNosotrosPage() {
   const simbolosPanel: ReactNode = (
     <article className={styles.block} aria-labelledby="simbolos-title">
       <div className={styles.sectionHeading}>
+        <span className={styles.sectionHeadingIcon} aria-hidden="true">
+          <SectionIcon id="simbolos" />
+        </span>
         <div>
           <p className={styles.sectionKicker}>Identidad institucional</p>
           <h2 id="simbolos-title">Símbolos</h2>
         </div>
       </div>
 
-      <div className={styles.himno}>
-        <div className={styles.himnoVideo}>
-          <iframe
-            src={HIMNO_VIDEO_URL}
-            title="Video del Himno Institucional de la Universidad Distrital"
-            loading="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-          />
-        </div>
-        <div className={styles.himnoLetra}>
-          <h3>Himno institucional</h3>
-          <div className={styles.estrofas}>
-            {HIMNO_ESTROFAS.map((estrofa, index) => (
-              <p className={styles.estrofa} key={index}>
-                {estrofa.map((verso, i) => (
-                  <span key={i}>{verso}</span>
-                ))}
-              </p>
-            ))}
-          </div>
-          <div className={styles.otrosHimnos}>
-            <p className={styles.otrosHimnosTitle}>Otros himnos</p>
-            <ul>
-              {OTROS_HIMNOS.map((himno) => (
-                <li key={himno.href}>
-                  <a href={himno.href}>{himno.label}</a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+      <h3 className={styles.subheading}>Himno institucional</h3>
+      <Himno videoUrl={HIMNO_VIDEO_URL} estrofas={HIMNO_ESTROFAS} />
+
+      <h3 className={styles.subheading}>Himnos Nacional y de Bogotá</h3>
+      <div className={styles.otrosHimnos}>
+        <ul>
+          {OTROS_HIMNOS.map((himno) => (
+            <li key={himno.href}>
+              <a href={himno.href}>{himno.label}</a>
+            </li>
+          ))}
+        </ul>
       </div>
 
       <div className={styles.graficosGrid}>
@@ -247,20 +245,8 @@ export default async function SobreNosotrosPage() {
   };
 
   return (
-    <section className={styles.page} aria-labelledby="sobre-nosotros-title">
-      <header className={styles.hero}>
-        <div className={styles.heroContent}>
-          <p className={styles.eyebrow}>Nuestra Universidad</p>
-          <h1 id="sobre-nosotros-title">Sobre Nosotros</h1>
-          <p className={styles.heroLead}>
-            Funciones misionales, directivos, historia y símbolos de la Universidad
-            Distrital Francisco José de Caldas.
-          </p>
-        </div>
-        <span className={styles.heroNumber} aria-hidden="true">01</span>
-      </header>
-
-      <BreadCrumbs />
+    <section className={styles.page} aria-label="Sobre Nosotros">
+      <BreadCrumbs variant="onDark" />
 
       <SectionTabs sections={SECTIONS} panels={panels} />
     </section>

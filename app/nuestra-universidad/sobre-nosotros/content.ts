@@ -80,7 +80,7 @@ export const ORGANOS_DIRECCION: OrganoDireccion[] = [
     ],
     enlace: {
       label: "Ver integrantes del Consejo Superior",
-      href: "https://forocsu.udistrital.edu.co/csu/integrantes",
+      href: "/forocsu/integrantes",
     },
   },
   {
@@ -120,6 +120,10 @@ export type HitoHistorico = {
   anio: string;
   titulo: string;
   descripcion: string;
+  /** Imagen histórica opcional asociada al hito (ruta en /public). */
+  imagen?: string;
+  /** Texto alternativo descriptivo de la imagen. */
+  imagenAlt?: string;
 };
 
 export const HITOS: HitoHistorico[] = [
@@ -134,42 +138,58 @@ export const HITOS: HitoHistorico[] = [
     titulo: "Nace el Colegio Municipal de Bogotá",
     descripcion:
       "Mediante el Acuerdo número 10 de febrero se crea el Colegio Municipal de Bogotá. Tras el asesinato de Gaitán el 9 de abril y el estallido del “bogotazo”, la apertura se posterga hasta julio, cuando la institución es inaugurada y recibe el nombre de Colegio Municipal de Bogotá Jorge Eliécer Gaitán, con Gabriel Anzola Gómez como primer rector.",
+    imagen: "/historia/el-tiempo-1949.jpg",
+    imagenAlt: "Aviso publicado en el diario El Tiempo el 9 de abril de 1949.",
   },
   {
     anio: "1950",
     titulo: "Fundación de la Universidad Municipal",
     descripcion:
       "El 6 de agosto, con la presencia del Presidente Mariano Ospina Pérez, se firma el Acta de Fundación de la Universidad Municipal de Bogotá. Meses después, el rector Daniel de Cayzedo obtiene la personería jurídica e incluye por primera vez el nombre del prócer “Francisco José de Caldas”.",
+    imagen: "/historia/casa-navarro-1951-1953.jpg",
+    imagenAlt: "Casa Navarro, sede de la Universidad entre 1951 y 1953.",
   },
   {
     anio: "1951",
     titulo: "Los primeros estudiantes",
     descripcion:
       "Ingresan los primeros estudiantes, inscritos en dos carreras: Ingeniería Forestal e Ingeniería Electrónica. Las clases se ofrecen en la primera sede de la Universidad, compartida con el Colegio Municipal, hoy la IED Jorge Eliécer Gaitán, en el barrio Modelo Norte.",
+    imagen: "/historia/primera-sede-ied-gaitan.jpg",
+    imagenAlt:
+      "Primera sede del Colegio y de la Universidad Municipal, hoy IED Jorge Eliécer Gaitán.",
   },
   {
     anio: "1953",
     titulo: "La primera promoción de egresados",
     descripcion:
       "Se gradúan los primeros estudiantes, que pronto ingresan a empresas públicas y privadas de los sectores forestal, topográfico y electrónico, en entidades como el Ministerio de Agricultura o Inravisión.",
+    imagen: "/historia/graduados-1953.jpg",
+    imagenAlt: "Graduados de 1953. Fuente: Oficina de Egresados.",
   },
   {
     anio: "1955",
     titulo: "De “municipal” a “distrital”",
     descripcion:
       "Bogotá pasa a ser “Distrito Especial” y todas las entidades municipales se denominan “distritales”. La Universidad reanuda actividades en antiguas oficinas de los Ferrocarriles Nacionales. En 1957 comienza a ser reconocida como institución de educación superior de carácter estatal.",
+    imagen: "/historia/casa-centro-bogota-1955-1959.jpg",
+    imagenAlt:
+      "Casa de la Universidad en el centro de Bogotá, 1955-1959. Fotografía: Carlos Arturo Reina.",
   },
   {
     anio: "1960",
     titulo: "La sede de la calle 40",
     descripcion:
       "Se adquiere la sede de la calle 40 y un lote adyacente que con el tiempo sería llamado “Patio Bonito”. Durante la década también se incorpora la sede Venado de Oro, sobre la avenida Circunvalar.",
+    imagen: "/historia/sede-central-1961.jpg",
+    imagenAlt: "Instalaciones de la sede Central en 1961.",
   },
   {
     anio: "1972",
     titulo: "Nuevas facultades y crecimiento",
     descripcion:
       "Se abren las Facultades de Ingeniería de Sistemas e Ingeniería Industrial, y el Departamento de Ciencias Fundamentales inicia carreras para la formación de maestros, que más tarde darían origen a la Facultad de Ciencias y Educación.",
+    imagen: "/historia/edificio-ingenieria-forestal.png",
+    imagenAlt: "Edificio de Ingeniería Forestal.",
   },
   {
     anio: "1979",
@@ -182,12 +202,16 @@ export const HITOS: HitoHistorico[] = [
     titulo: "Reapertura y reestructuración",
     descripcion:
       "Comienza una nueva etapa. En 1984 se inaugura la sede Macarena, que albergará buena parte de las carreras de Ingeniería y Licenciatura. Las carreras quedan organizadas en dos facultades: Ciencias y Educación, e Ingeniería.",
+    imagen: "/historia/sede-macarena-a-1981.png",
+    imagenAlt: "Sede Macarena A en 1981.",
   },
   {
     anio: "1993",
     titulo: "Modernización y nuevas facultades",
     descripcion:
       "Se crea la Facultad Tecnológica en Ciudad Bolívar y, entre 1993 y 1994, la Facultad del Medio Ambiente y Recursos Naturales en la antigua sede Venado de Oro. Se amplían los programas de posgrado iniciados a finales de los ochenta.",
+    imagen: "/historia/construccion-sede-calle-40.png",
+    imagenAlt: "Construcción de la sede Calle 40.",
   },
   {
     anio: "2005",
@@ -206,6 +230,8 @@ export const HITOS: HitoHistorico[] = [
     titulo: "Una universidad en permanente transformación",
     descripcion:
       "La proyección de crecimiento gira en torno a la nueva sede “El Porvenir”, en la localidad de Bosa. A lo largo de su historia, estudiantes, profesores, trabajadores y personal administrativo han mantenido vigente el legado inspirado en Antonio García Nossa, Jorge Eliécer Gaitán y el presbítero Daniel de Cayzedo.",
+    imagen: "/historia/universidad-de-bogota.png",
+    imagenAlt: "La Universidad Distrital Francisco José de Caldas en la actualidad.",
   },
 ];
 
