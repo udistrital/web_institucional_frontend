@@ -4,6 +4,7 @@ import { getFacultyBySlug } from "@/services/facultades";
 import { getNews } from "@/services/noticias";
 import { slugFiltro } from "@/lib/filtros";
 import NewsSection from "@/components/common/news-section/news-section";
+import BreadCrumbs from "@/components/common/bread-crumbs/bread-crumbs";
 import FacultyAcademicOffer, {
   type AcademicLevel,
   type FacultyAcademicData,
@@ -138,6 +139,8 @@ export default async function FacultyPage({ slug }: FacultyPageProps) {
           <span aria-hidden="true" className={styles.heroAccent} />
         </div>
       </header>
+
+      <BreadCrumbs variant="default" />
 
       <div className={styles.body}>
         <FacultyAcademicOffer
