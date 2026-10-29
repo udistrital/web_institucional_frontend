@@ -14,9 +14,6 @@ export default function FiltrosSemestre({
   return (
     <fieldset className={styles.semesterPanel}>
       <legend className={styles.semesterTitle}>Semestre</legend>
-      <p className={styles.semesterHint}>
-        Puedes seleccionar más de un periodo.
-      </p>
 
       <div className={styles.semesterOptions}>
         {opciones.map(({ periodo, total }) => {

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import CalendarioAcademico from "./components/calendario-academico/CalendarioAcademico";
 import { cargarActividadesAcademicas } from "@/services/actividades";
 import { fechaHoyBogota } from "@/lib/calendario";
@@ -16,32 +17,28 @@ export default async function CalendarioAcademicoPage() {
   return (
     <div className={styles.page}>
       <header className={styles.hero}>
-        <div className={styles.heroContent}>
-          <p className={styles.eyebrow}>Nuestra universidad</p>
-          <h1>Calendario académico</h1>
+        <div className={styles.heroText}>
+          <p className={styles.eyebrow}>Encuentra lo que necesitas</p>
+          <h1 className={styles.heroTitle}>Actividades del calendario</h1>
           <p className={styles.heroLead}>
-            Consulta las fechas, plazos y procesos que marcan el desarrollo de
-            los periodos académicos.
+            Consulta y filtra las actividades académicas, culturales y
+            administrativas de la Universidad.
           </p>
         </div>
-        <span aria-hidden="true" className={styles.heroNumber}>
-          02
-        </span>
+        <div className={styles.heroVisual}>
+          <Image
+            alt=""
+            className={styles.heroImage}
+            fill
+            priority
+            sizes="(max-width: 768px) 100vw, 42vw"
+            src="/image/calendario-academico/header-calendario.jpg"
+          />
+          <span aria-hidden="true" className={styles.heroAccent} />
+        </div>
       </header>
 
-      <section
-        aria-labelledby="actividades-calendario-title"
-        className={styles.content}
-      >
-        <div className={styles.sectionHeading}>
-          <div>
-            <p className={styles.sectionKicker}>Programación institucional</p>
-            <h2 id="actividades-calendario-title">
-              Actividades del calendario
-            </h2>
-          </div>
-        </div>
-
+      <div className={styles.body}>
         {noDisponible ? (
           <div className={styles.unavailable} role="alert">
             <h2>Calendario no disponible</h2>
@@ -56,7 +53,7 @@ export default async function CalendarioAcademicoPage() {
             hoyInicial={fechaHoyBogota()}
           />
         )}
-      </section>
+      </div>
     </div>
   );
 }

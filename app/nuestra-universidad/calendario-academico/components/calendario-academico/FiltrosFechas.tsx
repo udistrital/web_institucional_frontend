@@ -22,9 +22,6 @@ export default function FiltrosFechas({
         <h2 className={styles.datesTitle} id="calendario-fechas-title">
           Filtrar por fechas
         </h2>
-        <p className={styles.datesHint}>
-          Se muestran las actividades que coinciden con el rango seleccionado.
-        </p>
       </div>
 
       <div className={styles.datesFields}>
