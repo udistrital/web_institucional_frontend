@@ -60,6 +60,13 @@ function serializeProgram(
   };
 }
 
+function facultyHeading(title: string) {
+  const normalizedTitle = title.trim();
+  return /^facultad\b/i.test(normalizedTitle)
+    ? normalizedTitle
+    : `Facultad ${normalizedTitle}`;
+}
+
 function unavailableMessage(message: string) {
   return (
     <div className={styles.unavailable} role="alert">
@@ -78,12 +85,12 @@ export default async function FacultyPage({ slug }: FacultyPageProps) {
 
   if (!faculty) {
     return (
-      <main className={styles.page}>
+      <section className={styles.page}>
         <div className={styles.body}>{unavailableMessage(
           "No fue posible encontrar esta facultad. Intenta de nuevo más tarde.",
         )}</div>
         <NewsSection news={news} />
-      </main>
+      </section>
     );
   }
 
@@ -99,11 +106,11 @@ export default async function FacultyPage({ slug }: FacultyPageProps) {
   };
 
   return (
-    <main className={styles.page}>
+    <section className={styles.page}>
       <header className={styles.hero}>
         <div className={styles.heroText}>
           <p className={styles.eyebrow}>Oferta académica por sede</p>
-          <h1 className={styles.heroTitle}>Facultad {faculty.title}</h1>
+          <h1 className={styles.heroTitle}>{facultyHeading(faculty.title)}</h1>
           <p className={styles.heroLead}>
             Conoce los programas académicos y niveles de formación de esta
             facultad.
@@ -141,6 +148,6 @@ export default async function FacultyPage({ slug }: FacultyPageProps) {
       </div>
 
       <NewsSection news={news} />
-    </main>
+    </section>
   );
 }
