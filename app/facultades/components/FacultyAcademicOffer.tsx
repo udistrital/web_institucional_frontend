@@ -81,13 +81,7 @@ export default function FacultyAcademicOffer({
   return (
     <section className={styles.offer} aria-labelledby="faculty-offer-title">
       <div className={styles.offerHeading}>
-        <div>
-          <p className={styles.eyebrow}>Programas por nivel</p>
-          <h2 id="faculty-offer-title">Oferta académica</h2>
-        </div>
-        <p className={styles.levelCount} aria-live="polite">
-          {selectedLevel.programs.length} {selectedLevel.programs.length === 1 ? "programa" : "programas"}
-        </p>
+        <h2 id="faculty-offer-title">Oferta académica</h2>
       </div>
 
       <div
@@ -128,60 +122,55 @@ export default function FacultyAcademicOffer({
               {level.programs.slice(0, 4).map((program) => {
                 const image = programImage(program, faculty);
 
-                return (
+                const cardMedia = (
+                  <div className={styles.programMedia}>
+                    {image ? (
+                      <Image
+                        alt={program.imagenUrl ? program.imagenAlt : faculty.imageAlt}
+                        className={styles.programImage}
+                        fill
+                        sizes="(max-width: 680px) 100vw, (max-width: 980px) 50vw, 25vw"
+                        src={image}
+                      />
+                    ) : (
+                      <span aria-hidden="true" className={styles.programFallback}>
+                        {program.nombre.charAt(0)}
+                      </span>
+                    )}
+                    <h3 className={styles.programTitle}>{program.nombre}</h3>
+                    {(program.jornada || program.modalidad) && (
+                      <div className={styles.programReveal}>
+                        <dl className={styles.programDetails}>
+                          {program.jornada && (
+                            <div>
+                              <dt>Jornada</dt>
+                              <dd>{program.jornada}</dd>
+                            </div>
+                          )}
+                          {program.modalidad && (
+                            <div>
+                              <dt>Modalidad</dt>
+                              <dd>{program.modalidad}</dd>
+                            </div>
+                          )}
+                        </dl>
+                      </div>
+                    )}
+                  </div>
+                );
+
+                return program.paginaProgramaUrl ? (
+                  <a
+                    aria-label={program.nombre}
+                    className={styles.programCard}
+                    href={program.paginaProgramaUrl}
+                    key={program.id}
+                  >
+                    {cardMedia}
+                  </a>
+                ) : (
                   <article className={styles.programCard} key={program.id}>
-                    <div className={styles.programMedia}>
-                      {image ? (
-                        <Image
-                          alt={program.imagenUrl ? program.imagenAlt : faculty.imageAlt}
-                          className={styles.programImage}
-                          fill
-                          sizes="(max-width: 680px) 100vw, (max-width: 980px) 50vw, 25vw"
-                          src={image}
-                        />
-                      ) : (
-                        <span aria-hidden="true" className={styles.programFallback}>
-                          {program.nombre.charAt(0)}
-                        </span>
-                      )}
-                    </div>
-                    <div className={styles.programContent}>
-                      <p className={styles.programLevel}>{level.name}</p>
-                      <h3>{program.nombre}</h3>
-                      <dl className={styles.programDetails}>
-                        {program.modalidad && (
-                          <div>
-                            <dt>Modalidad</dt>
-                            <dd>{program.modalidad}</dd>
-                          </div>
-                        )}
-                        {program.jornada && (
-                          <div>
-                            <dt>Jornada</dt>
-                            <dd>{program.jornada}</dd>
-                          </div>
-                        )}
-                        {program.snies !== null && (
-                          <div>
-                            <dt>SNIES</dt>
-                            <dd>{program.snies}</dd>
-                          </div>
-                        )}
-                      </dl>
-                      {program.acreditacionAltaCalidad && (
-                        <p className={styles.accreditation}>
-                          Acreditación de alta calidad
-                        </p>
-                      )}
-                      {program.paginaProgramaUrl && (
-                        <a
-                          className={styles.programLink}
-                          href={program.paginaProgramaUrl}
-                        >
-                          Ver programa
-                        </a>
-                      )}
-                    </div>
+                    {cardMedia}
                   </article>
                 );
               })}
@@ -194,7 +183,7 @@ export default function FacultyAcademicOffer({
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                Ver más
+                Ver todas las propuestas
               </a>
             )}
           </div>

@@ -108,14 +108,11 @@ export default async function FacultyPage({ slug }: FacultyPageProps) {
 
   return (
     <section className={styles.page}>
+      <BreadCrumbs variant="onDark" />
+
       <header className={styles.hero}>
         <div className={styles.heroText}>
-          <p className={styles.eyebrow}>Oferta académica por sede</p>
           <h1 className={styles.heroTitle}>{facultyHeading(faculty.title)}</h1>
-          <p className={styles.heroLead}>
-            Conoce los programas académicos y niveles de formación de esta
-            facultad.
-          </p>
         </div>
         <div className={styles.heroVisual}>
           {faculty.imageUrl ? (
@@ -140,8 +137,6 @@ export default async function FacultyPage({ slug }: FacultyPageProps) {
         </div>
       </header>
 
-      <BreadCrumbs variant="default" />
-
       <div className={styles.body}>
         <FacultyAcademicOffer
           faculty={facultyData}
@@ -150,7 +145,7 @@ export default async function FacultyPage({ slug }: FacultyPageProps) {
         />
       </div>
 
-      <NewsSection news={news} />
+      <NewsSection news={news} title={`Noticias · ${facultyHeading(faculty.title)}`} />
     </section>
   );
 }
