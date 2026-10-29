@@ -267,6 +267,12 @@ export const HIMNO_ESTROFAS: string[][] = [
     "de conciencia y de fiel dignidad.",
   ],
   [
+    "Creadora perenne de ideas,",
+    "hacedora de sueños sin fin,",
+    "luz de oro que alumbra el camino,",
+    "de mil triunfos y gran porvenir.",
+  ],
+  [
     "En tu claustro moldeas la esencia,",
     "los valores del bien usarás,",
     "al formar la futura Colombia",
@@ -286,24 +292,60 @@ export const HIMNO_ESTROFAS: string[][] = [
   ],
 ];
 
-export type OtroHimno = {
-  label: string;
-  href: string;
-};
+export const HIMNO_REPUBLICA_VIDEO_URL = "https://www.youtube.com/embed/SrvKADxxsqg";
 
-export const OTROS_HIMNOS: OtroHimno[] = [
-  {
-    label: "Himno de la República de Colombia (completo)",
-    href: "/nuestra-universidad/quienes-somos/simbolos/himno-de-la-republica-de-colombia",
-  },
-  {
-    label: "Himno de la República de Colombia (corto)",
-    href: "/nuestra-universidad/quienes-somos/simbolos/himno-de-la-republica-de-colombia-corto",
-  },
-  {
-    label: "Himno de Bogotá D.C.",
-    href: "/nuestra-universidad/quienes-somos/simbolos/himno-de-bogota-dc",
-  },
+export const HIMNO_REPUBLICA_ESTROFAS: string[][] = [
+  [
+    "Coro",
+    "¡Oh gloria inmarcesible!",
+    "¡Oh júbilo inmortal!",
+    "¡En surcos de dolores",
+    "el bien germina ya! (bis)",
+  ],
+  [
+    "Estrofa I",
+    "¡Cesó la horrible noche!",
+    "La libertad sublime",
+    "derrama las auroras",
+    "de su invencible luz.",
+    "La humanidad entera,",
+    "que entre cadenas gime,",
+    "comprende las palabras",
+    "del que murió en la cruz.",
+  ],
+];
+
+export const HIMNO_BOGOTA_VIDEO_URL = "https://www.youtube.com/embed/4fRGEyZYSWc";
+
+export const HIMNO_BOGOTA_ESTROFAS: string[][] = [
+  [
+    "Coro",
+    "Entonemos un himno a tu cielo,",
+    "a tu tierra y tu puro vivir.",
+    "¡Blanca estrella que alumbra en los Andes!",
+    "¡Ancha senda que va al porvenir! (bis)",
+  ],
+  [
+    "Estrofa I",
+    "Tres guerreros abrieron tus ojos",
+    "a una espada, a una cruz y a un pendón;",
+    "desde entonces no hay miedo en tus lindes",
+    "ni codicia en tu gran corazón. (bis)",
+  ],
+  [
+    "Coro",
+    "Entonemos un himno a tu cielo,",
+    "a tu tierra y tu puro vivir.",
+    "¡Blanca estrella que alumbra en los Andes!",
+    "¡Ancha senda que va al porvenir! (bis)",
+  ],
+  [
+    "Estrofa II",
+    "Flor de razas, compendio y corona,",
+    "en la patria no hay otra ni habrá;",
+    "nuestra voz la repiten los siglos:",
+    "¡Bogotá! ¡Bogotá! ¡Bogotá! (bis)",
+  ],
 ];
 
 export type SimboloGrafico = {

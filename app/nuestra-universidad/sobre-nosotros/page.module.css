@@ -17,8 +17,10 @@
   background: #fff;
   border-bottom: 1px solid #e4e4e4;
   position: sticky;
-  top: 0;
+  /* Se pega justo debajo de la sección fija del header para no solaparlo. */
+  top: var(--header-h, 72px);
   z-index: 20;
+  transition: background-color 200ms ease, border-color 200ms ease;
 }
 .sectionNavList {
   display: flex;
@@ -53,8 +55,25 @@
 }
 .sectionNavIcon { flex-shrink: 0; height: 1.15rem; width: 1.15rem; }
 
+/* ---- Estado "pegada": al hacer scroll la barra queda bajo el header y
+   cambia a fondo oscuro para diferenciarse visualmente de este. ---- */
+.sectionNavStuck {
+  background: #111;
+  border-bottom-color: #111;
+}
+.sectionNavStuck .sectionNavLink { color: #cfcfcf; }
+.sectionNavStuck .sectionNavLink:hover { color: #fff; }
+.sectionNavStuck .sectionNavLinkActive {
+  color: #fff;
+  border-bottom-color: var(--institutional-gold);
+}
+
 /* ---- Estructura general ---- */
-.content { padding: clamp(2.5rem, 6vw, 5rem) max(2vw, 1rem); }
+/* padding-top reducido para acercar el contenido a la barra de pestañas;
+   el espacio inferior y los laterales se mantienen. */
+.content {
+  padding: clamp(1.25rem, 3vw, 2.25rem) max(2vw, 1rem) clamp(2.5rem, 6vw, 5rem);
+}
 /* El panel activo recibe foco al navegar por teclado; evitamos un outline
    duplicado sobre el contenedor (los controles internos ya son enfocables). */
 .content > [role="tabpanel"]:focus { outline: none; }
@@ -442,18 +461,35 @@
 .himnoLetra { display: flex; flex-direction: column; gap: 1rem; }
 .estrofaCarrusel { display: flex; }
 .estrofa {
-  align-items: center;
   background: #fff;
   border-left: 3px solid var(--institutional-gold);
   box-shadow: 0 4px 14px rgba(0, 0, 0, .07);
+  display: grid;
+  min-height: 11rem;
+  padding: 1.5rem 1.75rem;
+  width: 100%;
+}
+/*
+ * Todas las estrofas se apilan en la misma celda de la grid, de modo que la
+ * card reserve la altura de la estrofa más larga del himno y no cambie de
+ * tamaño al navegar. Solo la estrofa activa queda visible.
+ */
+.estrofaSlide {
+  align-items: center;
   display: flex;
   flex-direction: column;
   gap: .75rem;
+  grid-area: 1 / 1;
   justify-content: center;
-  min-height: 11rem;
-  padding: 1.5rem 1.75rem;
+  opacity: 0;
+  pointer-events: none;
   text-align: center;
-  width: 100%;
+  visibility: hidden;
+}
+.estrofaSlideActiva {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
 }
 .estrofaNumero {
   color: var(--institutional-red);
@@ -464,6 +500,20 @@
 }
 .estrofaVersos { color: #333; font-size: var(--fs-base); line-height: var(--lh-normal); margin: 0; text-align: center; }
 .estrofaVersos span { display: block; }
+/*
+ * Estrofas largas: los versos se reparten en dos columnas para que la card no
+ * crezca demasiado en alto. El primer verso (número romano/"Coro") abarca el
+ * ancho completo para que el encabezado de la estrofa quede centrado arriba.
+ */
+.estrofaVersosDoble {
+  column-gap: 2rem;
+  columns: 2;
+  text-align: left;
+}
+.estrofaVersosDoble span:first-child {
+  column-span: all;
+  text-align: center;
+}
 
 /* Controles del carrusel */
 .carruselControles { align-items: center; display: flex; gap: 1rem; justify-content: center; }
@@ -497,22 +547,28 @@
 .carruselPunto:hover { background: var(--institutional-gold); }
 .carruselPuntoActivo { background: var(--institutional-red); transform: scale(1.3); }
 
-.otrosHimnos ul { display: flex; flex-direction: column; gap: .6rem; list-style: none; margin: 0; padding: 0; }
-.otrosHimnos a { color: var(--institutional-red); font-size: var(--fs-sm); font-weight: 600; text-decoration: underline; text-decoration-color: var(--institutional-gold); text-underline-offset: 3px; }
-.otrosHimnos a:hover { color: #000; }
-
 .graficosGrid {
   display: grid;
   gap: 1.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  grid-template-columns: 1fr;
 }
 .graficoCard {
   background: #fff;
   box-shadow: 0 5px 18px rgba(0, 0, 0, .08);
   display: grid;
-  grid-template-columns: minmax(8rem, 10rem) minmax(0, 1fr);
   overflow: hidden;
 }
+/*
+ * Escudo y bandera: texto a la izquierda e imagen a su derecha. En el DOM la
+ * imagen va primero, así que la reordenamos con `order` para que el texto
+ * quede delante.
+ */
+.escudoCard,
+.banderaCard { grid-template-columns: minmax(0, 1fr) minmax(8rem, 12rem); }
+.escudoCard .graficoMedia,
+.banderaCard .graficoMedia { order: 2; }
+.escudoCard .graficoBody,
+.banderaCard .graficoBody { order: 1; }
 .graficoMedia {
   align-items: center;
   background: #fff;
@@ -537,7 +593,8 @@
   .rectorCard { grid-template-columns: 1fr; }
   .rectorImage { aspect-ratio: 3 / 2; min-height: 0; }
   .himno { grid-template-columns: 1fr; }
-  .graficoCard { grid-template-columns: 1fr; }
+  .escudoCard,
+  .banderaCard { grid-template-columns: 1fr; }
   .graficoMedia { padding: 2rem; }
 }
 
@@ -570,4 +627,5 @@
   .organoCard:hover,
   .timelineCard:hover { transform: none; }
   .carruselPunto { transition: none; }
+  .sectionNav { transition: none; }
 }

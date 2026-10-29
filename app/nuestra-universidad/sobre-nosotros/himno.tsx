@@ -6,6 +6,14 @@ import styles from "./page.module.css";
 type HimnoProps = {
   videoUrl: string;
   estrofas: string[][];
+  /** Título del video, usado para la accesibilidad del iframe. */
+  titulo?: string;
+  /**
+   * A partir de cuántos versos una estrofa se reparte en dos columnas, para
+   * que no crezca demasiado en alto. Por defecto 6: las estrofas cortas se
+   * muestran en una sola columna y solo las largas se dividen.
+   */
+  umbralColumnas?: number;
 };
 
 /**
@@ -13,7 +21,12 @@ type HimnoProps = {
  * estrofa a la vez con controles para avanzar y retroceder. Así la letra ocupa
  * poco espacio y el usuario la recorre de forma guiada.
  */
-export default function Himno({ videoUrl, estrofas }: HimnoProps) {
+export default function Himno({
+  videoUrl,
+  estrofas,
+  titulo = "Video del Himno Institucional de la Universidad Distrital",
+  umbralColumnas = 6,
+}: HimnoProps) {
   const [actual, setActual] = useState(0);
   const total = estrofas.length;
 
@@ -26,7 +39,7 @@ export default function Himno({ videoUrl, estrofas }: HimnoProps) {
       <div className={styles.himnoVideo}>
         <iframe
           src={videoUrl}
-          title="Video del Himno Institucional de la Universidad Distrital"
+          title={titulo}
           loading="lazy"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           referrerPolicy="strict-origin-when-cross-origin"
@@ -37,14 +50,24 @@ export default function Himno({ videoUrl, estrofas }: HimnoProps) {
       <div className={styles.himnoLetra}>
         <div className={styles.estrofaCarrusel} aria-live="polite">
           <div className={styles.estrofa}>
-            <span className={styles.estrofaNumero}>
-              Estrofa {actual + 1} de {total}
-            </span>
-            <p className={styles.estrofaVersos}>
-              {estrofas[actual].map((verso, i) => (
-                <span key={i}>{verso}</span>
-              ))}
-            </p>
+            {estrofas.map((versos, indice) => (
+              <div
+                key={indice}
+                className={`${styles.estrofaSlide} ${indice === actual ? styles.estrofaSlideActiva : ""}`}
+                aria-hidden={indice === actual ? undefined : "true"}
+              >
+                <span className={styles.estrofaNumero}>
+                  Estrofa {indice + 1} de {total}
+                </span>
+                <p
+                  className={`${styles.estrofaVersos} ${versos.length >= umbralColumnas ? styles.estrofaVersosDoble : ""}`}
+                >
+                  {versos.map((verso, i) => (
+                    <span key={i}>{verso}</span>
+                  ))}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
 

@@ -18,7 +18,10 @@ import {
   HITOS,
   HIMNO_VIDEO_URL,
   HIMNO_ESTROFAS,
-  OTROS_HIMNOS,
+  HIMNO_REPUBLICA_VIDEO_URL,
+  HIMNO_REPUBLICA_ESTROFAS,
+  HIMNO_BOGOTA_VIDEO_URL,
+  HIMNO_BOGOTA_ESTROFAS,
   SIMBOLOS_GRAFICOS,
 } from "./content";
 
@@ -189,22 +192,32 @@ export default async function SobreNosotrosPage() {
       </div>
 
       <h3 className={styles.subheading}>Himno institucional</h3>
-      <Himno videoUrl={HIMNO_VIDEO_URL} estrofas={HIMNO_ESTROFAS} />
+      <Himno
+        videoUrl={HIMNO_VIDEO_URL}
+        estrofas={HIMNO_ESTROFAS}
+        titulo="Video del Himno Institucional de la Universidad Distrital"
+      />
 
-      <h3 className={styles.subheading}>Himnos Nacional y de Bogotá</h3>
-      <div className={styles.otrosHimnos}>
-        <ul>
-          {OTROS_HIMNOS.map((himno) => (
-            <li key={himno.href}>
-              <a href={himno.href}>{himno.label}</a>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <h3 className={styles.subheading}>Himno de la República de Colombia</h3>
+      <Himno
+        videoUrl={HIMNO_REPUBLICA_VIDEO_URL}
+        estrofas={HIMNO_REPUBLICA_ESTROFAS}
+        titulo="Video del Himno Nacional de la República de Colombia"
+      />
+
+      <h3 className={styles.subheading}>Himno de Bogotá</h3>
+      <Himno
+        videoUrl={HIMNO_BOGOTA_VIDEO_URL}
+        estrofas={HIMNO_BOGOTA_ESTROFAS}
+        titulo="Video del Himno de Bogotá"
+      />
 
       <div className={styles.graficosGrid}>
         {SIMBOLOS_GRAFICOS.map((simbolo) => (
-          <div className={styles.graficoCard} key={simbolo.id}>
+          <div
+            className={`${styles.graficoCard} ${simbolo.id === "escudo" ? styles.escudoCard : styles.banderaCard}`}
+            key={simbolo.id}
+          >
             <div className={styles.graficoMedia}>
               {simbolo.id === "escudo" ? (
                 <Image
