@@ -7,7 +7,7 @@ import { getNews } from "@/services/noticias";
 import EnrollmentSection from "@/app/components/home/EnrollmentSection";
 import FacultiesSection from "@/app/components/home/FacultiesSection";
 import HeroSection from "@/app/components/home/HeroSection";
-import NewsSection from "@/app/components/home/NewsSection";
+import NewsSection from "@/components/common/news-section/news-section";
 import QuickLinksSection from "@/app/components/home/QuickLinksSection";
 import ServicesSection from "@/app/components/home/ServicesSection";
 import StudentServicesSection from "@/app/components/home/StudentServicesSection";
