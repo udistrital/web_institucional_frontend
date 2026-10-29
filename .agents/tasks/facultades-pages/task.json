@@ -1,0 +1,7 @@
+{
+  "task_id": "task-facultades-pages",
+  "task_description": "Implementar las siete páginas de facultades con datos Drupal, hero institucional, oferta académica por nivel y noticias.",
+  "status": "completed",
+  "feature_order": ["FEAT-001", "FEAT-002"],
+  "blocked_reason": null
+}
