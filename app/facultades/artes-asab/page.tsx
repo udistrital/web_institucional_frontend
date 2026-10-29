@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
+import FacultyPage from "../components/FacultyPage";
+import { generateFacultyMetadata } from "../metadata";
 
-export const metadata: Metadata = {
-  title: "Facultad de Artes - ASAB",
-};
+const slug = "artes-asab";
+
+export async function generateMetadata(): Promise<Metadata> {
+  return generateFacultyMetadata(slug);
+}
 
 export default function ArtesAsabPage() {
-  return <>{/* Contenido de la Facultad de Artes - ASAB */}</>;
+  return <FacultyPage slug={slug} />;
 }
