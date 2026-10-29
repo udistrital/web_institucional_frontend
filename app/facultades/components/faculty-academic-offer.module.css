@@ -1,0 +1,231 @@
+.offer {
+  min-width: 0;
+}
+
+.offerHeading {
+  align-items: end;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.eyebrow,
+.programLevel {
+  color: var(--institutional-red);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin: 0 0 0.4rem;
+  text-transform: uppercase;
+}
+
+.offerHeading h2 {
+  color: #202124;
+  font-size: var(--fs-h2);
+  line-height: var(--lh-tight);
+  margin: 0;
+}
+
+.levelCount {
+  color: #666;
+  font-size: var(--fs-sm);
+  margin: 0 0 0.2rem;
+  white-space: nowrap;
+}
+
+.tabs {
+  border-bottom: 1px solid #dedbd8;
+  display: flex;
+  gap: 0.35rem;
+  overflow-x: auto;
+  padding: 0 0.25rem;
+  scrollbar-width: thin;
+}
+
+.tab,
+.activeTab {
+  background: transparent;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  color: #5c5c5c;
+  cursor: pointer;
+  flex: 0 0 auto;
+  font: inherit;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  min-height: 3.1rem;
+  padding: 0.7rem 0.9rem;
+}
+
+.tab:hover,
+.activeTab {
+  color: var(--institutional-red);
+}
+
+.activeTab {
+  border-bottom-color: var(--institutional-gold);
+}
+
+.panel {
+  outline: none;
+  padding-top: 1.5rem;
+}
+
+.programGrid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.programCard {
+  background: #fff;
+  border: 1px solid #e5e2df;
+  border-top: 4px solid var(--institutional-red);
+  box-shadow: 0 5px 18px rgb(0 0 0 / 5.5%);
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.programMedia {
+  aspect-ratio: 16 / 9;
+  background: #ece9e5;
+  overflow: hidden;
+  position: relative;
+}
+
+.programImage {
+  object-fit: cover;
+}
+
+.programFallback {
+  align-items: center;
+  background:
+    radial-gradient(circle at 70% 25%, rgb(253 180 0 / 30%), transparent 25%),
+    linear-gradient(145deg, #f4f1ed, #ddd7d0);
+  color: rgb(140 25 25 / 45%);
+  display: flex;
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 4rem;
+  font-weight: 700;
+  inset: 0;
+  justify-content: center;
+  position: absolute;
+}
+
+.programContent {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.programLevel {
+  color: #666;
+  font-size: var(--fs-2xs);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.45rem;
+}
+
+.programContent h3 {
+  color: var(--institutional-red);
+  font-size: var(--fs-lg);
+  line-height: var(--lh-tight);
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.programDetails {
+  display: grid;
+  gap: 0.7rem;
+  margin: 1rem 0 0;
+}
+
+.programDetails dt {
+  color: #666;
+  font-size: var(--fs-2xs);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.1rem;
+  text-transform: uppercase;
+}
+
+.programDetails dd {
+  color: #262626;
+  font-size: var(--fs-sm);
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.accreditation {
+  background: var(--institutional-gold);
+  color: #302200;
+  font-size: var(--fs-2xs);
+  font-weight: 800;
+  line-height: var(--lh-snug);
+  margin: 1rem 0 0;
+  padding: 0.45rem 0.55rem;
+}
+
+.programLink,
+.moreLink {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  text-underline-offset: 3px;
+}
+
+.programLink {
+  color: var(--institutional-red);
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+.moreLink {
+  background: var(--institutional-gold);
+  color: #201800;
+  display: inline-flex;
+  margin-top: 1.5rem;
+  padding: 0.65rem 1.15rem;
+  text-decoration: none;
+}
+
+.moreLink:hover {
+  background: #e9a600;
+}
+
+.statusMessage {
+  background: #fff;
+  border-left: 4px solid var(--institutional-gold);
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.statusMessage h2 {
+  color: #202124;
+  font-size: var(--fs-xl);
+  margin: 0 0 0.5rem;
+}
+
+.statusMessage p {
+  color: #666;
+  margin: 0;
+}
+
+@media (max-width: 1050px) {
+  .programGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .offerHeading {
+    align-items: start;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .programGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

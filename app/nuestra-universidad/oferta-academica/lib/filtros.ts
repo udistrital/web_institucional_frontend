@@ -1,13 +1,8 @@
-export type OpcionFiltro = { valor: string; etiqueta: string };
+import { slugFiltro } from "@/lib/filtros";
 
-export function slugFiltro(texto: string | null | undefined): string {
-  return (texto ?? "")
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLocaleLowerCase("es")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "");
-}
+export { slugFiltro } from "@/lib/filtros";
+
+export type OpcionFiltro = { valor: string; etiqueta: string };
 
 export function normalizarBusqueda(texto: string): string {
   return texto

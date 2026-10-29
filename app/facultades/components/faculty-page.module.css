@@ -1,0 +1,135 @@
+.page {
+  background: #f7f7f5;
+  min-height: 70vh;
+}
+
+.hero {
+  background: #fff;
+  border-bottom: 1px solid #e5e5e5;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  min-height: 264px;
+  overflow: hidden;
+  position: relative;
+}
+
+.heroText {
+  align-self: center;
+  max-width: 46rem;
+  padding: clamp(2.25rem, 4vw, 3rem) max(4vw, 1.5rem) 5.25rem;
+}
+
+.heroText::after {
+  background: var(--institutional-gold);
+  content: "";
+  display: block;
+  height: 4px;
+  margin-top: 1.5rem;
+  width: 4rem;
+}
+
+.eyebrow {
+  color: var(--institutional-red);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  margin: 0 0 0.85rem;
+  text-transform: uppercase;
+}
+
+.heroTitle {
+  color: #202124;
+  font-size: var(--fs-h1);
+  line-height: var(--lh-tight);
+  margin: 0;
+}
+
+.heroLead {
+  color: #666;
+  font-size: var(--fs-md);
+  line-height: var(--lh-snug);
+  margin: 1rem 0 0;
+  max-width: 44rem;
+}
+
+.heroVisual {
+  background: var(--institutional-red);
+  clip-path: polygon(16% 0, 100% 0, 100% 100%, 0 100%);
+  min-height: 264px;
+  position: relative;
+}
+
+.heroImage {
+  object-fit: cover;
+  object-position: center;
+}
+
+.heroImageFallback {
+  align-items: center;
+  background:
+    radial-gradient(circle at 70% 25%, rgb(253 180 0 / 35%), transparent 28%),
+    linear-gradient(145deg, var(--institutional-red), #5f1010);
+  color: rgb(255 255 255 / 80%);
+  display: flex;
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: clamp(5rem, 12vw, 9rem);
+  font-weight: 700;
+  inset: 0;
+  justify-content: center;
+  position: absolute;
+}
+
+.heroAccent {
+  background: linear-gradient(90deg, rgb(140 25 25 / 55%), rgb(140 25 25 / 0%) 55%);
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+.body {
+  margin: 0 auto;
+  max-width: 1180px;
+  padding: clamp(2.5rem, 5vw, 4rem) max(4vw, 1.25rem) clamp(3rem, 6vw, 5rem);
+  width: 100%;
+}
+
+.unavailable,
+.statusMessage {
+  background: #fff;
+  border-left: 4px solid var(--institutional-gold);
+  box-shadow: 0 1px 2px rgb(17 17 17 / 4%), 0 10px 28px rgb(17 17 17 / 6%);
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.unavailable h1,
+.statusMessage h2 {
+  color: #202124;
+  font-size: var(--fs-xl);
+  margin: 0 0 0.5rem;
+}
+
+.unavailable p,
+.statusMessage p {
+  color: #666;
+  margin: 0;
+}
+
+.statusMessage {
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 0;
+  }
+
+  .heroText {
+    padding: clamp(2rem, 6vw, 2.75rem) max(5vw, 1.25rem) 2.75rem;
+  }
+
+  .heroVisual {
+    clip-path: none;
+    min-height: 150px;
+  }
+}
