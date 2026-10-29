@@ -1,6 +1,7 @@
 "use client";
 
 import type { FiltrosCalendario as Filtros } from "@/types/domain";
+import { SearchIcon } from "./Icons";
 import styles from "./CalendarioAcademico.module.css";
 
 type FiltrosCalendarioProps = {
@@ -10,26 +11,6 @@ type FiltrosCalendarioProps = {
   audiencias: string[];
   onChange: (campo: keyof Filtros, valor: string) => void;
 };
-
-function SearchIcon() {
-  return (
-    <svg
-      aria-hidden="true"
-      className={styles.searchIcon}
-      fill="none"
-      height="18"
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2"
-      viewBox="0 0 24 24"
-      width="18"
-    >
-      <circle cx="11" cy="11" r="8" />
-      <line x1="21" x2="16.65" y1="21" y2="16.65" />
-    </svg>
-  );
-}
 
 export default function FiltrosCalendario({
   filtros,
@@ -44,17 +25,14 @@ export default function FiltrosCalendario({
       className={styles.filtersSection}
     >
       <h3 className={styles.filtersSectionTitle} id="calendario-filtros-title">
-        Más filtros
+        Consulta
       </h3>
-      <p className={styles.filtersSectionHint}>
-        Refina la búsqueda por temática, categoría o público.
-      </p>
 
       <div className={styles.filtersGrid}>
         <div className={styles.field}>
           <label htmlFor="calendario-buscar">Buscar</label>
           <div className={styles.inputWithIcon}>
-            <SearchIcon />
+            <SearchIcon className={styles.searchIcon} />
             <input
               autoComplete="off"
               id="calendario-buscar"

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
@@ -234,6 +234,17 @@ export default function MobileNav({ onOpenSearch }: MobileNavProps) {
                         </motion.li>
                       );
                     })}
+                    {currentParent?.href === ofertaAcademicaNavigation.href && (
+                      <li>
+                        <Link
+                          href={ofertaAcademicaNavigation.href}
+                          onClick={closeMobileMenu}
+                          className={styles.mobileItemLink}
+                        >
+                          Conoce todos los programas
+                        </Link>
+                      </li>
+                    )}
                   </motion.ul>
                 </motion.div>
               </AnimatePresence>

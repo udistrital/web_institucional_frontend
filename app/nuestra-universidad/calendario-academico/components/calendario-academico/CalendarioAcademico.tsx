@@ -13,6 +13,7 @@ import FiltrosCalendario from "./FiltrosCalendario";
 import FiltrosFechas from "./FiltrosFechas";
 import FiltrosSemestre from "./FiltrosSemestre";
 import TarjetaActividad from "./TarjetaActividad";
+import { ListIcon, ResetIcon } from "./Icons";
 import styles from "./CalendarioAcademico.module.css";
 
 type CalendarioAcademicoProps = {
@@ -101,8 +102,11 @@ export default function CalendarioAcademico({
       <section aria-label="Filtros del calendario" className={styles.filterPanel}>
         <div className={styles.filterPanelHeader}>
           <div>
-            <p className={styles.filterEyebrow}>Encuentra lo que necesitas</p>
-            <h2 className={styles.filterPanelTitle}>Filtra las actividades</h2>
+            <h2 className={styles.filterPanelTitle}>Filtrar actividades</h2>
+            <p className={styles.filterPanelDescription}>
+              Selecciona los criterios que te interesan para encontrar la
+              actividad ideal.
+            </p>
           </div>
           <button
             className={styles.clearButton}
@@ -110,6 +114,7 @@ export default function CalendarioAcademico({
             onClick={limpiarFiltros}
             type="button"
           >
+            <ResetIcon size={16} />
             Limpiar filtros
           </button>
         </div>
@@ -137,11 +142,12 @@ export default function CalendarioAcademico({
       </section>
 
       <div className={styles.resultsColumn}>
-        <p aria-live="polite" className={styles.resultsCount} role="status">
-          {visibles.length === 0
-            ? "Sin actividades para los filtros seleccionados."
-            : `Mostrando ${visibles.length} de ${actividades.length} actividades.`}
-        </p>
+        {visibles.length > 0 && (
+          <p aria-live="polite" className={styles.resultsCount} role="status">
+            <ListIcon size={16} />
+            Mostrando {visibles.length} de {actividades.length} actividades
+          </p>
+        )}
 
         {visibles.length > 0 ? (
           <div className={styles.list}>
@@ -157,8 +163,8 @@ export default function CalendarioAcademico({
           <div className={styles.empty}>
             <h3>No encontramos actividades</h3>
             <p>
-              Ajusta la búsqueda o amplía el rango de fechas para ver más
-              resultados del calendario académico.
+              No encontramos actividades con los filtros seleccionados. Prueba
+              modificando los criterios de búsqueda.
             </p>
             <button
               className={styles.clearButton}
