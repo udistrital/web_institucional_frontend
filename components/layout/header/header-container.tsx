@@ -138,7 +138,7 @@ export default function HeaderContainer() {
         style={
           floating
             ? { position: "fixed", top: 0, left: 0, right: 0, zIndex: 60 }
-            : { position: "relative" }
+            : { position: "relative", zIndex: 60 }
         }
         initial={false}
         animate={controls}

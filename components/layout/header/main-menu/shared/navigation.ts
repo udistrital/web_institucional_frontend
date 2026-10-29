@@ -83,71 +83,71 @@ export const nuestraUniversidadNavigation: NavigationItem = {
 }
 export const ofertaAcademicaNavigation: NavigationItem = {
   label: "Oferta académica",
-  href: "/oferta-academica",
+  href: "/nuestra-universidad/oferta-academica",
   children: [
     {
       label: "Facultad de Artes ASAB",
-      href: "/oferta-academica/artes-asab",
+      href: "/nuestra-universidad/oferta-academica?facultad=facultad-de-artes-asab",
       children: [
-        { label: "Pregrado", href: "/oferta-academica/artes-asab/pregrado" },
-        { label: "Maestría", href: "/oferta-academica/artes-asab/maestria" },
-        { label: "Doctorado", href: "/oferta-academica/artes-asab/doctorado" },
+        { label: "Pregrado", href: "/nuestra-universidad/oferta-academica?facultad=facultad-de-artes-asab&nivel=pregrado" },
+        { label: "Maestría", href: "/nuestra-universidad/oferta-academica?facultad=facultad-de-artes-asab&nivel=maestria" },
+        { label: "Doctorado", href: "/nuestra-universidad/oferta-academica?facultad=facultad-de-artes-asab&nivel=doctorado" },
       ],
     },
     {
       label: "Facultad de Ciencias de la Salud",
-      href: "/oferta-academica/ciencias-salud",
+      href: "/nuestra-universidad/oferta-academica?facultad=facultad-de-ciencias-de-la-salud",
       children: [
-        { label: "Pregrado", href: "/oferta-academica/ciencias-salud/pregrado" },
+        { label: "Pregrado", href: "/nuestra-universidad/oferta-academica?facultad=facultad-de-ciencias-de-la-salud&nivel=pregrado" },
       ],
     },
     {
       label: "Facultad de Ciencias y Educación",
-      href: "/oferta-academica/ciencias-educacion",
+      href: "/nuestra-universidad/oferta-academica?facultad=facultad-de-ciencias-y-educacion",
       children: [
-        { label: "Pregrado", href: "/oferta-academica/ciencias-educacion/pregrado" },
-        { label: "Especialización", href: "/oferta-academica/ciencias-educacion/especializacion" },
-        { label: "Maestría", href: "/oferta-academica/ciencias-educacion/maestria" },
-        { label: "Doctorado", href: "/oferta-academica/ciencias-educacion/doctorado" },
+        { label: "Pregrado", href: "/nuestra-universidad/oferta-academica?facultad=facultad-de-ciencias-y-educacion&nivel=pregrado" },
+        { label: "Especialización", href: "/nuestra-universidad/oferta-academica?facultad=facultad-de-ciencias-y-educacion&nivel=especializacion" },
+        { label: "Maestría", href: "/nuestra-universidad/oferta-academica?facultad=facultad-de-ciencias-y-educacion&nivel=maestria" },
+        { label: "Doctorado", href: "/nuestra-universidad/oferta-academica?facultad=facultad-de-ciencias-y-educacion&nivel=doctorado" },
       ],
     },
     {
       label: "Facultad de Ciencias Matemáticas y Naturales",
-      href: "/oferta-academica/ciencias-matematicas-naturales",
+      href: "/nuestra-universidad/oferta-academica?facultad=facultad-de-ciencias-matematicas-y-naturales",
       children: [
-        { label: "Pregrado", href: "/oferta-academica/ciencias-matematicas-naturales/pregrado" },
-        { label: "Especialización", href: "/oferta-academica/ciencias-matematicas-naturales/especializacion" },
-        { label: "Maestría", href: "/oferta-academica/ciencias-matematicas-naturales/maestria" },
-        { label: "Doctorado", href: "/oferta-academica/ciencias-matematicas-naturales/doctorado" },
+        { label: "Pregrado", href: "/nuestra-universidad/oferta-academica?facultad=facultad-de-ciencias-matematicas-y-naturales&nivel=pregrado" },
+        { label: "Especialización", href: "/nuestra-universidad/oferta-academica?facultad=facultad-de-ciencias-matematicas-y-naturales&nivel=especializacion" },
+        { label: "Maestría", href: "/nuestra-universidad/oferta-academica?facultad=facultad-de-ciencias-matematicas-y-naturales&nivel=maestria" },
+        { label: "Doctorado", href: "/nuestra-universidad/oferta-academica?facultad=facultad-de-ciencias-matematicas-y-naturales&nivel=doctorado" },
       ],
     },
     {
       label: "Facultad de Ingeniería",
-      href: "/oferta-academica/ingenieria",
+      href: "/nuestra-universidad/oferta-academica?facultad=facultad-de-ingenieria",
       children: [
-        { label: "Pregrado", href: "/oferta-academica/ingenieria/pregrado" },
-        { label: "Especialización", href: "/oferta-academica/ingenieria/especializacion" },
-        { label: "Maestría", href: "/oferta-academica/ingenieria/maestria" },
-        { label: "Doctorado", href: "/oferta-academica/ingenieria/doctorado" },
+        { label: "Pregrado", href: "/nuestra-universidad/oferta-academica?facultad=facultad-de-ingenieria&nivel=pregrado" },
+        { label: "Especialización", href: "/nuestra-universidad/oferta-academica?facultad=facultad-de-ingenieria&nivel=especializacion" },
+        { label: "Maestría", href: "/nuestra-universidad/oferta-academica?facultad=facultad-de-ingenieria&nivel=maestria" },
+        { label: "Doctorado", href: "/nuestra-universidad/oferta-academica?facultad=facultad-de-ingenieria&nivel=doctorado" },
       ],
     },
     {
       label: "Facultad de Medio Ambiente y Recursos Naturales",
-      href: "/oferta-academica/medio-ambiente-recursos-naturales",
+      href: "/nuestra-universidad/oferta-academica?facultad=facultad-del-medio-ambiente-y-recursos-naturales",
       children: [
-        { label: "Pregrado", href: "/oferta-academica/medio-ambiente-recursos-naturales/pregrado" },
-        { label: "Especialización", href: "/oferta-academica/medio-ambiente-recursos-naturales/especializacion" },
-        { label: "Maestría", href: "/oferta-academica/medio-ambiente-recursos-naturales/maestria" },
-        { label: "Doctorado", href: "/oferta-academica/medio-ambiente-recursos-naturales/doctorado" },
+        { label: "Pregrado", href: "/nuestra-universidad/oferta-academica?facultad=facultad-del-medio-ambiente-y-recursos-naturales&nivel=pregrado" },
+        { label: "Especialización", href: "/nuestra-universidad/oferta-academica?facultad=facultad-del-medio-ambiente-y-recursos-naturales&nivel=especializacion" },
+        { label: "Maestría", href: "/nuestra-universidad/oferta-academica?facultad=facultad-del-medio-ambiente-y-recursos-naturales&nivel=maestria" },
+        { label: "Doctorado", href: "/nuestra-universidad/oferta-academica?facultad=facultad-del-medio-ambiente-y-recursos-naturales&nivel=doctorado" },
       ],
     },
     {
       label: "Facultad Tecnológica",
-      href: "/oferta-academica/tecnologica",
+      href: "/nuestra-universidad/oferta-academica?facultad=facultad-tecnologica",
       children: [
-        { label: "Pregrado", href: "/oferta-academica/tecnologica/pregrado" },
-        { label: "Especialización", href: "/oferta-academica/tecnologica/especializacion" },
-        { label: "Maestría", href: "/oferta-academica/tecnologica/maestria" },
+        { label: "Pregrado", href: "/nuestra-universidad/oferta-academica?facultad=facultad-tecnologica&nivel=pregrado" },
+        { label: "Especialización", href: "/nuestra-universidad/oferta-academica?facultad=facultad-tecnologica&nivel=especializacion" },
+        { label: "Maestría", href: "/nuestra-universidad/oferta-academica?facultad=facultad-tecnologica&nivel=maestria" },
       ],
     },
         {
@@ -162,4 +162,3 @@ export const ofertaAcademicaNavigation: NavigationItem = {
     },
   ],
 }
-

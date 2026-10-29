@@ -38,7 +38,9 @@ const PARAMETROS = {
   "filter[status]": "1",
   include:
     "field_periodo,field_categoria,field_tematica,field_responsables,field_audiencia",
-  sort: "field_fechas",
+  // Orden estable para evitar que registros con fechas compartidas se repitan
+  // o se pierdan entre páginas de Drupal.
+  sort: "drupal_internal__nid",
   "page[limit]": "50",
 };
 
@@ -143,7 +145,17 @@ export async function getActividadesAcademicas(): Promise<ActividadAcademica[]> 
     pagina = await getPagina(siguiente);
   }
 
-  return recursos.map(normalizarActividad).sort(ordenarActividades);
+  const idsVistos = new Set<string>();
+
+  return recursos
+    .map(normalizarActividad)
+    .filter((actividad) => {
+      if (idsVistos.has(actividad.id)) return false;
+
+      idsVistos.add(actividad.id);
+      return true;
+    })
+    .sort(ordenarActividades);
 }
 
 /**
