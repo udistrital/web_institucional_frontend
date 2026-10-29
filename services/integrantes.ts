@@ -67,3 +67,27 @@ export async function getIntegrantes(): Promise<Integrante[]> {
     return [];
   }
 }
+
+/**
+ * Obtiene al Rector de la Universidad a partir del servicio de integrantes.
+ *
+ * La foto y la descripción del rector se administran desde Drupal (contenido
+ * "integrantes"), por lo que reutilizamos ese endpoint en lugar de crear uno
+ * nuevo. Se identifica al rector por su campo `puesto`, excluyendo cargos que
+ * contienen "rector" como parte de otra palabra (p. ej. "Vicerrector").
+ */
+export async function getRector(): Promise<Integrante | null> {
+  const integrantes = await getIntegrantes();
+
+  const esRector = (puesto: string | null) => {
+    if (!puesto) return false;
+    const normalizado = puesto
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
+    // "rector" / "rectora" / "rectoria" pero NO "vicerrector(a)".
+    return /\brector/.test(normalizado) && !/vicerrector/.test(normalizado);
+  };
+
+  return integrantes.find((integrante) => esRector(integrante.puesto)) ?? null;
+}

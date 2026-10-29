@@ -80,7 +80,7 @@
 
 .menuCompact {
     position: absolute;
-    top: calc(100% + 3.9rem); 
+    top: calc(100% + 2.7rem); /* misma separación bajo la barra que .menuFullWidth */
     left: -80%; 
     transform: translateX(-50%); 
     z-index: 10;
