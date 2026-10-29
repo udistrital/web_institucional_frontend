@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import styles from "./page.module.css";
 
 type HimnoProps = {
@@ -34,6 +34,24 @@ export default function Himno({
     setActual((indice + total) % total);
   };
 
+  // Gesto táctil: deslizar a los lados cambia de estrofa en móvil.
+  const touchInicioX = useRef<number | null>(null);
+  const DISTANCIA_MINIMA = 40; // px que hay que arrastrar para contar como swipe
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchInicioX.current = e.touches[0].clientX;
+  };
+
+  const onTouchEnd = (e: React.TouchEvent) => {
+    if (touchInicioX.current === null) return;
+    const delta = e.changedTouches[0].clientX - touchInicioX.current;
+    if (Math.abs(delta) >= DISTANCIA_MINIMA) {
+      // Arrastrar hacia la izquierda avanza; hacia la derecha retrocede.
+      ir(delta < 0 ? actual + 1 : actual - 1);
+    }
+    touchInicioX.current = null;
+  };
+
   return (
     <div className={styles.himno}>
       <div className={styles.himnoVideo}>
@@ -48,7 +66,12 @@ export default function Himno({
       </div>
 
       <div className={styles.himnoLetra}>
-        <div className={styles.estrofaCarrusel} aria-live="polite">
+        <div
+          className={styles.estrofaCarrusel}
+          aria-live="polite"
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
+        >
           <div className={styles.estrofa}>
             {estrofas.map((versos, indice) => (
               <div
@@ -56,9 +79,6 @@ export default function Himno({
                 className={`${styles.estrofaSlide} ${indice === actual ? styles.estrofaSlideActiva : ""}`}
                 aria-hidden={indice === actual ? undefined : "true"}
               >
-                <span className={styles.estrofaNumero}>
-                  Estrofa {indice + 1} de {total}
-                </span>
                 <p
                   className={`${styles.estrofaVersos} ${versos.length >= umbralColumnas ? styles.estrofaVersosDoble : ""}`}
                 >

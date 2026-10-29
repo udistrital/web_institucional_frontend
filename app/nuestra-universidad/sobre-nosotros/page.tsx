@@ -3,8 +3,8 @@ import type { ReactNode } from "react";
 import Image from "next/image";
 import styles from "./page.module.css";
 import BreadCrumbs from "@/components/common/bread-crumbs/bread-crumbs";
+import SectionTabs from "@/components/common/section-tabs/section-tabs";
 import { getRector } from "@/services/integrantes";
-import SectionTabs from "./section-tabs";
 import HistoriaTimeline from "./historia-timeline";
 import Himno from "./himno";
 import { SectionIcon, FUNCION_ICONS } from "./icons";
@@ -261,7 +261,15 @@ export default async function SobreNosotrosPage() {
     <section className={styles.page} aria-label="Sobre Nosotros">
       <BreadCrumbs variant="onDark" />
 
-      <SectionTabs sections={SECTIONS} panels={panels} />
+      <SectionTabs
+        sections={SECTIONS.map((s) => ({
+          ...s,
+          icon: <SectionIcon id={s.id} />,
+        }))}
+        panels={panels}
+        ariaLabel="Secciones de Sobre Nosotros"
+        contentClassName={styles.content}
+      />
     </section>
   );
 }
