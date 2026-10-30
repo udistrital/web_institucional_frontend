@@ -17,6 +17,17 @@ export type Faculty = {
 
 import { fetchJson, getPublicBaseUrl, getServerBaseUrl, resolveUrl } from "./api";
 
+export const fallbackFaculties: Faculty[] = [
+  {
+    id: "fallback-faculties",
+    title: "Conoce nuestras facultades",
+    href: "/facultades",
+    attributes: { title: "Conoce nuestras facultades" },
+    imageUrl: null,
+    imageAlt: "Facultades de la Universidad Distrital",
+  },
+];
+
 type FacultyResource = {
   id: string;
   attributes: {
@@ -58,7 +69,7 @@ export async function getFaculties(): Promise<Faculty[]> {
     const included = json.included ?? [];
     const imageBaseUrl = getPublicBaseUrl();
 
-    return (json.data ?? []).map((faculty) => {
+    const faculties = (json.data ?? []).map((faculty) => {
       const imageReference = faculty.relationships?.field_imagen_facultad?.data;
       const imageFile = included.find(
         (item) => item.type === "file--file" && item.id === imageReference?.id,
@@ -82,7 +93,9 @@ export async function getFaculties(): Promise<Faculty[]> {
         imageAlt: imageReference?.meta?.alt || title,
       };
     });
+
+    return faculties.length ? faculties : fallbackFaculties;
   } catch {
-    return [];
+    return fallbackFaculties;
   }
 }
