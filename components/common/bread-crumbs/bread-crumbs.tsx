@@ -26,7 +26,7 @@ export default function BreadCrumbs({ variant = "default" }: BreadCrumbsProps) {
 
     return (
       <nav aria-label="Breadcrumb" className="bg-[#1a1a1a] px-4 py-3 text-sm text-white">
-        <ol className="mx-auto flex max-w-7xl items-center gap-2">
+        <ol className="mx-auto flex w-full max-w-7xl flex-wrap items-center gap-x-2 gap-y-1">
           <li>
             <Link
               aria-label="Inicio"
@@ -62,7 +62,7 @@ export default function BreadCrumbs({ variant = "default" }: BreadCrumbsProps) {
           <li aria-hidden="true" className="text-white/50">/</li>
           <li
             aria-current="page"
-            className="font-semibold text-[#f04b4b]"
+            className="min-w-0 max-w-full break-words font-semibold text-[#f04b4b]"
           >
             {formatLabel(facultySlug)}
           </li>

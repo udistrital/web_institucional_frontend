@@ -188,7 +188,7 @@
   position: absolute;
   transform: translateY(0.75rem);
   transition: opacity 240ms ease, transform 240ms ease;
-  z-index: 3;
+  z-index: 5;
 }
 
 .programCard:hover .programReveal,

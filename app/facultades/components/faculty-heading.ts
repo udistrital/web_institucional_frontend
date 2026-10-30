@@ -41,7 +41,9 @@ export default function getFacultyHeadingSegments(
   title: string,
 ): FacultyHeadingSegment[] {
   const normalizedTitle = headingText(title);
-  const prefixMatch = normalizedTitle.match(/^(Facultad\s+(?:de|del)\s+)/i);
+  const prefixMatch = normalizedTitle.match(
+    /^(Facultad\s+(?:(?:de|del)\s+)?)/i,
+  );
 
   if (!prefixMatch) {
     return [{ text: normalizedTitle, accent: false }];
