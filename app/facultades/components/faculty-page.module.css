@@ -1,52 +1,97 @@
 .page {
-  background: #f7f7f5;
+  background: #f0f0ee;
   min-height: 70vh;
 }
 
 .hero {
-  background: #fff;
-  border-bottom: 1px solid #e5e5e5;
+  background: #f0f0ee;
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
-  min-height: 264px;
+  grid-template-columns: minmax(0, 1fr) minmax(20rem, 0.9fr);
+  min-height: 23rem;
   overflow: hidden;
   position: relative;
 }
 
+.hero::before {
+  color: rgb(140 25 25 / 7%);
+  content: "FACULTAD";
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: clamp(5rem, 14vw, 12rem);
+  font-weight: 700;
+  line-height: 0.8;
+  pointer-events: none;
+  position: absolute;
+  right: -1rem;
+  top: 1.5rem;
+  white-space: nowrap;
+  z-index: 0;
+}
+
 .heroText {
   align-self: center;
-  max-width: 46rem;
-  padding: clamp(2.25rem, 4vw, 3rem) max(4vw, 1.5rem) 5.25rem;
+  max-width: 52rem;
+  padding: clamp(3rem, 6vw, 5rem) max(5vw, 1.5rem);
+  position: relative;
+  z-index: 2;
 }
 
 .heroText::after {
   background: var(--institutional-gold);
   content: "";
   display: block;
-  height: 4px;
-  margin-top: 1.5rem;
-  width: 4rem;
+  height: 0.35rem;
+  margin-top: 1.75rem;
+  width: 5rem;
 }
 
 .heroTitle {
-  color: #202124;
+  color: #171717;
   font-family: var(--font-montserrat), sans-serif;
-  font-size: var(--fs-h1);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
   font-weight: 700;
-  line-height: 0.9;
+  letter-spacing: -0.04em;
+  line-height: 1.02;
   margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.heroTitleAccent {
+  color: var(--institutional-red);
 }
 
 .heroVisual {
-  background: var(--institutional-red);
-  clip-path: polygon(16% 0, 100% 0, 100% 100%, 0 100%);
-  min-height: 264px;
+  background: #d8d8d5;
+  min-height: 23rem;
+  overflow: hidden;
   position: relative;
+}
+
+.heroVisual::before {
+  background: var(--institutional-red);
+  content: "";
+  height: 130%;
+  left: -14%;
+  position: absolute;
+  top: -15%;
+  transform: skewX(-18deg);
+  width: 30%;
+  z-index: 2;
+}
+
+.heroVisual::after {
+  background: var(--institutional-gold);
+  bottom: 1.5rem;
+  content: "";
+  height: 0.45rem;
+  position: absolute;
+  right: 1.5rem;
+  width: 5rem;
+  z-index: 3;
 }
 
 .heroImage {
   object-fit: cover;
-  object-position: center;
+  z-index: 1;
 }
 
 .heroImageFallback {
@@ -62,20 +107,51 @@
   inset: 0;
   justify-content: center;
   position: absolute;
+  z-index: 1;
 }
 
 .heroAccent {
-  background: linear-gradient(90deg, rgb(140 25 25 / 55%), rgb(140 25 25 / 0%) 55%);
+  background: linear-gradient(90deg, rgb(0 0 0 / 14%), rgb(0 0 0 / 0%) 65%);
   inset: 0;
   pointer-events: none;
   position: absolute;
+  z-index: 1;
 }
 
 .body {
   margin: 0 auto;
   max-width: 1180px;
-  padding: clamp(2.5rem, 5vw, 4rem) max(4vw, 1.25rem) clamp(3rem, 6vw, 5rem);
+  padding: clamp(3rem, 6vw, 5rem) max(4vw, 1.25rem) clamp(3rem, 6vw, 5rem);
   width: 100%;
+}
+
+.newsTransition {
+  background: #f7f7f5;
+  height: 4.5rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.newsTransition::before {
+  background: var(--institutional-red);
+  content: "";
+  height: 180%;
+  left: 20%;
+  position: absolute;
+  top: -40%;
+  transform: skewX(-25deg);
+  width: 32%;
+}
+
+.newsTransition::after {
+  background: var(--institutional-gold);
+  content: "";
+  height: 0.4rem;
+  left: 48%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5rem;
 }
 
 .unavailable,
@@ -112,11 +188,19 @@
   }
 
   .heroText {
-    padding: clamp(2rem, 6vw, 2.75rem) max(5vw, 1.25rem) 2.75rem;
+    padding: clamp(2.5rem, 8vw, 4rem) max(5vw, 1.25rem) clamp(2.5rem, 7vw, 3.5rem);
   }
 
   .heroVisual {
-    clip-path: none;
-    min-height: 150px;
+    min-height: 13rem;
+  }
+
+  .heroVisual::before {
+    left: -20%;
+    width: 38%;
+  }
+
+  .newsTransition {
+    height: 3.5rem;
   }
 }

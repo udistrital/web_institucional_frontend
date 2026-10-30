@@ -10,6 +10,7 @@ import FacultyAcademicOffer, {
   type FacultyAcademicData,
   type FacultyProgram,
 } from "./FacultyAcademicOffer";
+import getFacultyHeadingSegments from "./faculty-heading";
 import styles from "./faculty-page.module.css";
 
 type FacultyPageProps = {
@@ -61,13 +62,6 @@ function serializeProgram(
   };
 }
 
-function facultyHeading(title: string) {
-  const normalizedTitle = title.trim();
-  return /^facultad\b/i.test(normalizedTitle)
-    ? normalizedTitle
-    : `Facultad ${normalizedTitle}`;
-}
-
 function unavailableMessage(message: string) {
   return (
     <div className={styles.unavailable} role="alert">
@@ -105,14 +99,23 @@ export default async function FacultyPage({ slug }: FacultyPageProps) {
     imageUrl: faculty.imageUrl,
     imageAlt: faculty.imageAlt,
   };
+  const headingSegments = getFacultyHeadingSegments(faculty.title);
+  const headingText = headingSegments.map((segment) => segment.text).join("");
 
   return (
     <section className={styles.page}>
-      <BreadCrumbs variant="onDark" />
-
       <header className={styles.hero}>
         <div className={styles.heroText}>
-          <h1 className={styles.heroTitle}>{facultyHeading(faculty.title)}</h1>
+          <h1 className={styles.heroTitle}>
+            {headingSegments.map((segment, index) => (
+              <span
+                className={segment.accent ? styles.heroTitleAccent : undefined}
+                key={`${segment.text}-${index}`}
+              >
+                {segment.text}
+              </span>
+            ))}
+          </h1>
         </div>
         <div className={styles.heroVisual}>
           {faculty.imageUrl ? (
@@ -137,6 +140,8 @@ export default async function FacultyPage({ slug }: FacultyPageProps) {
         </div>
       </header>
 
+      <BreadCrumbs variant="faculty" />
+
       <div className={styles.body}>
         <FacultyAcademicOffer
           faculty={facultyData}
@@ -145,7 +150,8 @@ export default async function FacultyPage({ slug }: FacultyPageProps) {
         />
       </div>
 
-      <NewsSection news={news} title={`Noticias · ${facultyHeading(faculty.title)}`} />
+      <div aria-hidden="true" className={styles.newsTransition} />
+      <NewsSection news={news} title={`Noticias · ${headingText}`} />
     </section>
   );
 }

@@ -45,7 +45,8 @@ export default function FacultyAcademicOffer({
   noDisponible,
 }: FacultyAcademicOfferProps) {
   const [activeLevel, setActiveLevel] = useState(0);
-  const selectedLevel = levels[activeLevel];
+  const availableLevels = levels.filter((level) => level.programs.length > 0);
+  const selectedLevel = availableLevels[activeLevel];
   const facultySlug = slugFiltro(faculty.title);
 
   if (noDisponible) {
@@ -77,6 +78,28 @@ export default function FacultyAcademicOffer({
     `faculty-tab-${facultySlug}-${slugFiltro(level.name)}`;
   const panelId = (level: AcademicLevel) =>
     `faculty-panel-${facultySlug}-${slugFiltro(level.name)}`;
+  const handleTabKeyDown = (
+    event: React.KeyboardEvent<HTMLButtonElement>,
+    index: number,
+  ) => {
+    let nextIndex: number | null = null;
+
+    if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+      nextIndex = (index + 1) % availableLevels.length;
+    } else if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+      nextIndex = (index - 1 + availableLevels.length) % availableLevels.length;
+    } else if (event.key === "Home") {
+      nextIndex = 0;
+    } else if (event.key === "End") {
+      nextIndex = availableLevels.length - 1;
+    }
+
+    if (nextIndex === null) return;
+
+    event.preventDefault();
+    setActiveLevel(nextIndex);
+    document.getElementById(tabId(availableLevels[nextIndex]))?.focus();
+  };
 
   return (
     <section className={styles.offer} aria-labelledby="faculty-offer-title">
@@ -89,7 +112,7 @@ export default function FacultyAcademicOffer({
         className={styles.tabs}
         role="tablist"
       >
-        {levels.map((level, index) => (
+        {availableLevels.map((level, index) => (
           <button
             aria-controls={panelId(level)}
             aria-selected={index === activeLevel}
@@ -97,7 +120,9 @@ export default function FacultyAcademicOffer({
             id={tabId(level)}
             key={level.name}
             onClick={() => setActiveLevel(index)}
+            onKeyDown={(event) => handleTabKeyDown(event, index)}
             role="tab"
+            tabIndex={index === activeLevel ? 0 : -1}
             type="button"
           >
             {level.name}
@@ -105,11 +130,12 @@ export default function FacultyAcademicOffer({
         ))}
       </div>
 
-      {levels.map((level, index) => {
+      {availableLevels.map((level, index) => {
         const catalogHref = `/nuestra-universidad/oferta-academica?facultad=${facultySlug}&nivel=${slugFiltro(level.name)}`;
 
         return (
           <div
+            aria-hidden={index !== activeLevel}
             aria-labelledby={tabId(level)}
             className={styles.panel}
             hidden={index !== activeLevel}
@@ -133,8 +159,12 @@ export default function FacultyAcademicOffer({
                         src={image}
                       />
                     ) : (
-                      <span aria-hidden="true" className={styles.programFallback}>
-                        {program.nombre.charAt(0)}
+                      <span
+                        aria-label={`Imagen no disponible de ${program.nombre}`}
+                        className={styles.programFallback}
+                        role="img"
+                      >
+                        <span aria-hidden="true">{program.nombre.charAt(0)}</span>
                       </span>
                     )}
                     <h3 className={styles.programTitle}>{program.nombre}</h3>

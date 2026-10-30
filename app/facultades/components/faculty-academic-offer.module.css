@@ -1,13 +1,37 @@
 .offer {
   min-width: 0;
+  position: relative;
+}
+
+.offer::before {
+  background-image: radial-gradient(rgb(140 25 25 / 9%) 1px, transparent 1px);
+  background-size: 1rem 1rem;
+  content: "";
+  height: 8rem;
+  opacity: 0.45;
+  pointer-events: none;
+  position: absolute;
+  right: -1rem;
+  top: -2rem;
+  width: 8rem;
 }
 
 .offerHeading {
-  align-items: end;
+  align-items: center;
   display: flex;
+  flex-direction: column;
   gap: 1rem;
-  justify-content: space-between;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
+  position: relative;
+  text-align: center;
+  z-index: 1;
+}
+
+.offerHeading::after {
+  background: var(--institutional-gold);
+  content: "";
+  height: 0.35rem;
+  width: 5rem;
 }
 
 .offerHeading h2 {
@@ -15,29 +39,34 @@
   font-family: var(--font-montserrat), sans-serif;
   font-size: var(--fs-h2);
   font-weight: 700;
-  line-height: 0.9;
+  line-height: var(--lh-tight);
   margin: 0;
 }
 
 .tabs {
   display: flex;
-  gap: 0.5rem;
-  overflow-x: auto;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 52rem;
   padding: 0 0.25rem 0.25rem;
-  scrollbar-width: thin;
+  position: relative;
+  z-index: 1;
 }
 
 .tab,
 .activeTab {
-  border: 1px solid var(--institutional-red);
-  border-radius: 5px;
+  border: 2px solid var(--institutional-red);
+  border-radius: 999px;
   cursor: pointer;
   flex: 0 0 auto;
   font: inherit;
   font-size: var(--fs-sm);
-  font-weight: 600;
-  min-height: 3.1rem;
-  padding: 0.6rem 1.25rem;
+  font-weight: 700;
+  min-height: 3rem;
+  padding: 0.6rem 1.5rem;
+  transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease;
 }
 
 .tab {
@@ -45,7 +74,8 @@
   color: var(--institutional-red);
 }
 
-.tab:hover {
+.tab:hover,
+.tab:focus-visible {
   background: var(--institutional-gold);
   border-color: var(--institutional-gold);
   color: #000;
@@ -58,20 +88,27 @@
 
 .panel {
   outline: none;
-  padding-top: 1.5rem;
+  padding-top: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.panel:focus-visible {
+  outline: 3px solid var(--institutional-gold);
+  outline-offset: 0.5rem;
 }
 
 .programGrid {
   display: grid;
-  gap: 1rem;
+  gap: 1.25rem;
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .programCard {
   background: #fff;
-  border: 1px solid #e5e2df;
-  border-top: 4px solid var(--institutional-red);
-  box-shadow: 0 5px 18px rgb(0 0 0 / 5.5%);
+  border: 0;
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 10%);
   color: inherit;
   display: block;
   min-width: 0;
@@ -81,7 +118,7 @@
 }
 
 .programMedia {
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1;
   background: #ece9e5;
   overflow: hidden;
   position: relative;
@@ -89,6 +126,12 @@
 
 .programImage {
   object-fit: cover;
+  transition: transform 300ms ease;
+}
+
+.programCard:hover .programImage,
+.programCard:focus-within .programImage {
+  transform: scale(1.04);
 }
 
 .programFallback {
@@ -107,7 +150,7 @@
 }
 
 .programTitle {
-  background: linear-gradient(to top, rgb(0 0 0 / 82%), rgb(0 0 0 / 0%));
+  background: linear-gradient(to top, rgb(0 0 0 / 86%), rgb(0 0 0 / 0%));
   bottom: 0;
   color: #fff;
   font-family: var(--font-montserrat), sans-serif;
@@ -116,23 +159,34 @@
   inset-inline: 0;
   line-height: var(--lh-tight);
   margin: 0;
+  min-height: 38%;
   overflow-wrap: anywhere;
-  padding: 2.5rem 1rem 1rem;
+  padding: 3rem 1rem 1rem;
   position: absolute;
-  z-index: 2;
+  z-index: 4;
+}
+
+.programTitle::before {
+  background: var(--institutional-gold);
+  content: "";
+  height: 0.3rem;
+  left: 1rem;
+  position: absolute;
+  top: 1.75rem;
+  width: 3.5rem;
 }
 
 .programReveal {
-  background: rgb(17 17 17 / 82%);
+  background: linear-gradient(to bottom, rgb(17 17 17 / 8%), rgb(17 17 17 / 90%));
   display: flex;
   flex-direction: column;
   inset: 0;
   justify-content: flex-end;
   opacity: 0;
-  padding: 1rem;
+  padding: 1rem 1rem 5rem;
   pointer-events: none;
   position: absolute;
-  transform: translateY(8px);
+  transform: translateY(0.75rem);
   transition: opacity 240ms ease, transform 240ms ease;
   z-index: 3;
 }
@@ -140,7 +194,6 @@
 .programCard:hover .programReveal,
 .programCard:focus-within .programReveal {
   opacity: 1;
-  pointer-events: auto;
   transform: translateY(0);
 }
 
@@ -151,7 +204,7 @@
 }
 
 .programDetails dt {
-  color: rgb(255 255 255 / 75%);
+  color: rgb(255 255 255 / 78%);
   font-size: var(--fs-2xs);
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -168,20 +221,24 @@
 
 .moreLink {
   background: var(--institutional-red);
-  border-radius: 5px;
+  border: 2px solid var(--institutional-red);
+  border-radius: 999px;
   color: #fff;
   display: block;
   font-size: var(--fs-sm);
-  font-weight: 600;
+  font-weight: 700;
   margin: 2.5rem auto 0;
-  padding: 0.7rem 2.7rem;
+  padding: 0.75rem 2.5rem;
   text-align: center;
   text-decoration: none;
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
   width: fit-content;
 }
 
-.moreLink:hover {
+.moreLink:hover,
+.moreLink:focus-visible {
   background: var(--institutional-gold);
+  border-color: var(--institutional-gold);
   color: #000;
 }
 
@@ -194,7 +251,11 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .programReveal {
+  .programImage,
+  .programReveal,
+  .tab,
+  .activeTab,
+  .moreLink {
     transition: none;
   }
 }
@@ -223,10 +284,14 @@
 }
 
 @media (max-width: 680px) {
-  .offerHeading {
-    align-items: start;
+  .tabs {
+    align-items: stretch;
     flex-direction: column;
-    gap: 0.5rem;
+  }
+
+  .tab,
+  .activeTab {
+    width: 100%;
   }
 
   .programGrid {

@@ -1,0 +1,53 @@
+{
+  "id": "FEAT-002",
+  "type": "feat",
+  "description": "Aplicar a la plantilla compartida de páginas individuales de facultad el rediseño de hero, breadcrumbs, oferta académica, tarjetas y transición visual hacia noticias de la maqueta aprobada.",
+  "status": "completed",
+  "steps": [
+    "Antes de editar components/common/bread-crumbs/bread-crumbs.tsx, conserva exactamente las ramas default y onDark observadas en sus consumidores y añade solo variant='faculty'. En la nueva rama renderiza Inicio / Facultades / slug formateado en una franja oscura, con SVG inline de casa aria-hidden='true', separadores legibles, enlaces con hover/focus y acento rojo; cambia FacultyPage para renderizar <BreadCrumbs variant='faculty' /> inmediatamente después de </header>.",
+    "Crea app/facultades/components/faculty-heading.ts como helper puro que devuelva segmentos serializables de un título de facultad. Colorea en rojo solo los términos aprobados (Artes, Ingeniería, Ciencias, Matemáticas, Educación, Salud, Medio Ambiente, Recursos Naturales, Tecnológica y equivalentes), deja el prefijo Facultad de/del en negro, trata Facultad de Artes - ASAB como Facultad de Artes - negro y ASAB rojo, y devuelve el título entero negro cuando la separación no sea segura; usa esos segmentos para conservar un único h1 accesible en FacultyPage.",
+    "Actualiza app/facultades/components/FacultyPage.tsx y faculty-page.module.css para el hero de fondo gris claro: título Montserrat 700 grande con spans de color, marca de agua CSS, imagen de facultad de Drupal con fallback accesible, diagonal roja sólida y acento amarillo, sin párrafo descriptivo ni 'Oferta académica por sede'. Mantén la composición de una columna en móvil y evita clip-path que pueda cortar contenido.",
+    "Rediseña app/facultades/components/FacultyAcademicOffer.tsx y faculty-academic-offer.module.css sin cambiar sus props serializables, el límite visual de cuatro tarjetas ni la lógica de URL. Centra el título Oferta académica con barra amarilla, agrega fondo y marcas sutiles CSS, centra tabs con role/aria/id/hidden/foco visible, muestra solo niveles con programas y usa los estados rojo/blanco/amarillo aprobados.",
+    "En la misma oferta, conserva links completos solo cuando paginaProgramaUrl existe y artículos sin enlace cuando no existe; convierte las tarjetas a cuatro columnas desktop, dos tablet y una móvil, relación aproximadamente 1:1, imagen cover a todo el fondo, bordes redondeados y sombra suave. Conserva título superpuesto con degradado y barra amarilla, reveal de únicamente Jornada/Modalidad en hover y focus-within, visibilidad constante sin hover y sin transición con prefers-reduced-motion; elimina contadores y 'PROGRAMAS POR NIVEL', y mantiene Ver todas las propuestas solo sobre cuatro programas con target _blank y rel noopener noreferrer.",
+    "Añade en FacultyPage, antes de NewsSection, un elemento decorativo aria-hidden con diagonal roja y acento amarillo únicamente mediante CSS, sin tocar components/common/news-section/news-section.tsx. Conserva title={Noticias · Facultad ...} para la facultad válida y revisa el resultado responsive en las siete rutas que delegan a la plantilla compartida.",
+    "Ejecuta las verificaciones de la feature y confirma que no se agregaron imágenes nuevas, UUIDs, logs temporales, cambios al header global ni cambios visibles en breadcrumbs default/onDark."
+  ],
+  "acceptance_criteria": [
+    "Cada página individual muestra el breadcrumb faculty bajo el header/hero sin alterar los consumidores default u onDark.",
+    "El hero tiene un único h1 accesible; el prefijo queda negro y los nombres aprobados quedan rojos solo cuando la separación es segura, incluida la excepción ASAB.",
+    "La oferta muestra niveles con programas, tabs ARIA funcionales y tarjetas responsive 4/2/1 con imagen casi cuadrada, título, barra amarilla y detalles de jornada/modalidad accesibles al hover/focus o siempre visibles sin hover.",
+    "No se muestra cantidad de programas ni PROGRAMAS POR NIVEL; el enlace Ver todas las propuestas aparece únicamente con más de cuatro programas y conserva seguridad de enlace externo.",
+    "La transición decorativa precede a NewsSection y el título de noticias incluye la facultad; no se modifica NewsSection ni el header global.",
+    "La interfaz conserva fallback accesible de imágenes, foco visible, reduced motion y no corta contenido en móvil."
+  ],
+  "verification": [
+    "Desde /Users/Daniel/job-pagina-web/web_institucional_frontend, ejecutar npm run lint y confirmar que no hay errores de ESLint.",
+    "Desde /Users/Daniel/job-pagina-web/web_institucional_frontend, ejecutar npm run build y confirmar que compilan la plantilla compartida y las siete rutas individuales sin errores de TypeScript, CSS Modules o Server/Client Components."
+  ],
+  "blocked_reason": "El build compila la plantilla, TypeScript y CSS Modules, pero no finaliza porque Drupal no está disponible (ECONNREFUSED) y la ruta existente /nuestra-universidad/calendario-academico falla durante el prerender. No se modificó esa ruta porque queda fuera del alcance de FEAT-002.",
+  "findings": "FEAT-002 implementa la variante faculty de breadcrumbs, segmentación segura del título, hero responsive, oferta académica con tabs ARIA y tarjetas 4/2/1, soporte de fallback/reduced motion y la transición decorativa hacia noticias. No se agregaron imágenes ni UUIDs, y no se tocaron el header global, NewsSection ni las ramas default/onDark.",
+  "files_changed": [
+    "app/facultades/components/FacultyPage.tsx",
+    "app/facultades/components/FacultyAcademicOffer.tsx",
+    "app/facultades/components/faculty-heading.ts",
+    "app/facultades/components/faculty-page.module.css",
+    "app/facultades/components/faculty-academic-offer.module.css",
+    "components/common/bread-crumbs/bread-crumbs.tsx"
+  ],
+  "verification_results": {
+    "npm run lint": {
+      "status": "passed",
+      "details": "ESLint terminó sin errores. Permanecen 9 warnings preexistentes en footer/header compartidos."
+    },
+    "npm run build": {
+      "status": "blocked_by_environment",
+      "details": "La compilación, TypeScript, recolección de datos y las rutas de facultades llegan a compilar; el prerender falla en /nuestra-universidad/calendario-academico por ECONNREFUSED al backend Drupal."
+    }
+  },
+  "visual_environment_findings": [
+    "No fue posible hacer una revisión visual con datos Drupal porque el backend configurado rechazó las conexiones durante el build.",
+    "Los estilos incluyen composición móvil de una columna, tarjetas 4/2/1, foco visible y reglas prefers-reduced-motion; el hero no usa clip-path.",
+    "El fallback de noticias y de imágenes sigue activo cuando Drupal no responde, pero la exportación completa queda bloqueada por la ruta de calendario existente."
+  ],
+  "convergence_loop": "La implementación quedó lista y lint pasa. El único bloqueo restante requiere que Drupal esté disponible o que se corrija la ruta de calendario fuera de este alcance; reejecutar npm run build con el backend disponible para confirmar la exportación completa de las siete rutas de facultad."
+}
