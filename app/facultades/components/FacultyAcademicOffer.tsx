@@ -199,7 +199,10 @@ export default function FacultyAcademicOffer({
                     {cardMedia}
                   </a>
                 ) : (
-                  <article className={styles.programCard} key={program.id}>
+                  <article
+                    className={`${styles.programCard} ${styles.programCardStatic}`}
+                    key={program.id}
+                  >
                     {cardMedia}
                   </article>
                 );

@@ -163,7 +163,7 @@
   overflow-wrap: anywhere;
   padding: 3rem 1rem 1rem;
   position: absolute;
-  z-index: 4;
+  z-index: 6;
 }
 
 .programTitle::before {
@@ -181,9 +181,9 @@
   display: flex;
   flex-direction: column;
   inset: 0;
-  justify-content: flex-end;
+  justify-content: flex-start;
   opacity: 0;
-  padding: 1rem 1rem 5rem;
+  padding: 1rem;
   pointer-events: none;
   position: absolute;
   transform: translateY(0.75rem);
@@ -192,8 +192,10 @@
 }
 
 .programCard:hover .programReveal,
-.programCard:focus-within .programReveal {
+.programCard:focus-within .programReveal,
+.programCardStatic .programReveal {
   opacity: 1;
+  pointer-events: auto;
   transform: translateY(0);
 }
 
