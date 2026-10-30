@@ -13,29 +13,34 @@ export default async function IntegrantesPage() {
 
   return (
     <section className={styles.page} aria-labelledby="integrantes-title">
-      <header className={styles.hero}>
-        <div className={styles.heroContent}>
-          <p className={styles.eyebrow}>Consejo Superior Universitario</p>
-          <h1 id="integrantes-title">Integrantes</h1>
-          <p className={styles.heroLead}>
-            Conoce a las personas que representan a los diferentes estamentos ante
-            el Consejo Superior Universitario.
-          </p>
-        </div>
-        <span className={styles.heroNumber} aria-hidden="true">01</span>
-      </header>
-
-      <BreadCrumbs />
+      <BreadCrumbs variant="onDark" />
 
       <div className={styles.content}>
         <div className={styles.sectionHeading}>
-          <div>
-            <p className={styles.sectionKicker}>Nuestros representantes</p>
-            <h2>Conoce al equipo</h2>
+          <div className={styles.sectionHeadingMain}>
+            <span className={styles.sectionHeadingIcon} aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
+            </span>
+            <div>
+              <p className={styles.sectionKicker}>Nuestros representantes</p>
+              <h1 id="integrantes-title">Conoce al equipo</h1>
+            </div>
           </div>
           <p className={styles.resultCount}>
             {integrantes.length}{" "}
-            {integrantes.length === 1 ? "integrante disponible" : "integrantes disponibles"}
+            {integrantes.length === 1 ? "integrante" : "integrantes"}
           </p>
         </div>
 
