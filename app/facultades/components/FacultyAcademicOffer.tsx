@@ -132,6 +132,16 @@ export default function FacultyAcademicOffer({
 
       {availableLevels.map((level, index) => {
         const catalogHref = `/nuestra-universidad/oferta-academica?facultad=${facultySlug}&nivel=${slugFiltro(level.name)}`;
+        const visiblePrograms = level.programs.slice(0, 4);
+        const programCount = visiblePrograms.length;
+        const programGridClass =
+          programCount === 1
+            ? styles.programGridSingle
+            : programCount === 2
+              ? styles.programGridTwo
+              : programCount === 3
+                ? styles.programGridThree
+                : styles.programGridFour;
 
         return (
           <div
@@ -144,29 +154,79 @@ export default function FacultyAcademicOffer({
             role="tabpanel"
             tabIndex={0}
           >
-            <div className={styles.programGrid}>
-              {level.programs.slice(0, 4).map((program) => {
+            <div className={`${styles.programGrid} ${programGridClass}`}>
+              {visiblePrograms.map((program) => {
                 const image = programImage(program, faculty);
-
-                const cardMedia = (
+                const isFeatured = programCount === 1;
+                const imageSizes = isFeatured
+                  ? "(max-width: 680px) 100vw, (max-width: 1050px) 50vw, 55vw"
+                  : programCount === 2
+                    ? "(max-width: 680px) 100vw, (max-width: 1050px) 50vw, (max-width: 1300px) 45vw, 34rem"
+                    : programCount === 3
+                      ? "(max-width: 680px) 100vw, (max-width: 1050px) 50vw, 33vw"
+                      : "(max-width: 680px) 100vw, (max-width: 1050px) 50vw, 25vw";
+                const mediaImage = image ? (
+                  <Image
+                    alt={program.imagenUrl ? program.imagenAlt : faculty.imageAlt}
+                    className={styles.programImage}
+                    fill
+                    sizes={imageSizes}
+                    src={image}
+                  />
+                ) : (
+                  <span
+                    aria-label={`Imagen no disponible de ${program.nombre}`}
+                    className={styles.programFallback}
+                    role="img"
+                  >
+                    <span aria-hidden="true">{program.nombre.charAt(0)}</span>
+                  </span>
+                );
+                const cardMedia = isFeatured ? (
+                  <div className={styles.featuredMedia}>
+                    <div className={styles.featuredImage}>{mediaImage}</div>
+                    <div className={styles.featuredContent}>
+                      <p className={styles.featuredLevel}>
+                        {program.nivel || level.name}
+                      </p>
+                      <h3 className={styles.featuredTitle}>{program.nombre}</h3>
+                      <dl className={styles.featuredDetails}>
+                        {program.modalidad && (
+                          <div>
+                            <dt>Modalidad</dt>
+                            <dd>{program.modalidad}</dd>
+                          </div>
+                        )}
+                        {program.jornada && (
+                          <div>
+                            <dt>Jornada</dt>
+                            <dd>{program.jornada}</dd>
+                          </div>
+                        )}
+                        {program.snies !== null && (
+                          <div>
+                            <dt>SNIES</dt>
+                            <dd>{program.snies}</dd>
+                          </div>
+                        )}
+                      </dl>
+                      {program.acreditacionAltaCalidad && (
+                        <p className={styles.featuredAccreditation}>
+                          <span aria-hidden="true">✦</span>
+                          Acreditación de Alta Calidad
+                        </p>
+                      )}
+                      {program.paginaProgramaUrl && (
+                        <span className={styles.featuredLink}>
+                          Conocer programa
+                          <span aria-hidden="true"> →</span>
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                ) : (
                   <div className={styles.programMedia}>
-                    {image ? (
-                      <Image
-                        alt={program.imagenUrl ? program.imagenAlt : faculty.imageAlt}
-                        className={styles.programImage}
-                        fill
-                        sizes="(max-width: 680px) 100vw, (max-width: 980px) 50vw, 25vw"
-                        src={image}
-                      />
-                    ) : (
-                      <span
-                        aria-label={`Imagen no disponible de ${program.nombre}`}
-                        className={styles.programFallback}
-                        role="img"
-                      >
-                        <span aria-hidden="true">{program.nombre.charAt(0)}</span>
-                      </span>
-                    )}
+                    {mediaImage}
                     <h3 className={styles.programTitle}>{program.nombre}</h3>
                     {(program.jornada || program.modalidad) && (
                       <div className={styles.programReveal}>
@@ -188,11 +248,14 @@ export default function FacultyAcademicOffer({
                     )}
                   </div>
                 );
+                const cardClass = isFeatured
+                  ? `${styles.programCard} ${styles.featuredCard}`
+                  : styles.programCard;
 
                 return program.paginaProgramaUrl ? (
                   <a
                     aria-label={program.nombre}
-                    className={styles.programCard}
+                    className={cardClass}
                     href={program.paginaProgramaUrl}
                     key={program.id}
                   >
@@ -200,7 +263,7 @@ export default function FacultyAcademicOffer({
                   </a>
                 ) : (
                   <article
-                    className={`${styles.programCard} ${styles.programCardStatic}`}
+                    className={`${cardClass} ${styles.programCardStatic}`}
                     key={program.id}
                   >
                     {cardMedia}
