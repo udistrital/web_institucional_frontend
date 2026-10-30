@@ -254,7 +254,6 @@ export default function FacultyAcademicOffer({
 
                 return program.paginaProgramaUrl ? (
                   <a
-                    aria-label={program.nombre}
                     className={cardClass}
                     href={program.paginaProgramaUrl}
                     key={program.id}
