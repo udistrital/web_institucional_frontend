@@ -3,38 +3,12 @@
   min-height: 70vh;
 }
 
-.hero {
-  align-items: end;
-  background: var(--institutional-red);
-  color: #fff;
-  display: flex;
-  justify-content: space-between;
-  min-height: 21rem;
-  overflow: hidden;
-  padding: clamp(3rem, 8vw, 7rem) max(2vw, 1rem) clamp(2.75rem, 6vw, 5rem);
-  position: relative;
-}
-
-.hero::after {
-  border: 1px solid rgba(255, 255, 255, .25);
-  border-radius: 50%;
-  content: "";
-  height: 28rem;
-  position: absolute;
-  right: -8rem;
-  top: -13rem;
-  width: 28rem;
-}
-
-.heroContent,
 .content {
   margin: 0 auto;
   max-width: 1400px;
   width: 100%;
 }
 
-.heroContent { position: relative; z-index: 1; }
-.eyebrow,
 .sectionKicker {
   font-size: var(--fs-xs);
   font-weight: 700;
@@ -43,14 +17,26 @@
   text-transform: uppercase;
 }
 
-.eyebrow { color: var(--institutional-gold); }
-.hero h1 { font-size: var(--fs-h1); line-height: var(--lh-tight); margin: 0; }
-.heroLead { font-size: var(--fs-md); line-height: var(--lh-snug); margin: 1.25rem 0 0; max-width: 40rem; }
-.heroNumber { color: rgba(255, 255, 255, .2); font-family: var(--font-montserrat), sans-serif; font-size: clamp(6rem, 16vw, 12rem); font-weight: 700; line-height: .7; position: relative; z-index: 1; }
-
-.content { padding: clamp(3rem, 6vw, 5.5rem) max(2vw, 1rem); }
+/* padding-top reducido para acercar el contenido al header, igual que en
+   "Sobre Nosotros"; el espacio inferior y los laterales se mantienen. */
+.content { padding: clamp(1.25rem, 3vw, 2.25rem) max(2vw, 1rem) clamp(2.5rem, 6vw, 5rem); }
 .sectionHeading { align-items: end; display: flex; gap: 2rem; justify-content: space-between; margin-bottom: 2rem; }
+/* Bloque icono + texto del encabezado, alineados en fila. */
+.sectionHeadingMain { align-items: center; display: flex; gap: 1rem; }
+.sectionHeadingIcon {
+  align-items: center;
+  background: var(--institutional-red);
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  flex-shrink: 0;
+  height: 3rem;
+  justify-content: center;
+  width: 3rem;
+}
+.sectionHeadingIcon svg { height: 1.5rem; width: 1.5rem; }
 .sectionKicker { color: var(--institutional-red); margin-bottom: .65rem; }
+.sectionHeading h1,
 .sectionHeading h2 { font-size: var(--fs-h2); line-height: var(--lh-tight); margin: 0; }
 .resultCount { color: #595959; font-size: var(--fs-sm); margin: 0 0 .35rem; white-space: nowrap; }
 
@@ -223,8 +209,6 @@
 .emptyState p { margin: 0; }
 
 @media (max-width: 720px) {
-  .hero { min-height: 18rem; }
-  .heroNumber { display: none; }
   .sectionHeading { align-items: start; flex-direction: column; gap: .75rem; }
   .resultCount { margin: 0; }
   .grid { grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); }
