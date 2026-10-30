@@ -1,0 +1,9 @@
+{
+  "verdict": "APPROVED",
+  "findings": [
+    "(possible) --header-h es un valor fijo estimado (112px mobile / 72px desktop), no medido del DOM. Si el alto real del header difiere, .sectionNav de sobre-nosotros dejará un hueco o se montará unos píxeles bajo el header. No bloquea: el z-index (header 50 > sectionNav 20) impide que tape el menú. Validar visualmente en ambos breakpoints y ajustar si hace falta.",
+    "(confirmed) El diff sin commitear mezcla cambios de sobre-nosotros ajenos a la tarea del header (grid del himno con .estrofaSlide/.estrofaSlideActiva, versos a dos columnas, graficosGrid, .escudoCard/.banderaCard, eliminación de .otrosHimnos, y cambios en himno.tsx/content.ts/page.tsx). No son incorrectos pero ensucian el alcance; idealmente van en su propio commit.",
+    "(confirmed) use-hide-on-scroll.ts quedó en el árbol como código muerto: ya no lo importa ningún componente de app/ ni components/. Eliminar o documentar como intencional."
+  ],
+  "reviewDoc": "/home/nico_guz/Escritorio/web institucional/web_institucional_frontend/.agents/tasks/semantic-review.md"
+}
