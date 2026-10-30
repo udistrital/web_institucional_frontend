@@ -46,6 +46,17 @@ export default function FacultiesSection({ faculties }: FacultiesSectionProps) {
     );
   }
 
+  if (!faculties.length) {
+    return (
+      <section className={styles["faculties-section"]} aria-labelledby="faculties-title">
+        <div className={styles["faculties-intro"]}>
+          <h2 id="faculties-title">Nuestras Facultades</h2>
+          <Link className={styles["faculties-link"]} href="/facultades">Ver facultades</Link>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className={styles["faculties-section"]} aria-labelledby="faculties-title">
       <div className={styles["faculties-intro"]}>
@@ -66,8 +77,8 @@ export default function FacultiesSection({ faculties }: FacultiesSectionProps) {
       <div className={styles["faculties-mobile-carousel"]}>
         <button className={`${styles["faculty-arrow"]} ${styles["faculty-arrow-previous"]}`} type="button" aria-label="Ver facultades anteriores" onClick={() => move(-1)}>‹</button>
         <div className={styles["faculty-showcase-grid"]} onTouchStart={swipe.onTouchStart} onTouchEnd={swipe.onTouchEnd}>
-          {visible.map((faculty) => (
-            <Link className={styles["faculty-showcase-card"]} href={faculty.href} key={faculty.title}>
+          {visible.map((faculty, index) => (
+            <Link className={styles["faculty-showcase-card"]} href={faculty.href} key={faculty.id ?? index}>
               {faculty.imageUrl && <Image src={faculty.imageUrl} alt={faculty.imageAlt} fill sizes="100vw" />}
               <span className={styles["faculty-showcase-shade"]} />
               <span className={styles["faculty-showcase-title"]}>{faculty.title}</span>
@@ -76,7 +87,7 @@ export default function FacultiesSection({ faculties }: FacultiesSectionProps) {
           <div className={`${styles["carousel-dots"]} ${styles["faculty-dots"]}`} role="tablist" aria-label="Seleccionar facultad">
             {availableFaculties.map((faculty, index) => (
               <button
-                key={faculty.title}
+                key={faculty.id ?? index}
                 type="button"
                 className={`${styles["carousel-dot"]} ${index === activeStart ? styles["is-active"] : ""}`}
                 aria-label={`Mostrar ${faculty.title}`}

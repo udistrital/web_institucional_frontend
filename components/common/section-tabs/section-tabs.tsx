@@ -1,15 +1,53 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
-import type { SectionLink } from "./content";
-import { SectionIcon } from "./icons";
-import styles from "./page.module.css";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
+import styles from "./section-tabs.module.css";
 
-type SectionTabsProps = {
-  sections: SectionLink[];
-  /** Contenido de cada sección, indexado por el id de la sección. */
-  panels: Record<string, ReactNode>;
+/**
+ * Enlace de sección para la barra de pestañas. El `id` es genérico (string)
+ * para que cada página pueda usar su propia unión de ids sin acoplarse a este
+ * componente.
+ */
+export type SectionLink<Id extends string = string> = {
+  id: Id;
+  label: string;
+  /**
+   * Icono opcional de la pestaña, ya renderizado. Se recibe como ReactNode
+   * (no como función) para poder pasarlo desde un Server Component sin romper
+   * el límite server/client: cada página tiene su propio set de iconos y los
+   * renderiza al construir sus secciones.
+   */
+  icon?: ReactNode;
 };
+
+type SectionTabsProps<Id extends string> = {
+  /** Secciones a mostrar como pestañas, en orden. */
+  sections: SectionLink<Id>[];
+  /** Contenido de cada sección, indexado por el id de la sección. */
+  panels: Record<Id, ReactNode>;
+  /** Etiqueta accesible del tablist (p. ej. "Secciones de Sobre Nosotros"). */
+  ariaLabel: string;
+  /**
+   * Clase opcional para el contenedor de los paneles. Permite que la página
+   * siga aplicando su propio layout (ancho máximo, padding) al contenido.
+   */
+  contentClassName?: string;
+};
+
+/**
+ * useLayoutEffect emite una advertencia en el render del servidor. Como la
+ * restauración de la pestaña solo tiene sentido en el cliente, usamos la
+ * versión de layout en el navegador y caemos a useEffect en SSR.
+ */
+const useIsomorphicLayoutEffect =
+  typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 /**
  * Lee el alto de la sección fija del header desde la variable CSS --header-h.
@@ -26,15 +64,26 @@ function getHeaderHeight(): number {
 }
 
 /**
- * Navegación tipo pestañas para "Sobre Nosotros".
+ * Navegación tipo pestañas reutilizable.
  *
- * Muestra una barra con las cuatro secciones y solo renderiza visible el panel
- * seleccionado. Las demás secciones permanecen ocultas hasta que el usuario las
- * elige. Implementa el patrón WAI-ARIA de tabs (roles tab/tablist/tabpanel y
- * navegación con flechas del teclado).
+ * Muestra una barra con las secciones y solo renderiza visible el panel
+ * seleccionado. Las demás permanecen ocultas hasta que el usuario las elige.
+ * Implementa el patrón WAI-ARIA de tabs (roles tab/tablist/tabpanel y
+ * navegación con flechas del teclado). La barra es sticky y se pega justo
+ * debajo del header fijo.
  */
-export default function SectionTabs({ sections, panels }: SectionTabsProps) {
-  const [activo, setActivo] = useState<string>(sections[0]?.id ?? "");
+export default function SectionTabs<Id extends string>({
+  sections,
+  panels,
+  ariaLabel,
+  contentClassName,
+}: SectionTabsProps<Id>) {
+  const esIdValido = useCallback(
+    (id: string): id is Id => sections.some((s) => s.id === id),
+    [sections],
+  );
+
+  const [activo, setActivo] = useState<Id | "">(sections[0]?.id ?? "");
   // Indica si la barra de pestañas está "pegada" bajo el header (sticky activo).
   // Cuando lo está, cambia a fondo oscuro para diferenciarse del header.
   const [stuck, setStuck] = useState(false);
@@ -79,6 +128,26 @@ export default function SectionTabs({ sections, panels }: SectionTabsProps) {
   }, [activo, desplazarAlBloque]);
 
   /**
+   * Restaura la pestaña activa desde el hash de la URL (p. ej. `#objetivos`)
+   * al montar y cuando cambia por el historial (atrás/adelante). Así, al
+   * recargar o volver a la página, se abre la misma sección en la que estaba
+   * el usuario en lugar de la primera. No desplazamos el scroll a propósito:
+   * dejamos que el navegador restaure la posición que ya tenía guardada.
+   */
+  useIsomorphicLayoutEffect(() => {
+    const aplicarHash = () => {
+      const id = window.location.hash.replace("#", "");
+      if (id && esIdValido(id)) {
+        setActivo(id);
+      }
+    };
+
+    aplicarHash();
+    window.addEventListener("hashchange", aplicarHash);
+    return () => window.removeEventListener("hashchange", aplicarHash);
+  }, [esIdValido]);
+
+  /**
    * Detecta cuándo la barra de pestañas queda pegada bajo el header. Cuando su
    * borde superior alcanza (o sube más allá de) la altura del header fijo, se
    * considera "pegada" y aplicamos el estilo oscuro.
@@ -102,11 +171,19 @@ export default function SectionTabs({ sections, panels }: SectionTabsProps) {
     };
   }, []);
 
-  const seleccionar = (id: string) => {
+  const seleccionar = (id: Id) => {
     // Al elegir una opción el contenido sube hasta pegar la barra bajo el
     // header: la dejamos en negro de inmediato (el listener de scroll la
     // mantiene coherente al volver a subir del todo).
     setStuck(true);
+
+    // Reflejamos la pestaña en el hash de la URL para que persista al recargar
+    // o volver a la página. Usamos replaceState (no un hash directo) para no
+    // apilar una entrada de historial por clic ni provocar el salto brusco
+    // nativo del navegador: el desplazamiento lo controla desplazarAlBloque.
+    if (typeof window !== "undefined") {
+      window.history.replaceState(null, "", `#${id}`);
+    }
 
     if (id === activo) {
       // La pestaña ya está activa: `activo` no cambia, así que el efecto no
@@ -150,11 +227,7 @@ export default function SectionTabs({ sections, panels }: SectionTabsProps) {
         ref={navRef}
         className={`${styles.sectionNav} ${stuck ? styles.sectionNavStuck : ""}`}
       >
-        <div
-          className={styles.sectionNavList}
-          role="tablist"
-          aria-label="Secciones de Sobre Nosotros"
-        >
+        <div className={styles.sectionNavList} role="tablist" aria-label={ariaLabel}>
           {sections.map((section) => {
             const esActivo = activo === section.id;
             return (
@@ -170,7 +243,11 @@ export default function SectionTabs({ sections, panels }: SectionTabsProps) {
                 onClick={() => seleccionar(section.id)}
                 onKeyDown={onKeyDown}
               >
-                <SectionIcon id={section.id} className={styles.sectionNavIcon} />
+                {section.icon ? (
+                  <span className={styles.sectionNavIcon} aria-hidden="true">
+                    {section.icon}
+                  </span>
+                ) : null}
                 {section.label}
               </button>
             );
@@ -178,7 +255,7 @@ export default function SectionTabs({ sections, panels }: SectionTabsProps) {
         </div>
       </div>
 
-      <div className={styles.content}>
+      <div className={contentClassName}>
         {sections.map((section) => {
           const esActivo = activo === section.id;
           return (

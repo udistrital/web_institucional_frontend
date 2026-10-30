@@ -1,0 +1,70 @@
+/* Ancla invisible: marca el inicio del bloque de pestañas para el scroll. */
+.tabsAnchor { display: block; height: 0; }
+
+/* ---- Navegación de secciones (pestañas, sticky) ---- */
+.sectionNav {
+  background: #fff;
+  border-bottom: 1px solid #e4e4e4;
+  position: sticky;
+  /* Se pega justo debajo de la sección fija del header para no solaparlo. */
+  top: var(--header-h, 72px);
+  z-index: 20;
+  transition: background-color 200ms ease, border-color 200ms ease;
+}
+.sectionNavList {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: .25rem;
+  margin: 0 auto;
+  max-width: 1200px;
+  overflow-x: auto;
+  padding: 0 max(2vw, 1rem);
+}
+.sectionNavLink {
+  align-items: center;
+  background: none;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  color: #444;
+  cursor: pointer;
+  display: inline-flex;
+  font: inherit;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  gap: .5rem;
+  padding: 1rem .9rem;
+  text-decoration: none;
+  transition: color 150ms ease, border-color 150ms ease;
+  white-space: nowrap;
+}
+.sectionNavLink:hover { color: var(--institutional-red); }
+.sectionNavLinkActive {
+  border-bottom-color: var(--institutional-gold);
+  color: var(--institutional-red);
+}
+.sectionNavIcon {
+  align-items: center;
+  display: inline-flex;
+  flex-shrink: 0;
+  height: 1.15rem;
+  justify-content: center;
+  width: 1.15rem;
+}
+.sectionNavIcon svg { height: 100%; width: 100%; }
+
+/* ---- Estado "pegada": al hacer scroll la barra queda bajo el header y
+   cambia a fondo oscuro para diferenciarse visualmente de este. ---- */
+.sectionNavStuck {
+  background: #111;
+  border-bottom-color: #111;
+}
+.sectionNavStuck .sectionNavLink { color: #cfcfcf; }
+.sectionNavStuck .sectionNavLink:hover { color: #fff; }
+.sectionNavStuck .sectionNavLinkActive {
+  color: #fff;
+  border-bottom-color: var(--institutional-gold);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sectionNav { transition: none; }
+}

@@ -1,0 +1,259 @@
+.page {
+  background: #f7f7f5;
+  min-height: 70vh;
+}
+
+.content {
+  margin: 0 auto;
+  max-width: 1200px;
+  width: 100%;
+  padding: clamp(1.25rem, 3vw, 2.25rem) max(2vw, 1rem) clamp(2.5rem, 6vw, 5rem);
+}
+/* El panel activo recibe foco al navegar por teclado; evitamos un outline
+   duplicado sobre el contenedor (los controles internos ya son enfocables). */
+.content > [role="tabpanel"]:focus { outline: none; }
+
+/* ---- Encabezado de sección ---- */
+.sectionHeading {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+.sectionHeadingIcon {
+  align-items: center;
+  background: var(--institutional-red);
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  flex-shrink: 0;
+  height: 3rem;
+  justify-content: center;
+  width: 3rem;
+}
+.sectionHeadingIcon svg { height: 1.5rem; width: 1.5rem; }
+.sectionKicker {
+  color: var(--institutional-red);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: .1em;
+  margin: 0 0 .35rem;
+  text-transform: uppercase;
+}
+.sectionHeading h2 { font-size: var(--fs-h2); line-height: var(--lh-tight); margin: 0; }
+
+/* ---- Cuerpo del bloque ---- */
+.bloque {
+  background: #fff;
+  border-top: 4px solid var(--institutional-gold);
+  box-shadow: 0 5px 18px rgba(0, 0, 0, .08);
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+/* Agrupaciones internas (p. ej. "Formatos más usados" + "Caracterización"). */
+.grupo { margin-top: 2rem; }
+.grupo:first-of-type { margin-top: 0; }
+
+.descripcion {
+  color: #333;
+  font-size: var(--fs-base);
+  line-height: var(--lh-normal);
+  margin: 0 0 1rem;
+  max-width: 70rem;
+}
+.descripcion:last-of-type { margin-bottom: 1.75rem; }
+
+/* ---- Subtítulo con barra dorada ---- */
+.subheading {
+  align-items: center;
+  color: #1a1a1a;
+  display: flex;
+  font-size: var(--fs-h3);
+  gap: .75rem;
+  line-height: var(--lh-tight);
+  margin: 0 0 1.25rem;
+}
+.subheading::before {
+  background: var(--institutional-gold);
+  border-radius: 2px;
+  content: "";
+  display: inline-block;
+  height: 1.4em;
+  width: .35rem;
+}
+
+/* ---- Lista de documentos ---- */
+.documentos {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Tarjeta de documento: formato + enlace al recurso oficial. */
+.documentoCard {
+  align-items: center;
+  background: #faf9f7;
+  border: 1px solid #ececec;
+  border-radius: 8px;
+  display: flex;
+  gap: 1rem;
+  height: 100%;
+  padding: clamp(1rem, 2vw, 1.4rem);
+  text-decoration: none;
+  transition: box-shadow 220ms ease, transform 220ms ease, border-color 220ms ease;
+}
+.documentoCard:hover {
+  border-color: var(--institutional-gold);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, .12);
+  transform: translateY(-3px);
+}
+
+.documentoIcono {
+  align-items: center;
+  border-radius: 8px;
+  display: flex;
+  flex-shrink: 0;
+  height: 2.75rem;
+  justify-content: center;
+  width: 2.75rem;
+}
+.documentoIcono svg { height: 1.5rem; width: 1.5rem; }
+/* Color del badge según el formato del recurso. */
+.tipoPdf { background: rgba(140, 25, 25, .1); color: var(--institutional-red); }
+.tipoDoc { background: rgba(18, 145, 192, .14); color: #0f6f94; }
+.tipoEnlace { background: rgba(253, 180, 0, .18); color: #a06c00; }
+
+.documentoBody { flex: 1 1 auto; min-width: 0; }
+.documentoLabel {
+  color: #1a1a1a;
+  display: block;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  line-height: var(--lh-snug);
+}
+.documentoCard:hover .documentoLabel { color: var(--institutional-red); }
+.documentoTipo {
+  color: #888;
+  display: block;
+  font-size: var(--fs-2xs);
+  letter-spacing: .06em;
+  margin-top: .3rem;
+  text-transform: uppercase;
+}
+
+.documentoFlecha {
+  color: var(--institutional-red);
+  flex-shrink: 0;
+}
+.documentoFlecha svg { height: 1.1rem; width: 1.1rem; }
+
+/* ---- Video del modelo de operación (responsive 16:9) ---- */
+.videoWrapper {
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border: 1px solid #e4e4e4;
+  border-radius: 8px;
+  margin: 0 0 1.75rem;
+  overflow: hidden;
+  width: 100%;
+}
+.videoFrame {
+  border: 0;
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+/* ---- Accesos a plataforma (Daruma / MOP) ---- */
+.accesos {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.accesoCard {
+  align-items: center;
+  background: var(--institutional-red);
+  border-radius: 8px;
+  color: #fff;
+  display: flex;
+  gap: 1rem;
+  height: 100%;
+  padding: clamp(1.1rem, 2vw, 1.5rem);
+  text-decoration: none;
+  transition: box-shadow 220ms ease, transform 220ms ease, background 180ms ease;
+}
+.accesoCard:hover {
+  background: #6f1313;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, .18);
+  transform: translateY(-3px);
+}
+.accesoBody { flex: 1 1 auto; min-width: 0; }
+.accesoLabel {
+  display: block;
+  font-size: var(--fs-md);
+  font-weight: 700;
+  line-height: var(--lh-snug);
+}
+.accesoDesc {
+  color: rgba(255, 255, 255, .85);
+  display: block;
+  font-size: var(--fs-sm);
+  line-height: var(--lh-normal);
+  margin-top: .35rem;
+}
+.accesoFlecha { color: var(--institutional-gold); flex-shrink: 0; }
+.accesoFlecha svg { height: 1.25rem; width: 1.25rem; }
+
+/* ---- Normatividad ---- */
+.normas {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.norma {
+  background: #fff;
+  border-left: 4px solid var(--institutional-red);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, .07);
+  padding: clamp(1.25rem, 2.5vw, 1.75rem);
+}
+.normaLink {
+  align-items: center;
+  color: var(--institutional-red);
+  display: inline-flex;
+  font-size: var(--fs-md);
+  font-weight: 700;
+  gap: .5rem;
+  text-decoration: none;
+}
+.normaLink:hover { color: #6f1313; text-decoration: underline; }
+.normaLink svg { height: 1.1rem; width: 1.1rem; }
+.normaTexto {
+  color: #444;
+  font-size: var(--fs-sm);
+  font-style: italic;
+  line-height: var(--lh-normal);
+  margin: .75rem 0 0;
+  max-width: 70rem;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 480px) {
+  .documentoCard,
+  .accesoCard { flex-wrap: wrap; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .documentoCard,
+  .accesoCard { transition: none; }
+  .documentoCard:hover,
+  .accesoCard:hover { transform: none; }
+}

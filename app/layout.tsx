@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Lato, Montserrat } from "next/font/google";
+import ScrollToTop from "@/components/layout/scroll-to-top/scroll-to-top";
 import ContactWidget from "@/components/layout/contact-widget/contact-widget";
 import Footer from "@/components/layout/footer/footer";
 import FooterReveal from "@/components/layout/footer/footer-reveal";
@@ -41,6 +42,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <main>{children}</main>
         </FooterReveal>
         <ContactWidget />
+        <ScrollToTop />
       </body>
     </html>
   );

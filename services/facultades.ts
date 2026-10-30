@@ -116,7 +116,7 @@ export async function getFaculties(): Promise<Faculty[]> {
       mapFaculty(faculty, included, imageBaseUrl),
     );
   } catch {
-    return [];
+    return fallbackFaculties;
   }
 }
 

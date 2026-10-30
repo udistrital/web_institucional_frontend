@@ -159,9 +159,10 @@ export async function getActividadesAcademicas(): Promise<ActividadAcademica[]> 
 }
 
 /**
- * Carga las actividades para la página. En desarrollo devuelve un estado
- * controlado; durante la exportación de producción falla para no publicar
- * un calendario vacío por un error de Drupal.
+ * Carga las actividades para la página. Si Drupal no responde, degrada con
+ * gracia devolviendo un estado controlado (`noDisponible: true`) para que la
+ * página prerenderice su aviso "Calendario no disponible" en lugar de romper
+ * la exportación estática.
  */
 export async function cargarActividadesAcademicas(): Promise<ResultadoActividades> {
   try {
@@ -170,8 +171,6 @@ export async function cargarActividadesAcademicas(): Promise<ResultadoActividade
       noDisponible: false,
     };
   } catch (error) {
-    if (process.env.NODE_ENV === "production") throw error;
-
     console.error(
       "No se pudieron cargar las actividades académicas desde Drupal:",
       error,

@@ -77,8 +77,8 @@ export const nuestraUniversidadNavigation: NavigationItem = {
     { label: "Sobre Nosotros", href: "/nuestra-universidad/sobre-nosotros" },
     { label: "Direccionamiento estrategico", href: "/nuestra-universidad/direccionamiento-estrategico" },
     { label: "Calendario académico", href: "/nuestra-universidad/calendario-academico" },
-    { label: "Organigrama", href: "/nuestra-universidad/organigrama" },
-    { label: "Modelo de operacion", href: "/nuestra-universidad/modelo-de-operacion" },
+    { label: "Organigrama", href: "/sigud/organigrama" },
+    { label: "Modelo de operacion", href: "/sigud/sigud" },
   ]
 }
 export const ofertaAcademicaNavigation: NavigationItem = {
