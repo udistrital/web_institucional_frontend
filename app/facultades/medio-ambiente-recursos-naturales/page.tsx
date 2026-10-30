@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
+import FacultyPage from "../components/FacultyPage";
+import { generateFacultyMetadata } from "../metadata";
 
-export const metadata: Metadata = {
-  title: "Facultad de Medio Ambiente y Recursos Naturales",
-};
+const slug = "medio-ambiente-recursos-naturales";
+
+export async function generateMetadata(): Promise<Metadata> {
+  return generateFacultyMetadata(slug);
+}
 
 export default function MedioAmbienteRecursosNaturalesPage() {
-  return (
-    <>{/* Contenido de la Facultad de Medio Ambiente y Recursos Naturales */}</>
-  );
+  return <FacultyPage slug={slug} />;
 }

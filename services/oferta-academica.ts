@@ -7,6 +7,7 @@ import {
   type ProgramaAcademico,
   type ResultadoOfertaAcademica,
 } from "@/lib/oferta-academica";
+import { slugFiltro } from "@/lib/filtros";
 import { getPublicBaseUrl, resolveUrl } from "./api";
 import { createDrupalClient } from "./drupal-client";
 
@@ -177,10 +178,12 @@ async function obtenerColeccion<T>(
   }
 }
 
-async function obtenerProgramas(): Promise<ProgramaAcademico[]> {
+async function obtenerProgramas(
+  parametros: Record<string, string> = PARAMETROS_PROGRAMA,
+): Promise<ProgramaAcademico[]> {
   const recursos = await obtenerColeccion<ProgramaDrupal>(
     "node--oferta_academica",
-    PARAMETROS_PROGRAMA,
+    parametros,
   );
   const ids = new Set<string>();
 
@@ -193,6 +196,38 @@ async function obtenerProgramas(): Promise<ProgramaAcademico[]> {
     .map(normalizarPrograma);
 }
 
+function resultadoDesdeProgramas(
+  programas: ProgramaAcademico[],
+  noDisponible = false,
+): ResultadoOfertaAcademica {
+  const nivelesFormacion = programas
+    .map((programa) => programa.nivel)
+    .filter((nivel): nivel is string => Boolean(nivel));
+  const modalidades = [
+    ...new Set(
+      programas
+        .map((programa) => programa.modalidad)
+        .filter((modalidad): modalidad is string => Boolean(modalidad)),
+    ),
+  ];
+  const jornadas = [
+    ...new Set(
+      programas
+        .map((programa) => programa.jornada)
+        .filter((jornada): jornada is string => Boolean(jornada)),
+    ),
+  ];
+
+  return {
+    programas,
+    nivelesFormacion: [...new Set(nivelesFormacion)],
+    nivelesFiltro: crearNivelesFiltro(nivelesFormacion),
+    modalidades,
+    jornadas,
+    noDisponible,
+  };
+}
+
 async function obtenerTerminosVocabulario(vocabulario: string): Promise<string[]> {
   const terminos = await obtenerColeccion<TerminoDrupal>(
     `taxonomy_term--${vocabulario}`,
@@ -201,6 +236,54 @@ async function obtenerTerminosVocabulario(vocabulario: string): Promise<string[]
   return terminos
     .map((termino) => texto(termino.name))
     .filter((nombre): nombre is string => Boolean(nombre));
+}
+
+export async function cargarOfertaPorFacultad(
+  nombreFacultad: string,
+): Promise<ResultadoOfertaAcademica> {
+  const facultadSlug = slugFiltro(nombreFacultad);
+  const parametros = {
+    ...PARAMETROS_PROGRAMA,
+    "filter[field_facultad.name]": nombreFacultad.trim(),
+  };
+
+  try {
+    const programasFiltrados = await obtenerProgramas(parametros);
+    const programasCompatibles = programasFiltrados.filter(
+      (programa) => slugFiltro(programa.facultad) === facultadSlug,
+    );
+
+    if (
+      programasFiltrados.length > 0 &&
+      programasCompatibles.length === programasFiltrados.length
+    ) {
+      return resultadoDesdeProgramas(programasCompatibles);
+    }
+
+    console.error(
+      `La consulta de oferta para ${nombreFacultad} no devolvió programas compatibles.`,
+    );
+  } catch (error) {
+    console.error(
+      `No se pudo cargar la oferta filtrada de ${nombreFacultad}:`,
+      error,
+    );
+  }
+
+  try {
+    const programas = await obtenerProgramas();
+    return resultadoDesdeProgramas(
+      programas.filter(
+        (programa) => slugFiltro(programa.facultad) === facultadSlug,
+      ),
+    );
+  } catch (error) {
+    console.error(
+      `No se pudo recuperar el catálogo completo para ${nombreFacultad}:`,
+      error,
+    );
+    return resultadoDesdeProgramas([], true);
+  }
 }
 
 export async function cargarOfertaAcademica(): Promise<ResultadoOfertaAcademica> {

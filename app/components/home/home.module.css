@@ -83,6 +83,9 @@ a.hero-slide:focus-visible .hero-image { filter: brightness(1.06) saturate(1.05)
 /* El título de servicios está centrado: la barra también. */
 .services-heading h2::after { margin-left: auto; margin-right: auto; }
 .faculties-link { background: #fff; color: var(--institutional-red); }
+.faculties-empty-state { background: #fff; border-left: 4px solid var(--institutional-gold); color: #222; margin: 0 auto; max-width: var(--content-width); padding: 2rem; width: 100%; }
+.faculties-empty-state h3 { color: var(--institutional-red); font-family: var(--font-montserrat), sans-serif; font-size: var(--fs-xl); margin: 0 0 .5rem; }
+.faculties-empty-state p { margin: 0; }
 .faculties-desktop-curtain { display: block; }
 .faculties-mobile-carousel { display: none; }
 .faculties-list { column-gap: clamp(2rem, 5vw, 5.5rem); columns: 2; list-style: none; margin: 0; padding: .15rem 0 0; }

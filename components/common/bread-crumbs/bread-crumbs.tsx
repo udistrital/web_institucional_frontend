@@ -8,7 +8,7 @@ type BreadCrumbsProps = {
    * Variante visual. "default" (claro, sobre fondo blanco) o "onDark" para
    * usarse dentro de un banner de fondo oscuro.
    */
-  variant?: "default" | "onDark";
+  variant?: "default" | "onDark" | "faculty";
 };
 
 export default function BreadCrumbs({ variant = "default" }: BreadCrumbsProps) {
@@ -20,6 +20,56 @@ export default function BreadCrumbs({ variant = "default" }: BreadCrumbsProps) {
   };
 
   if (segments.length === 0) return null;
+
+  if (variant === "faculty") {
+    const facultySlug = segments[segments.length - 1];
+
+    return (
+      <nav aria-label="Breadcrumb" className="bg-[#1a1a1a] px-4 py-3 text-sm text-white">
+        <ol className="mx-auto flex w-full max-w-7xl flex-wrap items-center gap-x-2 gap-y-1">
+          <li>
+            <Link
+              aria-label="Inicio"
+              className="inline-flex items-center gap-2 font-medium text-white transition-colors hover:text-[#f04b4b] focus-visible:text-[#f04b4b]"
+              href="/"
+            >
+              <svg
+                aria-hidden="true"
+                className="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V10Z"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="1.8"
+                />
+              </svg>
+              Inicio
+            </Link>
+          </li>
+          <li aria-hidden="true" className="text-white/50">/</li>
+          <li>
+            <Link
+              className="font-medium text-white transition-colors hover:text-[#f04b4b] focus-visible:text-[#f04b4b]"
+              href="/facultades"
+            >
+              Facultades
+            </Link>
+          </li>
+          <li aria-hidden="true" className="text-white/50">/</li>
+          <li
+            aria-current="page"
+            className="min-w-0 max-w-full break-words font-semibold text-[#f04b4b]"
+          >
+            {formatLabel(facultySlug)}
+          </li>
+        </ol>
+      </nav>
+    );
+  }
 
   const onDark = variant === "onDark";
 

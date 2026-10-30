@@ -1,0 +1,22 @@
+{
+  "id": "FEAT-002",
+  "type": "feat",
+  "description": "Conectar las siete rutas App Router a la plantilla y generar metadata específica basada en Drupal.",
+  "status": "completed",
+  "steps": [
+    "Reemplazar los placeholders de app/facultades/artes-asab/page.tsx, ciencias-educacion/page.tsx, ciencias-matematicas-naturales/page.tsx, ciencias-salud/page.tsx, ingenieria/page.tsx, medio-ambiente-recursos-naturales/page.tsx y tecnologica/page.tsx por páginas mínimas que pasen su slug de carpeta a FacultyPage.",
+    "Añadir generateMetadata compartida/asíncrona o helper equivalente para que cada ruta use el título Drupal resuelto, con fallback legible, sin UUIDs ni datos duplicados; mantener el título con el prefijo Facultad.",
+    "Ejecutar lint y build, y comprobar con Drupal disponible que una ruta muestra imagen/título reales, niveles de la facultad, noticias tras la oferta y el enlace Ver más con ambos filtros."
+  ],
+  "acceptance_criteria": [
+    "Las siete rutas renderizan la misma plantilla y tienen metadata clara por facultad.",
+    "npm run lint y npm run build terminan correctamente y el build incluye las siete rutas estáticas."
+  ],
+  "verification": [
+    "Desde /Users/Daniel/job-pagina-web/web_institucional_frontend ejecutar npm run lint.",
+    "Desde /Users/Daniel/job-pagina-web/web_institucional_frontend ejecutar npm run build.",
+    "Con Drupal disponible, revisar una ruta y confirmar hero, oferta filtrada y NewsSection en ese orden."
+  ],
+  "blocked_reason": null,
+  "findings": "Las siete rutas reemplazaron los placeholders por el mismo FacultyPage y cada una conserva únicamente el slug de su carpeta. Se creó generateFacultyMetadata(slug), que resuelve el título publicado desde Drupal, garantiza el prefijo Facultad y usa un fallback legible centralizado sin UUIDs ni títulos repetidos en las rutas. npm run lint terminó sin errores; mantiene 9 warnings preexistentes en footer/header. npm run build terminó correctamente y generó las siete rutas estáticas de facultades. La inspección de out/facultades/ingenieria/index.html confirmó metadata de facultad y NewsSection renderizado; el entorno Drupal local devolvió las noticias, pero FacultyPage mostró Facultad no disponible porque los registros locales tienen path.alias nulo y getFacultyBySlug(slug de carpeta) solo coincide con el título normalizado completo (por ejemplo, facultad-de-ingenieria). La integración resolvió esa diferencia de slugs en getFacultyBySlug comparando el alias, el título completo y el título reducido a los términos de la ruta. Verificación final: npm run lint terminó sin errores (9 warnings preexistentes en footer/header) y npm run build terminó correctamente; la inspección de out/facultades/ingenieria/index.html confirmó metadata de facultad, imagen y título Drupal, oferta filtrada con niveles y programas, NewsSection después de la oferta y enlace Ver más con ambos filtros."
+}

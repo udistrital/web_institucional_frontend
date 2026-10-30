@@ -1,0 +1,23 @@
+{
+  "id": "FEAT-001",
+  "type": "feat",
+  "description": "Crear resolución Drupal por slug y la plantilla compartida server/client para hero y oferta académica por facultad.",
+  "status": "completed",
+  "steps": [
+    "Centralizar la función de slug equivalente a la de app/nuestra-universidad/oferta-academica/lib/filtros.ts y hacer que el hook existente la siga usando; añadir getFacultyBySlug en services/facultades.ts con createDrupalClient(), filtro de publicados, include de field_imagen_facultad y comparación prioritaria por path.alias, con fallback explícito por título normalizado porque la API local devuelve alias nulo.",
+    "Crear app/facultades/components/FacultyPage.tsx como Server Component: cargar facultad, cargarOfertaAcademica() y getNews() en paralelo; filtrar por slug de facultad; agrupar niveles no vacíos en el orden Pregrado, Especialización, Maestría, Doctorado y niveles adicionales estables; pasar solo datos serializables; renderizar hero, estado vacío, FacultyAcademicOffer y NewsSection con getNews().",
+    "Crear app/facultades/components/faculty-page.module.css y FacultyAcademicOffer.tsx; implementar tabs accesibles client-side, máximo cuatro tarjetas, enlace Ver más con ambos query params normalizados y target/rel exigidos, imágenes/fallback, metadatos de programa y estilos con tokens globales."
+  ],
+  "acceptance_criteria": [
+    "La facultad se resuelve sin UUID hardcodeado y prioriza alias Drupal; cuando alias es nulo, las siete entidades verificadas se pueden asociar por slug normalizado del título.",
+    "La plantilla muestra únicamente niveles que tienen programas de la facultad y carga noticias sin filtrarlas por facultad.",
+    "Las tabs son accesibles, cada nivel limita inicialmente a cuatro programas y Ver más solo aparece con más de cuatro y conserva facultad/nivel en la URL del catálogo."
+  ],
+  "verification": [
+    "Desde /Users/Daniel/job-pagina-web/web_institucional_frontend ejecutar npm run lint.",
+    "Desde /Users/Daniel/job-pagina-web/web_institucional_frontend ejecutar npm run build y confirmar que la frontera Server/Client y props serializables compilan.",
+    "Tras la revisión, confirmar que el hero no duplica el prefijo Facultad, FacultyPage no anida otro main dentro del layout y cada aria-controls apunta a un tabpanel existente, incluidos los paneles ocultos."
+  ],
+  "blocked_reason": null,
+  "findings": "Se centralizó slugFiltro en lib/filtros.ts y el catálogo continúa consumiéndolo mediante su módulo local reexportado. getFacultyBySlug consulta node--facultades publicado con createDrupalClient(), prioriza el último segmento normalizado de path.alias y usa el título normalizado cuando el alias es nulo o no coincide; además compara una versión del título sin el prefijo Facultad ni conectores institucionales para resolver los slugs de carpeta (por ejemplo, ingenieria frente a Facultad de Ingeniería); el mapper conserva imagen, alt y DTO serializable. FacultyPage es el default export server para que FEAT-002 conecte cada ruta con <FacultyPage slug=\"...\" />. Carga facultad, oferta y noticias en Promise.all; filtra programas por slug de facultad, ordena niveles conocidos y luego niveles adicionales, y no filtra noticias. FacultyAcademicOffer recibe únicamente datos serializables, muestra tabs button/role=tab/aria-selected/tabpanel, cuatro programas como máximo y Ver más con target=\"_blank\", rel=\"noopener noreferrer\" y los query params facultad/nivel normalizados. La revisión corrigió el título duplicado normalizando el prefijo Facultad, sustituyó los main internos por section para conservar el único landmark del layout y renderiza todos los tabpanels, ocultando los inactivos con hidden para mantener válidas las relaciones aria-controls. No se modificaron las siete rutas, por lo que esa conexión queda para FEAT-002."
+}

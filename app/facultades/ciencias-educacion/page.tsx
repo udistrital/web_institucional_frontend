@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
+import FacultyPage from "../components/FacultyPage";
+import { generateFacultyMetadata } from "../metadata";
 
-export const metadata: Metadata = {
-  title: "Facultad de Ciencias y Educación",
-};
+const slug = "ciencias-educacion";
+
+export async function generateMetadata(): Promise<Metadata> {
+  return generateFacultyMetadata(slug);
+}
 
 export default function CienciasEducacionPage() {
-  return <>{/* Contenido de la Facultad de Ciencias y Educación */}</>;
+  return <FacultyPage slug={slug} />;
 }

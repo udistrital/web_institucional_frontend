@@ -1,0 +1,206 @@
+.page {
+  background: #f0f0ee;
+  min-height: 70vh;
+}
+
+.hero {
+  background: #f0f0ee;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(20rem, 0.9fr);
+  min-height: 23rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.hero::before {
+  color: rgb(140 25 25 / 7%);
+  content: "FACULTAD";
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: clamp(5rem, 14vw, 12rem);
+  font-weight: 700;
+  line-height: 0.8;
+  pointer-events: none;
+  position: absolute;
+  right: -1rem;
+  top: 1.5rem;
+  white-space: nowrap;
+  z-index: 0;
+}
+
+.heroText {
+  align-self: center;
+  max-width: 52rem;
+  padding: clamp(3rem, 6vw, 5rem) max(5vw, 1.5rem);
+  position: relative;
+  z-index: 2;
+}
+
+.heroText::after {
+  background: var(--institutional-gold);
+  content: "";
+  display: block;
+  height: 0.35rem;
+  margin-top: 1.75rem;
+  width: 5rem;
+}
+
+.heroTitle {
+  color: #171717;
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.02;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.heroTitleAccent {
+  color: var(--institutional-red);
+}
+
+.heroVisual {
+  background: #d8d8d5;
+  min-height: 23rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.heroVisual::before {
+  background: var(--institutional-red);
+  content: "";
+  height: 130%;
+  left: -14%;
+  position: absolute;
+  top: -15%;
+  transform: skewX(-18deg);
+  width: 30%;
+  z-index: 2;
+}
+
+.heroVisual::after {
+  background: var(--institutional-gold);
+  bottom: 1.5rem;
+  content: "";
+  height: 0.45rem;
+  position: absolute;
+  right: 1.5rem;
+  width: 5rem;
+  z-index: 3;
+}
+
+.heroImage {
+  object-fit: cover;
+  z-index: 1;
+}
+
+.heroImageFallback {
+  align-items: center;
+  background:
+    radial-gradient(circle at 70% 25%, rgb(253 180 0 / 35%), transparent 28%),
+    linear-gradient(145deg, var(--institutional-red), #5f1010);
+  color: rgb(255 255 255 / 80%);
+  display: flex;
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: clamp(5rem, 12vw, 9rem);
+  font-weight: 700;
+  inset: 0;
+  justify-content: center;
+  position: absolute;
+  z-index: 1;
+}
+
+.heroAccent {
+  background: linear-gradient(90deg, rgb(0 0 0 / 14%), rgb(0 0 0 / 0%) 65%);
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 1;
+}
+
+.body {
+  margin: 0 auto;
+  max-width: 1180px;
+  padding: clamp(3rem, 6vw, 5rem) max(4vw, 1.25rem) clamp(3rem, 6vw, 5rem);
+  width: 100%;
+}
+
+.newsTransition {
+  background: #f7f7f5;
+  height: 4.5rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.newsTransition::before {
+  background: var(--institutional-red);
+  content: "";
+  height: 180%;
+  left: 20%;
+  position: absolute;
+  top: -40%;
+  transform: skewX(-25deg);
+  width: 32%;
+}
+
+.newsTransition::after {
+  background: var(--institutional-gold);
+  content: "";
+  height: 0.4rem;
+  left: 48%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5rem;
+}
+
+.unavailable,
+.statusMessage {
+  background: #fff;
+  border-left: 4px solid var(--institutional-gold);
+  box-shadow: 0 1px 2px rgb(17 17 17 / 4%), 0 10px 28px rgb(17 17 17 / 6%);
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.unavailable h1,
+.statusMessage h2 {
+  color: #202124;
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+}
+
+.unavailable p,
+.statusMessage p {
+  color: #666;
+  margin: 0;
+}
+
+.statusMessage {
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 0;
+  }
+
+  .heroText {
+    padding: clamp(2.5rem, 8vw, 4rem) max(5vw, 1.25rem) clamp(2.5rem, 7vw, 3.5rem);
+  }
+
+  .heroVisual {
+    min-height: 13rem;
+  }
+
+  .heroVisual::before {
+    left: -20%;
+    width: 38%;
+  }
+
+  .newsTransition {
+    height: 3.5rem;
+  }
+}

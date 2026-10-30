@@ -1,0 +1,15 @@
+{
+  "project_type": "Next.js 16 App Router con React 19, exportación estática y next-drupal contra Drupal JSON:API",
+  "language": "TypeScript y CSS Modules/Tailwind existente",
+  "build_system": "npm scripts; next.config.ts usa output: export, trailingSlash y next/image unoptimized",
+  "test_framework": "No hay framework de pruebas declarado; validación por ESLint y build",
+  "build_command": "npm run build",
+  "test_command": "npm run lint",
+  "verification_instructions": "Desde /Users/Daniel/job-pagina-web/web_institucional_frontend ejecutar npm run lint y npm run build. El build consulta Drupal y genera out/; ALLOW_EMPTY_EXPORT=true solo sirve para una prueba local sin backend, no para producción.",
+  "snapshot_or_generated_files": "npm run build genera out/ y artefactos .next; no incluirlos en cambios de código.",
+  "environment_constraints": "Node 20+, DRUPAL_BASE_URL requerido para contenido; no ejecutar next start para la exportación estática; no subir .env.local.",
+  "contribution_requirements": "Leer AGENTS.md; las páginas son Server Components, servicios son la capa Drupal y use client solo para estado/eventos. No hardcodear UUIDs ni crear refactors no relacionados.",
+  "key_patterns": "Servicios server-only normalizan DTOs; createDrupalClient() vive en services/drupal-client.ts. app/page.tsx carga getNews() en Promise.all y renderiza NewsSection de @/components/common/news-section/news-section. El hero de calendario usa CSS Module con grid de dos zonas, clip-path diagonal y responsive. Los filtros del catálogo usan slugFiltro, que elimina diacríticos, pasa a minúsculas y reemplaza grupos no alfanuméricos por guiones.",
+  "relevant_files": ["/Users/Daniel/job-pagina-web/web_institucional_frontend/services/facultades.ts", "/Users/Daniel/job-pagina-web/web_institucional_frontend/services/oferta-academica.ts", "/Users/Daniel/job-pagina-web/web_institucional_frontend/services/drupal-client.ts", "/Users/Daniel/job-pagina-web/web_institucional_frontend/lib/oferta-academica.ts", "/Users/Daniel/job-pagina-web/web_institucional_frontend/app/nuestra-universidad/oferta-academica/hooks/useFiltrosOfertaAcademica.ts", "/Users/Daniel/job-pagina-web/web_institucional_frontend/app/nuestra-universidad/oferta-academica/lib/filtros.ts", "/Users/Daniel/job-pagina-web/web_institucional_frontend/app/nuestra-universidad/calendario-academico/page.tsx", "/Users/Daniel/job-pagina-web/web_institucional_frontend/app/nuestra-universidad/calendario-academico/page.module.css", "/Users/Daniel/job-pagina-web/web_institucional_frontend/app/page.tsx", "/Users/Daniel/job-pagina-web/web_institucional_frontend/components/common/news-section/news-section.tsx", "/Users/Daniel/job-pagina-web/web_institucional_frontend/app/globals.css"],
+  "directory_structure": "app/facultades contiene la página de listado y siete carpetas con placeholders. services contiene adaptadores Drupal. app/nuestra-universidad/oferta-academica contiene catálogo, hook client y filtros. components/common/news-section contiene NewsSection client reutilizable."
+}
