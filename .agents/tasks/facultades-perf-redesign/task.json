@@ -1,0 +1,7 @@
+{
+  "task_id": "task-facultades-perf-redesign",
+  "task_description": "Optimizar la carga de la oferta académica en las páginas individuales de facultades y aplicar el rediseño visual aprobado sin alterar el catálogo global ni el header global.",
+  "status": "completed",
+  "feature_order": ["FEAT-001", "FEAT-002"],
+  "blocked_reason": null
+}
