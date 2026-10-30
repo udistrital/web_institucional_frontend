@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { cargarOfertaAcademica } from "@/services/oferta-academica";
+import { cargarOfertaPorFacultad } from "@/services/oferta-academica";
 import { getFacultyBySlug } from "@/services/facultades";
 import { getNews } from "@/services/noticias";
 import { slugFiltro } from "@/lib/filtros";
@@ -45,7 +45,7 @@ function groupProgramsByLevel(programs: FacultyProgram[]): AcademicLevel[] {
 }
 
 function serializeProgram(
-  program: Awaited<ReturnType<typeof cargarOfertaAcademica>>["programas"][number],
+  program: Awaited<ReturnType<typeof cargarOfertaPorFacultad>>["programas"][number],
 ): FacultyProgram {
   return {
     id: program.id,
@@ -78,9 +78,8 @@ function unavailableMessage(message: string) {
 }
 
 export default async function FacultyPage({ slug }: FacultyPageProps) {
-  const [faculty, offer, news] = await Promise.all([
+  const [faculty, news] = await Promise.all([
     getFacultyBySlug(slug),
-    cargarOfertaAcademica(),
     getNews(),
   ]);
 
@@ -95,6 +94,7 @@ export default async function FacultyPage({ slug }: FacultyPageProps) {
     );
   }
 
+  const offer = await cargarOfertaPorFacultad(faculty.title);
   const facultySlug = slugFiltro(faculty.title);
   const programs = offer.programas
     .filter((program) => slugFiltro(program.facultad) === facultySlug)
