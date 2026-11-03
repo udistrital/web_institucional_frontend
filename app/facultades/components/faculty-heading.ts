@@ -41,12 +41,14 @@ export default function getFacultyHeadingSegments(
   title: string,
 ): FacultyHeadingSegment[] {
   const normalizedTitle = headingText(title);
-  const asabMatch = normalizedTitle.match(/^(Facultad de Artes - )(ASAB)$/i);
+  const asabMatch = normalizedTitle.match(/^(Facultad de )(Artes)( - )(ASAB)$/i);
 
   if (asabMatch) {
     return [
       { text: asabMatch[1], accent: false },
       { text: asabMatch[2], accent: true },
+      { text: asabMatch[3], accent: false },
+      { text: asabMatch[4], accent: true },
     ];
   }
 
