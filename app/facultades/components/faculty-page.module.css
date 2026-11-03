@@ -6,23 +6,25 @@
 .hero {
   background: #f0f0ee;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(20rem, 0.9fr);
-  min-height: 23rem;
+  grid-template-columns: minmax(0, 0.9fr) minmax(20rem, 1.1fr);
+  height: 26rem;
+  min-height: 26rem;
   overflow: hidden;
   position: relative;
 }
 
 .hero::before {
   color: rgb(140 25 25 / 7%);
-  content: "FACULTAD";
+  content: "UD";
   font-family: var(--font-montserrat), sans-serif;
   font-size: clamp(5rem, 14vw, 12rem);
   font-weight: 700;
+  left: clamp(10rem, 24vw, 22rem);
   line-height: 0.8;
   pointer-events: none;
   position: absolute;
-  right: -1rem;
-  top: 1.5rem;
+  right: auto;
+  top: 14rem;
   white-space: nowrap;
   z-index: 0;
 }
@@ -30,6 +32,7 @@
 .heroText {
   align-self: center;
   max-width: 52rem;
+  min-height: 0;
   padding: clamp(3rem, 6vw, 5rem) max(5vw, 1.5rem);
   position: relative;
   z-index: 2;
@@ -47,7 +50,7 @@
 .heroTitle {
   color: #171717;
   font-family: var(--font-montserrat), sans-serif;
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-size: clamp(2rem, 4vw, 3.5rem);
   font-weight: 700;
   letter-spacing: -0.04em;
   line-height: 1.02;
@@ -61,7 +64,7 @@
 
 .heroVisual {
   background: #d8d8d5;
-  min-height: 23rem;
+  min-height: 0;
   overflow: hidden;
   position: relative;
 }
@@ -184,15 +187,26 @@
 @media (max-width: 768px) {
   .hero {
     grid-template-columns: minmax(0, 1fr);
-    min-height: 0;
+    grid-template-rows: minmax(0, 1fr) 12rem;
+    height: 30rem;
+    min-height: 30rem;
   }
 
   .heroText {
-    padding: clamp(2.5rem, 8vw, 4rem) max(5vw, 1.25rem) clamp(2.5rem, 7vw, 3.5rem);
+    padding: 2rem max(5vw, 1.25rem);
+  }
+
+  .heroTitle {
+    font-size: clamp(1.75rem, 7vw, 2.5rem);
+  }
+
+  .hero::before {
+    left: 43%;
+    top: 13rem;
   }
 
   .heroVisual {
-    min-height: 13rem;
+    min-height: 0;
   }
 
   .heroVisual::before {
