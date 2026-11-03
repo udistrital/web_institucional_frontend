@@ -129,7 +129,9 @@
   border-radius: 1rem;
   box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 10%);
   color: inherit;
-  display: block;
+  container-type: inline-size;
+  display: flex;
+  flex-direction: column;
   min-width: 0;
   overflow: hidden;
   position: relative;
@@ -149,10 +151,14 @@
   aspect-ratio: 4 / 3;
 }
 
+/* Sin overflow propio: el aspect-ratio actúa como alto mínimo y la tarjeta
+   crece si el contenido no cabe; el recorte lo hace .programCard. */
 .programMedia {
+  align-items: end;
   aspect-ratio: 1;
   background: #ece9e5;
-  overflow: hidden;
+  display: grid;
+  flex: 1 0 auto;
   position: relative;
 }
 
@@ -181,60 +187,96 @@
   position: absolute;
 }
 
-.programTitle {
-  background: linear-gradient(to top, rgb(0 0 0 / 86%), rgb(0 0 0 / 0%));
-  bottom: 0;
-  color: #fff;
-  font-family: var(--font-montserrat), sans-serif;
-  font-size: var(--fs-lg);
-  font-weight: 700;
-  inset-inline: 0;
-  line-height: var(--lh-tight);
-  margin: 0;
-  min-height: 38%;
-  overflow-wrap: anywhere;
+/* Bloque inferior en flujo: barra, título, etiqueta y datos se apilan,
+   así que los datos empujan el título hacia arriba sin encimarse. */
+.programBody {
+  background: linear-gradient(
+    to top,
+    rgb(0 0 0 / 88%) 0,
+    rgb(0 0 0 / 72%) calc(100% - 3rem),
+    rgb(0 0 0 / 0%) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  grid-area: 1 / 1;
+  min-width: 0;
   padding: 3rem 1rem 1rem;
-  position: absolute;
-  z-index: 6;
+  position: relative;
+  z-index: 1;
 }
 
-.programTitle::before {
+.programBody::before {
   background: var(--institutional-gold);
   content: "";
+  flex: none;
   height: 0.3rem;
-  left: 1rem;
-  position: absolute;
-  top: 1.75rem;
+  margin-bottom: 0.75rem;
   width: 3.5rem;
 }
 
+.programTitle {
+  color: #fff;
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: clamp(1rem, 0.75rem + 3cqi, 1.6rem);
+  font-weight: 700;
+  line-height: var(--lh-tight);
+  margin: 0;
+  overflow-wrap: break-word;
+}
+
+.programTag {
+  border: 1px solid var(--institutional-gold);
+  border-radius: 999px;
+  color: var(--institutional-gold);
+  font-size: var(--fs-2xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.3;
+  margin: 0.6rem 0 0;
+  max-width: 100%;
+  padding: 0.2rem 0.65rem;
+  text-transform: uppercase;
+  width: fit-content;
+}
+
 .programReveal {
-  background: linear-gradient(to bottom, rgb(17 17 17 / 8%), rgb(17 17 17 / 90%));
-  display: flex;
-  flex-direction: column;
-  inset: 0;
-  justify-content: flex-start;
+  display: grid;
+  grid-template-rows: 0fr;
   opacity: 0;
-  padding: 1rem;
-  pointer-events: none;
-  position: absolute;
-  transform: translateY(0.75rem);
-  transition: opacity 240ms ease, transform 240ms ease;
-  z-index: 5;
+  transition: grid-template-rows 240ms ease, opacity 240ms ease;
+}
+
+.programRevealInner {
+  min-height: 0;
+  overflow: hidden;
 }
 
 .programCard:hover .programReveal,
 .programCard:focus-within .programReveal,
 .programCardStatic .programReveal {
+  grid-template-rows: 1fr;
   opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0);
 }
 
 .programDetails {
+  border-top: 1px solid rgb(255 255 255 / 25%);
   display: grid;
-  gap: 0.7rem;
-  margin: 0;
+  gap: 0.7rem 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr));
+  margin: 0.85rem 0 0;
+  padding-top: 0.85rem;
+}
+
+.visuallyHidden {
+  border: 0;
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
 }
 
 .programDetails dt,
@@ -290,14 +332,22 @@
   text-transform: uppercase;
 }
 
+.featuredHeading {
+  margin: 0 0 1.75rem;
+}
+
 .featuredTitle {
   color: #fff;
   font-family: var(--font-montserrat), sans-serif;
   font-size: clamp(1.5rem, 3vw, 2.5rem);
   font-weight: 700;
   line-height: var(--lh-tight);
-  margin: 0 0 1.75rem;
+  margin: 0;
   overflow-wrap: anywhere;
+}
+
+.featuredHeading .programTag {
+  margin-top: 0.85rem;
 }
 
 .featuredDetails {
@@ -366,9 +416,8 @@
 
 @media (hover: none) {
   .programReveal {
+    grid-template-rows: 1fr;
     opacity: 1;
-    pointer-events: auto;
-    transform: none;
   }
 }
 
