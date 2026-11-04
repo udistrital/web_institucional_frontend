@@ -39,13 +39,13 @@ export default function AudienceNav() {
       className={`${styles.audienceNav} col-span-2 row-start-1`}
     >
       {/* Desktop: original layout */}
-      <div className={`${styles.audienceProfiles} hidden md:flex`}>
+      <div className={`${styles.audienceProfiles} hidden xl:flex`}>
         {visibleProfiles.map((profile) => (
           <AudienceButton key={profile.href} profile={profile} />
         ))}
       </div>
 
-      <div className={`${styles.institutionalLinks} hidden md:flex`}>
+      <div className={`${styles.institutionalLinks} hidden xl:flex`}>
         {institutionalLinks.map((link) => (
           <a key={link.href} href={link.href}>
             {link.label}
@@ -54,7 +54,7 @@ export default function AudienceNav() {
       </div>
 
       {/* Mobile: institutional links + Perfiles dropdown */}
-      <div className={`${styles.institutionalLinks} flex md:hidden`}>
+      <div className={`${styles.institutionalLinks} flex xl:hidden`}>
         {institutionalLinks.map((link) => (
           <a key={link.href} href={link.href}>
             {link.label}
@@ -62,7 +62,7 @@ export default function AudienceNav() {
         ))}
       </div>
 
-      <div className="relative flex md:hidden" ref={ref}>
+      <div className="relative flex xl:hidden" ref={ref}>
         <button
           className={styles.audienceButton}
           onClick={() => setOpen((v) => !v)}

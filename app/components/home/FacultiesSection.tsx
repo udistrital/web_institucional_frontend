@@ -46,17 +46,6 @@ export default function FacultiesSection({ faculties }: FacultiesSectionProps) {
     );
   }
 
-  if (!faculties.length) {
-    return (
-      <section className={styles["faculties-section"]} aria-labelledby="faculties-title">
-        <div className={styles["faculties-intro"]}>
-          <h2 id="faculties-title">Nuestras Facultades</h2>
-          <Link className={styles["faculties-link"]} href="/facultades">Ver facultades</Link>
-        </div>
-      </section>
-    );
-  }
-
   return (
     <section className={styles["faculties-section"]} aria-labelledby="faculties-title">
       <div className={styles["faculties-intro"]}>

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { slugFiltro } from "@/lib/filtros";
 import styles from "./faculty-academic-offer.module.css";
+import { splitProgramName, type ProgramName } from "./program-name";
 
 export type FacultyAcademicData = {
   title: string;
@@ -37,6 +38,27 @@ type FacultyAcademicOfferProps = {
 
 function programImage(program: FacultyProgram, faculty: FacultyAcademicData) {
   return program.imagenUrl || faculty.imageUrl;
+}
+
+function ProgramTitleText({ name }: { name: ProgramName }) {
+  if (name.title === name.fullName) return name.title;
+
+  return (
+    <>
+      <span aria-hidden="true">{name.title}</span>
+      <span className={styles.visuallyHidden}>{name.fullName}</span>
+    </>
+  );
+}
+
+function ProgramTag({ name }: { name: ProgramName }) {
+  if (!name.tag) return null;
+
+  return (
+    <p aria-hidden="true" className={styles.programTag}>
+      {name.tag}
+    </p>
+  );
 }
 
 export default function FacultyAcademicOffer({
@@ -157,6 +179,7 @@ export default function FacultyAcademicOffer({
             <div className={`${styles.programGrid} ${programGridClass}`}>
               {visiblePrograms.map((program) => {
                 const image = programImage(program, faculty);
+                const name = splitProgramName(program.nombre, level.name);
                 const isFeatured = programCount === 1;
                 const imageSizes = isFeatured
                   ? "(max-width: 680px) 100vw, (max-width: 1050px) 50vw, 55vw"
@@ -189,7 +212,12 @@ export default function FacultyAcademicOffer({
                       <p className={styles.featuredLevel}>
                         {program.nivel || level.name}
                       </p>
-                      <h3 className={styles.featuredTitle}>{program.nombre}</h3>
+                      <div className={styles.featuredHeading}>
+                        <h3 className={styles.featuredTitle}>
+                          <ProgramTitleText name={name} />
+                        </h3>
+                        <ProgramTag name={name} />
+                      </div>
                       <dl className={styles.featuredDetails}>
                         {program.modalidad && (
                           <div>
@@ -227,25 +255,32 @@ export default function FacultyAcademicOffer({
                 ) : (
                   <div className={styles.programMedia}>
                     {mediaImage}
-                    <h3 className={styles.programTitle}>{program.nombre}</h3>
-                    {(program.jornada || program.modalidad) && (
-                      <div className={styles.programReveal}>
-                        <dl className={styles.programDetails}>
-                          {program.jornada && (
-                            <div>
-                              <dt>Jornada</dt>
-                              <dd>{program.jornada}</dd>
-                            </div>
-                          )}
-                          {program.modalidad && (
-                            <div>
-                              <dt>Modalidad</dt>
-                              <dd>{program.modalidad}</dd>
-                            </div>
-                          )}
-                        </dl>
-                      </div>
-                    )}
+                    <div className={styles.programBody}>
+                      <h3 className={styles.programTitle}>
+                        <ProgramTitleText name={name} />
+                      </h3>
+                      <ProgramTag name={name} />
+                      {(program.jornada || program.modalidad) && (
+                        <div className={styles.programReveal}>
+                          <div className={styles.programRevealInner}>
+                            <dl className={styles.programDetails}>
+                              {program.jornada && (
+                                <div>
+                                  <dt>Jornada</dt>
+                                  <dd>{program.jornada}</dd>
+                                </div>
+                              )}
+                              {program.modalidad && (
+                                <div>
+                                  <dt>Modalidad</dt>
+                                  <dd>{program.modalidad}</dd>
+                                </div>
+                              )}
+                            </dl>
+                          </div>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 );
                 const cardClass = isFeatured

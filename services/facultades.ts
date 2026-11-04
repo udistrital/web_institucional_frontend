@@ -22,6 +22,17 @@ export type Faculty = {
   imageAlt: string;
 };
 
+export const fallbackFaculties: Faculty[] = [
+  {
+    id: "fallback-faculties",
+    title: "Conoce nuestras facultades",
+    href: "/facultades",
+    attributes: { title: "Conoce nuestras facultades" },
+    imageUrl: null,
+    imageAlt: "Facultades de la Universidad Distrital",
+  },
+];
+
 type FacultyResource = {
   id: string;
   attributes: {
