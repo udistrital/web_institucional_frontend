@@ -151,14 +151,13 @@
   aspect-ratio: 4 / 3;
 }
 
-/* Sin overflow propio: el aspect-ratio actúa como alto mínimo y la tarjeta
-   crece si el contenido no cabe; el recorte lo hace .programCard. */
+/* Tamaño fijo: el alto lo da solo el aspect-ratio de la variante, porque
+   todo el contenido (imagen, fallback y bloque inferior) está fuera de flujo. */
 .programMedia {
-  align-items: end;
   aspect-ratio: 1;
   background: #ece9e5;
-  display: grid;
   flex: 1 0 auto;
+  overflow: hidden;
   position: relative;
 }
 
@@ -187,8 +186,9 @@
   position: absolute;
 }
 
-/* Bloque inferior en flujo: barra, título, etiqueta y datos se apilan,
-   así que los datos empujan el título hacia arriba sin encimarse. */
+/* Bloque inferior anclado al fondo de la media: barra, título, etiqueta y
+   datos se apilan dentro de él, así que al revelarse los datos el bloque
+   crece hacia arriba y sube el título sin cambiar el tamaño de la tarjeta. */
 .programBody {
   background: linear-gradient(
     to top,
@@ -196,12 +196,14 @@
     rgb(0 0 0 / 72%) calc(100% - 3rem),
     rgb(0 0 0 / 0%) 100%
   );
+  bottom: 0;
   display: flex;
   flex-direction: column;
-  grid-area: 1 / 1;
+  left: 0;
   min-width: 0;
   padding: 3rem 1rem 1rem;
-  position: relative;
+  position: absolute;
+  right: 0;
   z-index: 1;
 }
 
@@ -262,7 +264,7 @@
   border-top: 1px solid rgb(255 255 255 / 25%);
   display: grid;
   gap: 0.7rem 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr));
   margin: 0.85rem 0 0;
   padding-top: 0.85rem;
 }
