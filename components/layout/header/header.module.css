@@ -4,6 +4,7 @@
     width: fit-content;
     align-items: center;
     gap: 6px;
+    overflow: hidden;
 }
 
 .shield {
@@ -34,7 +35,7 @@
 .logoSwap {
     position: absolute;
     top: 50%;
-    left: 100px;
+    left: 62px;
     width: auto;
     height: 40px;
     object-fit: contain;
@@ -44,7 +45,7 @@
     transition: transform 0.4s ease, opacity 0.15s ease;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1279px) {
     .shield {
         width: 44px;
     }
@@ -55,7 +56,18 @@
     }
 }
 
-@media (min-width: 910px) {
+@media (max-width: 480px) {
+    .shield {
+        width: 36px;
+    }
+
+    .nameBox {
+        width: 120px;
+        height: 20px;
+    }
+}
+
+@media (min-width: 1280px) {
     .logo:hover .letter {
         transform: translateX(-100%);
         opacity: 0;
@@ -72,5 +84,3 @@
     display: flex;
     gap: 1.5rem;
 }
-
-

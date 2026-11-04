@@ -1,10 +1,10 @@
-import Image from "next/image";
 import { cargarOfertaPorFacultad } from "@/services/oferta-academica";
 import { getFacultyBySlug } from "@/services/facultades";
 import { getNews } from "@/services/noticias";
 import { slugFiltro } from "@/lib/filtros";
 import NewsSection from "@/components/common/news-section/news-section";
 import BreadCrumbs from "@/components/common/bread-crumbs/bread-crumbs";
+import PageHero from "@/components/common/page-hero";
 import FacultyAcademicOffer, {
   type AcademicLevel,
   type FacultyAcademicData,
@@ -100,45 +100,16 @@ export default async function FacultyPage({ slug }: FacultyPageProps) {
     imageAlt: faculty.imageAlt,
   };
   const headingSegments = getFacultyHeadingSegments(faculty.title);
-  const headingText = headingSegments.map((segment) => segment.text).join("");
 
   return (
     <section className={styles.page}>
-      <header className={styles.hero}>
-        <div className={styles.heroText}>
-          <h1 className={styles.heroTitle}>
-            {headingSegments.map((segment, index) => (
-              <span
-                className={segment.accent ? styles.heroTitleAccent : undefined}
-                key={`${segment.text}-${index}`}
-              >
-                {segment.text}
-              </span>
-            ))}
-          </h1>
-        </div>
-        <div className={styles.heroVisual}>
-          {faculty.imageUrl ? (
-            <Image
-              alt={faculty.imageAlt}
-              className={styles.heroImage}
-              fill
-              priority
-              sizes="(max-width: 768px) 100vw, 42vw"
-              src={faculty.imageUrl}
-            />
-          ) : (
-            <div
-              aria-label={`Imagen no disponible de ${faculty.title}`}
-              className={styles.heroImageFallback}
-              role="img"
-            >
-              <span aria-hidden="true">{faculty.title.charAt(0)}</span>
-            </div>
-          )}
-          <span aria-hidden="true" className={styles.heroAccent} />
-        </div>
-      </header>
+      <PageHero
+        data={{
+          title: headingSegments,
+          imageUrl: faculty.imageUrl,
+          imageAlt: faculty.imageAlt,
+        }}
+      />
 
       <BreadCrumbs variant="faculty" />
 
@@ -151,7 +122,7 @@ export default async function FacultyPage({ slug }: FacultyPageProps) {
       </div>
 
       <div aria-hidden="true" className={styles.newsTransition} />
-      <NewsSection news={news} title={`Noticias · ${headingText}`} />
+      <NewsSection news={news} title={`Noticias`} />
     </section>
   );
 }

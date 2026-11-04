@@ -21,7 +21,7 @@ export default function Brand() {
           className={styles.letter}
         />
       </div>
-      <div className="hidden md:block">
+      <div className="hidden xl:block">
         <img
           src="/logotipos-ud/UDred.svg"
           alt="Logotipo Universidad Distrital Fransisco Jose de Caldas"

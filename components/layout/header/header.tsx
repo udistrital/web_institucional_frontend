@@ -8,11 +8,11 @@ export default function Header({ ref }: { ref?: Ref<HTMLElement> }) {
       ref={ref}
       className="sticky top-0 z-50 flex w-full flex-col bg-white border-b border-gray-100"
     >
-      <div className="relative flex w-full mx-auto flex-col md:flex-row md:items-center md:justify-between md:gap-4 md:px-6 bg-white md:py-1">
-        <div className="shrink-0 px-4 py-2 md:p-0 flex justify-center md:justify-start">
+      <div className="relative flex w-full mx-auto flex-row items-center justify-between gap-2 bg-white px-2 py-2 min-[921px]:flex-col min-[921px]:items-stretch min-[921px]:justify-start min-[921px]:gap-0 min-[921px]:px-0 min-[921px]:py-0 xl:flex-row xl:items-center xl:justify-between xl:gap-4 xl:px-6 xl:py-1">
+        <div className="flex shrink-0 justify-start px-0 py-0 min-[921px]:justify-center min-[921px]:px-4 min-[921px]:py-2 xl:justify-start xl:p-0">
           <Brand />
         </div>
-        <div className="flex w-full min-w-0 justify-end border-t border-gray-100 px-4 py-1 md:flex-1 md:w-auto md:border-0 md:p-0">
+        <div className="flex w-32 min-w-0 shrink-0 justify-end border-0 p-0 min-[921px]:w-full min-[921px]:shrink min-[921px]:border-t min-[921px]:border-gray-100 min-[921px]:px-4 min-[921px]:py-1 xl:w-auto xl:flex-1 xl:border-0 xl:p-0">
           <MainMenu />
         </div>
       </div>

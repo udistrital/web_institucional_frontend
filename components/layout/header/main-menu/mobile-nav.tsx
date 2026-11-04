@@ -256,7 +256,7 @@ export default function MobileNav({ onOpenSearch }: MobileNavProps) {
   );
 
   return (
-    <div className="flex w-full items-center justify-between gap-2 md:hidden">
+    <div className="flex w-full items-center justify-end gap-1 min-[921px]:hidden">
       <button
         type="button"
         onClick={() => setMobileOpen(true)}

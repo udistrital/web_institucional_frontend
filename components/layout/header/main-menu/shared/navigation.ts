@@ -87,7 +87,7 @@ export const ofertaAcademicaNavigation: NavigationItem = {
   children: [
     {
       label: "Facultad de Artes ASAB",
-      href: "/facultades/artes-asab",
+      href: "/nuestra-universidad/oferta-academica?facultad=facultad-de-artes-asab",
       children: [
         { label: "Pregrado", href: "/nuestra-universidad/oferta-academica?facultad=facultad-de-artes-asab&nivel=pregrado" },
         { label: "Maestría", href: "/nuestra-universidad/oferta-academica?facultad=facultad-de-artes-asab&nivel=maestria" },
@@ -96,14 +96,14 @@ export const ofertaAcademicaNavigation: NavigationItem = {
     },
     {
       label: "Facultad de Ciencias de la Salud",
-      href: "/facultades/ciencias-salud",
+      href: "/nuestra-universidad/oferta-academica?facultad=facultad-de-ciencias-de-la-salud",
       children: [
         { label: "Pregrado", href: "/nuestra-universidad/oferta-academica?facultad=facultad-de-ciencias-de-la-salud&nivel=pregrado" },
       ],
     },
     {
       label: "Facultad de Ciencias y Educación",
-      href: "/facultades/ciencias-educacion",
+      href: "/nuestra-universidad/oferta-academica?facultad=facultad-de-ciencias-y-educacion",
       children: [
         { label: "Pregrado", href: "/nuestra-universidad/oferta-academica?facultad=facultad-de-ciencias-y-educacion&nivel=pregrado" },
         { label: "Especialización", href: "/nuestra-universidad/oferta-academica?facultad=facultad-de-ciencias-y-educacion&nivel=especializacion" },
@@ -113,7 +113,7 @@ export const ofertaAcademicaNavigation: NavigationItem = {
     },
     {
       label: "Facultad de Ciencias Matemáticas y Naturales",
-      href: "/facultades/ciencias-matematicas-naturales",
+      href: "/nuestra-universidad/oferta-academica?facultad=facultad-de-ciencias-matematicas-y-naturales",
       children: [
         { label: "Pregrado", href: "/nuestra-universidad/oferta-academica?facultad=facultad-de-ciencias-matematicas-y-naturales&nivel=pregrado" },
         { label: "Especialización", href: "/nuestra-universidad/oferta-academica?facultad=facultad-de-ciencias-matematicas-y-naturales&nivel=especializacion" },
@@ -123,7 +123,7 @@ export const ofertaAcademicaNavigation: NavigationItem = {
     },
     {
       label: "Facultad de Ingeniería",
-      href: "/facultades/ingenieria",
+      href: "/nuestra-universidad/oferta-academica?facultad=facultad-de-ingenieria",
       children: [
         { label: "Pregrado", href: "/nuestra-universidad/oferta-academica?facultad=facultad-de-ingenieria&nivel=pregrado" },
         { label: "Especialización", href: "/nuestra-universidad/oferta-academica?facultad=facultad-de-ingenieria&nivel=especializacion" },
@@ -133,7 +133,7 @@ export const ofertaAcademicaNavigation: NavigationItem = {
     },
     {
       label: "Facultad de Medio Ambiente y Recursos Naturales",
-      href: "/facultades/medio-ambiente-recursos-naturales",
+      href: "/nuestra-universidad/oferta-academica?facultad=facultad-del-medio-ambiente-y-recursos-naturales",
       children: [
         { label: "Pregrado", href: "/nuestra-universidad/oferta-academica?facultad=facultad-del-medio-ambiente-y-recursos-naturales&nivel=pregrado" },
         { label: "Especialización", href: "/nuestra-universidad/oferta-academica?facultad=facultad-del-medio-ambiente-y-recursos-naturales&nivel=especializacion" },
@@ -143,7 +143,7 @@ export const ofertaAcademicaNavigation: NavigationItem = {
     },
     {
       label: "Facultad Tecnológica",
-      href: "/facultades/tecnologica",
+      href: "/nuestra-universidad/oferta-academica?facultad=facultad-tecnologica",
       children: [
         { label: "Pregrado", href: "/nuestra-universidad/oferta-academica?facultad=facultad-tecnologica&nivel=pregrado" },
         { label: "Especialización", href: "/nuestra-universidad/oferta-academica?facultad=facultad-tecnologica&nivel=especializacion" },

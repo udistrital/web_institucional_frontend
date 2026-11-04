@@ -63,7 +63,7 @@ export default function DesktopNav({ onOpenSearch }: DesktopNavProps) {
       {/* ── Nav DESKTOP ── */}
       <nav
         aria-label="Menú principal de navegación"
-        className="hidden flex-1 items-center justify-center gap-4 font-extrabold text-black md:flex"
+        className="hidden flex-1 flex-wrap items-center justify-center gap-2 font-extrabold text-black min-[921px]:flex xl:flex-nowrap xl:gap-4"
       >
         <NuestraUniversidad
           onMouseEnter={() => handleMenuEnter("universidad")}
@@ -93,7 +93,7 @@ export default function DesktopNav({ onOpenSearch }: DesktopNavProps) {
         type="button"
         onClick={onOpenSearch}
         aria-label="Buscar en el sitio"
-        className="hidden h-15 w-15 shrink-0 items-center justify-center rounded-full bg-ud-rojo text-white shadow-md transition-all hover:bg-[#b40024] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ud-rojo active:scale-95 md:flex"
+        className="hidden h-15 w-15 shrink-0 items-center justify-center rounded-full bg-ud-rojo text-white shadow-md transition-all hover:bg-[#b40024] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ud-rojo active:scale-95 min-[921px]:flex"
       >
         <SearchIcon className="h-5 w-5" />
       </button>
