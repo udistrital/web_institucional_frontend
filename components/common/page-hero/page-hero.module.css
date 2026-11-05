@@ -116,6 +116,96 @@
   z-index: 1;
 }
 
+/* Variante "brand": logo UD + título sobre fondo blanco. */
+.hero.brand {
+  background: #fff;
+}
+
+/* Franja roja con tramo amarillo que separa el hero del header blanco. */
+.hero.brand::before {
+  background: linear-gradient(
+    90deg,
+    var(--institutional-red) 0 max(5vw, 1.5rem),
+    var(--institutional-gold) max(5vw, 1.5rem) calc(max(5vw, 1.5rem) + 5rem),
+    var(--institutional-red) calc(max(5vw, 1.5rem) + 5rem)
+  );
+  content: "";
+  display: block;
+  height: 5px;
+  inset: 0 0 auto;
+  z-index: 4;
+}
+
+.hero.brand .text {
+  container-type: inline-size;
+  max-width: 46rem;
+  min-width: 0;
+  padding-top: clamp(4rem, 7vw, 6rem);
+}
+
+.hero.brand .text::after {
+  display: none;
+}
+
+.lockup {
+  --lockup-name-size: clamp(1.375rem, 6.5cqi, 3.25rem);
+  --lockup-eyebrow-size: max(0.9375rem, calc(var(--lockup-name-size) * 0.5));
+  align-items: center;
+  color: #171717;
+  display: flex;
+  gap: calc(var(--lockup-name-size) * 0.45);
+  transition: color 200ms ease;
+}
+
+.lockup:hover,
+.lockup:focus-within {
+  color: var(--institutional-red);
+}
+
+.lockupLogo {
+  aspect-ratio: 1379 / 803;
+  display: block;
+  flex: none;
+  height: calc(
+    var(--lockup-eyebrow-size) * 1.25 + var(--lockup-name-size) * 1.05
+  );
+  width: auto;
+}
+
+.lockupTitle {
+  color: inherit;
+  flex: 1 1 auto;
+  font-family: var(--font-montserrat), sans-serif;
+  margin: 0;
+  min-width: 0;
+}
+
+.eyebrow {
+  display: block;
+  font-size: var(--lockup-eyebrow-size);
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.lockupName {
+  display: block;
+  font-size: var(--lockup-name-size);
+  font-weight: 700;
+  hyphens: manual;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  overflow-wrap: normal;
+  text-transform: uppercase;
+  text-wrap: balance;
+  word-break: normal;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lockup {
+    transition: none;
+  }
+}
+
 @media (max-width: 768px) {
   .hero {
     grid-template-columns: minmax(0, 1fr);
@@ -147,5 +237,14 @@
   .visual::before {
     left: -20%;
     width: 38%;
+  }
+
+  .hero.brand .text {
+    padding-bottom: 1.5rem;
+    padding-top: 2rem;
+  }
+
+  .lockup {
+    --lockup-name-size: clamp(1.25rem, 6cqi, 2rem);
   }
 }

@@ -1,2 +1,7 @@
 export { default } from "./page-hero";
-export type { PageHeroData, PageHeroTitle, PageHeroTitleSegment } from "./types";
+export type {
+  PageHeroData,
+  PageHeroTitle,
+  PageHeroTitleSegment,
+  PageHeroVariant,
+} from "./types";

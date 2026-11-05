@@ -10,7 +10,7 @@ import FacultyAcademicOffer, {
   type FacultyAcademicData,
   type FacultyProgram,
 } from "./FacultyAcademicOffer";
-import getFacultyHeadingSegments from "./faculty-heading";
+import getFacultyLockup from "./faculty-lockup";
 import styles from "./faculty-page.module.css";
 
 type FacultyPageProps = {
@@ -99,16 +99,18 @@ export default async function FacultyPage({ slug }: FacultyPageProps) {
     imageUrl: faculty.imageUrl,
     imageAlt: faculty.imageAlt,
   };
-  const headingSegments = getFacultyHeadingSegments(faculty.title);
+  const { eyebrow, name } = getFacultyLockup(faculty.title);
 
   return (
     <section className={styles.page}>
       <PageHero
         data={{
-          title: headingSegments,
+          eyebrow,
+          title: name,
           imageUrl: faculty.imageUrl,
           imageAlt: faculty.imageAlt,
         }}
+        variant="brand"
       />
 
       <BreadCrumbs variant="faculty" />
