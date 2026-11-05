@@ -116,44 +116,82 @@
   z-index: 1;
 }
 
-/* Variante "brand": logo UD + título sobre fondo blanco. */
+/*
+ * Variante "brand": la imagen cubre todo el hero y un panel blanco diagonal
+ * (pseudo-elemento de .text, que se ajusta a la tarjeta) acoge la tarjeta
+ * flotante con logo UD + título. El texto se dimensiona a partir del logo.
+ */
 .hero.brand {
+  --brand-logo-h: clamp(4rem, 2rem + 3.85vw, 5.5rem);
+  --brand-card-top: clamp(1.5rem, 3vw, 2.5rem);
+  /* Desplazamiento horizontal por unidad de altura del corte (≈ 16.7°). */
+  --brand-panel-slope: 0.3;
   background: #fff;
+  display: block;
 }
 
-/* Franja roja con tramo amarillo que separa el hero del header blanco. */
+/* Sin marca de agua "UD": la imagen ya separa el hero del header blanco. */
 .hero.brand::before {
-  background: linear-gradient(
-    90deg,
-    var(--institutional-red) 0 max(5vw, 1.5rem),
-    var(--institutional-gold) max(5vw, 1.5rem) calc(max(5vw, 1.5rem) + 5rem),
-    var(--institutional-red) calc(max(5vw, 1.5rem) + 5rem)
-  );
-  content: "";
-  display: block;
-  height: 5px;
-  inset: 0 0 auto;
-  z-index: 4;
+  content: none;
 }
 
 .hero.brand .text {
-  container-type: inline-size;
-  max-width: 46rem;
+  align-self: auto;
+  height: 100%;
+  max-width: max(60%, 34rem);
   min-width: 0;
-  padding-top: clamp(4rem, 7vw, 6rem);
+  padding: var(--brand-card-top) 0 0;
+  width: fit-content;
+}
+
+/* Panel blanco: pasa ~1.25rem el centro de la tarjeta y se corta en diagonal. */
+.hero.brand .text::before {
+  --panel-overhang: calc(
+    1.25rem +
+      (var(--brand-card-top) + var(--brand-logo-h) * 0.72) *
+      var(--brand-panel-slope)
+  );
+  background: #fff;
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    calc(100% - 26rem * var(--brand-panel-slope)) 100%,
+    0 100%
+  );
+  content: "";
+  inset: 0 calc(-1 * var(--panel-overhang)) 0 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
 }
 
 .hero.brand .text::after {
   display: none;
 }
 
+.hero.brand .visual {
+  inset: 0;
+  position: absolute;
+  z-index: 0;
+}
+
+.hero.brand .visual::before,
+.hero.brand .visual::after {
+  content: none;
+}
+
 .lockup {
-  --lockup-name-size: clamp(1.375rem, 6.5cqi, 3.25rem);
-  --lockup-eyebrow-size: max(0.9375rem, calc(var(--lockup-name-size) * 0.5));
+  --lockup-eyebrow-size: max(0.75rem, calc(var(--brand-logo-h) * 0.22));
+  --lockup-name-size: calc(var(--brand-logo-h) * 0.38);
   align-items: center;
+  background: #fff;
+  border-radius: 0 999px 999px 0;
+  box-shadow: 0 0.5rem 1.75rem rgb(23 23 23 / 16%);
   color: #171717;
   display: flex;
-  gap: calc(var(--lockup-name-size) * 0.45);
+  gap: calc(var(--brand-logo-h) * 0.3);
+  padding: calc(var(--brand-logo-h) * 0.22) calc(var(--brand-logo-h) * 0.62)
+    calc(var(--brand-logo-h) * 0.22) max(5vw, 1.5rem);
   transition: color 200ms ease;
 }
 
@@ -166,9 +204,7 @@
   aspect-ratio: 1379 / 803;
   display: block;
   flex: none;
-  height: calc(
-    var(--lockup-eyebrow-size) * 1.25 + var(--lockup-name-size) * 1.05
-  );
+  height: var(--brand-logo-h);
   width: auto;
 }
 
@@ -184,7 +220,7 @@
   display: block;
   font-size: var(--lockup-eyebrow-size);
   font-weight: 400;
-  line-height: 1.25;
+  line-height: 1.15;
 }
 
 .lockupName {
@@ -239,12 +275,31 @@
     width: 38%;
   }
 
+  /* Tarjeta arriba a todo el ancho, sin panel diagonal; imagen debajo. */
+  .hero.brand {
+    --brand-logo-h: clamp(2.5rem, 12.5vw, 4rem);
+  }
+
   .hero.brand .text {
-    padding-bottom: 1.5rem;
-    padding-top: 2rem;
+    height: auto;
+    max-width: none;
+    padding: 0;
+    width: auto;
+  }
+
+  .hero.brand .text::before {
+    content: none;
+  }
+
+  .hero.brand .visual {
+    height: 12rem;
+    inset: auto;
+    position: relative;
   }
 
   .lockup {
-    --lockup-name-size: clamp(1.25rem, 6cqi, 2rem);
+    border-radius: 0;
+    box-shadow: none;
+    padding: 1.5rem max(5vw, 1.25rem);
   }
 }

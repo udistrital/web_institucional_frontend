@@ -34,13 +34,18 @@ function PageHeroTitleView({ title }: { title: PageHeroTitle }) {
 
 function PageHeroMedia({
   data,
+  fallbackAlt,
   priority,
+  sizes = "(max-width: 768px) 100vw, 42vw",
 }: {
   data: PageHeroData;
+  /** Texto alternativo cuando `data.imageAlt` está vacío; por defecto, el título. */
+  fallbackAlt?: string;
   priority: boolean;
+  sizes?: string;
 }) {
   const titleText = getTitleText(data.title);
-  const imageAlt = data.imageAlt?.trim() || titleText;
+  const imageAlt = data.imageAlt?.trim() || fallbackAlt || titleText;
 
   return (
     <div className={styles.visual}>
@@ -50,7 +55,7 @@ function PageHeroMedia({
           className={styles.image}
           fill
           priority={priority}
-          sizes="(max-width: 768px) 100vw, 42vw"
+          sizes={sizes}
           src={data.imageUrl}
         />
       ) : (
@@ -88,12 +93,21 @@ export default function PageHero({
   variant = "default",
 }: PageHeroProps) {
   if (variant === "brand") {
+    const brandAlt = [data.eyebrow?.trim(), getTitleText(data.title)]
+      .filter(Boolean)
+      .join(" ");
+
     return (
       <header className={`${styles.hero} ${styles.brand}`}>
         <div className={styles.text}>
           <PageHeroBrandTitle data={data} />
         </div>
-        <PageHeroMedia data={data} priority={priority} />
+        <PageHeroMedia
+          data={data}
+          fallbackAlt={brandAlt}
+          priority={priority}
+          sizes="100vw"
+        />
       </header>
     );
   }
