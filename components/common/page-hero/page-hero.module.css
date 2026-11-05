@@ -117,17 +117,28 @@
 }
 
 /*
- * Variante "brand": la imagen cubre todo el hero y un panel blanco diagonal
- * (pseudo-elemento de .text, que se ajusta a la tarjeta) acoge la tarjeta
- * flotante con logo UD + título. El texto se dimensiona a partir del logo.
+ * Variante "brand" (≥1024px): división 50/50. La columna izquierda es blanca y
+ * acoge la tarjeta con logo UD + título; la imagen ocupa la columna derecha y
+ * se prolonga hacia la izquierda con un corte diagonal "/" (arriba empieza en
+ * el 50% exacto). Tamaños fijos en rem por escalón; misma tarjeta e imagen en
+ * todas las facultades.
  */
 .hero.brand {
-  --brand-logo-h: clamp(4rem, 2rem + 3.85vw, 5.5rem);
-  --brand-card-top: clamp(1.5rem, 3vw, 2.5rem);
-  /* Desplazamiento horizontal por unidad de altura del corte (≈ 16.7°). */
-  --brand-panel-slope: 0.3;
+  --brand-hero-h: 26rem;
+  /* Desplazamiento horizontal del corte diagonal entre arriba y abajo. */
+  --brand-diagonal: 7.8rem;
+  /* Lo que la tarjeta sobresale sobre la imagen más allá del 50%. */
+  --brand-card-overhang: 3rem;
+  --brand-card-top: 2.5rem;
+  --brand-logo-h: 4.5rem;
+  --brand-eyebrow-size: 1rem;
+  --brand-name-size: 1.75rem;
+  --brand-name-max: 13.5em;
   background: #fff;
-  display: block;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+  height: var(--brand-hero-h);
+  min-height: var(--brand-hero-h);
 }
 
 /* Sin marca de agua "UD": la imagen ya separa el hero del header blanco. */
@@ -136,33 +147,10 @@
 }
 
 .hero.brand .text {
-  align-self: auto;
-  height: 100%;
-  max-width: max(60%, 34rem);
+  align-self: start;
+  max-width: none;
   min-width: 0;
   padding: var(--brand-card-top) 0 0;
-  width: fit-content;
-}
-
-/* Panel blanco: pasa ~1.25rem el centro de la tarjeta y se corta en diagonal. */
-.hero.brand .text::before {
-  --panel-overhang: calc(
-    1.25rem +
-      (var(--brand-card-top) + var(--brand-logo-h) * 0.72) *
-      var(--brand-panel-slope)
-  );
-  background: #fff;
-  clip-path: polygon(
-    0 0,
-    100% 0,
-    calc(100% - 26rem * var(--brand-panel-slope)) 100%,
-    0 100%
-  );
-  content: "";
-  inset: 0 calc(-1 * var(--panel-overhang)) 0 0;
-  pointer-events: none;
-  position: absolute;
-  z-index: -1;
 }
 
 .hero.brand .text::after {
@@ -170,8 +158,8 @@
 }
 
 .hero.brand .visual {
-  inset: 0;
-  position: absolute;
+  clip-path: polygon(var(--brand-diagonal) 0, 100% 0, 100% 100%, 0 100%);
+  margin-left: calc(-1 * var(--brand-diagonal));
   z-index: 0;
 }
 
@@ -180,9 +168,12 @@
   content: none;
 }
 
+/* La letra de respaldo se centra en la parte visible (mitad derecha). */
+.hero.brand .imageFallback {
+  padding-left: var(--brand-diagonal);
+}
+
 .lockup {
-  --lockup-eyebrow-size: max(0.75rem, calc(var(--brand-logo-h) * 0.22));
-  --lockup-name-size: calc(var(--brand-logo-h) * 0.38);
   align-items: center;
   background: #fff;
   border-radius: 0 999px 999px 0;
@@ -190,9 +181,12 @@
   color: #171717;
   display: flex;
   gap: calc(var(--brand-logo-h) * 0.3);
-  padding: calc(var(--brand-logo-h) * 0.22) calc(var(--brand-logo-h) * 0.62)
-    calc(var(--brand-logo-h) * 0.22) max(5vw, 1.5rem);
+  /* El padding derecho reserva el tramo que sobresale: el texto no pasa del 50%. */
+  padding: calc(var(--brand-logo-h) * 0.22)
+    calc(var(--brand-card-overhang) + 1rem) calc(var(--brand-logo-h) * 0.22)
+    max(5vw, 1.5rem);
   transition: color 200ms ease;
+  width: calc(100% + var(--brand-card-overhang));
 }
 
 .lockup:hover,
@@ -218,18 +212,19 @@
 
 .eyebrow {
   display: block;
-  font-size: var(--lockup-eyebrow-size);
+  font-size: var(--brand-eyebrow-size);
   font-weight: 400;
   line-height: 1.15;
 }
 
 .lockupName {
   display: block;
-  font-size: var(--lockup-name-size);
+  font-size: var(--brand-name-size);
   font-weight: 700;
   hyphens: manual;
   letter-spacing: -0.02em;
   line-height: 1.05;
+  max-width: var(--brand-name-max);
   overflow-wrap: normal;
   text-transform: uppercase;
   text-wrap: balance;
@@ -239,6 +234,48 @@
 @media (prefers-reduced-motion: reduce) {
   .lockup {
     transition: none;
+  }
+}
+
+@media (max-width: 1279px) {
+  .hero.brand {
+    --brand-logo-h: 3.75rem;
+    --brand-eyebrow-size: 0.875rem;
+    --brand-name-size: 1.5rem;
+  }
+}
+
+/* Bajo 1024px: tarjeta arriba a todo el ancho e imagen debajo, sin diagonal. */
+@media (max-width: 1023px) {
+  .hero.brand {
+    --brand-logo-h: clamp(2.5rem, 12.5vw, 4rem);
+    --brand-eyebrow-size: max(0.75rem, calc(var(--brand-logo-h) * 0.22));
+    --brand-name-size: calc(var(--brand-logo-h) * 0.38);
+    --brand-name-max: none;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto clamp(12rem, 30vw, 18rem);
+    height: auto;
+    min-height: 0;
+  }
+
+  .hero.brand .text {
+    padding: 0;
+  }
+
+  .hero.brand .visual {
+    clip-path: none;
+    margin-left: 0;
+  }
+
+  .hero.brand .imageFallback {
+    padding-left: 0;
+  }
+
+  .lockup {
+    border-radius: 0;
+    box-shadow: none;
+    padding: 1.5rem max(5vw, 1.25rem);
+    width: auto;
   }
 }
 
@@ -273,33 +310,5 @@
   .visual::before {
     left: -20%;
     width: 38%;
-  }
-
-  /* Tarjeta arriba a todo el ancho, sin panel diagonal; imagen debajo. */
-  .hero.brand {
-    --brand-logo-h: clamp(2.5rem, 12.5vw, 4rem);
-  }
-
-  .hero.brand .text {
-    height: auto;
-    max-width: none;
-    padding: 0;
-    width: auto;
-  }
-
-  .hero.brand .text::before {
-    content: none;
-  }
-
-  .hero.brand .visual {
-    height: 12rem;
-    inset: auto;
-    position: relative;
-  }
-
-  .lockup {
-    border-radius: 0;
-    box-shadow: none;
-    padding: 1.5rem max(5vw, 1.25rem);
   }
 }
