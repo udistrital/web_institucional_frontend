@@ -424,6 +424,11 @@
   color: var(--institutional-red);
 }
 
+/* Contenido bajo la tarjeta (`belowTitle`), alineado con el inicio del logo. */
+.hero.brandDiagonal .diagonalBelow {
+  padding: 1rem 0 0 max(5vw, 1.5rem);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .diagonalCard {
     transition: none;
@@ -469,6 +474,11 @@
     box-shadow: none;
     padding: 1.5rem max(5vw, 1.25rem);
     width: auto;
+  }
+
+  /* La tarjeta ya deja 1.5rem de padding inferior; el contenido sigue debajo. */
+  .hero.brandDiagonal .diagonalBelow {
+    padding: 0 max(5vw, 1.25rem) 1.5rem;
   }
 }
 

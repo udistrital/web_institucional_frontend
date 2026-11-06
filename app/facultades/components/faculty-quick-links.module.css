@@ -1,0 +1,84 @@
+/*
+ * Pirámide invertida alineada a la izquierda: todas las filas empiezan en el
+ * mismo borde y cada una es 12 puntos porcentuales más estrecha que la
+ * anterior (100% → 52% del ancho máximo).
+ */
+.nav {
+  --quick-links-max: 22rem;
+  --quick-links-h: 2.375rem;
+  --quick-links-gap: 0.5rem;
+  --quick-links-font: 0.9375rem;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--quick-links-gap);
+  list-style: none;
+  margin: 0;
+  max-width: 100%;
+  padding: 0;
+  width: var(--quick-links-max);
+}
+
+.item:nth-child(1) {
+  width: 100%;
+}
+
+.item:nth-child(2) {
+  width: 88%;
+}
+
+.item:nth-child(3) {
+  width: 76%;
+}
+
+.item:nth-child(4) {
+  width: 64%;
+}
+
+.item:nth-child(5) {
+  width: 52%;
+}
+
+.link {
+  align-items: center;
+  background: transparent;
+  border: 2px solid #171717;
+  border-radius: 999px;
+  box-sizing: border-box;
+  color: #171717;
+  display: flex;
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: var(--quick-links-font);
+  font-weight: 600;
+  justify-content: center;
+  line-height: 1.2;
+  min-height: var(--quick-links-h);
+  padding: 0.25rem 1rem;
+  text-align: center;
+  text-decoration: none;
+  transition:
+    border-color 200ms ease,
+    color 200ms ease;
+}
+
+/* El foco con teclado conserva además el contorno global de a:focus-visible. */
+.link:hover,
+.link:focus-visible {
+  border-color: var(--institutional-red);
+  color: var(--institutional-red);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link {
+    transition: none;
+  }
+}
+
+@media (max-width: 1023px) {
+  .nav {
+    --quick-links-h: 2.25rem;
+    --quick-links-font: 0.875rem;
+  }
+}

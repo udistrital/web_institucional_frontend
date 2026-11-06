@@ -7,6 +7,8 @@ import type { PageHeroData, PageHeroTitle, PageHeroVariant } from "./types";
 type PageHeroProps = {
   /** Contenido de la mitad derecha; solo lo usa la variante "brand" ("brand-diagonal" lo ignora). */
   aside?: ReactNode;
+  /** Contenido bajo la tarjeta del título; solo lo usa "brand-diagonal". */
+  belowTitle?: ReactNode;
   data: PageHeroData;
   priority?: boolean;
   variant?: PageHeroVariant;
@@ -99,6 +101,7 @@ function PageHeroBrandTitle({
 /** Hero compartido para páginas que necesiten título e imagen destacados. */
 export default function PageHero({
   aside,
+  belowTitle,
   data,
   priority = true,
   variant = "default",
@@ -112,6 +115,9 @@ export default function PageHero({
       <header className={`${styles.hero} ${styles.brandDiagonal}`}>
         <div className={styles.text}>
           <PageHeroBrandTitle className={styles.diagonalCard} data={data} />
+          {belowTitle ? (
+            <div className={styles.diagonalBelow}>{belowTitle}</div>
+          ) : null}
         </div>
         <PageHeroMedia
           data={data}

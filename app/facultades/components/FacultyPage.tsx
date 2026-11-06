@@ -12,6 +12,7 @@ import FacultyAcademicOffer, {
   type FacultyProgram,
 } from "./FacultyAcademicOffer";
 import FacultyBannerCarousel from "./FacultyBannerCarousel";
+import FacultyQuickLinks from "./FacultyQuickLinks";
 import getFacultyLockup from "./faculty-lockup";
 import styles from "./faculty-page.module.css";
 
@@ -22,6 +23,8 @@ type FacultyPageProps = {
    * diagonal y sin banners).
    */
   heroStyle?: "banners" | "diagonal";
+  /** Muestra los botones de secciones bajo el título (solo hero "diagonal"). */
+  quickLinks?: boolean;
   slug: string;
 };
 
@@ -81,6 +84,7 @@ function unavailableMessage(message: string) {
 
 export default async function FacultyPage({
   heroStyle = "banners",
+  quickLinks = false,
   slug,
 }: FacultyPageProps) {
   const showBanners = heroStyle === "banners";
@@ -123,6 +127,11 @@ export default async function FacultyPage({
       <PageHero
         aside={
           showBanners ? <FacultyBannerCarousel slides={banners} /> : undefined
+        }
+        belowTitle={
+          quickLinks ? (
+            <FacultyQuickLinks href={`/facultades/${slug}`} />
+          ) : undefined
         }
         data={{
           eyebrow,
