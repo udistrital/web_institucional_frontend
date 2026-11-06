@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import Image from "next/image";
 import styles from "./page.module.css";
 import BreadCrumbs from "@/components/common/bread-crumbs/bread-crumbs";
+import PageHero from "@/components/common/page-hero";
 import SectionTabs from "@/components/common/section-tabs/section-tabs";
 import NormatividadBrowser from "./normatividad-browser";
 import { SectionIcon } from "./icons";
@@ -167,6 +168,18 @@ export default function DireccionamientoEstrategicoPage() {
 
   return (
     <section className={styles.page} aria-label="Direccionamiento estratégico">
+      <PageHero
+        data={{
+          title: [
+            { text: "Direccionamiento ", accent: false },
+            { text: "estratégico", accent: true },
+          ],
+          imageUrl: "/image/hero.jpeg",
+          imageAlt:
+            "Campus de la Universidad Distrital Francisco José de Caldas",
+        }}
+      />
+
       <BreadCrumbs variant="onDark" />
 
       <SectionTabs

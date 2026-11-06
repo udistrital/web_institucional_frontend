@@ -1,0 +1,431 @@
+/*
+  Skeleton de la home.
+  Reproduce la silueta real de las secciones (hero, accesos, facultades,
+  noticias, inscripciones, servicios al estudiante, servicios y promo) para
+  dar sensacion de carga instantanea y minimizar el salto de layout (CLS)
+  cuando el contenido real entra por streaming.
+
+  Comparte anchos y proporciones con home.module.css usando los mismos
+  tokens (--content-width, aspect-ratios, paddings clamp()).
+*/
+.root {
+  background: var(--background);
+  display: block;
+  min-height: 100vh;
+}
+
+/* Bloque base animado (efecto shimmer). Todos los placeholders lo heredan. */
+.block {
+  position: relative;
+  overflow: hidden;
+  background: #e9e9e9;
+  border-radius: 6px;
+}
+
+.block::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    rgb(255 255 255 / 0%) 0%,
+    rgb(255 255 255 / 65%) 50%,
+    rgb(255 255 255 / 0%) 100%
+  );
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+/* Variante de shimmer para bloques sobre fondos oscuros (rojo institucional). */
+.blockOnDark {
+  background: rgb(255 255 255 / 18%);
+}
+
+.blockOnDark::after {
+  background: linear-gradient(
+    90deg,
+    rgb(255 255 255 / 0%) 0%,
+    rgb(255 255 255 / 28%) 50%,
+    rgb(255 255 255 / 0%) 100%
+  );
+}
+
+/* ===== Hero ===== */
+.hero {
+  width: 100%;
+  aspect-ratio: 1700 / 400;
+  border-radius: 0;
+}
+
+/* ===== Accesos rapidos (3 tarjetas en carrusel) ===== */
+.quickLinks {
+  padding: clamp(2.25rem, 4vw, 3.5rem) 1rem;
+}
+
+.quickLinksGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+  max-width: var(--content-width);
+  margin: 0 auto;
+}
+
+.quickCard {
+  aspect-ratio: 4 / 3;
+  border-radius: 10px;
+}
+
+/* ===== Facultades (fondo rojo + cortina de paneles) ===== */
+.faculties {
+  background: var(--institutional-red);
+  padding: clamp(5rem, 3vw, 2.5rem) 1rem;
+}
+
+.facultiesIntro {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: var(--content-width);
+  margin: 0 auto 2rem;
+}
+
+.facultiesTitle {
+  height: 2.6rem;
+  width: 15rem;
+}
+
+.facultiesButton {
+  height: 2.6rem;
+  width: 9rem;
+  border-radius: 5px;
+  margin-left: auto;
+}
+
+.curtain {
+  display: flex;
+  gap: 0.35rem;
+  height: clamp(15rem, 30vw, 24rem);
+  max-width: none;
+}
+
+.curtainPanel {
+  flex: 1 1 0;
+  min-width: 0;
+  border-radius: 0;
+}
+
+/* ===== Noticias (grid de 3 tarjetas) ===== */
+.news {
+  background: #f5f5f5;
+  padding: clamp(2rem, 3.5vw, 2.75rem) 1rem;
+}
+
+.newsInner {
+  max-width: var(--content-width);
+  margin: 0 auto;
+}
+
+.newsTitle {
+  height: 2.4rem;
+  width: 14rem;
+  margin-bottom: 2rem;
+}
+
+.newsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.newsCard {
+  background: #fff;
+  border-radius: 0 0 1.1rem 1.1rem;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 8%);
+  overflow: hidden;
+}
+
+.newsImage {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 0;
+}
+
+.newsBody {
+  padding: 1.7rem 1.6rem 1.8rem;
+}
+
+.lineLg {
+  height: 1.4rem;
+  width: 85%;
+  margin-bottom: 0.9rem;
+}
+
+.line {
+  height: 0.85rem;
+  width: 100%;
+  margin-bottom: 0.55rem;
+}
+
+.lineShort {
+  width: 55%;
+}
+
+/* ===== Inscripciones (banner rojo) ===== */
+.enrollment {
+  background: var(--institutional-red);
+  margin-top: 5rem;
+  padding: 3rem 0;
+}
+
+.enrollmentInner {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  max-width: min(var(--content-width), 1180px);
+  min-height: 420px;
+  justify-content: center;
+  margin: 0 auto;
+  padding-left: 3rem;
+}
+
+.enrollmentTitle {
+  height: 2.8rem;
+  width: min(28rem, 70%);
+}
+
+.enrollmentActions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.enrollmentButton {
+  height: 2.9rem;
+  width: 16rem;
+  border-radius: 5px;
+}
+
+/* ===== Servicios al estudiante (grid dorado de 4) ===== */
+.studentServices {
+  background: var(--institutional-gold);
+  border-top: 5rem solid #fff;
+  padding: 3rem 0;
+}
+
+.studentGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  width: 100%;
+}
+
+.studentItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  min-height: 200px;
+  padding: 2rem clamp(1rem, 2.5vw, 2rem);
+}
+
+.studentIcon {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+}
+
+.studentLine {
+  height: 1.1rem;
+  width: 70%;
+}
+
+/* El shimmer dorado usa un velo oscuro semitransparente. */
+.blockOnGold {
+  background: rgb(0 0 0 / 12%);
+}
+
+.blockOnGold::after {
+  background: linear-gradient(
+    90deg,
+    rgb(255 255 255 / 0%) 0%,
+    rgb(255 255 255 / 45%) 50%,
+    rgb(255 255 255 / 0%) 100%
+  );
+}
+
+/* ===== Servicios (2 tarjetas grandes horizontales) ===== */
+.services {
+  background: #f5f5f5;
+  padding: clamp(5rem, 2.5vw, 2.25rem) 5rem;
+}
+
+.servicesHeading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  max-width: 720px;
+  margin: 0 auto clamp(4rem, 2vw, 1.75rem);
+}
+
+.servicesHeadingTitle {
+  height: 2.4rem;
+  width: 20rem;
+}
+
+.servicesHeadingSub {
+  height: 1rem;
+  width: 28rem;
+  max-width: 100%;
+}
+
+.servicesList {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.serviceCard {
+  height: 300px;
+  border-radius: 0 0.75rem 0.75rem 0;
+}
+
+/* ===== Promo (video + texto) ===== */
+.promo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+}
+
+.promoMedia {
+  min-height: 280px;
+  border-radius: 0;
+}
+
+.promoCopy {
+  background: var(--institutional-red);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2.5rem clamp(2rem, 5vw, 4.5rem);
+}
+
+.promoTitle {
+  height: 2.4rem;
+  width: 16rem;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Responsive: replica los breakpoints clave de home.module.css. */
+@media (max-width: 1400px) and (min-width: 1025px) {
+  .newsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .newsCard:nth-child(n + 3) {
+    display: none;
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 721px) {
+  .newsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .newsCard:nth-child(n + 3) {
+    display: none;
+  }
+  .studentGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .quickCard:nth-child(3) {
+    display: none;
+  }
+  .quickLinksGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .services {
+    padding: clamp(2.5rem, 4vw, 3.5rem) 2rem;
+  }
+}
+
+@media (max-width: 720px) {
+  .hero {
+    aspect-ratio: 1 / 1;
+  }
+  .quickLinksGrid,
+  .newsGrid,
+  .promo {
+    grid-template-columns: 1fr;
+  }
+  .quickCard:nth-child(n + 2),
+  .newsCard:nth-child(n + 2) {
+    display: none;
+  }
+  .faculties {
+    padding: 3rem 1rem;
+  }
+  .curtain {
+    height: 17rem;
+  }
+  .curtainPanel:nth-child(n + 4) {
+    display: none;
+  }
+  .enrollment {
+    margin-top: 0;
+  }
+  .enrollmentInner {
+    min-height: 0;
+    padding: 2.5rem 1rem;
+    align-items: stretch;
+  }
+  .enrollmentActions {
+    flex-direction: column;
+  }
+  .enrollmentButton {
+    width: 100%;
+  }
+  .studentServices {
+    border-top-width: 2rem;
+    padding: 2.5rem 1rem;
+  }
+  .studentGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+  }
+  .studentItem {
+    min-height: 0;
+    padding: 1.5rem 0.75rem;
+  }
+  .services {
+    padding: 2.5rem 1rem;
+  }
+  .serviceCard {
+    height: 18rem;
+    border-radius: 0 0 1rem 1rem;
+  }
+  .promoMedia {
+    min-height: 15rem;
+    order: -1;
+  }
+  .promoCopy {
+    padding: 2rem 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .studentGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Accesibilidad: sin movimiento para quienes lo prefieren. */
+@media (prefers-reduced-motion: reduce) {
+  .block::after,
+  .blockOnDark::after,
+  .blockOnGold::after {
+    animation: none;
+  }
+}
