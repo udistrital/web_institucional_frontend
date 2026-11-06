@@ -1,16 +1,8 @@
 import { slugFiltro } from "@/lib/filtros";
 
-export { slugFiltro } from "@/lib/filtros";
+export { slugFiltro, normalizarBusqueda } from "@/lib/filtros";
 
 export type OpcionFiltro = { valor: string; etiqueta: string };
-
-export function normalizarBusqueda(texto: string): string {
-  return texto
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLocaleLowerCase("es")
-    .trim();
-}
 
 export function opcionesUnicas(valores: Array<string | null>): OpcionFiltro[] {
   const unicas = new Map<string, string>();
