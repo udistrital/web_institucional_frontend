@@ -1,0 +1,369 @@
+.page {
+  background: #f7f7f5;
+  min-height: 70vh;
+}
+
+/* Dos columnas: artículo + barra lateral con lo más reciente. */
+.layout {
+  align-items: start;
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 3rem);
+  grid-template-columns: minmax(0, 1fr) 22rem;
+  margin: 0 auto;
+  max-width: 100rem;
+  padding: clamp(1.5rem, 3vw, 2.5rem) max(6vw, 2rem) clamp(3rem, 6vw, 5rem);
+  width: 100%;
+}
+
+.article {
+  min-width: 0;
+}
+
+/* ---- Encabezado ---- */
+.header {
+  margin-bottom: 1.75rem;
+}
+
+.back {
+  align-items: center;
+  color: var(--institutional-red);
+  display: flex;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  gap: 0.4rem;
+  margin-bottom: 1.5rem;
+  text-decoration: none;
+  width: fit-content;
+}
+.back:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.back span {
+  transition: transform 200ms ease;
+}
+.back:hover span {
+  transform: translateX(-3px);
+}
+
+.badge {
+  background: var(--institutional-red);
+  color: #fff;
+  display: block;
+  font-size: var(--fs-2xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.75rem;
+  padding: 0.35rem 0.75rem;
+  text-transform: uppercase;
+  width: fit-content;
+}
+.badgeEvento {
+  background: #1a1a1a;
+}
+
+.title {
+  color: #1a1a1a;
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  line-height: var(--lh-tight);
+  margin: 0 0 1.25rem;
+}
+
+.meta {
+  border-top: 1px solid #e2e0dd;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem 2.5rem;
+  padding-top: 1.1rem;
+}
+
+.metaItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  margin: 0;
+}
+
+.metaLabel {
+  color: #777;
+  font-size: var(--fs-2xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.metaValue {
+  color: #2a2a2a;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+}
+.dateArrow {
+  color: var(--institutional-gold);
+}
+
+/* ---- Imagen destacada ---- */
+.figure {
+  margin: 0 0 2rem;
+}
+
+.image {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
+.caption {
+  color: #777;
+  font-size: var(--fs-xs);
+  font-style: italic;
+  margin-top: 0.6rem;
+}
+
+/* ---- Cuerpo ---- */
+.content {
+  background: #fff;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.06);
+  padding: clamp(1.5rem, 4vw, 2.75rem);
+}
+
+.empty {
+  color: #777;
+  font-style: italic;
+  margin: 0;
+}
+
+/* HTML con formato que llega desde Drupal. */
+.body p {
+  color: #333;
+  font-size: var(--fs-base);
+  line-height: var(--lh-normal);
+  margin: 0 0 1.1rem;
+}
+.body p:last-child {
+  margin-bottom: 0;
+}
+.body a {
+  color: var(--institutional-red);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.body a:hover {
+  color: #b80025;
+}
+.body strong {
+  font-weight: 700;
+}
+.body em {
+  font-style: italic;
+}
+.body img {
+  height: auto;
+  margin: 1.25rem 0;
+  max-width: 100%;
+}
+
+/* Listas: Tailwind Preflight las deja sin marcador, aquí se restauran. */
+.body ul,
+.body ol {
+  margin: 0 0 1.1rem;
+  padding-left: 1.5rem;
+}
+.body ul {
+  list-style: disc outside;
+}
+.body ol {
+  list-style: decimal outside;
+}
+.body ul ul {
+  list-style: circle outside;
+}
+.body li {
+  color: #333;
+  display: list-item;
+  font-size: var(--fs-base);
+  line-height: var(--lh-normal);
+  margin-bottom: 0.4rem;
+}
+
+/* Encabezados del cuerpo con jerarquía tipográfica. */
+.body h1,
+.body h2,
+.body h3,
+.body h4,
+.body h5,
+.body h6 {
+  color: #1a1a1a;
+  font-family: var(--font-montserrat), sans-serif;
+  font-weight: 700;
+  line-height: var(--lh-tight);
+  margin: 1.75rem 0 0.7rem;
+}
+.body > :first-child {
+  margin-top: 0;
+}
+.body h1 {
+  font-size: var(--fs-xl);
+}
+.body h2 {
+  border-bottom: 2px solid var(--institutional-gold);
+  color: var(--institutional-red);
+  font-size: var(--fs-lg);
+  padding-bottom: 0.3rem;
+}
+.body h3 {
+  color: var(--institutional-red);
+  font-size: var(--fs-md);
+}
+.body h4 {
+  font-size: var(--fs-base);
+}
+.body h5,
+.body h6 {
+  color: #444;
+  font-size: var(--fs-sm);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.body blockquote {
+  border-left: 3px solid var(--institutional-gold);
+  color: #444;
+  font-style: italic;
+  margin: 0 0 1.1rem;
+  padding: 0.25rem 0 0.25rem 1rem;
+}
+
+.sourceLink {
+  align-items: center;
+  background: var(--institutional-red);
+  border-radius: 3px;
+  color: #fff;
+  display: inline-flex;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  gap: 0.5rem;
+  margin-top: 1.75rem;
+  padding: 0.65rem 1.3rem;
+  text-decoration: none;
+  transition: background-color 180ms ease;
+}
+.sourceLink:hover {
+  background: #b80025;
+}
+
+/* ---- Barra lateral: lo más reciente ---- */
+.sidebar {
+  background: #fff;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.06);
+  padding: clamp(1.1rem, 2vw, 1.5rem);
+  position: sticky;
+  /* Se ancla debajo del header fijo para que no quede tapado al hacer scroll. */
+  top: calc(var(--header-h, 72px) + 1rem);
+}
+
+.sidebarTitle {
+  border-bottom: 2px solid var(--institutional-gold);
+  color: #1a1a1a;
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  margin: 0 0 1rem;
+  padding-bottom: 0.6rem;
+}
+
+.sidebarList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.recentCard {
+  color: inherit;
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: 5rem minmax(0, 1fr);
+  text-decoration: none;
+}
+
+.recentImage {
+  aspect-ratio: 1 / 1;
+  background: #252525;
+  display: block;
+  overflow: hidden;
+  position: relative;
+}
+.recentImg {
+  object-fit: cover;
+  transition: transform 300ms ease;
+}
+.recentCard:hover .recentImg {
+  transform: scale(1.06);
+}
+.recentImageFallback {
+  background: linear-gradient(145deg, #2a2a2a, #454545);
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.recentBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.recentBadge {
+  background: var(--institutional-red);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 0.1rem 0.4rem;
+  text-transform: uppercase;
+  width: fit-content;
+}
+.recentBadgeEvento {
+  background: #1a1a1a;
+}
+
+.recentTitle {
+  color: #1a1a1a;
+  display: -webkit-box;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  line-height: var(--lh-snug);
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+.recentCard:hover .recentTitle {
+  color: var(--institutional-red);
+}
+
+.recentDate {
+  color: #8a8a8a;
+  font-size: var(--fs-2xs);
+  font-weight: 600;
+}
+
+@media (max-width: 960px) {
+  /* En pantallas medianas y chicas la barra lateral pasa debajo. */
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .sidebar {
+    position: static;
+  }
+}
+
+@media (max-width: 680px) {
+  .meta {
+    gap: 0.9rem 1.75rem;
+  }
+}
