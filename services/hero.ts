@@ -147,27 +147,55 @@ function mapResourceToSlide(
   };
 }
 
-export async function getHeroSlides(): Promise<HeroSlide[]> {
-  const serverBaseUrl = getServerBaseUrl();
-
-  const apiUrl = new URL("/jsonapi/node/banner_hero", serverBaseUrl);
+function createBannerUrl(): URL {
+  const apiUrl = new URL("/jsonapi/node/banner_hero", getServerBaseUrl());
   apiUrl.searchParams.set("filter[status]", "1");
   apiUrl.searchParams.set("include", "field_banner_principal,field_banner_movil");
   apiUrl.searchParams.set("sort", "-created");
+  return apiUrl;
+}
 
+async function fetchBannerSlides(apiUrl: URL): Promise<HeroSlide[]> {
   const isDev = process.env.NODE_ENV === "development";
+  const json = await fetchJson<DrupalBannerResponse>(apiUrl, isDev ? { cache: "no-store" } : { next: { revalidate: 3600 } });
+  const included = json.included ?? [];
+
+  return (json.data ?? [])
+    .map((resource, index) => mapResourceToSlide(resource, included, index))
+    .filter((slide) => slide.title && slide.image);
+}
+
+export async function getHeroSlides(): Promise<HeroSlide[]> {
+  const apiUrl = createBannerUrl();
 
   try {
-    const json = await fetchJson<DrupalBannerResponse>(apiUrl, isDev ? { cache: "no-store" } : { next: { revalidate: 3600 } });
-    const included = json.included ?? [];
-
-    const slides = (json.data ?? [])
-      .map((resource, index) => mapResourceToSlide(resource, included, index))
-      .filter((slide) => slide.title && slide.image);
+    const slides = await fetchBannerSlides(apiUrl);
 
     return slides.length ? slides : fallbackHeroSlides;
   } catch (error) {
     console.error("[Fetch Error] No se pudo conectar con Drupal:", error);
     return fallbackHeroSlides;
   }
+}
+
+/**
+ * Banners de una facultad (banner_hero filtrado por field_facultad). Si Drupal
+ * falla (por ejemplo, el campo aún no existe) o no hay banners propios, usa los
+ * banners generales del home.
+ */
+export async function getFacultyBanners(facultyTitle: string): Promise<HeroSlide[]> {
+  const apiUrl = createBannerUrl();
+  apiUrl.searchParams.set("filter[field_facultad.name]", facultyTitle);
+
+  try {
+    const slides = await fetchBannerSlides(apiUrl);
+    if (slides.length) return slides;
+  } catch (error) {
+    console.warn(
+      `[Banners] Sin banners propios para "${facultyTitle}"; se usan los generales:`,
+      error instanceof Error ? error.message : error,
+    );
+  }
+
+  return getHeroSlides();
 }

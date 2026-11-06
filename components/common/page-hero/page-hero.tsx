@@ -1,9 +1,12 @@
 import Image from "next/image";
+import type { ReactNode } from "react";
 import UdLogo from "@/components/common/ud-logo";
 import styles from "./page-hero.module.css";
 import type { PageHeroData, PageHeroTitle, PageHeroVariant } from "./types";
 
 type PageHeroProps = {
+  /** Contenido de la mitad derecha; solo lo usa la variante "brand". */
+  aside?: ReactNode;
   data: PageHeroData;
   priority?: boolean;
   variant?: PageHeroVariant;
@@ -88,6 +91,7 @@ function PageHeroBrandTitle({ data }: { data: PageHeroData }) {
 
 /** Hero compartido para páginas que necesiten título e imagen destacados. */
 export default function PageHero({
+  aside,
   data,
   priority = true,
   variant = "default",
@@ -108,6 +112,9 @@ export default function PageHero({
           priority={priority}
           sizes="(max-width: 1023px) 100vw, 50vw"
         />
+        {/* Sin `aside`, la mitad derecha muestra solo el fondo institucional. */}
+        <div className={styles.brandAside}>{aside}</div>
+        <span aria-hidden="true" className={styles.brandDivider} />
       </header>
     );
   }

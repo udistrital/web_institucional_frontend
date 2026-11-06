@@ -117,40 +117,44 @@
 }
 
 /*
- * Variante "brand" (≥1024px): división 50/50. La columna izquierda es blanca y
- * acoge la tarjeta con logo UD + título; la imagen ocupa la columna derecha y
- * se prolonga hacia la izquierda con un corte diagonal "/" (arriba empieza en
- * el 50% exacto). Tamaños fijos en rem por escalón; misma tarjeta e imagen en
- * todas las facultades.
+ * Variante "brand" (≥1024px): dos mitades separadas por un corte diagonal "/".
+ * El corte cruza el 50% a media altura: arriba está en 50% + d/2 y abajo en
+ * 50% − d/2 (d = --brand-diagonal). Cada mitad es una caja de ancho
+ * 50% + d/2 recortada con clip-path; un filete rojo con un tramo amarillo
+ * (.brandDivider) cubre el corte con la misma geometría. A la izquierda va la
+ * foto de la facultad con un degradado oscuro y el título en blanco; a la
+ * derecha, el contenido de `aside` (banners) sobre un fondo institucional.
  */
 .hero.brand {
   --brand-hero-h: 26rem;
-  /* Desplazamiento horizontal del corte diagonal entre arriba y abajo. */
+  /* Recorrido horizontal del corte diagonal entre arriba y abajo. */
   --brand-diagonal: 7.8rem;
-  /* Lo que la tarjeta sobresale sobre la imagen más allá del 50%. */
-  --brand-card-overhang: 3rem;
-  --brand-card-top: 2.5rem;
+  /* Ancho horizontal del filete rojo que dibuja el corte. */
+  --brand-divider-w: 0.375rem;
+  /* Ancho de la caja de cada mitad: llega hasta el extremo lejano del corte. */
+  --brand-half-w: calc(50% + var(--brand-diagonal) / 2);
+  --brand-text-top: 2.5rem;
   --brand-logo-h: 4.5rem;
   --brand-eyebrow-size: 1rem;
   --brand-name-size: 1.75rem;
   --brand-name-max: 13.5em;
-  background: #fff;
+  background: #5f1010;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   grid-template-rows: minmax(0, 1fr);
   height: var(--brand-hero-h);
   min-height: var(--brand-hero-h);
 }
 
-/* Sin marca de agua "UD": la imagen ya separa el hero del header blanco. */
 .hero.brand::before {
   content: none;
 }
 
 .hero.brand .text {
   align-self: start;
+  grid-column: 1;
   max-width: none;
   min-width: 0;
-  padding: var(--brand-card-top) 0 0;
+  padding: var(--brand-text-top) 0 0;
 }
 
 .hero.brand .text::after {
@@ -158,8 +162,15 @@
 }
 
 .hero.brand .visual {
-  clip-path: polygon(var(--brand-diagonal) 0, 100% 0, 100% 100%, 0 100%);
-  margin-left: calc(-1 * var(--brand-diagonal));
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    calc(100% - var(--brand-diagonal)) 100%,
+    0 100%
+  );
+  inset: 0 auto 0 0;
+  position: absolute;
+  width: var(--brand-half-w);
   z-index: 0;
 }
 
@@ -168,30 +179,74 @@
   content: none;
 }
 
-/* La letra de respaldo se centra en la parte visible (mitad derecha). */
+/* Degradado desde arriba a la izquierda para el título blanco. */
+.hero.brand .imageAccent {
+  background: linear-gradient(
+    165deg,
+    rgb(0 0 0 / 74%) 0%,
+    rgb(0 0 0 / 62%) 34%,
+    rgb(0 0 0 / 28%) 68%,
+    rgb(0 0 0 / 8%) 100%
+  );
+  z-index: 2;
+}
+
+/* La letra de respaldo va abajo a la derecha, antes del corte, lejos del título. */
 .hero.brand .imageFallback {
-  padding-left: var(--brand-diagonal);
+  align-items: flex-end;
+  justify-content: flex-end;
+  line-height: 1;
+  padding: 0 calc(var(--brand-diagonal) + 2rem) 1.5rem 0;
+}
+
+.brandAside {
+  background:
+    radial-gradient(circle at 70% 30%, rgb(253 180 0 / 18%), transparent 40%),
+    linear-gradient(145deg, var(--institutional-red), #4a0c0c);
+  clip-path: polygon(var(--brand-diagonal) 0, 100% 0, 100% 100%, 0 100%);
+  inset: 0 0 0 auto;
+  overflow: hidden;
+  position: absolute;
+  width: var(--brand-half-w);
+  z-index: 1;
+}
+
+.brandDivider {
+  background: linear-gradient(
+    to bottom,
+    var(--institutional-red) 0 calc(100% - 6rem),
+    var(--institutional-gold) calc(100% - 6rem) calc(100% - 3rem),
+    var(--institutional-red) calc(100% - 3rem)
+  );
+  clip-path: polygon(
+    var(--brand-diagonal) 0,
+    calc(var(--brand-diagonal) + var(--brand-divider-w)) 0,
+    var(--brand-divider-w) 100%,
+    0 100%
+  );
+  inset: 0 auto 0
+    calc(50% - (var(--brand-diagonal) + var(--brand-divider-w)) / 2);
+  pointer-events: none;
+  position: absolute;
+  width: calc(var(--brand-diagonal) + var(--brand-divider-w));
+  z-index: 3;
 }
 
 .lockup {
+  --ud-logo-letters: #171717;
   align-items: center;
-  background: #fff;
-  border-radius: 0 999px 999px 0;
-  box-shadow: 0 0.5rem 1.75rem rgb(23 23 23 / 16%);
-  color: #171717;
+  color: #fff;
   display: flex;
   gap: calc(var(--brand-logo-h) * 0.3);
-  /* El padding derecho reserva el tramo que sobresale: el texto no pasa del 50%. */
-  padding: calc(var(--brand-logo-h) * 0.22)
-    calc(var(--brand-card-overhang) + 1rem) calc(var(--brand-logo-h) * 0.22)
-    max(5vw, 1.5rem);
+  max-width: 100%;
+  padding: 0 1.5rem 0 max(5vw, 1.5rem);
   transition: color 200ms ease;
-  width: calc(100% + var(--brand-card-overhang));
+  width: fit-content;
 }
 
 .lockup:hover,
 .lockup:focus-within {
-  color: var(--institutional-red);
+  color: var(--institutional-gold);
 }
 
 .lockupLogo {
@@ -245,7 +300,10 @@
   }
 }
 
-/* Bajo 1024px: tarjeta arriba a todo el ancho e imagen debajo, sin diagonal. */
+/*
+ * Bajo 1024px: una columna. Arriba el título sobre la foto; debajo `aside` en
+ * 16:9. Sin corte diagonal: una línea roja horizontal separa ambos bloques.
+ */
 @media (max-width: 1023px) {
   .hero.brand {
     --brand-logo-h: clamp(2.5rem, 12.5vw, 4rem);
@@ -253,29 +311,56 @@
     --brand-name-size: calc(var(--brand-logo-h) * 0.38);
     --brand-name-max: none;
     grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: auto clamp(12rem, 30vw, 18rem);
+    grid-template-rows: clamp(14rem, 40vw, 18rem) auto;
     height: auto;
     min-height: 0;
   }
 
   .hero.brand .text {
-    padding: 0;
-  }
-
-  .hero.brand .visual {
-    clip-path: none;
-    margin-left: 0;
-  }
-
-  .hero.brand .imageFallback {
-    padding-left: 0;
+    grid-area: 1 / 1;
+    padding-top: 1.5rem;
   }
 
   .lockup {
-    border-radius: 0;
-    box-shadow: none;
-    padding: 1.5rem max(5vw, 1.25rem);
+    padding-inline: max(5vw, 1.25rem);
+  }
+
+  .hero.brand .visual,
+  .brandAside {
+    clip-path: none;
+    inset: auto;
+    position: relative;
     width: auto;
+  }
+
+  .hero.brand .visual {
+    grid-area: 1 / 1;
+  }
+
+  .hero.brand .imageFallback {
+    padding: 0 max(5vw, 1.25rem) 1rem 0;
+  }
+
+  .brandAside {
+    aspect-ratio: 16 / 9;
+    grid-area: 2 / 1;
+  }
+
+  .brandAside:empty {
+    display: none;
+  }
+
+  .brandAside::before {
+    background: var(--institutional-red);
+    content: "";
+    height: 0.25rem;
+    inset: 0 0 auto;
+    position: absolute;
+    z-index: 2;
+  }
+
+  .brandDivider {
+    display: none;
   }
 }
 

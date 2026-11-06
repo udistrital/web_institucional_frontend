@@ -1,5 +1,6 @@
 import { cargarOfertaPorFacultad } from "@/services/oferta-academica";
 import { getFacultyBySlug } from "@/services/facultades";
+import { getFacultyBanners } from "@/services/hero";
 import { getNews } from "@/services/noticias";
 import { slugFiltro } from "@/lib/filtros";
 import NewsSection from "@/components/common/news-section/news-section";
@@ -10,6 +11,7 @@ import FacultyAcademicOffer, {
   type FacultyAcademicData,
   type FacultyProgram,
 } from "./FacultyAcademicOffer";
+import FacultyBannerCarousel from "./FacultyBannerCarousel";
 import getFacultyLockup from "./faculty-lockup";
 import styles from "./faculty-page.module.css";
 
@@ -88,7 +90,10 @@ export default async function FacultyPage({ slug }: FacultyPageProps) {
     );
   }
 
-  const offer = await cargarOfertaPorFacultad(faculty.title);
+  const [offer, banners] = await Promise.all([
+    cargarOfertaPorFacultad(faculty.title),
+    getFacultyBanners(faculty.title),
+  ]);
   const facultySlug = slugFiltro(faculty.title);
   const programs = offer.programas
     .filter((program) => slugFiltro(program.facultad) === facultySlug)
@@ -104,6 +109,7 @@ export default async function FacultyPage({ slug }: FacultyPageProps) {
   return (
     <section className={styles.page}>
       <PageHero
+        aside={<FacultyBannerCarousel slides={banners} />}
         data={{
           eyebrow,
           title: name,
