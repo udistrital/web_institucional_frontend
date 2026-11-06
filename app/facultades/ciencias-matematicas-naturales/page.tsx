@@ -9,6 +9,6 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function CienciasMatematicasNaturalesPage() {
-  return <FacultyPage slug={slug} />;
+  return <FacultyPage heroStyle="diagonal" slug={slug} />;
 }
 

@@ -344,6 +344,134 @@
   }
 }
 
+/*
+ * Variante "brand-diagonal" (≥1024px): diseño clásico 50/50 con selectores
+ * propios para no alterar "brand". La columna izquierda es blanca y acoge la
+ * tarjeta con logo UD + título; la imagen ocupa la columna derecha y se
+ * prolonga hacia la izquierda con un corte diagonal "/" (arriba empieza en el
+ * 50% exacto). Reutiliza .lockupLogo, .lockupTitle, .eyebrow y .lockupName.
+ */
+.hero.brandDiagonal {
+  --brand-hero-h: 26rem;
+  /* Desplazamiento horizontal del corte diagonal entre arriba y abajo. */
+  --brand-diagonal: 7.8rem;
+  /* Lo que la tarjeta sobresale sobre la imagen más allá del 50%. */
+  --brand-card-overhang: 3rem;
+  --brand-card-top: 2.5rem;
+  --brand-logo-h: 4.5rem;
+  --brand-eyebrow-size: 1rem;
+  --brand-name-size: 1.75rem;
+  --brand-name-max: 13.5em;
+  background: #fff;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+  height: var(--brand-hero-h);
+  min-height: var(--brand-hero-h);
+}
+
+/* Sin marca de agua "UD": la imagen ya separa el hero del header blanco. */
+.hero.brandDiagonal::before {
+  content: none;
+}
+
+.hero.brandDiagonal .text {
+  align-self: start;
+  max-width: none;
+  min-width: 0;
+  padding: var(--brand-card-top) 0 0;
+}
+
+.hero.brandDiagonal .text::after {
+  display: none;
+}
+
+.hero.brandDiagonal .visual {
+  clip-path: polygon(var(--brand-diagonal) 0, 100% 0, 100% 100%, 0 100%);
+  margin-left: calc(-1 * var(--brand-diagonal));
+  z-index: 0;
+}
+
+.hero.brandDiagonal .visual::before,
+.hero.brandDiagonal .visual::after {
+  content: none;
+}
+
+/* La letra de respaldo se centra en la parte visible (mitad derecha). */
+.hero.brandDiagonal .imageFallback {
+  padding-left: var(--brand-diagonal);
+}
+
+.diagonalCard {
+  /* Letras del logo en blanco sobre la forma negra o roja. */
+  --ud-logo-letters: #fff;
+  align-items: center;
+  background: #fff;
+  border-radius: 0 999px 999px 0;
+  box-shadow: 0 0.5rem 1.75rem rgb(23 23 23 / 16%);
+  color: #171717;
+  display: flex;
+  gap: calc(var(--brand-logo-h) * 0.3);
+  /* El padding derecho reserva el tramo que sobresale: el texto no pasa del 50%. */
+  padding: calc(var(--brand-logo-h) * 0.22)
+    calc(var(--brand-card-overhang) + 1rem) calc(var(--brand-logo-h) * 0.22)
+    max(5vw, 1.5rem);
+  transition: color 200ms ease;
+  width: calc(100% + var(--brand-card-overhang));
+}
+
+.diagonalCard:hover,
+.diagonalCard:focus-within {
+  color: var(--institutional-red);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .diagonalCard {
+    transition: none;
+  }
+}
+
+@media (max-width: 1279px) {
+  .hero.brandDiagonal {
+    --brand-logo-h: 3.75rem;
+    --brand-eyebrow-size: 0.875rem;
+    --brand-name-size: 1.5rem;
+  }
+}
+
+/* Bajo 1024px: tarjeta arriba a todo el ancho e imagen debajo, sin diagonal. */
+@media (max-width: 1023px) {
+  .hero.brandDiagonal {
+    --brand-logo-h: clamp(2.5rem, 12.5vw, 4rem);
+    --brand-eyebrow-size: max(0.75rem, calc(var(--brand-logo-h) * 0.22));
+    --brand-name-size: calc(var(--brand-logo-h) * 0.38);
+    --brand-name-max: none;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto clamp(12rem, 30vw, 18rem);
+    height: auto;
+    min-height: 0;
+  }
+
+  .hero.brandDiagonal .text {
+    padding: 0;
+  }
+
+  .hero.brandDiagonal .visual {
+    clip-path: none;
+    margin-left: 0;
+  }
+
+  .hero.brandDiagonal .imageFallback {
+    padding-left: 0;
+  }
+
+  .diagonalCard {
+    border-radius: 0;
+    box-shadow: none;
+    padding: 1.5rem max(5vw, 1.25rem);
+    width: auto;
+  }
+}
+
 @media (max-width: 768px) {
   .hero {
     grid-template-columns: minmax(0, 1fr);

@@ -16,6 +16,12 @@ import getFacultyLockup from "./faculty-lockup";
 import styles from "./faculty-page.module.css";
 
 type FacultyPageProps = {
+  /**
+   * Diseño del hero: "banners" (foto a la izquierda y carrusel a la derecha) o
+   * "diagonal" (tarjeta blanca con logo y título, imagen a la derecha con corte
+   * diagonal y sin banners).
+   */
+  heroStyle?: "banners" | "diagonal";
   slug: string;
 };
 
@@ -73,7 +79,12 @@ function unavailableMessage(message: string) {
   );
 }
 
-export default async function FacultyPage({ slug }: FacultyPageProps) {
+export default async function FacultyPage({
+  heroStyle = "banners",
+  slug,
+}: FacultyPageProps) {
+  const showBanners = heroStyle === "banners";
+
   const [faculty, news] = await Promise.all([
     getFacultyBySlug(slug),
     getNews(),
@@ -92,7 +103,8 @@ export default async function FacultyPage({ slug }: FacultyPageProps) {
 
   const [offer, banners] = await Promise.all([
     cargarOfertaPorFacultad(faculty.title),
-    getFacultyBanners(faculty.title),
+    // El hero diagonal no muestra banners: se evita la consulta a Drupal.
+    showBanners ? getFacultyBanners(faculty.title) : Promise.resolve([]),
   ]);
   const facultySlug = slugFiltro(faculty.title);
   const programs = offer.programas
@@ -109,14 +121,16 @@ export default async function FacultyPage({ slug }: FacultyPageProps) {
   return (
     <section className={styles.page}>
       <PageHero
-        aside={<FacultyBannerCarousel slides={banners} />}
+        aside={
+          showBanners ? <FacultyBannerCarousel slides={banners} /> : undefined
+        }
         data={{
           eyebrow,
           title: name,
           imageUrl: faculty.imageUrl,
           imageAlt: faculty.imageAlt,
         }}
-        variant="brand"
+        variant={showBanners ? "brand" : "brand-diagonal"}
       />
 
       <BreadCrumbs variant="faculty" />

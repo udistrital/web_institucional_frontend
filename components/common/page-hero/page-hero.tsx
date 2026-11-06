@@ -5,7 +5,7 @@ import styles from "./page-hero.module.css";
 import type { PageHeroData, PageHeroTitle, PageHeroVariant } from "./types";
 
 type PageHeroProps = {
-  /** Contenido de la mitad derecha; solo lo usa la variante "brand". */
+  /** Contenido de la mitad derecha; solo lo usa la variante "brand" ("brand-diagonal" lo ignora). */
   aside?: ReactNode;
   data: PageHeroData;
   priority?: boolean;
@@ -71,11 +71,18 @@ function PageHeroMedia({
   );
 }
 
-function PageHeroBrandTitle({ data }: { data: PageHeroData }) {
+function PageHeroBrandTitle({
+  className = styles.lockup,
+  data,
+}: {
+  /** Clase del contenedor; cada variante de marca aporta la suya. */
+  className?: string;
+  data: PageHeroData;
+}) {
   const eyebrow = data.eyebrow?.trim();
 
   return (
-    <div className={styles.lockup}>
+    <div className={className}>
       <UdLogo className={styles.lockupLogo} />
       <h1 className={styles.lockupTitle}>
         {eyebrow ? (
@@ -96,11 +103,27 @@ export default function PageHero({
   priority = true,
   variant = "default",
 }: PageHeroProps) {
-  if (variant === "brand") {
-    const brandAlt = [data.eyebrow?.trim(), getTitleText(data.title)]
-      .filter(Boolean)
-      .join(" ");
+  const brandAlt = [data.eyebrow?.trim(), getTitleText(data.title)]
+    .filter(Boolean)
+    .join(" ");
 
+  if (variant === "brand-diagonal") {
+    return (
+      <header className={`${styles.hero} ${styles.brandDiagonal}`}>
+        <div className={styles.text}>
+          <PageHeroBrandTitle className={styles.diagonalCard} data={data} />
+        </div>
+        <PageHeroMedia
+          data={data}
+          fallbackAlt={brandAlt}
+          priority={priority}
+          sizes="(max-width: 1023px) 100vw, 50vw"
+        />
+      </header>
+    );
+  }
+
+  if (variant === "brand") {
     return (
       <header className={`${styles.hero} ${styles.brand}`}>
         <div className={styles.text}>
