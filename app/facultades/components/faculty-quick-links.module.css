@@ -1,13 +1,17 @@
 /*
- * Pirámide invertida alineada a la izquierda: todas las filas empiezan en el
- * mismo borde y cada una es 12 puntos porcentuales más estrecha que la
- * anterior (100% → 52% del ancho máximo).
+ * Pirámide invertida que sale desde el borde izquierdo, como la tarjeta del
+ * título: cada fila es 12 puntos porcentuales más estrecha que la anterior
+ * (100% → 52%) y termina en curva. El texto empieza alineado con el logo.
  */
 .nav {
   --quick-links-max: 22rem;
+  /* Mismo margen izquierdo que el logo de la tarjeta del título. */
+  --quick-links-inset: max(5vw, 1.5rem);
   --quick-links-h: 2.375rem;
   --quick-links-gap: 0.5rem;
   --quick-links-font: 0.9375rem;
+  /* Desplazamiento a la derecha del botón en hover/foco. */
+  --quick-links-shift: 0.5rem;
 }
 
 .list {
@@ -18,7 +22,7 @@
   margin: 0;
   max-width: 100%;
   padding: 0;
-  width: var(--quick-links-max);
+  width: calc(var(--quick-links-max) + var(--quick-links-inset));
 }
 
 .item:nth-child(1) {
@@ -43,41 +47,61 @@
 
 .link {
   align-items: center;
-  background: transparent;
-  border: 2px solid #171717;
-  border-radius: 999px;
+  /* Mismo rojo que la barra de perfiles del header (audience-nav). */
+  background: #a1021f;
+  border-radius: 0 999px 999px 0;
   box-sizing: border-box;
-  color: #171717;
+  color: #fff;
   display: flex;
   font-family: var(--font-montserrat), sans-serif;
   font-size: var(--quick-links-font);
   font-weight: 600;
-  justify-content: center;
+  justify-content: flex-start;
   line-height: 1.2;
+  /*
+   * El botón empieza un poco fuera del borde izquierdo (el hero lo recorta),
+   * así al desplazarse a la derecha no se abre un hueco junto al borde.
+   */
+  margin-left: calc(-1 * var(--quick-links-shift));
   min-height: var(--quick-links-h);
-  padding: 0.25rem 1rem;
-  text-align: center;
+  padding: 0.25rem 1rem 0.25rem
+    calc(var(--quick-links-inset) + var(--quick-links-shift));
+  text-align: left;
   text-decoration: none;
   transition:
-    border-color 200ms ease,
-    color 200ms ease;
+    background-color 200ms ease,
+    color 200ms ease,
+    transform 200ms ease;
+  width: calc(100% + var(--quick-links-shift));
 }
 
-/* El foco con teclado conserva además el contorno global de a:focus-visible. */
 .link:hover,
 .link:focus-visible {
-  border-color: var(--institutional-red);
-  color: var(--institutional-red);
+  background: var(--institutional-gold);
+  color: #000;
+  transform: translateX(var(--quick-links-shift));
+}
+
+/* El botón toca el borde del hero: el contorno de foco va hacia adentro. */
+.link:focus-visible {
+  outline: 3px solid #171717;
+  outline-offset: -3px;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .link {
     transition: none;
   }
+
+  .link:hover,
+  .link:focus-visible {
+    transform: none;
+  }
 }
 
 @media (max-width: 1023px) {
   .nav {
+    --quick-links-inset: max(5vw, 1.25rem);
     --quick-links-h: 2.25rem;
     --quick-links-font: 0.875rem;
   }

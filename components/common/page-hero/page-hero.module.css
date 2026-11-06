@@ -421,12 +421,13 @@
 
 .diagonalCard:hover,
 .diagonalCard:focus-within {
-  color: var(--institutional-red);
+  /* Mismo rojo que la barra de perfiles del header (audience-nav). */
+  color: #a1021f;
 }
 
-/* Contenido bajo la tarjeta (`belowTitle`), alineado con el inicio del logo. */
+/* Contenido bajo la tarjeta (`belowTitle`): sale desde el borde izquierdo. */
 .hero.brandDiagonal .diagonalBelow {
-  padding: 1rem 0 0 max(5vw, 1.5rem);
+  padding: 1rem 0 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -478,7 +479,7 @@
 
   /* La tarjeta ya deja 1.5rem de padding inferior; el contenido sigue debajo. */
   .hero.brandDiagonal .diagonalBelow {
-    padding: 0 max(5vw, 1.25rem) 1.5rem;
+    padding: 0 max(5vw, 1.25rem) 1.5rem 0;
   }
 }
 
