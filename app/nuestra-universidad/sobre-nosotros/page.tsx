@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import Image from "next/image";
 import styles from "./page.module.css";
 import BreadCrumbs from "@/components/common/bread-crumbs/bread-crumbs";
+import PageHero from "@/components/common/page-hero";
 import SectionTabs from "@/components/common/section-tabs/section-tabs";
 import { getRector } from "@/services/integrantes";
 import HistoriaTimeline from "./historia-timeline";
@@ -259,6 +260,18 @@ export default async function SobreNosotrosPage() {
 
   return (
     <section className={styles.page} aria-label="Sobre Nosotros">
+      <PageHero
+        data={{
+          title: [
+            { text: "Sobre ", accent: false },
+            { text: "nosotros", accent: true },
+          ],
+          imageUrl: "/image/hero.jpeg",
+          imageAlt:
+            "Campus de la Universidad Distrital Francisco José de Caldas",
+        }}
+      />
+
       <BreadCrumbs variant="onDark" />
 
       <SectionTabs

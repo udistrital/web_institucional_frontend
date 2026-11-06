@@ -1,6 +1,7 @@
 import { cargarOfertaPorFacultad } from "@/services/oferta-academica";
 import { getFacultyBySlug } from "@/services/facultades";
 import { getNews } from "@/services/noticias";
+import { getEvents } from "@/services/eventos";
 import { slugFiltro } from "@/lib/filtros";
 import NewsSection from "@/components/common/news-section/news-section";
 import BreadCrumbs from "@/components/common/bread-crumbs/bread-crumbs";
@@ -72,9 +73,10 @@ function unavailableMessage(message: string) {
 }
 
 export default async function FacultyPage({ slug }: FacultyPageProps) {
-  const [faculty, news] = await Promise.all([
+  const [faculty, news, events] = await Promise.all([
     getFacultyBySlug(slug),
     getNews(),
+    getEvents(),
   ]);
 
   if (!faculty) {
@@ -83,7 +85,7 @@ export default async function FacultyPage({ slug }: FacultyPageProps) {
         <div className={styles.body}>{unavailableMessage(
           "No fue posible encontrar esta facultad. Intenta de nuevo más tarde.",
         )}</div>
-        <NewsSection news={news} />
+        <NewsSection news={news} events={events} />
       </section>
     );
   }
@@ -122,7 +124,7 @@ export default async function FacultyPage({ slug }: FacultyPageProps) {
       </div>
 
       <div aria-hidden="true" className={styles.newsTransition} />
-      <NewsSection news={news} title={`Noticias`} />
+      <NewsSection news={news} events={events} title={`Noticias`} />
     </section>
   );
 }

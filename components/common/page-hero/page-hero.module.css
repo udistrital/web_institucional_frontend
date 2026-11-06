@@ -2,8 +2,8 @@
   background: #f0f0ee;
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(20rem, 1.1fr);
-  height: 26rem;
-  min-height: 26rem;
+  height: 21rem;
+  min-height: 21rem;
   overflow: hidden;
   position: relative;
 }
@@ -19,7 +19,7 @@
   pointer-events: none;
   position: absolute;
   right: auto;
-  top: 14rem;
+  top: 11rem;
   white-space: nowrap;
   z-index: 0;
 }
@@ -28,7 +28,7 @@
   align-self: center;
   max-width: 52rem;
   min-height: 0;
-  padding: clamp(3rem, 6vw, 5rem) max(5vw, 1.5rem);
+  padding: clamp(2rem, 4.5vw, 3.5rem) max(5vw, 1.5rem);
   position: relative;
   z-index: 2;
 }

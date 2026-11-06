@@ -1,18 +1,22 @@
 "use client";
 
 import { useId } from "react";
+import Link from "next/link";
 import NewsCarousel from "./news-carousel";
-import type { NewsItem } from "@/types/domain";
+import EventsList from "./events-list";
+import type { EventItem, NewsItem } from "@/types/domain";
 
-export type { NewsItem };
+export type { EventItem, NewsItem };
 
 type NewsSectionProps = {
   news: NewsItem[];
-  /** Título de la sección. Por defecto "Noticias". */
+  /** Eventos a mostrar en la columna lateral de la sección. */
+  events?: EventItem[];
+  /** Título de la sección. Por defecto "Noticias y eventos". */
   title?: string;
-  /** Texto del enlace inferior. Por defecto "Ver todas las noticias". */
+  /** Texto del enlace del encabezado. Por defecto "Ver noticias y eventos". */
   ctaLabel?: string;
-  /** Destino del enlace inferior. Por defecto "#noticias". */
+  /** Destino del enlace del encabezado. Por defecto "#noticias". */
   ctaHref?: string;
   /**
    * id del `<section>`, útil como ancla de navegación. Por defecto "noticias".
@@ -20,7 +24,8 @@ type NewsSectionProps = {
    */
   sectionId?: string;
   /**
-   * Oculta el enlace inferior "Ver todas las noticias" cuando no se necesita.
+   * Oculta los enlaces "Ver todas las noticias" / "Ver todos los eventos"
+   * cuando no se necesitan.
    */
   showCta?: boolean;
   /** Clases extra para el `<section>` (por ejemplo para cambiar el fondo). */
@@ -29,9 +34,10 @@ type NewsSectionProps = {
 
 export default function NewsSection({
   news,
-  title = "Noticias",
-  ctaLabel = "Ver todas las noticias",
-  ctaHref = "#noticias",
+  events = [],
+  title = "Noticias y eventos",
+  ctaLabel = "Ver noticias y eventos",
+  ctaHref = "/noticias-eventos",
   sectionId = "noticias",
   showCta = true,
   className = "",
@@ -50,7 +56,7 @@ export default function NewsSection({
   return (
     <section className={sectionClassName} id={sectionId} aria-labelledby={titleId}>
       <div className="mx-auto max-w-[var(--content-width)]">
-        {/* Encabezado editorial: kicker + título con enlace "ver todas" alineado. */}
+        {/* Encabezado editorial: kicker + título con el enlace "ver" alineado. */}
         <header className="mb-8 flex flex-wrap items-end justify-between gap-4">
           <div>
             <span className="mb-2 flex items-center gap-2 text-[length:var(--fs-2xs)] font-bold uppercase tracking-[.12em] text-[var(--institutional-red)]">
@@ -65,7 +71,7 @@ export default function NewsSection({
             </h2>
           </div>
           {showCta && (
-            <a
+            <Link
               className="group hidden items-center gap-2 text-[length:var(--fs-xs)] font-bold uppercase tracking-[.04em] text-[var(--institutional-red)] transition-colors hover:text-black sm:inline-flex"
               href={ctaHref}
             >
@@ -83,18 +89,16 @@ export default function NewsSection({
                 <path d="M5 12h14" />
                 <path d="m12 5 7 7-7 7" />
               </svg>
-            </a>
+            </Link>
           )}
         </header>
-        <NewsCarousel news={news} />
-        {showCta && (
-          <a
-            className="mx-auto mt-8 flex w-fit items-center gap-2 rounded-full bg-[var(--institutional-red)] px-8 py-3 text-[length:var(--fs-sm)] font-semibold text-white transition-colors hover:bg-[var(--institutional-gold)] hover:text-black focus-visible:outline-none sm:hidden"
-            href={ctaHref}
-          >
-            {ctaLabel}
-          </a>
-        )}
+        {/* Noticias y eventos conviven en la misma fila en escritorio; se
+            apilan en pantallas pequeñas. Noticias domina el ancho por ser el
+            contenido principal y los eventos quedan como columna lateral. */}
+        <div className="grid items-start gap-6 xl:grid-cols-[minmax(0,1fr)_22rem] xl:gap-8">
+          <NewsCarousel news={news} />
+          <EventsList events={events} />
+        </div>
       </div>
     </section>
   );

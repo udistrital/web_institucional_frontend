@@ -35,6 +35,27 @@ export function resolveUrl(path: string | undefined, baseUrl: string): string | 
   }
 }
 
+/**
+ * Reescribe los `src`/`href` relativos (p. ej. "/sites/default/files/...") de
+ * un HTML con formato de Drupal a URLs absolutas contra el host público de
+ * Drupal. Así las imágenes y enlaces del cuerpo apuntan al backend y no al
+ * origen del frontend. Los enlaces que ya son absolutos (http, mailto, #, etc.)
+ * se dejan intactos.
+ */
+export function absolutizarHtml(html: string, baseUrl: string = getPublicBaseUrl()): string {
+  if (!html) return html;
+
+  return html.replace(
+    /(\b(?:src|href)\s*=\s*)(["'])(\/[^"']*)\2/gi,
+    (_match, atributo: string, comilla: string, ruta: string) => {
+      // Ignora rutas protocol-relative ("//cdn...") que no son del backend.
+      if (ruta.startsWith("//")) return `${atributo}${comilla}${ruta}${comilla}`;
+      const absoluta = resolveUrl(ruta, baseUrl) ?? ruta;
+      return `${atributo}${comilla}${absoluta}${comilla}`;
+    },
+  );
+}
+
 export async function fetchJson<T>(url: URL | string, options?: RequestInit): Promise<T> {
   const response = await fetch(url.toString(), options ?? getFetchOptions());
   if (!response.ok) {

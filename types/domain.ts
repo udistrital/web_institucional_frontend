@@ -31,10 +31,33 @@ export type HeroSlide = {
 export type NewsItem = {
   id: string;
   title: string;
+  /** Resumen corto para las tarjetas (field_resumen). */
   description: string;
+  /** Descripción completa para la vista de detalle (field_descripcion). */
+  detail: string;
+  /** Fuente de la información (field_fuente_de_informacion). */
+  source: string;
   image: string;
   alt: string;
   publishedAt: string;
+  href?: string;
+};
+
+export type EventItem = {
+  id: string;
+  title: string;
+  /** Descripción completa para la vista de detalle (field_descripcion). */
+  detail: string;
+  /** Fuente de la información (field_fuente_de_informacion). */
+  source: string;
+  /** Imagen del evento (field_imagen), si existe. */
+  image: string | null;
+  /** Texto alternativo de la imagen del evento. */
+  alt: string;
+  /** Fecha de inicio del evento en formato ISO 8601. */
+  startDate: string;
+  /** Fecha de fin del evento en formato ISO 8601. */
+  endDate: string;
   href?: string;
 };
 
