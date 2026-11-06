@@ -153,7 +153,7 @@ export default function FacultyAcademicOffer({
       </div>
 
       {availableLevels.map((level, index) => {
-        const catalogHref = `/nuestra-universidad/oferta-academica?facultad=${facultySlug}&nivel=${slugFiltro(level.name)}`;
+        const catalogHref = `/oferta-academica?facultad=${facultySlug}&nivel=${slugFiltro(level.name)}`;
         const visiblePrograms = level.programs.slice(0, 4);
         const programCount = visiblePrograms.length;
         const programGridClass =
