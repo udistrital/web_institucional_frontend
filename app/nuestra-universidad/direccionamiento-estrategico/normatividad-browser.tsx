@@ -2,6 +2,7 @@
 
 import { useId, useState } from "react";
 import type { GrupoNormativo } from "./content";
+import DocumentCard from "@/components/common/document-card/document-card";
 import styles from "./page.module.css";
 
 type NormatividadBrowserProps = {
@@ -78,24 +79,18 @@ export default function NormatividadBrowser({ grupos }: NormatividadBrowserProps
       >
         <ul className={styles.normaGrid}>
           {grupoActivo.normas.map((norma) => (
-            <li className={styles.normaCard} key={norma.url + norma.titulo}>
-              <a
-                className={styles.normaLink}
+            <li key={norma.url + norma.titulo}>
+              <DocumentCard
+                label={norma.titulo}
                 href={norma.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span className={styles.normaTitulo}>{norma.titulo}</span>
-                <span className={styles.normaIcono} aria-hidden="true">
-                  ↗
-                </span>
-              </a>
-              {norma.descripcion && (
-                <p className={styles.normaDesc}>{norma.descripcion}</p>
-              )}
-              {norma.actualizado && (
-                <p className={styles.normaFecha}>Actualizado el {norma.actualizado}</p>
-              )}
+                kind={norma.url.toLowerCase().endsWith(".pdf") ? "pdf" : "enlace"}
+                description={norma.descripcion}
+                meta={
+                  norma.actualizado
+                    ? `Actualizado el ${norma.actualizado}`
+                    : undefined
+                }
+              />
             </li>
           ))}
         </ul>

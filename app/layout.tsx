@@ -7,10 +7,11 @@ import FooterReveal from "@/components/layout/footer/footer-reveal";
 import HeaderContainer from "@/components/layout/header/header-container";
 import "./globals.css";
 
+// Montserrat es fuente variable: un solo archivo cubre todo el eje de peso
+// (400–800), lo que permite usar extrabold (h1) sin descargar pesos sueltos.
 const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
 });
 
 const lato = Lato({

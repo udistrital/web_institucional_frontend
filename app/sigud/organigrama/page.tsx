@@ -3,6 +3,10 @@ import type { ReactNode } from "react";
 import styles from "./page.module.css";
 import BreadCrumbs from "@/components/common/bread-crumbs/bread-crumbs";
 import SectionTabs from "@/components/common/section-tabs/section-tabs";
+import Button from "@/components/common/button/button";
+import DocumentCard, {
+  type DocumentKind,
+} from "@/components/common/document-card/document-card";
 import { SectionIcon } from "./icons";
 import {
   SECTIONS,
@@ -18,7 +22,7 @@ export const metadata: Metadata = {
     "Consulta los organigramas institucionales de la Universidad Distrital Francisco José de Caldas: General, General Transitorio, Académico y Administrativo.",
 };
 
-/** Icono de enlace externo, reutilizado en los enlaces a documentos. */
+/** Icono de enlace externo, usado en el enlace al directorio institucional. */
 function ExternalLinkIcon() {
   return (
     <svg
@@ -37,27 +41,9 @@ function ExternalLinkIcon() {
   );
 }
 
-/** Icono representativo del formato del documento (PDF o PPTX). */
-function DocumentoIcono({ tipo }: { tipo: DocumentoOrganigrama["tipo"] }) {
-  return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z" />
-      <path d="M14 3v6h6" />
-      {tipo === "pdf" ? (
-        <path d="M8 13h8M8 17h5" />
-      ) : (
-        <path d="M9 13h3a1.5 1.5 0 0 1 0 3H9zM9 13v6" />
-      )}
-    </svg>
-  );
+/** Mapea el tipo de documento del organigrama al formato de DocumentCard. */
+function tipoADocumentKind(tipo: DocumentoOrganigrama["tipo"]): DocumentKind {
+  return tipo === "pdf" ? "pdf" : "pptx";
 }
 
 export default function OrganizacionFuncionalPage() {
@@ -78,8 +64,8 @@ export default function OrganizacionFuncionalPage() {
             </div>
           </div>
 
-          {/* Prueba de visualización: visor embebido del PDF, solo en el
-              primer organigrama (General). */}
+          {/* Visor embebido del PDF, solo en el primer organigrama (General).
+              La relación de aspecto deja ver la página completa sin recortes. */}
           {(() => {
             if (organigrama.id !== "general") return null;
             const pdf = organigrama.documentos.find((d) => d.tipo === "pdf");
@@ -88,7 +74,7 @@ export default function OrganizacionFuncionalPage() {
               <div className={styles.pdfViewer}>
                 <iframe
                   className={styles.pdfFrame}
-                  src={pdf.url}
+                  src={`${pdf.url}#view=FitH`}
                   title={`Vista previa de ${organigrama.titulo}`}
                   loading="lazy"
                 />
@@ -107,34 +93,11 @@ export default function OrganizacionFuncionalPage() {
           <ul className={styles.documentos}>
             {organigrama.documentos.map((documento) => (
               <li key={documento.url}>
-                <a
-                  className={styles.documentoCard}
+                <DocumentCard
+                  label={documento.label}
                   href={documento.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span
-                    className={`${styles.documentoIcono} ${
-                      documento.tipo === "pdf" ? styles.tipoPdf : styles.tipoPptx
-                    }`}
-                    aria-hidden="true"
-                  >
-                    <DocumentoIcono tipo={documento.tipo} />
-                  </span>
-                  <span className={styles.documentoBody}>
-                    <span className={styles.documentoLabel}>
-                      {documento.label}
-                    </span>
-                    <span className={styles.documentoTipo}>
-                      {documento.tipo === "pdf"
-                        ? "Documento PDF"
-                        : "Presentación PowerPoint"}
-                    </span>
-                  </span>
-                  <span className={styles.documentoFlecha} aria-hidden="true">
-                    <ExternalLinkIcon />
-                  </span>
-                </a>
+                  kind={tipoADocumentKind(documento.tipo)}
+                />
               </li>
             ))}
           </ul>
@@ -143,15 +106,15 @@ export default function OrganizacionFuncionalPage() {
             <p className={styles.directorioTexto}>
               {DIRECTORIO_INSTITUCIONAL.texto}
             </p>
-            <a
-              className={styles.directorioLink}
+            <Button
               href={DIRECTORIO_INSTITUCIONAL.url}
+              variant="red"
               target="_blank"
               rel="noopener noreferrer"
             >
               <ExternalLinkIcon />
               {DIRECTORIO_INSTITUCIONAL.label}
-            </a>
+            </Button>
           </div>
         </article>
       );

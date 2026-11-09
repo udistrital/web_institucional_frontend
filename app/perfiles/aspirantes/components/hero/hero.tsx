@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { motion, type Variants } from "framer-motion";
+import Button from "@/components/common/button/button";
 
 interface HeroProps {
   title: string;
@@ -108,12 +108,13 @@ export default function Hero({
                 whileTap={{ scale: 0.97 }}
                 className="inline-block w-full sm:w-auto"
               >
-                <Link
+                <Button
                   href={primaryButton.href}
-                  className="inline-block w-full rounded-lg border border-white bg-[#8c1919] px-4 py-3 text-center text-base font-extrabold text-white transition hover:bg-[#fdb400] hover:text-black sm:w-auto sm:px-6 sm:text-lg md:text-xl"
+                  variant="red"
+                  className="w-full border-white px-4 py-3 text-base font-extrabold sm:w-auto sm:px-6 sm:text-lg md:text-xl"
                 >
                   {primaryButton.text}
-                </Link>
+                </Button>
               </motion.span>
             )}
             {secundaryButton && (
@@ -122,12 +123,13 @@ export default function Hero({
                 whileTap={{ scale: 0.97 }}
                 className="inline-block w-full sm:w-auto"
               >
-                <Link
+                <Button
                   href={secundaryButton.href}
-                  className="inline-block w-full rounded-lg border border-white bg-[#8c1919] px-4 py-3 text-center text-base font-extrabold text-white transition hover:bg-[#fdb400] hover:text-black sm:w-auto sm:px-6 sm:text-lg md:text-xl"
+                  variant="red"
+                  className="w-full border-white px-4 py-3 text-base font-extrabold sm:w-auto sm:px-6 sm:text-lg md:text-xl"
                 >
                   {secundaryButton.text}
-                </Link>
+                </Button>
               </motion.span>
             )}
           </motion.div>

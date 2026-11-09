@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import styles from "./page.module.css";
 import BreadCrumbs from "@/components/common/bread-crumbs/bread-crumbs";
+import PageHero from "@/components/common/page-hero";
 import { getFaculties, type Faculty } from "@/services/facultades";
 
 export const metadata: Metadata = {
@@ -58,19 +59,17 @@ export default async function FacultadesPage() {
   const faculties = await getFaculties();
 
   return (
-    <section className={styles.page} aria-labelledby="facultades-title">
-      <header className={styles.hero}>
-        <div className={styles.heroContent}>
-          <p className={styles.eyebrow}>Universidad Distrital</p>
-          <h1 id="facultades-title">Facultades</h1>
-          <p className={styles.heroLead}>
-            Conoce nuestras facultades, sus equipos directivos y los canales de atención.
-          </p>
-        </div>
-        <span className={styles.heroNumber} aria-hidden="true">01</span>
-      </header>
-      
-      <BreadCrumbs />
+    <section className={styles.page} aria-label="Facultades">
+      <PageHero
+        data={{
+          title: [{ text: "Facultades", accent: true }],
+          imageUrl: "/image/hero.jpeg",
+          imageAlt:
+            "Campus de la Universidad Distrital Francisco José de Caldas",
+        }}
+      />
+
+      <BreadCrumbs variant="onDark" />
 
       <div className={styles.content}>
         <div className={styles.sectionHeading}>

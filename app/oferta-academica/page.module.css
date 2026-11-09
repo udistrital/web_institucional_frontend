@@ -407,51 +407,6 @@
   margin-top: 0.9rem;
 }
 
-.moreButton {
-  align-items: center;
-  background: var(--institutional-gold);
-  border: 1px solid var(--institutional-gold);
-  border-radius: 3px;
-  color: #201800;
-  cursor: pointer;
-  display: inline-flex;
-  font: inherit;
-  font-size: var(--fs-xs);
-  font-weight: 700;
-  justify-content: center;
-  padding: 0.55rem 1.1rem;
-  text-decoration: none;
-  transition: background-color 180ms ease, border-color 180ms ease;
-}
-
-.moreButton:hover,
-.moreButton:focus-visible {
-  background: #e9a600;
-  border-color: #e9a600;
-}
-
-.detailsButton {
-  align-items: center;
-  background: #fff;
-  border: 1px solid var(--institutional-red);
-  border-radius: 3px;
-  color: var(--institutional-red);
-  cursor: pointer;
-  display: inline-flex;
-  font: inherit;
-  font-size: var(--fs-xs);
-  font-weight: 700;
-  justify-content: center;
-  padding: 0.55rem 1.1rem;
-  transition: background-color 180ms ease, color 180ms ease;
-}
-
-.detailsButton:hover,
-.detailsButton:focus-visible {
-  background: var(--institutional-red);
-  color: #fff;
-}
-
 .programDialog {
   background: #fff;
   border: 0;
@@ -624,7 +579,8 @@
 
 .modalDocument p { color: #555; font-size: var(--fs-xs); margin: 0.25rem 0 0; }
 
-.modalContent > .moreButton { margin-top: 1.1rem; }
+/* Separación del botón "Conocer más" dentro del modal. */
+.modalMoreSpacing { margin-top: 1.1rem; }
 
 .srOnly {
   clip: rect(0, 0, 0, 0);

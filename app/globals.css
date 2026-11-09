@@ -132,3 +132,77 @@ button:focus-visible {
 .admisiones-contenido a:hover {
   color: #5f1010;
 }
+
+/* ==================================================================
+   SISTEMA DE ESTILOS ESTANDARIZADOS (marca institucional)
+   ------------------------------------------------------------------
+   Clases reutilizables para títulos, párrafos y enlaces según la
+   identidad visual de la Universidad Distrital. Los botones y las
+   tarjetas de documento viven en sus componentes compartidos
+   (components/common/button, components/common/document-card), que
+   reutilizan estos mismos tokens de color.
+   ================================================================== */
+
+/* ---- Superficie gris neutra (no es color de marca) ---- */
+:root {
+  --institutional-red-hover: #6f1313;
+  --surface-gray: #f2f2f2;
+}
+
+/* ---- Enlaces estándar: rojo institucional en negrilla, hover negro ----
+   No se fuerza subrayado para que la clase sirva tanto en enlaces de texto
+   como en enlaces con icono dentro de tarjetas. */
+.ud-link {
+  color: var(--institutional-red);
+  font-weight: 700;
+  transition: color 180ms ease;
+}
+.ud-link:hover {
+  color: #000;
+}
+
+/* ---- Títulos estandarizados ----
+   Tres combinaciones de contraste permitidas. Usar sobre encabezados
+   (h1–h3). El padding hace visible el fondo cuando aplica. */
+.ud-title {
+  font-family: var(--font-montserrat), sans-serif;
+  line-height: var(--lh-tight);
+  margin: 0;
+}
+.ud-title--on-gray {
+  background: var(--surface-gray);
+  color: #000;
+  padding: 0.5rem 0.9rem;
+}
+.ud-title--on-red {
+  background: var(--institutional-red);
+  color: #fff;
+  padding: 0.5rem 0.9rem;
+}
+.ud-title--on-white {
+  background: #fff;
+  color: var(--institutional-red);
+}
+
+/* ---- Párrafos estandarizados ----
+   Dos combinaciones con fondo de color permitidas. */
+.ud-paragraph {
+  font-family: var(--font-lato), sans-serif;
+  line-height: var(--lh-normal);
+  margin: 0;
+}
+.ud-paragraph--on-red {
+  background: var(--institutional-red);
+  color: #fff;
+  padding: 0.9rem 1.1rem;
+}
+.ud-paragraph--on-gold {
+  background: var(--institutional-gold);
+  color: #000;
+  padding: 0.9rem 1.1rem;
+}
+
+/* ---- Encabezados h1: siempre extrabold ---- */
+h1 {
+  font-weight: 800;
+}

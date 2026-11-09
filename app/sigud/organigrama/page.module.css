@@ -50,19 +50,23 @@
   padding: clamp(1.5rem, 3vw, 2.25rem);
 }
 
-/* ---- Visor embebido del PDF (prueba de visualización) ---- */
+/* ---- Visor embebido del PDF ----
+   Se usa la relación de aspecto de una página carta (ancho/alto ≈ 1/1.3) para
+   que el documento se vea completo y no recortado. En pantallas estrechas se
+   limita la altura máxima para que el visor no domine el viewport; el visor
+   nativo del navegador conserva su propio scroll interno. */
 .pdfViewer {
   background: #f4f3f1;
   border: 1px solid #e4e4e4;
   border-radius: 8px;
   margin: 0 0 1.75rem;
-  overflow: hidden;
   width: 100%;
 }
 .pdfFrame {
+  aspect-ratio: 1 / 1.3;
   border: 0;
   display: block;
-  height: clamp(28rem, 60vh, 44rem);
+  max-height: 85vh;
   width: 100%;
 }
 
@@ -103,62 +107,6 @@
   padding: 0;
 }
 
-/* Tarjeta de documento: formato + enlace al recurso oficial. */
-.documentoCard {
-  align-items: center;
-  background: #faf9f7;
-  border: 1px solid #ececec;
-  border-radius: 8px;
-  display: flex;
-  gap: 1rem;
-  padding: clamp(1rem, 2vw, 1.4rem);
-  transition: box-shadow 220ms ease, transform 220ms ease, border-color 220ms ease;
-}
-.documentoCard:hover {
-  border-color: var(--institutional-gold);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, .12);
-  transform: translateY(-3px);
-}
-
-.documentoIcono {
-  align-items: center;
-  border-radius: 8px;
-  display: flex;
-  flex-shrink: 0;
-  height: 2.75rem;
-  justify-content: center;
-  width: 2.75rem;
-}
-.documentoIcono svg { height: 1.5rem; width: 1.5rem; }
-/* Color del badge según el formato del recurso. */
-.tipoPdf { background: rgba(140, 25, 25, .1); color: var(--institutional-red); }
-.tipoPptx { background: rgba(253, 180, 0, .18); color: #a06c00; }
-
-.documentoBody { flex: 1 1 auto; min-width: 0; }
-.documentoLabel {
-  color: #1a1a1a;
-  display: block;
-  font-size: var(--fs-sm);
-  font-weight: 700;
-  line-height: var(--lh-snug);
-  text-decoration: none;
-}
-.documentoCard:hover .documentoLabel { color: var(--institutional-red); }
-.documentoTipo {
-  color: #888;
-  display: block;
-  font-size: var(--fs-2xs);
-  letter-spacing: .06em;
-  margin-top: .3rem;
-  text-transform: uppercase;
-}
-
-.documentoFlecha {
-  color: var(--institutional-red);
-  flex-shrink: 0;
-}
-.documentoFlecha svg { height: 1.1rem; width: 1.1rem; }
-
 /* ---- Nota del Directorio Institucional ---- */
 .directorio {
   align-items: flex-start;
@@ -177,41 +125,4 @@
   line-height: var(--lh-normal);
   margin: 0;
   max-width: 60rem;
-}
-.directorioLink {
-  align-items: center;
-  background: var(--institutional-red);
-  border-radius: 6px;
-  color: #fff;
-  display: inline-flex;
-  font-size: var(--fs-sm);
-  font-weight: 700;
-  gap: .5rem;
-  padding: .6rem 1rem;
-  text-decoration: none;
-  transition: background 180ms ease;
-}
-.directorioLink:hover { background: #6f1313; }
-.directorioLink svg { height: 1.1rem; width: 1.1rem; }
-
-/* Texto solo para lectores de pantalla (equivalente local a .sr-only). */
-.sr {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-}
-
-/* ---- Responsive ---- */
-@media (max-width: 480px) {
-  .documentoCard { flex-wrap: wrap; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .documentoCard { transition: none; }
-  .documentoCard:hover { transform: none; }
 }

@@ -38,9 +38,6 @@ a.hero-slide:focus-visible .hero-image { filter: brightness(1.06) saturate(1.05)
 @media (prefers-reduced-motion: reduce) {
   .hero-image { transition: none; }
 }
-.hero-link, .faculties-link { border-radius: 5px; display: inline-block; font-weight: 600; padding: .65rem 1.05rem; text-decoration: none; }
-.faculties-link { padding-left: 2.25rem; padding-right: 2.25rem; }
-.hero-link:hover, .faculties-link:hover, .news-more-link:hover, .enrollment-primary:hover, .enrollment-secondary:hover { background: #fdb400; color: black; }
 .hero-controls { bottom: 2rem; display: flex; gap: .65rem; left: 50%; position: absolute; transform: translateX(-50%); z-index: 3; }
 .hero-dot { background: #fff; border: 0; border-radius: 50%; cursor: pointer; height: 12px; opacity: .75; padding: 0; width: 12px; }
 .hero-dot.is-active { background: var(--institutional-red); opacity: 1; }
@@ -82,7 +79,6 @@ a.hero-slide:focus-visible .hero-image { filter: brightness(1.06) saturate(1.05)
 }
 /* El título de servicios está centrado: la barra también. */
 .services-heading h2::after { margin-left: auto; margin-right: auto; }
-.faculties-link { background: #fff; color: var(--institutional-red); }
 .faculties-empty-state { background: #fff; border-left: 4px solid var(--institutional-gold); color: #222; margin: 0 auto; max-width: var(--content-width); padding: 2rem; width: 100%; }
 .faculties-empty-state h3 { color: var(--institutional-red); font-family: var(--font-montserrat), sans-serif; font-size: var(--fs-xl); margin: 0 0 .5rem; }
 .faculties-empty-state p { margin: 0; }
@@ -115,7 +111,6 @@ a.hero-slide:focus-visible .hero-image { filter: brightness(1.06) saturate(1.05)
   .news-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .news-card:nth-child(n + 3) { display: none; }
 }
-.news-more-link { background: var(--institutional-red); border-radius: 5px; color: #fff; display: block; font-weight: 600; margin: 2.5rem auto 0; padding: .7rem 2.7rem; text-align: center; text-decoration: none; width: fit-content; }
 
 
 
@@ -127,10 +122,8 @@ a.hero-slide:focus-visible .hero-image { filter: brightness(1.06) saturate(1.05)
 .enrollment-copy h2 { font-family: var(--font-montserrat), sans-serif; font-size: var(--fs-h2); font-weight: 700; line-height: .9; margin: 0 0 1.2rem; }
 .enrollment-copy p { font-size: var(--fs-md); line-height: var(--lh-snug); margin: 0; max-width: 550px; }
 .enrollment-actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
-.enrollment-primary, .enrollment-secondary { border-radius: 5px; display: inline-flex; align-items: center; justify-content: center; font-weight: 600; min-width: 16rem; padding: .65rem 2.25rem; text-align: center; text-decoration: none; }
-.enrollment-primary { background: var(--background); color: var(--institutional-red); }
-.enrollment-secondary { border: 2px solid var(--background); color: #fff; }
-.enrollment-secondary:hover { border: 2px solid var(--institutional-gold); }
+/* Ancho uniforme para los dos botones (Button) de la sección de inscripción. */
+.enrollment-action { min-width: 16rem; }
 .enrollment-image { bottom: -5rem; height: auto; max-height: 34rem; max-width: min(40vw, 480px); object-fit: contain; object-position: right center; position: absolute; right: 3rem; width: auto; z-index: 3; }
 
 /*
@@ -291,7 +284,6 @@ a.hero-slide:focus-visible .hero-image { filter: brightness(1.06) saturate(1.05)
   .faculties-section { padding: 3rem 1rem; }
   .faculties-intro { align-items: flex-start; gap: 1rem; }
   .faculties-intro h2 { max-width: 65%; }
-  .faculties-link { flex-shrink: 0; padding-left: 1rem; padding-right: 1rem; }
   .faculties-desktop-curtain { display: none; }
   .faculties-mobile-carousel { display: flex; }
   .faculties-content, .news-grid { grid-template-columns: 1fr; }
@@ -305,7 +297,7 @@ a.hero-slide:focus-visible .hero-image { filter: brightness(1.06) saturate(1.05)
   .enrollment-copy { margin-left: 0; max-width: none; padding: 0; position: relative; z-index: 2; }
   .enrollment-copy p { max-width: none; }
   .enrollment-actions { margin-top: 1.5rem; }
-  .enrollment-primary, .enrollment-secondary { flex: 1 1 auto; min-width: 0; text-align: center; }
+  .enrollment-action { flex: 1 1 auto; min-width: 0; }
   .enrollment-image { display: none; }
   /* La imagen se ancla al inicio de StudentServicesSection y sube entrando en EnrollmentSection. */
   .services-lead-image { bottom: 100%; display: block; height: auto; left: 50%; max-width: 40vw; position: absolute; transform: translateX(-50%); width: auto; z-index: 10; }
@@ -353,7 +345,7 @@ a.hero-slide:focus-visible .hero-image { filter: brightness(1.06) saturate(1.05)
   .student-service { padding: 1.5rem .75rem; }
   .student-service:first-child { border-top: 0; }
   .enrollment-actions { flex-direction: column; }
-  .enrollment-primary, .enrollment-secondary { width: 100%; }
+  .enrollment-action { width: 100%; }
   .news-card-content { padding: 1.25rem 1.25rem 1.4rem; }
   .promo-copy { padding: 1.75rem 1rem; }
 }

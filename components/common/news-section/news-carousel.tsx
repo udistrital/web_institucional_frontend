@@ -6,14 +6,10 @@ import { motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
 import type { NewsItem } from "@/types/domain";
 import { rutaContenido } from "@/app/noticias-eventos/lib/contenido";
+import { formatearFechaLarga } from "@/lib/fechas";
 
 const ROTATION_INTERVAL = 7000;
 const ROTATION_SECONDS = ROTATION_INTERVAL / 1000;
-const dateFormatter = new Intl.DateTimeFormat("es-CO", {
-  day: "numeric",
-  month: "long",
-  year: "numeric",
-});
 
 const ArrowIcon = ({ className }: { className?: string }) => (
   <svg
@@ -91,7 +87,7 @@ export default function NewsCarousel({ news }: NewsCarouselProps) {
   }
 
   const [featuredNews, ...nextNews] = orderedNews;
-  const formatDate = (date: string) => dateFormatter.format(new Date(date));
+  const formatDate = (date: string) => formatearFechaLarga(date);
   const progress = ((ROTATION_SECONDS - secondsLeft) / ROTATION_SECONDS) * 100;
 
   return (
