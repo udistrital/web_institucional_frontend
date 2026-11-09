@@ -9,5 +9,5 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function IngenieriaPage() {
-  return <FacultyPage slug={slug} />;
+  return <FacultyPage heroStyle="diagonal" quickLinks slug={slug} />;
 }

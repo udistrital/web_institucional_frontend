@@ -9,5 +9,5 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function ArtesAsabPage() {
-  return <FacultyPage slug={slug} />;
+  return <FacultyPage heroStyle="diagonal" quickLinks slug={slug} />;
 }
