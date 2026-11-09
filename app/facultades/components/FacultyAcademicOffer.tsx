@@ -51,6 +51,13 @@ function ProgramTitleText({ name }: { name: ProgramName }) {
   );
 }
 
+// En el carrusel, el navegador no desplaza hasta una tarjeta que ya asoma
+// parcialmente al recibir el foco con Tab; aquí se termina de mostrar.
+function revealFocusedCard(event: React.FocusEvent<HTMLAnchorElement>) {
+  if (!event.currentTarget.matches(":focus-visible")) return;
+  event.currentTarget.scrollIntoView({ block: "nearest", inline: "nearest" });
+}
+
 function ProgramTag({ name }: { name: ProgramName }) {
   if (!name.tag) return null;
 
@@ -182,12 +189,12 @@ export default function FacultyAcademicOffer({
                 const name = splitProgramName(program.nombre, level.name);
                 const isFeatured = programCount === 1;
                 const imageSizes = isFeatured
-                  ? "(max-width: 680px) 100vw, (max-width: 1050px) 50vw, 55vw"
+                  ? "(max-width: 1050px) 100vw, 55vw"
                   : programCount === 2
-                    ? "(max-width: 680px) 100vw, (max-width: 1050px) 50vw, (max-width: 1300px) 45vw, 34rem"
+                    ? "(max-width: 680px) 85vw, (max-width: 1050px) 45vw, (max-width: 1300px) 45vw, 34rem"
                     : programCount === 3
-                      ? "(max-width: 680px) 100vw, (max-width: 1050px) 50vw, 33vw"
-                      : "(max-width: 680px) 100vw, (max-width: 1050px) 50vw, 25vw";
+                      ? "(max-width: 680px) 85vw, (max-width: 1050px) 45vw, 33vw"
+                      : "(max-width: 680px) 85vw, (max-width: 1050px) 45vw, 25vw";
                 const mediaImage = image ? (
                   <Image
                     alt={program.imagenUrl ? program.imagenAlt : faculty.imageAlt}
@@ -292,6 +299,7 @@ export default function FacultyAcademicOffer({
                     className={cardClass}
                     href={program.paginaProgramaUrl}
                     key={program.id}
+                    onFocus={revealFocusedCard}
                   >
                     {cardMedia}
                   </a>
