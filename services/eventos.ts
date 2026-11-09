@@ -24,7 +24,7 @@ type Resource = {
     title?: string;
     field_fecha_inicio?: string | null;
     field_fecha_fin?: string | null;
-    field_descripcion_con_formato?: FormattedText;
+    field_descripcion?: FormattedText;
     field_fuente_de_informacion?: string | null;
     path?: { alias?: string | null } | null;
   };
@@ -78,7 +78,7 @@ function mapEvents(json: Response): EventItem[] {
         id: resource.id || `evento-${index}`,
         title: resource.attributes?.title || "Evento",
         detail: absolutizarHtml(
-          resource.attributes?.field_descripcion_con_formato?.processed?.trim() ||
+          resource.attributes?.field_descripcion?.processed?.trim() ||
             "",
         ),
         source: resource.attributes?.field_fuente_de_informacion?.trim() || "",

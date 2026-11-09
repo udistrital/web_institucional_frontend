@@ -90,7 +90,7 @@ export default async function FacultyPage({
 }: FacultyPageProps) {
   const showBanners = heroStyle === "banners";
 
-  const [faculty, news] = await Promise.all([
+  const [faculty, news, events] = await Promise.all([
     getFacultyBySlug(slug),
     getNews(),
     getEvents(),
