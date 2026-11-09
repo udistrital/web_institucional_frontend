@@ -93,6 +93,15 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  /*
+   * Estado final desde el HTML estático, antes de hidratar: anula el estado
+   * inicial en línea de la entrada del hero (framer-motion).
+   */
+  .item {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
   .link {
     transition: none;
   }

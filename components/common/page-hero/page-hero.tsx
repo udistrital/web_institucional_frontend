@@ -2,6 +2,12 @@ import Image from "next/image";
 import type { ReactNode } from "react";
 import UdLogo from "@/components/common/ud-logo";
 import styles from "./page-hero.module.css";
+import {
+  HeroEntrance,
+  HeroEntranceCard,
+  HeroEntranceLogo,
+  HeroEntranceTitle,
+} from "./page-hero-entrance";
 import type { PageHeroData, PageHeroTitle, PageHeroVariant } from "./types";
 
 type PageHeroProps = {
@@ -98,6 +104,30 @@ function PageHeroBrandTitle({
   );
 }
 
+/**
+ * Tarjeta del título de "brand-diagonal": mismo marcado que
+ * PageHeroBrandTitle, con la tarjeta, el logo y el h1 animados al cargar.
+ */
+function PageHeroDiagonalTitle({ data }: { data: PageHeroData }) {
+  const eyebrow = data.eyebrow?.trim();
+
+  return (
+    <HeroEntranceCard className={styles.diagonalCard}>
+      <HeroEntranceLogo className={styles.diagonalLogo}>
+        <UdLogo className={styles.lockupLogo} />
+      </HeroEntranceLogo>
+      <HeroEntranceTitle className={styles.lockupTitle}>
+        {eyebrow ? (
+          <>
+            <span className={styles.eyebrow}>{eyebrow}</span>{" "}
+          </>
+        ) : null}
+        <span className={styles.lockupName}>{getTitleText(data.title)}</span>
+      </HeroEntranceTitle>
+    </HeroEntranceCard>
+  );
+}
+
 /** Hero compartido para páginas que necesiten título e imagen destacados. */
 export default function PageHero({
   aside,
@@ -113,12 +143,12 @@ export default function PageHero({
   if (variant === "brand-diagonal") {
     return (
       <header className={`${styles.hero} ${styles.brandDiagonal}`}>
-        <div className={styles.text}>
-          <PageHeroBrandTitle className={styles.diagonalCard} data={data} />
+        <HeroEntrance className={styles.text}>
+          <PageHeroDiagonalTitle data={data} />
           {belowTitle ? (
             <div className={styles.diagonalBelow}>{belowTitle}</div>
           ) : null}
-        </div>
+        </HeroEntrance>
         <PageHeroMedia
           data={data}
           fallbackAlt={brandAlt}

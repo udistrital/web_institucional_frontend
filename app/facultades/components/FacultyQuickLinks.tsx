@@ -1,4 +1,5 @@
 import styles from "./faculty-quick-links.module.css";
+import { QuickLinksItem, QuickLinksList } from "./FacultyQuickLinksMotion";
 
 type FacultyQuickLinksProps = {
   /** Destino de todos los botones mientras no tengan página propia. */
@@ -21,15 +22,15 @@ const LABELS = [
 export default function FacultyQuickLinks({ href }: FacultyQuickLinksProps) {
   return (
     <nav aria-label="Secciones de la facultad" className={styles.nav}>
-      <ul className={styles.list}>
+      <QuickLinksList className={styles.list}>
         {LABELS.map((label) => (
-          <li className={styles.item} key={label}>
+          <QuickLinksItem className={styles.item} key={label}>
             <a className={styles.link} href={href}>
               {label}
             </a>
-          </li>
+          </QuickLinksItem>
         ))}
-      </ul>
+      </QuickLinksList>
     </nav>
   );
 }

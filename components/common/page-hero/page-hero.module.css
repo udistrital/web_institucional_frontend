@@ -493,6 +493,12 @@
   color: #a1021f;
 }
 
+/* Envoltorio animado del logo: ocupa lo mismo que el SVG (.lockupLogo). */
+.diagonalLogo {
+  display: block;
+  flex: none;
+}
+
 /* Contenido bajo la tarjeta (`belowTitle`): sale desde el borde izquierdo. */
 .hero.brandDiagonal .diagonalBelow {
   margin-top: auto;
@@ -502,6 +508,17 @@
 @media (prefers-reduced-motion: reduce) {
   .diagonalCard {
     transition: none;
+  }
+
+  /*
+   * Estado final desde el HTML estático, antes de hidratar: anula el estado
+   * inicial en línea de la entrada (framer-motion).
+   */
+  .diagonalCard,
+  .diagonalLogo,
+  .diagonalCard .lockupTitle {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
 
