@@ -1,8 +1,17 @@
 .offer {
   /* Alto común de todas las tarjetas (1, 2, 3 o 4 programas, en escritorio
      y en el carrusel): solo cambia el ancho, así la sección no salta entre
-     pestañas ni facultades. */
+     pestañas ni facultades. Las tarjetas tienen overflow: hidden, así que
+     el contenido que no quepa se recorta: la destacada de escritorio es la
+     más justa (~36px libres a 1440px con los datos actuales). Si un nombre
+     nuevo no cabe, subir este valor (p. ej. 22rem) para todas a la vez. */
   --program-card-h: 20rem;
+  /* Caja de .moreLink, compartida con la reserva de espacio de los paneles
+     que no lo muestran. */
+  --more-link-gap: 2.5rem;
+  --more-link-pad-block: 0.75rem;
+  --more-link-border: 2px;
+  --more-link-lh: 1.5;
   min-width: 0;
   position: relative;
 }
@@ -98,9 +107,13 @@
 }
 
 /* Si alguna pestaña de la facultad muestra "Ver todas las propuestas", las
-   demás reservan ese espacio para que la sección mida lo mismo en todas. */
+   demás reservan ese espacio para que la sección mida lo mismo en todas
+   (supone el texto del enlace en una sola línea). */
 .offer:has(.moreLink) .panel:not(:has(.moreLink)) {
-  padding-bottom: calc(2.5rem + 1.5rem + 4px + var(--fs-sm) * 1.5);
+  padding-bottom: calc(
+    var(--more-link-gap) + var(--more-link-pad-block) * 2 +
+      var(--more-link-border) * 2 + var(--fs-sm) * var(--more-link-lh)
+  );
 }
 
 .panel:focus-visible {
@@ -400,17 +413,19 @@
   padding: 0.5rem 1.1rem;
 }
 
+/* Margen, padding vertical, borde y line-height salen de las variables de
+   .offer porque la reserva de los paneles sin enlace los replica. */
 .moreLink {
   background: var(--institutional-red);
-  border: 2px solid var(--institutional-red);
+  border: var(--more-link-border) solid var(--institutional-red);
   border-radius: 999px;
   color: #fff;
   display: block;
   font-size: var(--fs-sm);
   font-weight: 700;
-  line-height: 1.5;
-  margin: 2.5rem auto 0;
-  padding: 0.75rem 2.5rem;
+  line-height: var(--more-link-lh);
+  margin: var(--more-link-gap) auto 0;
+  padding: var(--more-link-pad-block) 2.5rem;
   text-align: center;
   text-decoration: none;
   transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
@@ -483,9 +498,20 @@
     scroll-snap-align: start;
   }
 
-  /* El overflow del carrusel recortaría un outline exterior. */
+  /* El overflow del carrusel recortaría un outline exterior, y uno interior
+     queda tapado por la imagen y el texto: el anillo se dibuja encima. */
   .programCard:focus-visible {
-    outline-offset: -3px;
+    outline: none;
+  }
+
+  .programCard:focus-visible::after {
+    border: 3px solid var(--institutional-gold);
+    border-radius: inherit;
+    content: "";
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
+    z-index: 2;
   }
 
   /* Con 1 programa no hay carrusel: la destacada ocupa todo el ancho con el
