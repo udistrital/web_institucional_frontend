@@ -1,0 +1,311 @@
+.page {
+  background: #f7f7f5;
+  min-height: 70vh;
+}
+
+.catalog {
+  margin: 0 auto;
+  max-width: 100rem;
+  padding: clamp(1.5rem, 3vw, 2.5rem) max(6vw, 2rem) clamp(3rem, 6vw, 5rem);
+  width: 100%;
+}
+
+.catalogFallback {
+  color: #555;
+  margin: 0 auto;
+  max-width: 100rem;
+  min-height: 20rem;
+  padding: clamp(1.5rem, 3vw, 2.5rem) max(6vw, 2rem) clamp(3rem, 6vw, 5rem);
+  width: 100%;
+}
+
+.sectionKicker {
+  color: var(--institutional-red);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin: 0 0 0.15rem;
+  text-transform: uppercase;
+}
+
+/* ---- Filtros (misma estética que oferta académica) ---- */
+.filters {
+  background: #fff;
+  border: 1px solid #e8e5e2;
+  border-top: 3px solid var(--institutional-red);
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.045);
+  margin: 0 0 1.75rem;
+  padding: clamp(1rem, 1.8vw, 1.5rem);
+}
+
+.filtersHeading {
+  align-items: center;
+  display: flex;
+  gap: 0.75rem;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.filtersTitleGroup {
+  align-items: center;
+  display: flex;
+  gap: 0.8rem;
+  min-width: 0;
+}
+
+.filtersTitleIcon {
+  align-items: center;
+  background: #fff0f2;
+  border: 1px solid #f5cbd2;
+  border-radius: 10px;
+  color: var(--institutional-red);
+  display: inline-flex;
+  flex: 0 0 2.65rem;
+  height: 2.65rem;
+  justify-content: center;
+}
+
+.filtersTitleIcon .filterIcon {
+  height: 1.25rem;
+  width: 1.25rem;
+}
+
+.filtersHeading h1 {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: clamp(1.25rem, 1.8vw, 1.55rem);
+  line-height: var(--lh-tight);
+  margin: 0;
+  white-space: nowrap;
+}
+
+.clearFilters {
+  align-items: center;
+  background: #fff;
+  border: 1px solid #e4c5ca;
+  border-radius: 8px;
+  color: var(--institutional-red);
+  cursor: pointer;
+  display: inline-flex;
+  flex: 0 0 auto;
+  font: inherit;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  gap: 0.45rem;
+  min-height: 2.5rem;
+  padding: 0.45rem 0.75rem;
+  transition: background-color 150ms ease, border-color 150ms ease;
+  white-space: nowrap;
+}
+
+.clearFilters:hover:not(:disabled) {
+  background: #fff0f2;
+  border-color: var(--institutional-red);
+}
+
+.clearFilters:disabled {
+  border-color: #e5e5e5;
+  color: #929292;
+  cursor: not-allowed;
+}
+
+.clearFilters .filterIcon {
+  height: 1rem;
+  width: 1rem;
+}
+
+.filtersGrid {
+  display: grid;
+  gap: 0.85rem;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.filterField {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.filterLabel {
+  align-items: center;
+  color: #343434;
+  display: flex;
+  font-size: var(--fs-2xs);
+  font-weight: 700;
+  gap: 0.4rem;
+  min-height: 1.25rem;
+}
+
+.filterIcon {
+  color: var(--institutional-red);
+  flex: 0 0 1rem;
+  height: 1rem;
+  width: 1rem;
+}
+
+.filterField select,
+.filterField input {
+  background-color: #fff;
+  border: 1px solid #d5d3d0;
+  border-radius: 8px;
+  color: #222;
+  font: inherit;
+  min-height: 2.75rem;
+  padding: 0.55rem 0.75rem;
+  width: 100%;
+}
+
+.filterField select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23666666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-position: right 0.7rem center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  padding-right: 2rem;
+}
+
+.filterField input::placeholder {
+  color: #777;
+}
+
+.filterField select:hover,
+.filterField input:hover {
+  border-color: #aaa7a3;
+}
+
+.filterField select:focus-visible,
+.filterField input:focus-visible {
+  border-color: var(--institutional-red);
+  box-shadow: 0 0 0 3px rgba(228, 3, 46, 0.15);
+  outline: none;
+}
+
+.searchInputWrap {
+  position: relative;
+}
+
+.searchInputWrap > .filterIcon {
+  color: #777;
+  left: 0.75rem;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.searchInputWrap input {
+  padding-left: 2.35rem;
+}
+
+/* ---- Resultados ---- */
+.resultsHeading {
+  align-items: baseline;
+  display: flex;
+  gap: 0.75rem;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.resultsHeading h2 {
+  color: #1a1a1a;
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: clamp(1.4rem, 2.4vw, 2rem);
+  line-height: var(--lh-tight);
+  margin: 0;
+}
+
+.resultCount {
+  color: #555;
+  font-size: var(--fs-sm);
+  margin: 0;
+  white-space: nowrap;
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.statusMessage {
+  background: #fff;
+  border-left: 4px solid var(--institutional-gold);
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.statusMessage h3 {
+  color: #282828;
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: var(--fs-xl);
+  margin: 0 0 0.5rem;
+}
+
+.statusMessage p {
+  color: #555;
+  margin: 0;
+}
+
+.inlineReset {
+  align-items: center;
+  background: #fff;
+  border: 1px solid #e4c5ca;
+  border-radius: 8px;
+  color: var(--institutional-red);
+  cursor: pointer;
+  display: inline-flex;
+  font: inherit;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  margin-top: 1rem;
+  min-height: 2.5rem;
+  padding: 0.45rem 0.9rem;
+}
+
+.inlineReset:hover {
+  background: #fff0f2;
+  border-color: var(--institutional-red);
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .filtersGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .catalog {
+    padding: 1.25rem 1rem 3.5rem;
+  }
+  .filters {
+    padding: 1rem;
+  }
+  .filtersGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 400px) {
+  .filtersHeading {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .filtersHeading .clearFilters {
+    align-self: flex-start;
+  }
+  .resultsHeading {
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+}

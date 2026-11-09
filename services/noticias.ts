@@ -1,16 +1,22 @@
 import "server-only";
 
-import { fetchJson, getPublicBaseUrl, getServerBaseUrl, resolveUrl } from "./api";
+import {
+  absolutizarHtml,
+  fetchJson,
+  getPublicBaseUrl,
+  getServerBaseUrl,
+  resolveUrl,
+} from "./api";
+import type { NewsItem } from "@/types/domain";
 
-export type NewsItem = {
-  id: string;
-  title: string;
-  description: string;
-  image: string;
-  alt: string;
-  publishedAt: string;
-  href?: string;
-};
+export type { NewsItem };
+
+/** Campo de texto con formato de Drupal (value/format/processed). */
+type FormattedText = {
+  value?: string | null;
+  format?: string | null;
+  processed?: string | null;
+} | null;
 
 type Resource = {
   id?: string;
@@ -18,6 +24,8 @@ type Resource = {
     title?: string;
     created?: string;
     field_resumen?: string | null;
+    field_descripcion?: FormattedText;
+    field_fuente_de_informacion?: string | null;
     path?: { alias?: string | null } | null;
   };
   relationships?: {
@@ -27,41 +35,74 @@ type Resource = {
 
 type Response = { data?: Resource[]; included?: { type?: string; id?: string; attributes?: { uri?: { url?: string } } }[] };
 
-const fallbackNews: NewsItem[] = [
-  { id: "fallback-1", title: "Prepárate para la VIII edición de ‘La Noche y las Lunecirnagas’", description: "Conoce todos los detalles de esta actividad cultural de la Universidad Distrital.", image: "/image/vida universitaria.jpeg", alt: "Afiche de una actividad cultural universitaria", publishedAt: "2026-10-20T00:00:00Z" },
-  { id: "fallback-2", title: "La Universidad Distrital fortalece su compromiso social", description: "Consulta las novedades y actividades de nuestra comunidad universitaria.", image: "/image/compromiso social.jpeg", alt: "Comunidad universitaria participando en una actividad", publishedAt: "2026-10-13T00:00:00Z" },
-  { id: "fallback-3", title: "La investigación impulsa nuevas soluciones para la sociedad", description: "Conoce los proyectos y avances que nacen de la investigación universitaria.", image: "/image/investigacion.jpeg", alt: "Estudiante consultando material de investigación", publishedAt: "2026-10-06T00:00:00Z" },
-  { id: "fallback-4", title: "La comunidad universitaria construye nuevas oportunidades", description: "Descubre las iniciativas que fortalecen la vida universitaria.", image: "/image/vida universitaria.jpeg", alt: "Integrantes de la comunidad universitaria", publishedAt: "2026-09-29T00:00:00Z" },
-  { id: "fallback-5", title: "Nuevas experiencias para aprender y compartir", description: "Explora las actividades que enriquecen la experiencia universitaria.", image: "/image/compromiso social.jpeg", alt: "Comunidad universitaria reunida", publishedAt: "2026-09-22T00:00:00Z" },
-];
+const fallbackImage = "/image/vida universitaria.jpeg";
 
-export async function getNews(): Promise<NewsItem[]> {
-  const url = new URL("/jsonapi/node/news", getServerBaseUrl());
-  url.searchParams.set("filter[status]", "1");
-  url.searchParams.set("include", "field_imagen");
-  url.searchParams.set("sort", "-created");
-  url.searchParams.set("page[limit]", "8");
-
-  try {
-    const json = await fetchJson<Response>(url);
-    const included = json.included ?? [];
-    const items = (json.data ?? []).map((resource, index) => {
+function mapNews(json: Response): NewsItem[] {
+  const included = json.included ?? [];
+  return (json.data ?? [])
+    .map((resource, index) => {
       const imageRef = resource.relationships?.field_imagen?.data;
-      const file = included.find((item) => item.type === "file--file" && item.id === imageRef?.id);
+      const file = included.find(
+        (item) => item.type === "file--file" && item.id === imageRef?.id,
+      );
       const image = resolveUrl(file?.attributes?.uri?.url, getPublicBaseUrl());
+      const resumen = resource.attributes?.field_resumen?.trim() || "";
+      const descripcion = absolutizarHtml(
+        resource.attributes?.field_descripcion?.processed?.trim() ||
+          "",
+      );
       return {
         id: resource.id || `news-${index}`,
         title: resource.attributes?.title || "Noticia",
-        description: resource.attributes?.field_resumen || "Conoce más sobre esta noticia.",
-        image: image || fallbackNews[0].image,
-        alt: imageRef?.meta?.alt || resource.attributes?.title || "Imagen de la noticia",
+        description: resumen || "Conoce más sobre esta noticia.",
+        detail: descripcion,
+        source: resource.attributes?.field_fuente_de_informacion?.trim() || "",
+        image: image || fallbackImage,
+        alt:
+          imageRef?.meta?.alt ||
+          resource.attributes?.title ||
+          "Imagen de la noticia",
         publishedAt: resource.attributes?.created || new Date().toISOString(),
         href: resource.attributes?.path?.alias || "#noticias",
       };
-    }).filter((item) => item.title && item.description);
-    return items.length ? items.slice(0, 8) : fallbackNews;
+    })
+    .filter((item) => item.title && item.description);
+}
+
+function buildNewsUrl(limit: number): URL {
+  const url = new URL("/jsonapi/node/news", getServerBaseUrl());
+  url.searchParams.set("filter[status]", "1");
+  url.searchParams.set("include", "field_imagen");
+  // Más recientes primero (de la última publicación a la más antigua).
+  url.searchParams.set("sort", "-created");
+  url.searchParams.set("page[limit]", String(limit));
+  return url;
+}
+
+export async function getNews(): Promise<NewsItem[]> {
+  try {
+    const json = await fetchJson<Response>(buildNewsUrl(5));
+    // Solo las 5 noticias más recientes. Si el backend respondió sin noticias,
+    // devolvemos la lista vacía para que la UI muestre el mensaje de "no hay
+    // noticias disponibles".
+    return mapNews(json).slice(0, 5);
   } catch (error) {
     console.error("[Noticias] No se pudieron cargar las noticias:", error);
-    return fallbackNews;
+    return [];
+  }
+}
+
+/**
+ * Catálogo completo de noticias publicadas, usado por la página
+ * "Noticias y eventos". A diferencia de {@link getNews}, no limita el número de
+ * resultados para que los filtros puedan operar sobre toda la colección.
+ */
+export async function getAllNews(): Promise<NewsItem[]> {
+  try {
+    const json = await fetchJson<Response>(buildNewsUrl(50));
+    return mapNews(json);
+  } catch (error) {
+    console.error("[Noticias] No se pudo cargar el catálogo de noticias:", error);
+    return [];
   }
 }

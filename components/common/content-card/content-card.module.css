@@ -1,0 +1,109 @@
+/* Tarjeta de contenido reutilizable (noticias y eventos).
+   Enlaza a la página de detalle. */
+
+.card {
+  background: #fff;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-width: 0;
+  overflow: hidden;
+  transition: box-shadow 250ms ease, transform 250ms ease;
+}
+.card:hover {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.14);
+  transform: translateY(-3px);
+}
+
+/* Toda la tarjeta es un enlace al detalle. */
+.cardTrigger {
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  text-decoration: none;
+}
+.cardTrigger:focus-visible {
+  outline: 2px solid var(--institutional-red);
+  outline-offset: 2px;
+}
+
+.cardImage {
+  aspect-ratio: 16 / 9;
+  background: #252525;
+  display: block;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.image {
+  object-fit: cover;
+  transition: transform 350ms ease;
+}
+.card:hover .image {
+  transform: scale(1.04);
+}
+
+.imageFallback {
+  align-items: center;
+  background: linear-gradient(145deg, #2a2a2a, #454545);
+  color: rgba(255, 255, 255, 0.85);
+  display: flex;
+  height: 100%;
+  justify-content: center;
+}
+.imageFallback svg {
+  height: 3rem;
+  width: 3rem;
+}
+
+/* Etiqueta del tipo de contenido sobre la imagen. */
+.badge {
+  align-items: center;
+  background: var(--institutional-red);
+  color: #fff;
+  display: inline-flex;
+  font-size: var(--fs-2xs);
+  font-weight: 700;
+  gap: 0.4rem;
+  left: 0.75rem;
+  letter-spacing: 0.06em;
+  padding: 0.35rem 0.65rem;
+  position: absolute;
+  text-transform: uppercase;
+  top: 0.75rem;
+}
+.badge svg {
+  height: 0.85rem;
+  width: 0.85rem;
+}
+.badgeEvento {
+  background: #1a1a1a;
+}
+
+.cardBody {
+  display: flex;
+  min-width: 0;
+  padding: 0.85rem clamp(0.9rem, 2vw, 1.15rem);
+}
+
+/* Fuente de la información debajo de la imagen. */
+.cardSource {
+  align-items: center;
+  color: #595959;
+  display: flex;
+  font-size: var(--fs-2xs);
+  font-weight: 700;
+  gap: 0.4rem;
+  letter-spacing: 0.03em;
+  min-width: 0;
+  text-transform: uppercase;
+}
+.cardSource svg {
+  color: var(--institutional-red);
+  flex: 0 0 0.9rem;
+  height: 0.9rem;
+  width: 0.9rem;
+}

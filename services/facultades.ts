@@ -83,7 +83,7 @@ function mapFaculty(
   return {
     id: faculty.id,
     title,
-    href: faculty.attributes.path?.alias || `/facultades/${faculty.id}`,
+    href: resolveFacultyHref(faculty.attributes.path?.alias, title),
     attributes: {
       title,
       field_correo_electronico: faculty.attributes.field_correo_electronico,
@@ -110,6 +110,35 @@ function slugDesdeTituloDeRuta(title?: string | null): string {
   return partes
     .filter((parte) => !["de", "del", "la", "las", "el", "los", "y"].includes(parte))
     .join("-");
+}
+
+/**
+ * Slugs de las páginas de facultad existentes en `app/facultades/<slug>`.
+ * Se usan para enlazar desde la home hacia la página real de cada facultad.
+ */
+const RUTAS_FACULTADES = new Set([
+  "artes-asab",
+  "ciencias-educacion",
+  "ciencias-matematicas-naturales",
+  "ciencias-salud",
+  "ingenieria",
+  "medio-ambiente-recursos-naturales",
+  "tecnologica",
+]);
+
+/**
+ * Construye el enlace hacia la página de la facultad.
+ * Prioriza el slug derivado del título (que coincide con las rutas existentes)
+ * y usa el alias de Drupal solo si también apunta a una ruta conocida.
+ */
+function resolveFacultyHref(alias: string | null | undefined, title: string): string {
+  const slugTitulo = slugDesdeTituloDeRuta(title);
+  if (RUTAS_FACULTADES.has(slugTitulo)) return `/facultades/${slugTitulo}`;
+
+  const slugAlias = slugDesdeAlias(alias);
+  if (RUTAS_FACULTADES.has(slugAlias)) return `/facultades/${slugAlias}`;
+
+  return alias || "/facultades";
 }
 
 export async function getFaculties(): Promise<Faculty[]> {

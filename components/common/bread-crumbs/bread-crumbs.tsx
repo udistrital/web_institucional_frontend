@@ -73,26 +73,54 @@ export default function BreadCrumbs({ variant = "default" }: BreadCrumbsProps) {
 
   const onDark = variant === "onDark";
 
-  // "onDark": barra de fondo negro con texto claro encima.
+  // "onDark": barra oscura con texto claro, igual que la variante "faculty".
   const navClass = onDark
-    ? "py-3 px-4 text-sm text-white bg-black"
+    ? "bg-[#1a1a1a] px-4 py-3 text-sm text-white"
     : "py-3 px-4 text-sm text-gray-600 bg-white border-b border-gray-100";
 
   const linkClass = onDark
-    ? "font-medium text-white/80 transition-colors hover:text-white hover:underline"
+    ? "font-medium text-white transition-colors hover:text-[#f04b4b] focus-visible:text-[#f04b4b]"
     : "font-medium text-gray-600 transition-colors hover:text-ud-rojo hover:underline";
 
   const separatorClass = onDark ? "text-white/50" : "text-gray-400";
 
   const currentClass = onDark
-    ? "font-semibold text-white"
+    ? "min-w-0 max-w-full break-words font-semibold text-[#f04b4b]"
     : "font-semibold text-gray-800";
+
+  const olClass = onDark
+    ? "mx-auto flex w-full max-w-7xl flex-wrap items-center gap-x-2 gap-y-1"
+    : "flex items-center space-x-2 max-w-7xl mx-auto";
 
   return (
     <nav aria-label="BreadCrumbs" className={navClass}>
-      <ol className="flex items-center space-x-2 max-w-7xl mx-auto">
+      <ol className={olClass}>
         <li>
-          <Link href="/" className={linkClass}>
+          <Link
+            href="/"
+            className={
+              onDark
+                ? "inline-flex items-center gap-2 font-medium text-white transition-colors hover:text-[#f04b4b] focus-visible:text-[#f04b4b]"
+                : linkClass
+            }
+            aria-label={onDark ? "Inicio" : undefined}
+          >
+            {onDark && (
+              <svg
+                aria-hidden="true"
+                className="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V10Z"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="1.8"
+                />
+              </svg>
+            )}
             Inicio
           </Link>
         </li>
