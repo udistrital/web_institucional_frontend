@@ -123,7 +123,7 @@ export default function PageHero({
           data={data}
           fallbackAlt={brandAlt}
           priority={priority}
-          sizes="(max-width: 1023px) 100vw, 50vw"
+          sizes="(max-width: 1023px) 100vw, 60vw"
         />
       </header>
     );

@@ -4,11 +4,15 @@
  * (100% → 52%) y termina en curva. El texto empieza alineado con el logo.
  */
 .nav {
-  --quick-links-max: 22rem;
+  /*
+   * El hero "brand-diagonal" fija ancho, alto y separación con estas variables
+   * para calcular con ellas la pendiente de su corte diagonal.
+   */
+  --quick-links-max: var(--hero-quick-links-max, 22rem);
   /* Mismo margen izquierdo que el logo de la tarjeta del título. */
   --quick-links-inset: max(5vw, 1.5rem);
-  --quick-links-h: 2.375rem;
-  --quick-links-gap: 0.5rem;
+  --quick-links-h: calc(var(--hero-quick-links-h-rem, 2.375) * 1rem);
+  --quick-links-gap: calc(var(--hero-quick-links-gap-rem, 0.5) * 1rem);
   --quick-links-font: 0.9375rem;
   /* Desplazamiento a la derecha del botón en hover/foco. */
   --quick-links-shift: 0.5rem;

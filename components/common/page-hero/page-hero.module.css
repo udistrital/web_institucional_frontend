@@ -345,25 +345,77 @@
 }
 
 /*
- * Variante "brand-diagonal" (≥1024px): diseño clásico 50/50 con selectores
- * propios para no alterar "brand". La columna izquierda es blanca y acoge la
- * tarjeta con logo UD + título; la imagen ocupa la columna derecha y se
- * prolonga hacia la izquierda con un corte diagonal "/" (arriba empieza en el
- * 50% exacto). Reutiliza .lockupLogo, .lockupTitle, .eyebrow y .lockupName.
+ * Variante "brand-diagonal" (≥1024px), con selectores propios para no alterar
+ * "brand". A la izquierda, sobre blanco, la tarjeta con logo UD + título y la
+ * pirámide de botones (FacultyQuickLinks); a la derecha la imagen, con un corte
+ * diagonal "/" paralelo al borde derecho de la pirámide. La posición del corte
+ * sale de la pirámide: pasa a --brand-links-clear de cada fila, así que solo
+ * la tarjeta del título se monta sobre la imagen. La columna izquierda (≈40%)
+ * llega hasta el corte a la altura del centro del logo.
+ * Reutiliza .lockupLogo, .lockupTitle, .eyebrow y .lockupName.
+ *
+ * Las medidas que entran en la pendiente van en rem sin unidad (*-rem) para
+ * poder dividir entre ellas dentro de calc().
  */
 .hero.brandDiagonal {
-  --brand-hero-h: 26rem;
-  /* Desplazamiento horizontal del corte diagonal entre arriba y abajo. */
-  --brand-diagonal: 7.8rem;
-  /* Lo que la tarjeta sobresale sobre la imagen más allá del 50%. */
+  --brand-hero-rem: 26;
+  --brand-hero-h: calc(var(--brand-hero-rem) * 1rem);
+  /*
+   * Pirámide de botones; FacultyQuickLinks lee estas variables. Ancho máximo
+   * de la lista sin el margen izquierdo, y alto y separación de cada botón.
+   */
+  --hero-quick-links-max: 22rem;
+  --hero-quick-links-h-rem: 2.375;
+  --hero-quick-links-gap-rem: 0.5;
+  /* Margen izquierdo de la pirámide y del logo. */
+  --brand-inset: max(5vw, 1.5rem);
+  /* Distancia de la última fila al borde inferior del hero. */
+  --brand-links-bottom-rem: 1;
+  /*
+   * Holgura horizontal entre el borde derecho de cada fila y el corte (en
+   * hover, menos el desplazamiento de 0.5rem). Con 3rem el nombre cabe en dos
+   * líneas y ninguna línea del título pasa del corte a su altura.
+   */
+  --brand-links-clear: 3rem;
+  --brand-card-top-rem: 2.5;
+  --brand-card-top: calc(var(--brand-card-top-rem) * 1rem);
+  /* Lo que la tarjeta sobresale sobre la imagen más allá del corte. */
   --brand-card-overhang: 3rem;
-  --brand-card-top: 2.5rem;
-  --brand-logo-h: 4.5rem;
+  --brand-logo-rem: 4.5;
+  --brand-logo-h: calc(var(--brand-logo-rem) * 1rem);
   --brand-eyebrow-size: 1rem;
   --brand-name-size: 1.75rem;
   --brand-name-max: 13.5em;
+  /*
+   * Pendiente de la pirámide: cada fila es un 12% del ancho de la lista más
+   * estrecha y baja un alto de botón más la separación. El corte avanza hacia
+   * la izquierda lo mismo por cada rem que baja:
+   *   pendiente = 0.12 × ancho de la lista / (alto + separación)
+   * --brand-slope-px es ese avance en px por cada rem de bajada.
+   */
+  --brand-list-w: calc(var(--hero-quick-links-max) + var(--brand-inset));
+  --brand-slope-px: calc(
+    0.12 * var(--brand-list-w) /
+      (var(--hero-quick-links-h-rem) + var(--hero-quick-links-gap-rem))
+  );
+  /* Recorrido horizontal del corte entre arriba y abajo del hero. */
+  --brand-diagonal: calc(var(--brand-slope-px) * var(--brand-hero-rem));
+  /*
+   * Ancho de la columna izquierda: el corte a la altura del centro del logo.
+   * La última fila (52% de la lista) termina a --brand-links-bottom-rem del
+   * borde inferior y el corte pasa a --brand-links-clear de ella; desde ahí
+   * sube con la pendiente hasta el centro del logo.
+   */
+  --brand-col: calc(
+    0.52 * var(--brand-list-w) + var(--brand-links-clear) +
+      var(--brand-slope-px) *
+      (
+        var(--brand-hero-rem) - var(--brand-links-bottom-rem) -
+          var(--brand-card-top-rem) - 0.72 * var(--brand-logo-rem)
+      )
+  );
   background: #fff;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, var(--brand-col)) minmax(0, 1fr);
   grid-template-rows: minmax(0, 1fr);
   height: var(--brand-hero-h);
   min-height: var(--brand-hero-h);
@@ -374,20 +426,33 @@
   content: none;
 }
 
+/* La pirámide va al pie de la columna: su posición no depende del título. */
 .hero.brandDiagonal .text {
-  align-self: start;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
   max-width: none;
   min-width: 0;
-  padding: var(--brand-card-top) 0 0;
+  padding: var(--brand-card-top) 0 calc(var(--brand-links-bottom-rem) * 1rem);
 }
 
 .hero.brandDiagonal .text::after {
   display: none;
 }
 
+/*
+ * La imagen empieza en la columna derecha y se prolonga hacia la izquierda lo
+ * que el corte avanza desde el centro del logo hasta abajo.
+ */
 .hero.brandDiagonal .visual {
   clip-path: polygon(var(--brand-diagonal) 0, 100% 0, 100% 100%, 0 100%);
-  margin-left: calc(-1 * var(--brand-diagonal));
+  margin-left: calc(
+    -1 * var(--brand-slope-px) *
+      (
+        var(--brand-hero-rem) - var(--brand-card-top-rem) - 0.72 *
+          var(--brand-logo-rem)
+      )
+  );
   z-index: 0;
 }
 
@@ -396,9 +461,12 @@
   content: none;
 }
 
-/* La letra de respaldo se centra en la parte visible (mitad derecha). */
+/*
+ * La letra de respaldo se centra en la parte visible de la imagen a media
+ * altura, donde el corte ha avanzado la mitad de su recorrido.
+ */
 .hero.brandDiagonal .imageFallback {
-  padding-left: var(--brand-diagonal);
+  padding-left: calc(var(--brand-diagonal) / 2);
 }
 
 .diagonalCard {
@@ -411,10 +479,10 @@
   color: #171717;
   display: flex;
   gap: calc(var(--brand-logo-h) * 0.3);
-  /* El padding derecho reserva el tramo que sobresale: el texto no pasa del 50%. */
+  /* El padding derecho reserva el tramo que sobresale: el texto no pasa del corte. */
   padding: calc(var(--brand-logo-h) * 0.22)
     calc(var(--brand-card-overhang) + 1rem) calc(var(--brand-logo-h) * 0.22)
-    max(5vw, 1.5rem);
+    var(--brand-inset);
   transition: color 200ms ease;
   width: calc(100% + var(--brand-card-overhang));
 }
@@ -427,6 +495,7 @@
 
 /* Contenido bajo la tarjeta (`belowTitle`): sale desde el borde izquierdo. */
 .hero.brandDiagonal .diagonalBelow {
+  margin-top: auto;
   padding: 1rem 0 0;
 }
 
@@ -438,7 +507,9 @@
 
 @media (max-width: 1279px) {
   .hero.brandDiagonal {
-    --brand-logo-h: 3.75rem;
+    /* Con la letra menor el título ya cabe: el corte se acerca a la pirámide. */
+    --brand-links-clear: 1.5rem;
+    --brand-logo-rem: 3.75;
     --brand-eyebrow-size: 0.875rem;
     --brand-name-size: 1.5rem;
   }
