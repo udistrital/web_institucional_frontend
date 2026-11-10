@@ -90,6 +90,7 @@ export default function NormatividadBrowser({ grupos }: NormatividadBrowserProps
                     ? `Actualizado el ${norma.actualizado}`
                     : undefined
                 }
+                className={styles.documentCardWhite}
               />
             </li>
           ))}

@@ -111,6 +111,7 @@ export default function DireccionamientoEstrategicoPage() {
               href={politica.documentoUrl}
               kind="pdf"
               description={politica.descripcion}
+              className={styles.documentCardWhite}
             />
           </li>
         ))}

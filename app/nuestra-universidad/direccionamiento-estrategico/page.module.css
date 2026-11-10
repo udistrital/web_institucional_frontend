@@ -149,6 +149,16 @@
 /* ---- 3. Políticas institucionales ----
    Cada política se presenta con la tarjeta de documento compartida
    (DocumentCard). Aquí solo se define la grilla contenedora. */
+
+/* Override local del fondo de la tarjeta compartida: en esta página las
+   tarjetas de políticas y normatividad llevan fondo blanco para destacar
+   sobre el beige del panel. Se usa !important porque .card (módulo
+   compartido) y esta clase local tienen la misma especificidad y el orden
+   de carga entre módulos no es garantizable. */
+.documentCardWhite {
+  background: #fff !important;
+}
+
 .politicasGrid {
   display: grid;
   gap: 1.25rem;
