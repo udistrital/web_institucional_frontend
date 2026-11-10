@@ -3,7 +3,7 @@
     padding: 0.2rem 0.3rem;
     color: #111827;
     font-weight: 700;
-    font-size: 0.875rem;
+    font-size: var(--fs-xs);
     transition: background-color 150ms ease, color 150ms ease;
 }
 
@@ -138,7 +138,7 @@
     padding: 0.5rem 0.75rem;
     border-radius: 0.5rem;
     color: #111827;
-    font-size: 1rem;
+    font-size: var(--fs-base);
     font-weight: 700;
     transition: background-color 150ms ease, color 150ms ease;
 }
@@ -164,7 +164,7 @@
     padding: 0.5rem 0.75rem;
     border-radius: 0.5rem;
     color: #4b5563;
-    font-size: 1rem;
+    font-size: var(--fs-base);
     transition: background-color 150ms ease, color 150ms ease;
 }
 
@@ -200,7 +200,7 @@
     padding: 0.375rem 0.375rem;
     color: #111827;
     font-weight: 700;
-    font-size: 0.875rem;
+    font-size: var(--fs-xs);
 }
 
 .mobileSearchButton {
@@ -271,7 +271,7 @@
 .mobilePanelLabel {
     color: #111827;
     font-weight: 800;
-    font-size: 0.875rem;
+    font-size: var(--fs-xs);
     letter-spacing: 0.05em;
     text-transform: uppercase;
 }
@@ -312,7 +312,7 @@
 
 .mobileLevelTitleHint {
     color: #4b5563;
-    font-size: 0.8rem;
+    font-size: var(--fs-xs);
     font-weight: 600;
 }
 
@@ -323,7 +323,7 @@
     padding: 0.5rem 0;
     color: var(--color-ud-rojo);
     font-weight: 700;
-    font-size: 0.875rem;
+    font-size: var(--fs-xs);
     text-align: left;
 }
 
@@ -341,7 +341,7 @@
     width: 100%;
     padding: 0.875rem 1.25rem;
     color: #111827;
-    font-size: 0.95rem;
+    font-size: var(--fs-sm);
     font-weight: 600;
     text-align: left;
     border-bottom: 1px solid #e5e7eb;
