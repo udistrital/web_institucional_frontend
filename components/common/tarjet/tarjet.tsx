@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ServiceProfile } from "@/navegation/audience_services";
+import { ProfileIconGlyph } from "./profile-icons";
 import styles from "./tarjet.module.css";
 
 type TarjetProps = {
@@ -10,28 +11,12 @@ type TarjetProps = {
   className?: string;
 };
 
-/** Flecha de "entrar" que se anima al pasar el cursor por la tarjeta. */
-function ArrowIcon() {
-  return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M5 12h14" />
-      <path d="m12 5 7 7-7 7" />
-    </svg>
-  );
-}
-
 /**
  * Tarjeta de acceso por rol/servicio. Toda la tarjeta es un enlace. Muestra una
- * imagen con un panel de información inferior (título + descripción + flecha)
- * siguiendo la identidad visual institucional (rojo/blanco/dorado).
+ * imagen superior y un panel blanco inferior (título + descripción). Un medallón
+ * rojo con el ícono del perfil queda montado entre la imagen y el panel, dando
+ * identidad visual inmediata a cada rol. Sigue la identidad institucional
+ * (rojo/blanco/dorado): franja dorada sobre la imagen y borde dorado al hover.
  */
 export default function Tarjet({
   service,
@@ -59,18 +44,19 @@ export default function Tarjet({
         ) : null}
         {/* Franja dorada: acento institucional sobre la imagen. */}
         <span className={styles.accent} aria-hidden="true" />
+        {/* Medallón con el ícono del perfil, montado entre imagen y panel. */}
+        {service.icon ? (
+          <span className={styles.medallion} aria-hidden="true">
+            <ProfileIconGlyph name={service.icon} />
+          </span>
+        ) : null}
       </div>
 
       <div className={styles.body}>
-        <div className={styles.text}>
-          <h2 className={styles.title}>{service.label}</h2>
-          {service.overviewLabel ? (
-            <p className={styles.description}>{service.overviewLabel}</p>
-          ) : null}
-        </div>
-        <span className={styles.arrow} aria-hidden="true">
-          <ArrowIcon />
-        </span>
+        <h2 className={styles.title}>{service.label}</h2>
+        {service.overviewLabel ? (
+          <p className={styles.description}>{service.overviewLabel}</p>
+        ) : null}
       </div>
     </Link>
   );

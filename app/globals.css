@@ -206,3 +206,13 @@ button:focus-visible {
 h1 {
   font-weight: 800;
 }
+
+/* ---- Encabezados h2: siempre extrabold ---- */
+h2 {
+  font-weight: 800;
+}
+
+/* ---- Encabezados h3: siempre bold (un escalón bajo h1/h2) ---- */
+h3 {
+  font-weight: 700;
+}
