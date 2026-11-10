@@ -4,11 +4,10 @@ import Link from "next/link";
 import styles from "./page.module.css";
 import BreadCrumbs from "@/components/common/bread-crumbs/bread-crumbs";
 import PageHero from "@/components/common/page-hero";
-import { getFaculties, type Faculty } from "@/services/facultades";
+import { getFaculties } from "@/services/facultades";
 import { slugFiltro } from "@/lib/filtros";
 import { getMapUrl } from "@/lib/maps";
 import { facultades as rutasFacultades } from "@/navegation/global";
-import { getFaculties } from "@/services/facultades";
 import FacultyContactDetails from "./components/FacultyContactDetails";
 
 export const metadata: Metadata = {
@@ -38,8 +37,6 @@ function FacultadesIcon() {
   );
 }
 
-function getMapUrl(address: string | null | undefined) {
-  if (!address) return null;
 function getLocalFacultyHref(title: string) {
   const titleSlug = slugFiltro(title);
 
@@ -149,27 +146,6 @@ export default async function FacultadesPage() {
                       </div>
                     </details>
 
-                    <a className={styles.website} href={faculty.href}>
-                      Visitar sitio web <span aria-hidden="true">↗</span>
-                    </a>
-                        <FacultyContactDetails
-                          attributes={attributes}
-                          className={styles.details}
-                        />
-                        {mapUrl && (
-                          <div className={`${styles.mapBlock} ${styles.mobileMap}`}>
-                            <p className={styles.mapTitle}>Ubicación</p>
-                            <iframe
-                              className={styles.map}
-                              src={mapUrl}
-                              title={`Mapa de ubicación de ${attributes.title || "la facultad"}`}
-                              loading="lazy"
-                              referrerPolicy="no-referrer-when-downgrade"
-                            />
-                          </div>
-                        )}
-                      </div>
-                    </details>
                     {facultyHref && (
                       <Link className={styles.website} href={facultyHref}>
                         Ir a la página de la facultad <span aria-hidden="true">↗</span>
