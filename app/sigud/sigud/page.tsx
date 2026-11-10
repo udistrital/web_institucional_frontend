@@ -85,106 +85,114 @@ function SectionHeading({
 export default function SigudPage() {
   const panels: Record<SectionId, ReactNode> = {
     presentacion: (
-      <article
-        className={styles.bloque}
-        aria-labelledby="presentacion-title"
-      >
+      <article className={styles.block} aria-labelledby="presentacion-title">
         <SectionHeading
           id="presentacion"
           kicker={PRESENTACION.kicker}
           titulo={PRESENTACION.titulo}
         />
-        {PRESENTACION.parrafos.map((parrafo, index) => (
-          <p className={styles.descripcion} key={index}>
-            {parrafo}
-          </p>
-        ))}
+        <div className={styles.bloque}>
+          {PRESENTACION.parrafos.map((parrafo, index) => (
+            <p className={styles.descripcion} key={index}>
+              {parrafo}
+            </p>
+          ))}
+        </div>
       </article>
     ),
 
     formatos: (
-      <article className={styles.bloque} aria-labelledby="formatos-title">
+      <article className={styles.block} aria-labelledby="formatos-title">
         <SectionHeading
           id="formatos"
           kicker="Recursos de apoyo"
           titulo="Formatos y documentos de interés"
         />
-        {GRUPOS_DOCUMENTOS.map((grupo) => (
-          <section className={styles.grupo} key={grupo.titulo}>
-            <h3 className={styles.subheading}>{grupo.titulo}</h3>
-            {grupo.descripcion ? (
-              <p className={styles.descripcion}>{grupo.descripcion}</p>
-            ) : null}
-            <ListaDocumentos documentos={grupo.documentos} />
-          </section>
-        ))}
+        <div className={styles.bloque}>
+          {GRUPOS_DOCUMENTOS.map((grupo) => (
+            <section className={styles.grupo} key={grupo.titulo}>
+              <h3 className={styles.subheading}>{grupo.titulo}</h3>
+              {grupo.descripcion ? (
+                <p className={styles.descripcion}>{grupo.descripcion}</p>
+              ) : null}
+              <ListaDocumentos documentos={grupo.documentos} />
+            </section>
+          ))}
+        </div>
       </article>
     ),
 
     modelo: (
-      <article className={styles.bloque} aria-labelledby="modelo-title">
+      <article className={styles.block} aria-labelledby="modelo-title">
         <SectionHeading
           id="modelo"
           kicker="Operación por procesos"
           titulo="Modelo de Operación por Procesos"
         />
+        <div className={styles.bloque}>
+          <h3 className={styles.subheading}>{MODELO_VIDEO.titulo}</h3>
+          <p className={styles.descripcion}>{MODELO_VIDEO.descripcion}</p>
+          <div className={styles.videoWrapper}>
+            <iframe
+              className={styles.videoFrame}
+              src={MODELO_VIDEO.embedUrl}
+              title={MODELO_VIDEO.titulo}
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          </div>
 
-        <h3 className={styles.subheading}>{MODELO_VIDEO.titulo}</h3>
-        <p className={styles.descripcion}>{MODELO_VIDEO.descripcion}</p>
-        <div className={styles.videoWrapper}>
-          <iframe
-            className={styles.videoFrame}
-            src={MODELO_VIDEO.embedUrl}
-            title={MODELO_VIDEO.titulo}
-            loading="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-          />
+          <h3 className={styles.subheading}>Accesos y plataforma</h3>
+          <ul className={styles.accesos}>
+            {ACCESOS_PLATAFORMA.map((acceso) => (
+              <li key={acceso.url}>
+                <a
+                  className={styles.accesoLink}
+                  href={acceso.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className={styles.accesoFlecha} aria-hidden="true">
+                    <ExternalLinkIcon />
+                  </span>
+                  <span className={styles.accesoBody}>
+                    <span className={styles.accesoLabel}>{acceso.label}</span>
+                    <span className={styles.accesoDesc}>
+                      {acceso.descripcion}
+                    </span>
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
-
-        <h3 className={styles.subheading}>Accesos y plataforma</h3>
-        <ul className={styles.accesos}>
-          {ACCESOS_PLATAFORMA.map((acceso) => (
-            <li key={acceso.url}>
-              <a
-                className={styles.accesoCard}
-                href={acceso.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span className={styles.accesoBody}>
-                  <span className={styles.accesoLabel}>{acceso.label}</span>
-                  <span className={styles.accesoDesc}>{acceso.descripcion}</span>
-                </span>
-                <span className={styles.accesoFlecha} aria-hidden="true">
-                  <ExternalLinkIcon />
-                </span>
-              </a>
-            </li>
-          ))}
-        </ul>
       </article>
     ),
 
     normatividad: (
-      <article className={styles.bloque} aria-labelledby="normatividad-title">
+      <article className={styles.block} aria-labelledby="normatividad-title">
         <SectionHeading
           id="normatividad"
           kicker="Marco normativo"
           titulo="Normatividad del Subsistema de Gestión de Calidad (SGC)"
         />
-        <ul className={styles.normas}>
-          {NORMATIVIDAD.map((norma) => (
-            <li key={norma.url}>
-              <DocumentCard
-                label={norma.label}
-                href={norma.url}
-                kind={norma.url.toLowerCase().endsWith(".pdf") ? "pdf" : "enlace"}
-                description={norma.descripcion}
-              />
-            </li>
-          ))}
-        </ul>
+        <div className={styles.bloque}>
+          <ul className={styles.normas}>
+            {NORMATIVIDAD.map((norma) => (
+              <li key={norma.url}>
+                <DocumentCard
+                  label={norma.label}
+                  href={norma.url}
+                  kind={
+                    norma.url.toLowerCase().endsWith(".pdf") ? "pdf" : "enlace"
+                  }
+                  description={norma.descripcion}
+                />
+              </li>
+            ))}
+          </ul>
+        </div>
       </article>
     ),
   };

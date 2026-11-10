@@ -117,14 +117,3 @@ export const ORGANIGRAMAS: Organigrama[] = [
     ],
   },
 ];
-
-/* ------------------------------------------------------------------ */
-/* Directorio institucional (nota común a todas las secciones)        */
-/* ------------------------------------------------------------------ */
-
-export const DIRECTORIO_INSTITUCIONAL = {
-  texto:
-    "Para visualizar la información de contacto de cada una de las dependencias, remítase al Directorio Institucional y busque la dependencia de interés.",
-  label: "Ir al Directorio Institucional",
-  url: "https://www.udistrital.edu.co/directorio",
-};
