@@ -1,56 +1,24 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./page.module.css";
 import BreadCrumbs from "@/components/common/bread-crumbs/bread-crumbs";
-import { getFaculties, type Faculty } from "@/services/facultades";
+import { slugFiltro } from "@/lib/filtros";
+import { getMapUrl } from "@/lib/maps";
+import { facultades as rutasFacultades } from "@/navegation/global";
+import { getFaculties } from "@/services/facultades";
+import FacultyContactDetails from "./components/FacultyContactDetails";
 
 export const metadata: Metadata = {
   title: "Facultades",
 };
 
-function getMapUrl(address: string | null | undefined) {
-  if (!address) return null;
+function getLocalFacultyHref(title: string) {
+  const titleSlug = slugFiltro(title);
 
-  const query = `${address}, Bogotá, Colombia`;
-  return `https://www.google.com/maps?q=${encodeURIComponent(query)}&output=embed`;
-}
-
-function FacultyContactDetails({
-  attributes,
-}: {
-  attributes: Faculty["attributes"];
-}) {
   return (
-    <dl className={styles.details}>
-      {attributes.field_direccion && (
-        <div>
-          <dt>Dirección</dt>
-          <dd>{attributes.field_direccion}</dd>
-        </div>
-      )}
-      {attributes.field_correo_electronico && (
-        <div>
-          <dt>Correo electrónico</dt>
-          <dd>
-            <a href={`mailto:${attributes.field_correo_electronico}`}>
-              {attributes.field_correo_electronico}
-            </a>
-          </dd>
-        </div>
-      )}
-      {attributes.field_horario && (
-        <div>
-          <dt>Horario de atención</dt>
-          <dd>{attributes.field_horario}</dd>
-        </div>
-      )}
-      {attributes.field_pbx?.processed && (
-        <div>
-          <dt>Teléfono</dt>
-          <dd dangerouslySetInnerHTML={{ __html: attributes.field_pbx.processed }} />
-        </div>
-      )}
-    </dl>
+    rutasFacultades.find((faculty) => slugFiltro(faculty.nombre) === titleSlug)
+      ?.href ?? null
   );
 }
 
@@ -87,7 +55,7 @@ export default async function FacultadesPage() {
           <div className={styles.grid}>
             {faculties.map((faculty) => {
               const { attributes } = faculty;
-              const website = attributes.field_pagina_web?.uri;
+              const facultyHref = getLocalFacultyHref(attributes.title);
               const mapUrl = getMapUrl(attributes.field_direccion);
 
               return (
@@ -132,13 +100,19 @@ export default async function FacultadesPage() {
                     )}
 
                     <div className={styles.desktopInfo}>
-                      <FacultyContactDetails attributes={attributes} />
+                      <FacultyContactDetails
+                        attributes={attributes}
+                        className={styles.details}
+                      />
                     </div>
 
                     <details className={styles.infoPanel}>
                       <summary>Ver información de contacto y ubicación</summary>
                       <div className={styles.infoContent}>
-                        <FacultyContactDetails attributes={attributes} />
+                        <FacultyContactDetails
+                          attributes={attributes}
+                          className={styles.details}
+                        />
                         {mapUrl && (
                           <div className={`${styles.mapBlock} ${styles.mobileMap}`}>
                             <p className={styles.mapTitle}>Ubicación</p>
@@ -153,10 +127,10 @@ export default async function FacultadesPage() {
                         )}
                       </div>
                     </details>
-                    {website && (
-                      <a className={styles.website} href={website}>
-                        Visitar sitio web <span aria-hidden="true">↗</span>
-                      </a>
+                    {facultyHref && (
+                      <Link className={styles.website} href={facultyHref}>
+                        Ir a la página de la facultad <span aria-hidden="true">↗</span>
+                      </Link>
                     )}
                   </div>
                 </article>

@@ -2,6 +2,7 @@ import Image from "next/image";
 import type { ReactNode } from "react";
 import UdLogo from "@/components/common/ud-logo";
 import styles from "./page-hero.module.css";
+import Link from "next/link";
 import {
   HeroEntrance,
   HeroEntranceCard,
@@ -98,7 +99,12 @@ function PageHeroBrandTitle({
             <span className={styles.eyebrow}>{eyebrow}</span>{" "}
           </>
         ) : null}
+        <Link 
+        className={styles.lockupNameLink} 
+        href={data.titleHref ?? "/facultades"}
+        >
         <span className={styles.lockupName}>{getTitleText(data.title)}</span>
+        </Link>
       </h1>
     </div>
   );
@@ -122,7 +128,12 @@ function PageHeroDiagonalTitle({ data }: { data: PageHeroData }) {
             <span className={styles.eyebrow}>{eyebrow}</span>{" "}
           </>
         ) : null}
+        <Link
+        className={styles.lockupNameLink}
+        href={data.titleHref ?? "/facultades"}
+        >
         <span className={styles.lockupName}>{getTitleText(data.title)}</span>
+        </Link>
       </HeroEntranceTitle>
     </HeroEntranceCard>
   );
