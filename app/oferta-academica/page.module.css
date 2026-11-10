@@ -463,39 +463,40 @@
   max-width: calc(100vw - 2rem);
   overflow: hidden;
   padding: 0;
-  width: min(68rem, calc(100vw - 2rem));
+  width: min(60rem, calc(100vw - 2rem));
 }
 
 .programDialog::backdrop { background: rgba(12, 10, 10, 0.72); }
 
 .modalLayout {
+  display: flex;
+  flex-direction: column;
+  height: min(52rem, calc(100dvh - 2rem));
+  overflow: hidden;
+}
+
+.modalHero {
   display: grid;
-  grid-template-columns: minmax(16rem, 0.82fr) minmax(0, 1.18fr);
-  height: min(48rem, calc(100dvh - 2rem));
-  min-height: 28rem;
+  flex: 0 0 auto;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  min-height: 19rem;
 }
 
 .modalImage {
-  align-self: center;
-  aspect-ratio: 4 / 3;
   background: #fff;
-  display: flex;
-  height: auto;
-  min-height: 0;
+  min-height: 19rem;
   overflow: hidden;
-  padding: clamp(1rem, 2vw, 1.5rem);
   position: relative;
-  width: 100%;
 }
 
 .modalImageInner {
-  flex: 1;
-  min-height: 0;
-  position: relative;
-  width: 100%;
+  border-radius: 0.55rem;
+  inset: 0.65rem;
+  overflow: hidden;
+  position: absolute;
 }
 
-.modalImageInner > img { object-fit: contain; }
+.modalImageInner > img { object-fit: cover; }
 
 .modalImageFallback {
   align-items: center;
@@ -509,11 +510,18 @@
   justify-content: center;
 }
 
-.modalContent {
+.modalHeroInfo {
   min-width: 0;
-  overflow-y: auto;
   padding: clamp(1.25rem, 3vw, 2.25rem);
   position: relative;
+}
+
+.modalBody {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: clamp(1.25rem, 3vw, 2.25rem);
 }
 
 .modalClose {
@@ -552,7 +560,7 @@
   margin: 0;
 }
 
-.modalContent > .accreditation { margin-top: 0.85rem; }
+.modalHeroInfo > .accreditation { margin-top: 0.85rem; }
 
 .modalSummary,
 .modalDetails {
@@ -604,6 +612,7 @@
 
 .modalDetails {
   border-top: 1px solid #e9e6e2;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   padding-top: 1rem;
 }
 
@@ -624,7 +633,59 @@
 
 .modalDocument p { color: #555; font-size: var(--fs-xs); margin: 0.25rem 0 0; }
 
-.modalContent > .moreButton { margin-top: 1.1rem; }
+.modalActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: flex-end;
+  margin-top: 1.35rem;
+}
+
+.modalVisitButton {
+  background: var(--institutional-red);
+  border-color: var(--institutional-red);
+  border-radius: 0.35rem;
+  box-shadow: 0 4px 12px rgba(120, 15, 25, 0.2);
+  color: #fff;
+  font-size: var(--fs-sm);
+  gap: 0.65rem;
+  padding: 0.8rem 1.2rem;
+}
+
+.modalVisitButton:hover,
+.modalVisitButton:focus-visible {
+  background: #720e18;
+  border-color: #720e18;
+  color: #fff;
+}
+
+.modalVisitButton svg {
+  height: 1.1rem;
+  width: 1.1rem;
+}
+
+.modalInfoButton {
+  background: var(--institutional-gold);
+  border-color: var(--institutional-gold);
+  border-radius: 0.35rem;
+  box-shadow: 0 4px 12px rgba(120, 79, 0, 0.18);
+  color: #201800;
+  font-size: var(--fs-sm);
+  gap: 0.65rem;
+  padding: 0.8rem 1.2rem;
+}
+
+.modalInfoButton:hover,
+.modalInfoButton:focus-visible {
+  background: #e9a600;
+  border-color: #e9a600;
+  color: #201800;
+}
+
+.modalInfoButton svg {
+  height: 1.1rem;
+  width: 1.1rem;
+}
 
 .srOnly {
   clip: rect(0, 0, 0, 0);
@@ -834,20 +895,24 @@
   }
 
   .modalLayout {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: minmax(9rem, 27dvh) minmax(0, 1fr);
     height: calc(100dvh - 1rem);
+  }
+
+  .modalHero {
+    grid-template-columns: minmax(0, 1fr);
     min-height: 0;
   }
 
   .modalImage {
-    align-self: stretch;
-    aspect-ratio: auto;
-    height: 100%;
-    min-height: 9rem;
-    padding: 0.75rem;
+    height: clamp(11rem, 38vw, 14rem);
+    min-height: 0;
   }
-  .modalContent { padding: 1.25rem; }
+
+  .modalHeroInfo,
+  .modalBody { padding: 1.25rem; }
+
+  .modalDetails { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
   .modalClose { right: 0.75rem; top: 0.75rem; }
 }
 
