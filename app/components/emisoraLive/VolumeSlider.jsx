@@ -16,7 +16,7 @@ export function VolumeSlider({
         onClick={onToggleMute}
         aria-label={isMuted ? 'Activar sonido' : 'Silenciar'}
         aria-pressed={isMuted}
-        className={`${styles.MuteButton} text-white transition hover:text-amber-400`}
+        className={`${styles.MuteButton} text-white transition hover:text-[var(--institutional-gold)]`}
       >
         <MorphIcon
           icon={isMuted ? VolumeX : Volume2}
