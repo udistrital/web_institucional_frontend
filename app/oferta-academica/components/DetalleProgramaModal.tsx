@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import type { ProgramaAcademico } from "@/services/oferta-academica";
-import Button from "@/components/common/button/button";
+import SolicitarInformacionForm from "./SolicitarInformacionForm";
 import SelloAcreditacion from "./SelloAcreditacion";
 import styles from "../page.module.css";
 
@@ -85,10 +85,16 @@ export default function DetalleProgramaModal({
   imagenAlt: string;
 }) {
   const [abierto, setAbierto] = useState(false);
+  const [vista, setVista] = useState<"detalle" | "formulario">("detalle");
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const modalBodyRef = useRef<HTMLDivElement>(null);
   const botonAbrirRef = useRef<HTMLButtonElement>(null);
   const esPregrado = esNivelDePregrado(programa.nivel);
   const idTitulo = `programa-modal-${programa.id.replace(/[^a-zA-Z0-9_-]/g, "")}`;
+
+  useEffect(() => {
+    modalBodyRef.current?.scrollTo({ top: 0 });
+  }, [vista]);
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -108,6 +114,7 @@ export default function DetalleProgramaModal({
 
   function cerrar() {
     setAbierto(false);
+    setVista("detalle");
   }
 
   return (
@@ -134,106 +141,133 @@ export default function DetalleProgramaModal({
         }}
         onClose={() => {
           setAbierto(false);
+          setVista("detalle");
           botonAbrirRef.current?.focus();
         }}
         ref={dialogRef}
       >
         <div className={styles.modalLayout}>
-          <div className={styles.modalImage}>
-            <div className={styles.modalImageInner}>
-              {imagenUrl ? (
-                <Image
-                  alt={imagenAlt}
-                  fill
-                  sizes="(max-width: 760px) 90vw, 38vw"
-                  src={imagenUrl}
-                />
-              ) : (
-                <div
-                  className={styles.modalImageFallback}
-                  role="img"
-                  aria-label="Imagen no disponible"
-                >
-                  UD
-                </div>
-              )}
+          <div className={styles.modalHero}>
+            <div className={styles.modalImage}>
+              <div className={styles.modalImageInner}>
+                {imagenUrl ? (
+                  <Image
+                    alt={imagenAlt}
+                    fill
+                    sizes="(max-width: 760px) 100vw, 50vw"
+                    src={imagenUrl}
+                  />
+                ) : (
+                  <div
+                    className={styles.modalImageFallback}
+                    role="img"
+                    aria-label="Imagen no disponible"
+                  >
+                    UD
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <div className={styles.modalHeroInfo}>
+              <button
+                aria-label={`Cerrar detalles de ${programa.nombre}`}
+                autoFocus
+                className={styles.modalClose}
+                onClick={cerrar}
+                type="button"
+              >
+                <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="m18 6-12 12M6 6l12 12" />
+                </svg>
+              </button>
+
+              <p className={styles.programEyebrow}>
+                {[programa.facultad, programa.nivel].filter(Boolean).join(" · ") || "Programa académico"}
+              </p>
+              <div className={styles.modalTitleLine}>
+                <h2 id={idTitulo}>{programa.nombre}</h2>
+                {programa.snies !== null && (
+                  <span className={styles.snies}>SNIES {programa.snies}</span>
+                )}
+              </div>
+              {programa.acreditacionAltaCalidad && <SelloAcreditacion />}
+
+              <dl className={styles.modalSummary}>
+                <Dato etiqueta="Nivel de formación" valor={programa.nivel} />
+                <Dato etiqueta="Modalidad" valor={programa.modalidad} />
+                <Dato etiqueta="Jornada" valor={programa.jornada} />
+              </dl>
             </div>
           </div>
 
-          <div className={styles.modalContent}>
-            <button
-              aria-label={`Cerrar detalles de ${programa.nombre}`}
-              autoFocus
-              className={styles.modalClose}
-              onClick={cerrar}
-              type="button"
-            >
-              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="m18 6-12 12M6 6l12 12" />
-              </svg>
-            </button>
-
-            <p className={styles.programEyebrow}>
-              {[programa.facultad, programa.nivel].filter(Boolean).join(" · ") || "Programa académico"}
-            </p>
-            <div className={styles.modalTitleLine}>
-              <h2 id={idTitulo}>{programa.nombre}</h2>
-              {programa.snies !== null && (
-                <span className={styles.snies}>SNIES {programa.snies}</span>
-              )}
-            </div>
-            {programa.acreditacionAltaCalidad && <SelloAcreditacion />}
-
-            <dl className={styles.modalSummary}>
-              <Dato etiqueta="Nivel de formación" valor={programa.nivel} />
-              <Dato etiqueta="Modalidad" valor={programa.modalidad} />
-              <Dato etiqueta="Jornada" valor={programa.jornada} />
-            </dl>
-
-            {(programa.correo || programa.telefono) && (
-              <section className={styles.modalContact} aria-label="Contacto del programa">
-                <h3>Contacto</h3>
-                {programa.telefono && (
-                  <p><a href={`tel:${programa.telefono.replace(/[^\d+]/g, "")}`}>{programa.telefono}</a></p>
+          <div className={styles.modalBody} ref={modalBodyRef}>
+            {vista === "formulario" ? (
+              <SolicitarInformacionForm
+                onVolver={() => setVista("detalle")}
+                programaId={programa.id}
+                programaNombre={programa.nombre}
+              />
+            ) : (
+              <>
+                {(programa.correo || programa.telefono) && (
+                  <section className={styles.modalContact} aria-label="Contacto del programa">
+                    <h3>Contacto</h3>
+                    {programa.telefono && (
+                      <p><a href={`tel:${programa.telefono.replace(/[^\d+]/g, "")}`}>{programa.telefono}</a></p>
+                    )}
+                    {programa.correo && (
+                      <p><a href={`mailto:${programa.correo}`}>{programa.correo}</a></p>
+                    )}
+                  </section>
                 )}
-                {programa.correo && (
-                  <p><a href={`mailto:${programa.correo}`}>{programa.correo}</a></p>
+
+                <dl className={styles.modalDetails}>
+                  <Dato etiqueta="Facultad" valor={programa.facultad} />
+                  <Dato etiqueta="Título otorgado" valor={programa.titulacion} />
+                  <Dato etiqueta="Coordinación" valor={programa.coordinador} />
+                  <DatoDireccion direccion={programa.direccion} />
+                  <Dato etiqueta="Horario de atención" valor={programa.horarioAtencion} />
+                  {esPregrado && <Dato etiqueta="Puntaje Saber 11" valor={programa.puntajeSaber11} />}
+                </dl>
+
+                {(programa.normaInternaUrl || programa.registroCalificadoUrl) && (
+                  <div className={styles.modalDocuments}>
+                    <Documento
+                      descripcion={programa.normaInternaDescripcion}
+                      titulo="Norma interna de creación"
+                      url={programa.normaInternaUrl}
+                    />
+                    <Documento
+                      descripcion={programa.registroCalificadoDescripcion}
+                      titulo="Registro calificado"
+                      url={programa.registroCalificadoUrl}
+                    />
+                  </div>
                 )}
-              </section>
-            )}
 
-            <dl className={styles.modalDetails}>
-              <Dato etiqueta="Facultad" valor={programa.facultad} />
-              <Dato etiqueta="Título otorgado" valor={programa.titulacion} />
-              <Dato etiqueta="Coordinación" valor={programa.coordinador} />
-              <DatoDireccion direccion={programa.direccion} />
-              <Dato etiqueta="Horario de atención" valor={programa.horarioAtencion} />
-              {esPregrado && <Dato etiqueta="Puntaje Saber 11" valor={programa.puntajeSaber11} />}
-            </dl>
-
-            {(programa.normaInternaUrl || programa.registroCalificadoUrl) && (
-              <div className={styles.modalDocuments}>
-                <Documento
-                  descripcion={programa.normaInternaDescripcion}
-                  titulo="Norma interna de creación"
-                  url={programa.normaInternaUrl}
-                />
-                <Documento
-                  descripcion={programa.registroCalificadoDescripcion}
-                  titulo="Registro calificado"
-                  url={programa.registroCalificadoUrl}
-                />
-              </div>
-            )}
-
-            {programa.paginaProgramaUrl && (
-              <Button
-                href={programa.paginaProgramaUrl}
-                variant="red"
-                className={styles.modalMoreSpacing}
-              >
-                Conocer más
-              </Button>
+                <div className={styles.modalActions}>
+                  {programa.paginaProgramaUrl && (
+                    <a className={`${styles.moreButton} ${styles.modalVisitButton}`} href={programa.paginaProgramaUrl}>
+                      Visita la página
+                      <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M7 17 17 7M8 7h9v9" />
+                      </svg>
+                    </a>
+                  )}
+                  <button
+                    className={`${styles.moreButton} ${styles.modalInfoButton}`}
+                    onClick={() => setVista("formulario")}
+                    type="button"
+                  >
+                    Recibe más información
+                    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M4 6h16v12H4z" />
+                      <path d="m4 7 8 6 8-6" />
+                    </svg>
+                  </button>
+                </div>
+              </>
             )}
           </div>
         </div>
