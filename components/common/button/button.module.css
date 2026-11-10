@@ -1,0 +1,62 @@
+/*
+  Botón institucional compartido.
+
+  Dos variantes de contraste aprobadas por la identidad visual:
+  - "red":   fondo rojo institucional + texto blanco. Hover: fondo dorado +
+             texto negro.
+  - "white": fondo blanco + texto rojo institucional (con borde rojo). Hover:
+             fondo dorado + texto negro.
+
+  Ambas comparten estructura; solo cambian los colores.
+*/
+.button {
+  align-items: center;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  gap: 0.5rem;
+  justify-content: center;
+  line-height: 1;
+  padding: 0.7rem 1.15rem;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 180ms ease, color 180ms ease,
+    border-color 180ms ease;
+}
+
+.button svg {
+  height: 1.1rem;
+  width: 1.1rem;
+}
+
+/* Variante rojo → hover dorado/negro */
+.red {
+  background: var(--institutional-red);
+  color: #fff;
+}
+.red:hover {
+  background: var(--institutional-gold);
+  color: #000;
+}
+
+/* Variante blanco → hover dorado/negro */
+.white {
+  background: #fff;
+  border-color: var(--institutional-red);
+  color: var(--institutional-red);
+}
+.white:hover {
+  background: var(--institutional-gold);
+  border-color: var(--institutional-gold);
+  color: #000;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+}

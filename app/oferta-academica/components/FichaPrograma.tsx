@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { Faculty } from "@/services/facultades";
 import type { ProgramaAcademico } from "@/services/oferta-academica";
+import Button from "@/components/common/button/button";
 import DetalleProgramaModal from "./DetalleProgramaModal";
 import SelloAcreditacion from "./SelloAcreditacion";
 import styles from "../page.module.css";
@@ -90,9 +91,9 @@ export default function FichaPrograma({
             programa={programa}
           />
           {programa.paginaProgramaUrl && (
-            <a className={styles.moreButton} href={programa.paginaProgramaUrl}>
+            <Button href={programa.paginaProgramaUrl} variant="red">
               Conocer más
-            </a>
+            </Button>
           )}
         </div>
       </div>

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import type { ProgramaAcademico } from "@/services/oferta-academica";
+import Button from "@/components/common/button/button";
 import SelloAcreditacion from "./SelloAcreditacion";
 import styles from "../page.module.css";
 
@@ -111,14 +112,14 @@ export default function DetalleProgramaModal({
 
   return (
     <>
-      <button
-        className={styles.detailsButton}
+      <Button
+        variant="white"
         onClick={() => setAbierto(true)}
         ref={botonAbrirRef}
         type="button"
       >
         Ver más
-      </button>
+      </Button>
 
       <dialog
         aria-labelledby={idTitulo}
@@ -226,9 +227,13 @@ export default function DetalleProgramaModal({
             )}
 
             {programa.paginaProgramaUrl && (
-              <a className={styles.moreButton} href={programa.paginaProgramaUrl}>
+              <Button
+                href={programa.paginaProgramaUrl}
+                variant="red"
+                className={styles.modalMoreSpacing}
+              >
                 Conocer más
-              </a>
+              </Button>
             )}
           </div>
         </div>

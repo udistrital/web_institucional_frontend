@@ -1,6 +1,6 @@
 .linkList {
     color: #9ca3af;
-    font-size: 0.875rem;
+    font-size: var(--fs-xs);
     line-height: 1.5;
     display: flex;
     flex-direction: column;
@@ -40,7 +40,7 @@
 
 .contactBlock {
     color: #9ca3af;
-    font-size: 0.875rem;
+    font-size: var(--fs-xs);
 }
 
 .socialLinks {
@@ -93,7 +93,7 @@
     background: var(--institutional-red);
     padding: 1rem;
     color: #fff;
-    font-size: 0.75rem;
+    font-size: var(--fs-2xs);
     text-align: center;
 }
 

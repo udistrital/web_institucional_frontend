@@ -146,7 +146,7 @@ export default async function SobreNosotrosPage() {
               </ul>
             )}
             {organo.enlace && (
-              <a className={styles.organoLink} href={organo.enlace.href}>
+              <a className={`ud-link ${styles.organoLink}`} href={organo.enlace.href}>
                 {organo.enlace.label} <span aria-hidden="true">↗</span>
               </a>
             )}

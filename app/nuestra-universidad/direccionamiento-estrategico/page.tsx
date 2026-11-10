@@ -5,6 +5,7 @@ import styles from "./page.module.css";
 import BreadCrumbs from "@/components/common/bread-crumbs/bread-crumbs";
 import PageHero from "@/components/common/page-hero";
 import SectionTabs from "@/components/common/section-tabs/section-tabs";
+import DocumentCard from "@/components/common/document-card/document-card";
 import NormatividadBrowser from "./normatividad-browser";
 import { SectionIcon } from "./icons";
 import {
@@ -104,38 +105,14 @@ export default function DireccionamientoEstrategicoPage() {
 
       <ul className={styles.politicasGrid}>
         {POLITICAS.map((politica) => (
-          <li className={styles.politicaCard} key={politica.titulo}>
-            <div className={styles.politicaBody}>
-              <h3 className={styles.politicaTitulo}>{politica.titulo}</h3>
-              {politica.descripcion && (
-                <p className={styles.politicaDesc}>{politica.descripcion}</p>
-              )}
-            </div>
-            <a
-              className={styles.politicaLink}
+          <li key={politica.titulo}>
+            <DocumentCard
+              label={politica.titulo}
               href={politica.documentoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <svg
-                aria-hidden="true"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M15 3h6v6" />
-                <path d="M10 14 21 3" />
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-              </svg>
-              Ver documento
-              <span className={styles.sr}>
-                {" "}
-                de {politica.titulo}
-              </span>
-            </a>
+              kind="pdf"
+              description={politica.descripcion}
+              className={styles.documentCardWhite}
+            />
           </li>
         ))}
       </ul>

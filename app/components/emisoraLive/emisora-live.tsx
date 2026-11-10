@@ -26,7 +26,7 @@ export default function LiveEmisora() {
         isPlaying={isPlaying}
         isLoading={isLoading}
         onClick={togglePlay}
-        className="bg-amber-500 text-black hover:bg-amber-400"
+        className="bg-white text-[var(--institutional-red)] hover:bg-[var(--institutional-gold)] hover:text-black"
       />
       <div className={styles.Station}>
         <span className="font-bold text-white">LA UD 90.4FM</span>
@@ -39,7 +39,7 @@ export default function LiveEmisora() {
           isMuted={isMuted}
           onChange={changeVolume}
           onToggleMute={toggleMute}
-          className="accent-amber-500"
+          className="accent-white"
         />
       </div>
       <div className={`${styles.Programacion} font-bold text-white`}>

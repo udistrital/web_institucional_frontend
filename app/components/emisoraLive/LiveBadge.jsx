@@ -30,7 +30,7 @@ export function LiveBadge({ isPlaying, label = 'EN VIVO' }) {
         onClick={copyPageLink}
         aria-label={isCopied ? 'Enlace copiado' : 'Copiar enlace de la página'}
         title={isCopied ? 'Enlace copiado' : 'Copiar enlace de la página'}
-         className={`${styles.ShareButton} text-white transition hover:text-amber-400`}
+         className={`${styles.ShareButton} text-white transition hover:text-[var(--institutional-gold)]`}
       >
         <MorphIcon icon={isCopied ? Check : Share2} size={18} />
       </button>

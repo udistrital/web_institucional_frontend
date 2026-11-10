@@ -205,17 +205,15 @@
   left: -1.25rem;
   position: absolute;
 }
+/* Color/peso/hover vienen de la clase global .ud-link; aquí solo el layout
+   (alineación dentro de la tarjeta de órgano de dirección). */
 .organoLink {
   align-items: center;
-  color: var(--institutional-red);
   display: inline-flex;
   font-size: var(--fs-sm);
-  font-weight: 700;
   gap: .4rem;
   margin-top: auto;
-  text-decoration: none;
 }
-.organoLink:hover { color: #000; }
 
 /* ---- 3. Historia (línea de tiempo) ---- */
 .timeline {

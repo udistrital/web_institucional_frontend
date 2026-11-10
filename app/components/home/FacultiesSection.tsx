@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import Button from "@/components/common/button/button";
 import styles from "./home.module.css";
 import { useSwipe } from "./useSwipe";
 import type { Faculty } from "@/types/domain";
@@ -36,7 +37,7 @@ export default function FacultiesSection({ faculties }: FacultiesSectionProps) {
       <section className={styles["faculties-section"]} aria-labelledby="faculties-title">
         <div className={styles["faculties-intro"]}>
           <h2 id="faculties-title">Nuestras Facultades</h2>
-          <Link className={styles["faculties-link"]} href="/facultades">Ver facultades</Link>
+          <Button href="/facultades" variant="white">Ver facultades</Button>
         </div>
         <div className={styles["faculties-empty-state"]} role="status" aria-live="polite">
           <h3>Información no disponible</h3>
@@ -50,7 +51,7 @@ export default function FacultiesSection({ faculties }: FacultiesSectionProps) {
     <section className={styles["faculties-section"]} aria-labelledby="faculties-title">
       <div className={styles["faculties-intro"]}>
         <h2 id="faculties-title">Nuestras Facultades</h2>
-        <Link className={styles["faculties-link"]} href="/facultades">Ver facultades</Link>
+        <Button href="/facultades" variant="white">Ver facultades</Button>
       </div>
       <div className={styles["faculties-desktop-curtain"]}>
         <div className={styles["faculty-curtain-track"]}>

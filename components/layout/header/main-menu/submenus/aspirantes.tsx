@@ -7,7 +7,7 @@ type AspirantesProps = {
 }
 
 export default function Aspirantes({
-  href = "/aspirantes",
+  href = "/perfiles/aspirantes/",
   onClose,
 }: AspirantesProps) {
   return (

@@ -59,14 +59,20 @@ export default function Footer() {
               </label>
               <ul className={`${styles.linkList} ${styles.accordionContent}`}>
                 <li>
-                  <a href="#" className={footerLinkClass}>
+                  <Link
+                    href="/oferta-academica?nivel=posgrado"
+                    className={footerLinkClass}
+                  >
                     Posgrado
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className={footerLinkClass}>
+                  <Link
+                    href="/oferta-academica?nivel=pregrado"
+                    className={footerLinkClass}
+                  >
                     Pregrado
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a href="#" className={footerLinkClass}>
