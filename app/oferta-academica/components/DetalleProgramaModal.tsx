@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import Button from "@/components/common/button/button";
 import type { ProgramaAcademico } from "@/services/oferta-academica";
 import SolicitarInformacionForm from "./SolicitarInformacionForm";
 import SelloAcreditacion from "./SelloAcreditacion";
