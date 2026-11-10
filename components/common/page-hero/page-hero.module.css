@@ -116,6 +116,22 @@
   z-index: 1;
 }
 
+.lockupNameLink {
+  color: inherit;
+  display: block;
+  text-decoration: none;
+}
+
+.lockupNameLink:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.lockupNameLink:focus-visible {
+  outline: 2px solid var(--institutional-gold);
+  outline-offset: 4px;
+}
+
 /*
  * Variante "brand" (≥1024px): dos mitades iguales separadas por una línea
  * vertical recta en el 50%. Un filete rojo con un tramo amarillo

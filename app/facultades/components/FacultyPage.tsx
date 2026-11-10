@@ -13,8 +13,11 @@ import FacultyAcademicOffer, {
   type FacultyProgram,
 } from "./FacultyAcademicOffer";
 import FacultyBannerCarousel from "./FacultyBannerCarousel";
+import FacultyContact from "./FacultyContact";
+import FacultyHighlights from "./FacultyHighlights";
 import FacultyQuickLinks from "./FacultyQuickLinks";
 import getFacultyLockup from "./faculty-lockup";
+import { getFacultyStats } from "./faculty-stats";
 import styles from "./faculty-page.module.css";
 
 type FacultyPageProps = {
@@ -90,7 +93,7 @@ export default async function FacultyPage({
 }: FacultyPageProps) {
   const showBanners = heroStyle === "banners";
 
-  const [faculty, news] = await Promise.all([
+  const [faculty, news, events] = await Promise.all([
     getFacultyBySlug(slug),
     getNews(),
     getEvents(),
@@ -138,6 +141,7 @@ export default async function FacultyPage({
         data={{
           eyebrow,
           title: name,
+          titleHref: `/facultades/${slug}`,
           imageUrl: faculty.imageUrl,
           imageAlt: faculty.imageAlt,
         }}
@@ -145,6 +149,12 @@ export default async function FacultyPage({
       />
 
       <BreadCrumbs variant="faculty" />
+
+      <FacultyHighlights
+        // Si la oferta no cargó, se muestra "—" en lugar de un 0 engañoso.
+        programCount={offer.noDisponible ? undefined : programs.length}
+        stats={getFacultyStats(slug)}
+      />
 
       <div className={styles.body}>
         <FacultyAcademicOffer
@@ -156,6 +166,8 @@ export default async function FacultyPage({
 
       <div aria-hidden="true" className={styles.newsTransition} />
       <NewsSection news={news} events={events} title={`Noticias`} />
+
+      <FacultyContact attributes={faculty.attributes} title={faculty.title} />
     </section>
   );
 }

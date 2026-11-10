@@ -13,4 +13,5 @@ export type PageHeroData = {
   title: PageHeroTitle;
   imageUrl?: string | null;
   imageAlt?: string;
+  titleHref?: string;
 };
