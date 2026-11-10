@@ -9,6 +9,29 @@ export const metadata: Metadata = {
   title: "Facultades",
 };
 
+/**
+ * Icono del encabezado "Encuentra tu facultad". Birrete académico, en el mismo
+ * estilo de línea que los iconos de sección de "Sobre Nosotros"
+ * (viewBox 24x24, trazo de 2px, sin relleno).
+ */
+function FacultadesIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+      <path d="M6 12v5c3 3 9 3 12 0v-5" />
+    </svg>
+  );
+}
+
 function getMapUrl(address: string | null | undefined) {
   if (!address) return null;
 
@@ -73,9 +96,14 @@ export default async function FacultadesPage() {
 
       <div className={styles.content}>
         <div className={styles.sectionHeading}>
-          <div>
-            <p className={styles.sectionKicker}>Nuestra comunidad académica</p>
-            <h2>Encuentra tu facultad</h2>
+          <div className={styles.sectionHeadingMain}>
+            <span className={styles.sectionHeadingIcon} aria-hidden="true">
+              <FacultadesIcon />
+            </span>
+            <div>
+              <p className={styles.sectionKicker}>Nuestra comunidad académica</p>
+              <h2>Encuentra tu facultad</h2>
+            </div>
           </div>
           <p className={styles.resultCount}>
             {faculties.length} {faculties.length === 1 ? "facultad disponible" : "facultades disponibles"}
@@ -86,8 +114,8 @@ export default async function FacultadesPage() {
           <div className={styles.grid}>
             {faculties.map((faculty) => {
               const { attributes } = faculty;
-              const website = attributes.field_pagina_web?.uri;
               const mapUrl = getMapUrl(attributes.field_direccion);
+              const nombreFacultad = attributes.title || "la facultad";
 
               return (
                 <article className={styles.card} key={faculty.id}>
@@ -104,20 +132,25 @@ export default async function FacultadesPage() {
                       ) : (
                         <span className={styles.imageFallback} aria-hidden="true">UD</span>
                       )}
-                      <span className={styles.cardLabel}>Facultad</span>
                     </div>
 
+                    {/* Mapa plegable: en todas las resoluciones se abre con el
+                        botón "Cómo llegar" para no ocupar espacio por defecto. */}
                     {mapUrl && (
-                      <div className={`${styles.mapBlock} ${styles.desktopMap}`}>
-                        <p className={styles.mapTitle}>Ubicación</p>
-                        <iframe
-                          className={styles.map}
-                          src={mapUrl}
-                          title={`Mapa de ubicación de ${attributes.title || "la facultad"}`}
-                          loading="lazy"
-                          referrerPolicy="no-referrer-when-downgrade"
-                        />
-                      </div>
+                      <details className={styles.mapPanel}>
+                        <summary className={styles.mapToggle}>
+                          <span>Cómo llegar</span>
+                        </summary>
+                        <div className={styles.mapBlock}>
+                          <iframe
+                            className={styles.map}
+                            src={mapUrl}
+                            title={`Mapa de ubicación de ${nombreFacultad}`}
+                            loading="lazy"
+                            referrerPolicy="no-referrer-when-downgrade"
+                          />
+                        </div>
+                      </details>
                     )}
                   </div>
 
@@ -135,28 +168,15 @@ export default async function FacultadesPage() {
                     </div>
 
                     <details className={styles.infoPanel}>
-                      <summary>Ver información de contacto y ubicación</summary>
+                      <summary>Ver información de contacto</summary>
                       <div className={styles.infoContent}>
                         <FacultyContactDetails attributes={attributes} />
-                        {mapUrl && (
-                          <div className={`${styles.mapBlock} ${styles.mobileMap}`}>
-                            <p className={styles.mapTitle}>Ubicación</p>
-                            <iframe
-                              className={styles.map}
-                              src={mapUrl}
-                              title={`Mapa de ubicación de ${attributes.title || "la facultad"}`}
-                              loading="lazy"
-                              referrerPolicy="no-referrer-when-downgrade"
-                            />
-                          </div>
-                        )}
                       </div>
                     </details>
-                    {website && (
-                      <a className={styles.website} href={website}>
-                        Visitar sitio web <span aria-hidden="true">↗</span>
-                      </a>
-                    )}
+
+                    <a className={styles.website} href={faculty.href}>
+                      Visitar sitio web <span aria-hidden="true">↗</span>
+                    </a>
                   </div>
                 </article>
               );
