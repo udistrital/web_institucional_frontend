@@ -78,8 +78,20 @@ export default async function DetalleContenidoPage({
       <div className={styles.layout}>
         <article className={styles.article}>
           <header className={styles.header}>
-            <Link className={styles.back} href="/noticias-eventos">
-              <span aria-hidden="true">←</span>
+            <Link id="volver" className={styles.back} href="/noticias-eventos">
+              <svg
+                className={styles.backIcon}
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M19 12H5" />
+                <path d="m12 19-7-7 7-7" />
+              </svg>
               Volver a noticias y eventos
             </Link>
 
@@ -180,7 +192,7 @@ export default async function DetalleContenidoPage({
                   <li key={`${reciente.kind}-${reciente.id}`}>
                     <Link
                       className={styles.recentCard}
-                      href={rutaContenido(reciente)}
+                      href={`${rutaContenido(reciente)}#volver`}
                     >
                       <span className={styles.recentImage}>
                         {reciente.image ? (
