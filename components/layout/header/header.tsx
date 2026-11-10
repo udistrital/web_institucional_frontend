@@ -6,7 +6,7 @@ export default function Header({ ref }: { ref?: Ref<HTMLElement> }) {
   return (
     <header
       ref={ref}
-      className="sticky top-0 z-50 flex w-full flex-col bg-white border-b border-gray-100"
+      className="sticky top-0 z-50 flex w-full flex-col bg-white border-b border-gray-100 shadow-lg"
     >
       <div className="relative flex w-full mx-auto flex-row items-center justify-between gap-2 bg-white px-2 py-2 min-[921px]:flex-col min-[921px]:items-stretch min-[921px]:justify-start min-[921px]:gap-0 min-[921px]:px-0 min-[921px]:py-0 xl:flex-row xl:items-center xl:justify-between xl:gap-4 xl:px-6 xl:py-1">
         <div className="flex shrink-0 justify-start px-0 py-0 min-[921px]:justify-center min-[921px]:px-4 min-[921px]:py-2 xl:justify-start xl:p-0">
