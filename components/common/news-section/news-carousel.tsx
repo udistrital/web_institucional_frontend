@@ -35,7 +35,16 @@ export default function NewsCarousel({ news }: NewsCarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  // En móvil solo se muestra la noticia destacada (el aside "Más noticias"
+  // está oculto), así que la rotación automática se desactiva para que la
+  // tarjeta no cambie sola sin que el usuario pueda controlarla.
+  const [isMobile, setIsMobile] = useState(false);
   const [secondsLeft, setSecondsLeft] = useState(ROTATION_SECONDS);
+
+  const selectIndex = (nextIndex: number) => {
+    setActiveIndex(nextIndex);
+    setSecondsLeft(ROTATION_SECONDS);
+  };
 
   // Ordena las noticias empezando por la activa: la primera es la destacada y
   // el resto alimenta la lista "Más noticias" (que tiene scroll propio).
@@ -58,7 +67,20 @@ export default function NewsCarousel({ news }: NewsCarouselProps) {
   }, []);
 
   useEffect(() => {
-    if (isPaused || prefersReducedMotion || news.length < 2) return;
+    // Por debajo de lg (1024px) no se muestra la lista lateral: solo la
+    // noticia destacada. En ese rango se considera "móvil" y se corta la
+    // rotación automática.
+    const mediaQuery = window.matchMedia("(max-width: 1023px)");
+    const updateIsMobile = () => setIsMobile(mediaQuery.matches);
+
+    updateIsMobile();
+    mediaQuery.addEventListener("change", updateIsMobile);
+
+    return () => mediaQuery.removeEventListener("change", updateIsMobile);
+  }, []);
+
+  useEffect(() => {
+    if (isPaused || prefersReducedMotion || isMobile || news.length < 2) return;
 
     const timer = window.setInterval(() => {
       setSecondsLeft((current) => {
@@ -71,7 +93,7 @@ export default function NewsCarousel({ news }: NewsCarouselProps) {
     }, 1000);
 
     return () => window.clearInterval(timer);
-  }, [isPaused, news.length, prefersReducedMotion]);
+  }, [isPaused, news.length, prefersReducedMotion, isMobile]);
 
   if (!orderedNews.length) {
     return (
@@ -100,11 +122,14 @@ export default function NewsCarousel({ news }: NewsCarouselProps) {
         if (!event.currentTarget.contains(event.relatedTarget)) setIsPaused(false);
       }}
     >
-      {/* ---- Noticia destacada: toda la tarjeta es un enlace ---- */}
+      {/* ---- Noticia destacada: toda la tarjeta es un enlace ----
+          No se remonta al cambiar de noticia (sin `key` por id) y solo se
+          anima la opacidad: así el layout no se desplaza y la página no salta
+          al rotar. El fade por cambio lo controla la `key` interna del bloque
+          de contenido, que no altera la altura de la tarjeta. */}
       <motion.article
-        key={featuredNews.id}
-        initial={prefersReducedMotion ? false : { opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={prefersReducedMotion ? false : { opacity: 0 }}
+        animate={{ opacity: 1 }}
         transition={{ duration: 0.4, ease: "easeOut" }}
       >
         <Link
@@ -172,8 +197,7 @@ export default function NewsCarousel({ news }: NewsCarouselProps) {
                   onClick={() => {
                     const selectedIndex = news.findIndex((newsItem) => newsItem.id === item.id);
                     if (selectedIndex >= 0) {
-                      setActiveIndex(selectedIndex);
-                      setSecondsLeft(ROTATION_SECONDS);
+                      selectIndex(selectedIndex);
                     }
                   }}
                 >
