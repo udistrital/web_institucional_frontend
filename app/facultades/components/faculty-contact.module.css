@@ -1,0 +1,135 @@
+.contact {
+  background: #ebebe8;
+  border-top: 1px solid #deded9;
+}
+
+/* Mismo ancho de contenido que .body de faculty-page.module.css. */
+.inner {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.5fr) minmax(0, 0.8fr);
+  margin: 0 auto;
+  max-width: 1180px;
+  padding: clamp(2.5rem, 5vw, 4rem) max(4vw, 1.25rem);
+  width: 100%;
+}
+
+.noMap {
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+}
+
+.column {
+  min-width: 0;
+}
+
+.title,
+.subtitle {
+  color: #1a1a1a;
+  font-family: var(--font-montserrat), sans-serif;
+  font-weight: 700;
+  margin: 0 0 1rem;
+}
+
+.title {
+  font-size: var(--fs-xl);
+  line-height: 1.15;
+}
+
+/* Alineado con la línea base del título "Contacto". */
+.subtitle {
+  font-size: var(--fs-md);
+  line-height: 1.15;
+  padding-top: 0.55rem;
+}
+
+.details {
+  display: grid;
+  gap: 0.9rem;
+  margin: 0;
+}
+
+.details div {
+  min-width: 0;
+}
+
+.details dt {
+  color: #5f5f5f;
+  font-size: var(--fs-2xs);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.2rem;
+  text-transform: uppercase;
+}
+
+.details dd {
+  color: #222;
+  font-size: var(--fs-sm);
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.details dd :global(p) {
+  margin: 0;
+}
+
+.details a {
+  color: #222;
+  text-decoration: underline;
+  text-decoration-color: var(--institutional-gold);
+  text-underline-offset: 3px;
+}
+
+.details a:hover {
+  color: #a1021f;
+}
+
+.map {
+  border: 0;
+  display: block;
+  height: 15rem;
+  width: 100%;
+}
+
+.socialLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.socialLink {
+  align-items: center;
+  background: #a1021f;
+  border-radius: 50%;
+  color: #fff;
+  display: inline-flex;
+  height: 2.75rem;
+  justify-content: center;
+  transition: background-color 150ms ease;
+  width: 2.75rem;
+}
+
+.socialLink:hover {
+  background: #1a1a1a;
+}
+
+/* El foco global (contorno dorado + sombra) sigue la forma circular. */
+.socialLink:focus-visible {
+  border-radius: 50%;
+}
+
+@media (max-width: 1023px) {
+  .inner,
+  .noMap {
+    grid-template-columns: 1fr;
+  }
+
+  .subtitle {
+    padding-top: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .socialLink {
+    transition: none;
+  }
+}

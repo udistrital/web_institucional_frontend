@@ -1,9 +1,15 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./page.module.css";
 import BreadCrumbs from "@/components/common/bread-crumbs/bread-crumbs";
 import PageHero from "@/components/common/page-hero";
 import { getFaculties, type Faculty } from "@/services/facultades";
+import { slugFiltro } from "@/lib/filtros";
+import { getMapUrl } from "@/lib/maps";
+import { facultades as rutasFacultades } from "@/navegation/global";
+import { getFaculties } from "@/services/facultades";
+import FacultyContactDetails from "./components/FacultyContactDetails";
 
 export const metadata: Metadata = {
   title: "Facultades",
@@ -34,47 +40,12 @@ function FacultadesIcon() {
 
 function getMapUrl(address: string | null | undefined) {
   if (!address) return null;
+function getLocalFacultyHref(title: string) {
+  const titleSlug = slugFiltro(title);
 
-  const query = `${address}, Bogotá, Colombia`;
-  return `https://www.google.com/maps?q=${encodeURIComponent(query)}&output=embed`;
-}
-
-function FacultyContactDetails({
-  attributes,
-}: {
-  attributes: Faculty["attributes"];
-}) {
   return (
-    <dl className={styles.details}>
-      {attributes.field_direccion && (
-        <div>
-          <dt>Dirección</dt>
-          <dd>{attributes.field_direccion}</dd>
-        </div>
-      )}
-      {attributes.field_correo_electronico && (
-        <div>
-          <dt>Correo electrónico</dt>
-          <dd>
-            <a href={`mailto:${attributes.field_correo_electronico}`}>
-              {attributes.field_correo_electronico}
-            </a>
-          </dd>
-        </div>
-      )}
-      {attributes.field_horario && (
-        <div>
-          <dt>Horario de atención</dt>
-          <dd>{attributes.field_horario}</dd>
-        </div>
-      )}
-      {attributes.field_pbx?.processed && (
-        <div>
-          <dt>Teléfono</dt>
-          <dd dangerouslySetInnerHTML={{ __html: attributes.field_pbx.processed }} />
-        </div>
-      )}
-    </dl>
+    rutasFacultades.find((faculty) => slugFiltro(faculty.nombre) === titleSlug)
+      ?.href ?? null
   );
 }
 
@@ -114,6 +85,7 @@ export default async function FacultadesPage() {
           <div className={styles.grid}>
             {faculties.map((faculty) => {
               const { attributes } = faculty;
+              const facultyHref = getLocalFacultyHref(attributes.title);
               const mapUrl = getMapUrl(attributes.field_direccion);
               const nombreFacultad = attributes.title || "la facultad";
 
@@ -164,7 +136,10 @@ export default async function FacultadesPage() {
                     )}
 
                     <div className={styles.desktopInfo}>
-                      <FacultyContactDetails attributes={attributes} />
+                      <FacultyContactDetails
+                        attributes={attributes}
+                        className={styles.details}
+                      />
                     </div>
 
                     <details className={styles.infoPanel}>
@@ -177,6 +152,29 @@ export default async function FacultadesPage() {
                     <a className={styles.website} href={faculty.href}>
                       Visitar sitio web <span aria-hidden="true">↗</span>
                     </a>
+                        <FacultyContactDetails
+                          attributes={attributes}
+                          className={styles.details}
+                        />
+                        {mapUrl && (
+                          <div className={`${styles.mapBlock} ${styles.mobileMap}`}>
+                            <p className={styles.mapTitle}>Ubicación</p>
+                            <iframe
+                              className={styles.map}
+                              src={mapUrl}
+                              title={`Mapa de ubicación de ${attributes.title || "la facultad"}`}
+                              loading="lazy"
+                              referrerPolicy="no-referrer-when-downgrade"
+                            />
+                          </div>
+                        )}
+                      </div>
+                    </details>
+                    {facultyHref && (
+                      <Link className={styles.website} href={facultyHref}>
+                        Ir a la página de la facultad <span aria-hidden="true">↗</span>
+                      </Link>
+                    )}
                   </div>
                 </article>
               );
