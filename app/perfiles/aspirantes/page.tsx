@@ -24,7 +24,6 @@ export default function ServiciosAspirantesPage() {
         }}
         secundaryButton={{
           text: "Resultados de admisiones",
-          href: "/",
         }}
       />
       <BreadCrumbs />
@@ -36,20 +35,20 @@ export default function ServiciosAspirantesPage() {
           <span className="absolute left-0 top-0 h-0.5 w-12 -translate-y-1/4 bg-[#fdb400]" />
         </div>
       </div>
-      <div className=" grid-cols-1 max-w-7xl mx-auto flex lg:grid-cols-2 gap-6 py-8 items-center justify-between">
+      <div className="grid grid-cols-1 lg:grid-cols-2 max-w-7xl mx-auto gap-6 px-6 py-8 items-stretch">
         <InfoCard
           iconSrc="/logotipos-ud/UD-red-white.svg"
           title="Programas de pregrado"
           subtitle="Oferta, requisitos y perfiles de egreso."
           buttonText="Ver ofertas de pregrado"
-          buttonHref="/programas/pregrado"
+          buttonHref="/oferta-academica?nivel=pregrado"
         />
         <InfoCard
           iconSrc="/logotipos-ud/UD-black-white.svg"
           title="Programas de posgrado"
           subtitle="Especializaciones, maestrías y doctorados."
           buttonText="Ver ofertas de posgrado"
-          buttonHref="/programas/posgrado"
+          buttonHref="/oferta-academica?nivel=posgrado"
         />
       </div>
       <TramitesSection />

@@ -1,0 +1,114 @@
+/*
+  Tarjeta de documento institucional compartida.
+
+  Toda la tarjeta es un único enlace al recurso oficial (whole-card
+  clickable). Se usa para documentos externos: organigramas, formatos del
+  SIGUD, políticas institucionales y normatividad. Estilo de referencia:
+  el antiguo `.documentoCard` de la página de organigrama.
+*/
+.card {
+  align-items: center;
+  background: #faf9f7;
+  border: 1px solid #ececec;
+  border-radius: 8px;
+  display: flex;
+  gap: 1rem;
+  padding: clamp(1rem, 2vw, 1.4rem);
+  text-decoration: none;
+  transition: box-shadow 220ms ease, transform 220ms ease,
+    border-color 220ms ease;
+}
+.card:hover {
+  border-color: var(--institutional-gold);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+  transform: translateY(-3px);
+}
+
+/* ---- Badge de formato ---- */
+.icon {
+  align-items: center;
+  border-radius: 8px;
+  display: flex;
+  flex-shrink: 0;
+  height: 2.75rem;
+  justify-content: center;
+  width: 2.75rem;
+}
+.icon svg {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+.pdf {
+  background: rgba(140, 25, 25, 0.1);
+  color: var(--institutional-red);
+}
+.pptx {
+  background: rgba(253, 180, 0, 0.18);
+  color: #a06c00;
+}
+.doc {
+  background: rgba(18, 145, 192, 0.12);
+  color: #0f6f93;
+}
+.enlace {
+  background: rgba(0, 0, 0, 0.06);
+  color: #333;
+}
+
+/* ---- Cuerpo ---- */
+.body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.label {
+  color: #1a1a1a;
+  display: block;
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  line-height: var(--lh-snug);
+}
+.card:hover .label {
+  color: var(--institutional-red);
+}
+.description {
+  color: #555;
+  display: block;
+  font-size: var(--fs-xs);
+  line-height: var(--lh-normal);
+  margin-top: 0.35rem;
+}
+.meta {
+  color: #888;
+  display: block;
+  font-size: var(--fs-2xs);
+  letter-spacing: 0.06em;
+  margin-top: 0.3rem;
+  text-transform: uppercase;
+}
+
+/* ---- Flecha de enlace externo ---- */
+.arrow {
+  align-self: flex-start;
+  color: var(--institutional-red);
+  flex-shrink: 0;
+}
+.arrow svg {
+  height: 1.1rem;
+  width: 1.1rem;
+}
+
+@media (max-width: 480px) {
+  .card {
+    flex-wrap: wrap;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+  .card:hover {
+    transform: none;
+  }
+}

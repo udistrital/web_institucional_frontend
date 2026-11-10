@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import BreadCrumbs from "@/components/common/bread-crumbs/bread-crumbs";
+import Button from "@/components/common/button/button";
 import type { ContentKind } from "@/components/common/content-card";
 import {
   cargarContenido,
@@ -10,25 +11,13 @@ import {
   ultimosContenidos,
 } from "../../lib/datos";
 import { rutaContenido, slugContenido } from "../../lib/contenido";
+import { formatearFechaCorta, formatearFechaLarga } from "@/lib/fechas";
 import styles from "./page.module.css";
 
 const TIPOS_VALIDOS: ContentKind[] = ["noticia", "evento"];
 
-const dateFormatter = new Intl.DateTimeFormat("es-CO", {
-  day: "numeric",
-  month: "long",
-  year: "numeric",
-});
-
-const dateFormatterShort = new Intl.DateTimeFormat("es-CO", {
-  day: "numeric",
-  month: "short",
-  year: "numeric",
-});
-
-const formatDate = (value: string) => dateFormatter.format(new Date(value));
-const formatDateShort = (value: string) =>
-  dateFormatterShort.format(new Date(value));
+const formatDate = (value: string) => formatearFechaLarga(value);
+const formatDateShort = (value: string) => formatearFechaCorta(value);
 
 function esTipoValido(valor: string): valor is ContentKind {
   return (TIPOS_VALIDOS as string[]).includes(valor);
@@ -89,8 +78,20 @@ export default async function DetalleContenidoPage({
       <div className={styles.layout}>
         <article className={styles.article}>
           <header className={styles.header}>
-            <Link className={styles.back} href="/noticias-eventos">
-              <span aria-hidden="true">←</span>
+            <Link id="volver" className={styles.back} href="/noticias-eventos">
+              <svg
+                className={styles.backIcon}
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M19 12H5" />
+                <path d="m12 19-7-7 7-7" />
+              </svg>
               Volver a noticias y eventos
             </Link>
 
@@ -167,15 +168,16 @@ export default async function DetalleContenidoPage({
             )}
 
             {enlaceOriginal && (
-              <a
-                className={styles.sourceLink}
+              <Button
                 href={enlaceOriginal}
+                variant="red"
                 target="_blank"
                 rel="noopener noreferrer"
+                className={styles.sourceLink}
               >
                 {esEvento ? "Ver evento completo" : "Leer noticia completa"}
                 <span aria-hidden="true">→</span>
-              </a>
+              </Button>
             )}
           </div>
         </article>
@@ -190,7 +192,7 @@ export default async function DetalleContenidoPage({
                   <li key={`${reciente.kind}-${reciente.id}`}>
                     <Link
                       className={styles.recentCard}
-                      href={rutaContenido(reciente)}
+                      href={`${rutaContenido(reciente)}#volver`}
                     >
                       <span className={styles.recentImage}>
                         {reciente.image ? (

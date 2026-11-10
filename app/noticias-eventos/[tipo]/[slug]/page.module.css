@@ -24,26 +24,36 @@
   margin-bottom: 1.75rem;
 }
 
+/* Enlace "Volver" con el mismo estilo que el enlace "Ver noticias y eventos"
+   del home (NewsSection): rojo institucional, mayúsculas, con una flecha que
+   se desplaza al pasar el cursor; hover en negro.
+   `scroll-margin-top` deja el enlace justo debajo del header fijo cuando se
+   navega al ancla `#volver` desde "Lo más reciente". */
 .back {
   align-items: center;
   color: var(--institutional-red);
-  display: flex;
-  font-size: var(--fs-sm);
+  display: inline-flex;
+  font-size: var(--fs-xs);
   font-weight: 700;
-  gap: 0.4rem;
+  gap: 0.5rem;
+  letter-spacing: 0.04em;
   margin-bottom: 1.5rem;
+  scroll-margin-top: calc(var(--header-h, 72px) + 1rem);
   text-decoration: none;
+  text-transform: uppercase;
+  transition: color 200ms ease;
   width: fit-content;
 }
 .back:hover {
-  text-decoration: underline;
-  text-underline-offset: 2px;
+  color: #000;
 }
-.back span {
-  transition: transform 200ms ease;
+.backIcon {
+  height: 1rem;
+  transition: transform 300ms ease;
+  width: 1rem;
 }
-.back:hover span {
-  transform: translateX(-3px);
+.back:hover .backIcon {
+  transform: translateX(-4px);
 }
 
 .badge {
@@ -210,6 +220,7 @@
   border-bottom: 2px solid var(--institutional-gold);
   color: var(--institutional-red);
   font-size: var(--fs-lg);
+  font-weight: 800;
   padding-bottom: 0.3rem;
 }
 .body h3 {
@@ -235,22 +246,10 @@
   padding: 0.25rem 0 0.25rem 1rem;
 }
 
+/* Estilo visual del botón lo aporta el componente compartido Button; aquí
+   solo la separación respecto al contenido anterior. */
 .sourceLink {
-  align-items: center;
-  background: var(--institutional-red);
-  border-radius: 3px;
-  color: #fff;
-  display: inline-flex;
-  font-size: var(--fs-sm);
-  font-weight: 700;
-  gap: 0.5rem;
   margin-top: 1.75rem;
-  padding: 0.65rem 1.3rem;
-  text-decoration: none;
-  transition: background-color 180ms ease;
-}
-.sourceLink:hover {
-  background: #b80025;
 }
 
 /* ---- Barra lateral: lo más reciente ---- */
@@ -321,7 +320,7 @@
 .recentBadge {
   background: var(--institutional-red);
   color: #fff;
-  font-size: 0.65rem;
+  font-size: var(--fs-2xs);
   font-weight: 700;
   letter-spacing: 0.06em;
   padding: 0.1rem 0.4rem;

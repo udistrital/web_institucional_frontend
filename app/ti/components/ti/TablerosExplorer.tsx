@@ -224,7 +224,7 @@ export default function TablerosExplorer({
               </ol>
             </nav>
             <div className="flex flex-wrap items-baseline justify-between gap-2">
-              <h2 className="text-[length:var(--fs-xl)] font-bold text-[color:var(--institutional-red)]">
+              <h2 className="text-[length:var(--fs-xl)] font-extrabold text-[color:var(--institutional-red)]">
                 {selected.tablero.title}
               </h2>
               {selected.tablero.platform && (

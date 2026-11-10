@@ -1,14 +1,9 @@
 import Link from "next/link";
 import type { EventItem } from "@/types/domain";
 import { rutaContenido } from "@/app/noticias-eventos/lib/contenido";
+import { formatearFechaCorta } from "@/lib/fechas";
 
-const rangeFormatter = new Intl.DateTimeFormat("es-CO", {
-  day: "numeric",
-  month: "short",
-  year: "numeric",
-});
-
-const formatDate = (date: string) => rangeFormatter.format(new Date(date));
+const formatDate = (date: string) => formatearFechaCorta(date);
 
 const CalendarIcon = ({ className }: { className?: string }) => (
   <svg

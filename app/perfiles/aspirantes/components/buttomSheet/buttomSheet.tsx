@@ -20,7 +20,7 @@ export default function Buttomsheet({
         big: "px-8 py-3.5 text-lg font-bold"
     };
     const styleClasses: Record<ButtonStyle, string> = {
-        red: "bg-[var(--institutional-red,#8c1919)] text-white hover:bg-[var(--institutional-gold,#fdb400)] hover:text-[var(--institutional-red,#8c1919)] border border-transparent",
+        red: "bg-[var(--institutional-red,#8c1919)] text-white hover:bg-[var(--institutional-gold,#fdb400)] hover:text-black border border-transparent",
         yellow: "bg-[var(--institutional-gold,#fdb400)] text-[var(--institutional-red,#8c1919)] hover:bg-[var(--institutional-red,#8c1919)] hover:text-white border border-transparent",
         black: "bg-[var(--institutional-charcoal,#000000)] text-white hover:bg-[var(--institutional-red,#8c1919)] border border-transparent",
         white: "bg-white text-[var(--institutional-red,#8c1919)] hover:bg-[var(--institutional-gold,#fdb400)] hover:text-black border border-transparent",

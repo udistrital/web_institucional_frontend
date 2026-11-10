@@ -56,15 +56,11 @@ export default function NewsSection({
   return (
     <section className={sectionClassName} id={sectionId} aria-labelledby={titleId}>
       <div className="mx-auto max-w-[var(--content-width)]">
-        {/* Encabezado editorial: kicker + título con el enlace "ver" alineado. */}
+        {/* Encabezado: título de sección con el enlace "ver" alineado. */}
         <header className="mb-8 flex flex-wrap items-end justify-between gap-4">
           <div>
-            <span className="mb-2 flex items-center gap-2 text-[length:var(--fs-2xs)] font-bold uppercase tracking-[.12em] text-[var(--institutional-red)]">
-              <span className="h-[2px] w-6 bg-[var(--institutional-gold)]" />
-              Actualidad UD
-            </span>
             <h2
-              className="font-[var(--font-montserrat)] text-[length:var(--fs-h2)] font-bold leading-[.95] text-[#1a1a1a]"
+              className="m-0 font-[var(--font-montserrat)] text-[length:var(--fs-h2)] font-extrabold leading-[.9] text-black after:mt-[.85rem] after:block after:h-1 after:w-14 after:rounded-[2px] after:bg-[var(--institutional-gold)] after:content-['']"
               id={titleId}
             >
               {title}
@@ -72,7 +68,7 @@ export default function NewsSection({
           </div>
           {showCta && (
             <Link
-              className="group hidden items-center gap-2 text-[length:var(--fs-xs)] font-bold uppercase tracking-[.04em] text-[var(--institutional-red)] transition-colors hover:text-black sm:inline-flex"
+              className="group inline-flex items-center gap-2 text-[length:var(--fs-xs)] font-bold uppercase tracking-[.04em] text-[var(--institutional-red)] transition-colors hover:text-black"
               href={ctaHref}
             >
               {ctaLabel}

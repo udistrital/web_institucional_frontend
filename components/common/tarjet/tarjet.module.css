@@ -1,191 +1,172 @@
-.card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  min-width: 0;
-  min-height: 16rem;
-  aspect-ratio: 8 / 8;
-  color: #ffffff;
-  text-decoration: none;
-  border-radius: 1rem;
-  box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 25%);
-  transition: transform 250ms ease, box-shadow 250ms ease;
-}
+/*
+  Tarjeta de acceso por rol/servicio.
 
+  Diseño profesional alineado con la identidad visual institucional:
+  imagen superior + panel blanco inferior con título en rojo y descripción.
+  Un medallón rojo con el ícono del perfil queda montado entre la imagen y el
+  panel, dando identidad visual inmediata a cada rol. Acento dorado sobre la
+  imagen y borde dorado al hover. Toda la tarjeta es un enlace (whole-card
+  clickable).
+
+  Dos variantes comparten estructura; solo cambian proporciones:
+  - card:     grillas de perfiles (más alta).
+  - carousel: carrusel de la home (más compacta).
+*/
+.card,
 .carousel {
-  position: relative;
+  background: #fff;
+  border: 1px solid #ececec;
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 12%);
+  color: #1a1a1a;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   min-width: 0;
-  min-height: 16rem;
-  aspect-ratio: 16 / 9;
-  color: #ffffff;
-  text-decoration: none;
-  border-radius: 1rem;
-  box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 25%);
-  transition: transform 250ms ease, box-shadow 250ms ease;
-}
-
-.bento {
-  position: relative;
-  display: flex;
-  flex-direction: column;
   overflow: hidden;
-  min-width: 0;
-  min-height: 12rem;
-  aspect-ratio: 4 / 3;
-  color: #ffffff;
   text-decoration: none;
-  border-radius: 1rem;
-  box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 25%);
-  transition: transform 250ms ease, box-shadow 250ms ease;
+  transition: transform 250ms ease, box-shadow 250ms ease,
+    border-color 250ms ease;
 }
 
 .card:hover,
 .carousel:hover,
-.bento:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 1rem 2.5rem rgb(0 0 0 / 35%);
-}
-
 .card:focus-visible,
-.carousel:focus-visible,
-.bento:focus-visible {
+.carousel:focus-visible {
+  border-color: var(--institutional-gold);
+  box-shadow: 0 1rem 2.5rem rgb(0 0 0 / 22%);
   transform: translateY(-4px);
 }
 
+/* ---- Imagen ---- */
 .imageWrapper {
-  position: absolute;
-  inset: 0;
   background: #1a1a1a;
+  position: relative;
+  width: 100%;
+}
+.card .imageWrapper {
+  aspect-ratio: 4 / 3;
+}
+.carousel .imageWrapper {
+  aspect-ratio: 16 / 10;
 }
 
 .image {
   object-fit: cover;
   transition: transform 300ms ease;
 }
-
 .card:hover .image,
 .carousel:hover .image,
-.bento:hover .image {
+.card:focus-visible .image,
+.carousel:focus-visible .image {
   transform: scale(1.06);
 }
 
-.overlay {
+/* Franja dorada inferior sobre la imagen (acento de marca). */
+.accent {
+  background: var(--institutional-gold);
+  bottom: 0;
+  height: 0.3rem;
+  left: 0;
   position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 1.25rem;
-  isolation: isolate;
+  right: 0;
+  z-index: 1;
 }
 
-.overlay::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
+/* ---- Medallón con el ícono del perfil ---- */
+/* Montado a caballo entre la imagen y el panel (borde inferior del wrapper). */
+.medallion {
+  align-items: center;
+  background: var(--institutional-red);
+  border: 4px solid #fff;
+  border-radius: 50%;
   bottom: 0;
-  height: 30%;
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.88) 0%,
-    rgba(0, 0, 0, 0.5) 55%,
-    transparent 100%
-  );
-  mask-image: linear-gradient(to top, black 65%, transparent);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
-  z-index: -1;
-  pointer-events: none;
+  box-shadow: 0 0.25rem 0.75rem rgb(0 0 0 / 25%);
+  color: #fff;
+  display: flex;
+  height: 4rem;
+  justify-content: center;
+  left: 1.5rem;
+  position: absolute;
+  transform: translateY(50%);
+  transition: background-color 250ms ease, transform 250ms ease;
+  width: 4rem;
+  z-index: 2;
+}
+.carousel .medallion {
+  height: 3.5rem;
+  width: 3.5rem;
+}
+.medallion svg {
+  height: 1.9rem;
+  width: 1.9rem;
+}
+.carousel .medallion svg {
+  height: 1.7rem;
+  width: 1.7rem;
+}
+.card:hover .medallion,
+.carousel:hover .medallion,
+.card:focus-visible .medallion,
+.carousel:focus-visible .medallion {
+  background: var(--institutional-gold);
+  color: #000;
+  transform: translateY(50%) scale(1.08);
+}
+
+/* ---- Panel de información ---- */
+.body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  /* El padding superior deja espacio para la mitad del medallón que monta sobre el panel. */
+  padding: 2.5rem 1.4rem 1.4rem;
 }
 
 .title {
-  position: relative;
-  margin: 0;
-  color: #ffffff;
+  color: #000;
   font-family: var(--font-montserrat), sans-serif;
-  font-size: clamp(1.375rem, 2.2vw, 2rem);
+  font-size: var(--fs-lg);
   font-weight: 800;
   line-height: var(--lh-tight);
+  margin: 0;
   overflow-wrap: anywhere;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6);
 }
 
 .description {
-  position: relative;
-  margin: 0;
-  color: rgba(255, 255, 255, 0.92);
+  color: #555;
   font-size: var(--fs-sm);
-  line-height: var(--lh-normal);
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
-
-  /* Desktop: oculto, visible en hover */
-  opacity: 0;
-  transform: translateY(10px);
-  max-height: 0;
+  line-height: var(--lh-snug);
+  margin: 0.4rem 0 0;
+  /* Máximo dos líneas para mantener uniforme la altura de las tarjetas. */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
   overflow: hidden;
-  transition: opacity 250ms ease, transform 250ms ease, max-height 250ms ease;
 }
 
-.card:hover .description,
-.carousel:hover .description,
-.bento:hover .description,
-.card:focus-visible .description,
-.carousel:focus-visible .description,
-.bento:focus-visible .description {
-  opacity: 1;
-  transform: translateY(0);
-  max-height: 6rem;
-}
-
-/* Red overlay variant for bento cards */
-.overlayRed::before {
-  background: linear-gradient(
-    to top,
-    rgba(161, 2, 31, 0.95) 0%,
-    rgba(161, 2, 31, 0.45) 55%,
-    transparent 100%
-  );
-}
-
-/* Tablet y móvil: la descripción siempre está visible (no hay hover). */
-@media (hover: none), (pointer: coarse), (max-width: 1024px) {
-  .description {
-    opacity: 1;
-    transform: none;
-    max-height: 6rem;
-  }
-}
-
-/* Reduced motion */
+/* ---- Reduced motion ---- */
 @media (prefers-reduced-motion: reduce) {
   .card,
   .carousel,
-  .bento,
   .image,
-  .description {
+  .medallion {
     transition: none;
   }
-
   .card:hover,
   .carousel:hover,
-  .bento:hover {
+  .card:focus-visible,
+  .carousel:focus-visible {
     transform: none;
   }
-
   .card:hover .image,
-  .carousel:hover .image,
-  .bento:hover .image {
+  .carousel:hover .image {
     transform: none;
   }
-
-  .card:hover .description,
-  .carousel:hover .description,
-  .bento:hover .description {
-    transform: none;
+  .card:hover .medallion,
+  .carousel:hover .medallion,
+  .card:focus-visible .medallion,
+  .carousel:focus-visible .medallion {
+    transform: translateY(50%);
   }
 }

@@ -119,14 +119,14 @@ export default function DetalleProgramaModal({
 
   return (
     <>
-      <button
-        className={styles.detailsButton}
+      <Button
+        variant="white"
         onClick={() => setAbierto(true)}
         ref={botonAbrirRef}
         type="button"
       >
         Ver más
-      </button>
+      </Button>
 
       <dialog
         aria-labelledby={idTitulo}

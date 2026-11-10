@@ -88,7 +88,7 @@
 .sectionKicker { color: var(--institutional-red); }
 
 .filtersHeading .sectionKicker {
-  font-size: 0.7rem;
+  font-size: var(--fs-2xs);
   margin: 0 0 0.15rem;
 }
 
@@ -332,7 +332,7 @@
 .medalIcon { flex: 0 0 1.3rem; height: 1.3rem; width: 1.3rem; }
 
 .accreditationText {
-  font-size: 0.68rem;
+  font-size: var(--fs-2xs);
   font-weight: 800;
   letter-spacing: 0.035em;
   line-height: 1.15;
@@ -405,51 +405,6 @@
   flex-wrap: wrap;
   gap: 0.65rem;
   margin-top: 0.9rem;
-}
-
-.moreButton {
-  align-items: center;
-  background: var(--institutional-gold);
-  border: 1px solid var(--institutional-gold);
-  border-radius: 3px;
-  color: #201800;
-  cursor: pointer;
-  display: inline-flex;
-  font: inherit;
-  font-size: var(--fs-xs);
-  font-weight: 700;
-  justify-content: center;
-  padding: 0.55rem 1.1rem;
-  text-decoration: none;
-  transition: background-color 180ms ease, border-color 180ms ease;
-}
-
-.moreButton:hover,
-.moreButton:focus-visible {
-  background: #e9a600;
-  border-color: #e9a600;
-}
-
-.detailsButton {
-  align-items: center;
-  background: #fff;
-  border: 1px solid var(--institutional-red);
-  border-radius: 3px;
-  color: var(--institutional-red);
-  cursor: pointer;
-  display: inline-flex;
-  font: inherit;
-  font-size: var(--fs-xs);
-  font-weight: 700;
-  justify-content: center;
-  padding: 0.55rem 1.1rem;
-  transition: background-color 180ms ease, color 180ms ease;
-}
-
-.detailsButton:hover,
-.detailsButton:focus-visible {
-  background: var(--institutional-red);
-  color: #fff;
 }
 
 .programDialog {
@@ -759,7 +714,7 @@
 .medalIcon { flex: 0 0 1.3rem; height: 1.3rem; width: 1.3rem; }
 
 .accreditationText {
-  font-size: 0.68rem;
+  font-size: var(--fs-2xs);
   font-weight: 800;
   letter-spacing: 0.035em;
   line-height: 1.15;

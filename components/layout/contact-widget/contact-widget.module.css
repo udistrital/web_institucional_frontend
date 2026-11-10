@@ -61,7 +61,7 @@
   background: white;
   color: var(--color-ud-oscuro);
   font-family: var(--font-montserrat), sans-serif;
-  font-size: 0.8rem;
+  font-size: var(--fs-xs);
   font-weight: 700;
   text-decoration: none;
   box-shadow: 0 0.35rem 1rem rgb(0 0 0 / 12%);
