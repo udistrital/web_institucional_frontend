@@ -6,6 +6,17 @@ import type { Faculty } from "@/services/facultades";
 import type { ProgramaAcademico } from "@/services/oferta-academica";
 import { normalizarBusqueda, opcionesUnicas, slugFiltro } from "../lib/filtros";
 
+// "posgrado" es un filtro combinado que agrupa estos tres niveles.
+const SLUGS_POSGRADO = ["especializacion", "maestria", "doctorado"];
+
+// Determina si el nivel de un programa coincide con el filtro seleccionado.
+// "posgrado" agrupa varios niveles; el resto usa comparación exacta.
+function coincideNivelFiltro(nivel: string, nivelProgramaSlug: string): boolean {
+  if (!nivel) return true;
+  if (nivel === "posgrado") return SLUGS_POSGRADO.includes(nivelProgramaSlug);
+  return nivelProgramaSlug === nivel;
+}
+
 export default function useFiltrosOfertaAcademica({
   programas,
   facultades,
@@ -52,7 +63,10 @@ export default function useFiltrosOfertaAcademica({
     return programas.filter((programa) => {
       const coincideFacultad =
         !facultad || slugFiltro(programa.facultad) === facultad;
-      const coincideNivel = !nivel || slugFiltro(programa.nivelFiltro) === nivel;
+      const coincideNivel = coincideNivelFiltro(
+        nivel,
+        slugFiltro(programa.nivelFiltro),
+      );
       const coincideModalidad =
         !modalidad || slugFiltro(programa.modalidad) === modalidad;
       const coincideJornada = !jornada || slugFiltro(programa.jornada) === jornada;

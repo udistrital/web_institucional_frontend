@@ -16,7 +16,7 @@ interface HeroProps {
   };
   secundaryButton?: {
     text: string;
-    href: string;
+    href?: string;
   };
   height?: "small" | "medium" | "large";
   alignment?: "left" | "center" | "right";
@@ -123,13 +123,24 @@ export default function Hero({
                 whileTap={{ scale: 0.97 }}
                 className="inline-block w-full sm:w-auto"
               >
-                <Button
-                  href={secundaryButton.href}
-                  variant="red"
-                  className="w-full border-white px-4 py-3 text-base font-extrabold sm:w-auto sm:px-6 sm:text-lg md:text-xl"
-                >
-                  {secundaryButton.text}
-                </Button>
+                {secundaryButton.href ? (
+                  <Button
+                    href={secundaryButton.href}
+                    variant="red"
+                    className="w-full border-white px-4 py-3 text-base font-extrabold sm:w-auto sm:px-6 sm:text-lg md:text-xl"
+                  >
+                    {secundaryButton.text}
+                  </Button>
+                ) : (
+                  // Sin href: botón en modo acción, no navega a ninguna URL.
+                  <Button
+                    type="button"
+                    variant="red"
+                    className="w-full border-white px-4 py-3 text-base font-extrabold sm:w-auto sm:px-6 sm:text-lg md:text-xl"
+                  >
+                    {secundaryButton.text}
+                  </Button>
+                )}
               </motion.span>
             )}
           </motion.div>

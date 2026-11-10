@@ -1,8 +1,22 @@
+/**
+ * Ícono representativo del perfil. Se usa en la tarjeta de acceso por rol
+ * (medallón sobre la imagen). Cada valor mapea a un SVG inline en
+ * components/common/tarjet/profile-icons.tsx.
+ */
+export type ProfileIcon =
+  | "aspirantes"
+  | "estudiantes"
+  | "educadores"
+  | "administrativos"
+  | "egresados"
+  | "visitantes"
+
 export type ServiceProfile = {
   label: string
   href: string
   image?: string
   overviewLabel?: string
+  icon?: ProfileIcon
   layout?: "rows" | "columns"
   children?: ServiceProfile[]
 }
@@ -12,6 +26,7 @@ export const mainNavigation: ServiceProfile[] = [
     href: "/perfiles/aspirantes",
     image: "/image/soy aspirante.jpg",
     overviewLabel: "Proceso para aspirantes",
+    icon: "aspirantes",
     layout: "rows",
     children: [
       { label: "primer ingreso", href: "/perfiles/aspirantes/primer-ingreso", image: "/image/image-aspirantes/primer-ingreso-ficha.jpg", overviewLabel: "Inscribite por primera vez a un programa de pregrado de nuestra auniversidad" },
@@ -28,6 +43,7 @@ export const mainNavigation: ServiceProfile[] = [
     href: "/perfiles/estudiantes",
     image: "/image/soy estudiante.jpeg",
     overviewLabel: "Servicios para estudiantes",
+    icon: "estudiantes",
     layout: "columns",
     children: [
       { label: "Sistema de gestion academica", href: "/perfiles/estudiantes/sga" },
@@ -45,6 +61,7 @@ export const mainNavigation: ServiceProfile[] = [
     href: "/perfiles/educadores",
     image: "/image/soy docente.jpeg",
     overviewLabel: "Servicios para educadores",
+    icon: "educadores",
     layout: "columns",
     children: [
       { label: "Movilidad academica", href: "/perfiles/educadores/mobilidad-academica" },
@@ -74,6 +91,7 @@ export const mainNavigation: ServiceProfile[] = [
     href: "/perfiles/administrativos",
     image: "/image/soy funcionario.jpeg",
     overviewLabel: "Servicios para funcionarios",
+    icon: "administrativos",
     layout: "columns",
     children: [
       { label: "Aplicativo para cumplidos CPS GAIA", href: "/perfiles/administrativos/gaia" },
@@ -95,6 +113,7 @@ export const mainNavigation: ServiceProfile[] = [
     href: "/perfiles/egresados",
     image: "/image/soy egresado.jpeg",
     overviewLabel: "Servicios para egresados",
+    icon: "egresados",
     layout: "rows",
     children: [
       { label: "Sistema de gestion academica (SGA) - Egresados", href: "/perfiles/egresados/sga" },
@@ -107,6 +126,7 @@ export const mainNavigation: ServiceProfile[] = [
     href: "/perfiles/visitantes",
     image: "/image/soy visitante.jpg",
     overviewLabel: "Proceso para visitantes",
+    icon: "visitantes",
     layout: "rows",
     children: [
       { label: "Cursos de extension", href: "/perfiles/egresados/cursos-extension" },
