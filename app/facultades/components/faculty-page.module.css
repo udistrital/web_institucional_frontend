@@ -1,18 +1,26 @@
 .page {
   background: #f0f0ee;
   min-height: 70vh;
+  --faculty-content-width: 1180px;
+  --faculty-gutter: max(2vw, 1rem);
+  --faculty-gap: 1rem;
+  --faculty-section-gap: 2rem;
+  --faculty-section-title-size: clamp(1.5rem, 2vw, 1.75rem);
+  --faculty-card-title-size: clamp(1.1rem, 1.5vw, 1.35rem);
 }
 
 .body {
   margin: 0 auto;
-  max-width: 1180px;
-  padding: clamp(3rem, 6vw, 5rem) max(4vw, 1.25rem) clamp(3rem, 6vw, 5rem);
+  max-width: var(--faculty-content-width);
+  /* Relleno lateral corto: deja que las tarjetas de la oferta quepan en
+     una sola fila sin recortar el ancho de la página. */
+  padding: 0 var(--faculty-gutter) clamp(2rem, 4vw, 3.5rem);
   width: 100%;
 }
 
 .newsTransition {
   background: #f7f7f5;
-  height: 4.5rem;
+  height: 3rem;
   overflow: hidden;
   position: relative;
 }
@@ -37,6 +45,19 @@
   top: 50%;
   transform: translateY(-50%);
   width: 5rem;
+}
+
+/* Mantiene Noticias y eventos en la misma línea que los bloques bento de la
+   facultad, sin cambiar el fondo general de la sección. */
+.newsSection {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.newsSection > div {
+  max-width: var(--faculty-content-width);
+  padding-left: var(--faculty-gutter);
+  padding-right: var(--faculty-gutter);
 }
 
 .unavailable,
@@ -68,6 +89,6 @@
 
 @media (max-width: 768px) {
   .newsTransition {
-    height: 3.5rem;
+    height: 2.5rem;
   }
 }

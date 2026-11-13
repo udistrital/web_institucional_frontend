@@ -1,0 +1,100 @@
+.about {
+  background: #f7f6f3;
+  border-top: 1px solid #e1dfda;
+}
+
+.aboutHealth {
+  background: #f1f1ed;
+}
+
+.copyPanel {
+  background: #fff;
+  padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.inner {
+  align-items: stretch;
+  display: grid;
+  gap: var(--faculty-gap, 1rem);
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  margin: 0 auto;
+  max-width: var(--faculty-content-width, 1180px);
+  padding: var(--faculty-section-gap, 2rem) var(--faculty-gutter, 1rem);
+  width: 100%;
+}
+
+.copy {
+  align-self: center;
+}
+
+.eyebrow {
+  color: var(--institutional-red);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin: 0 0 0.5rem;
+  text-transform: uppercase;
+}
+
+.copy h2 {
+  color: #202124;
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: var(--faculty-section-title-size, 1.75rem);
+  font-weight: 700;
+  line-height: 0.95;
+  margin: 0 0 1rem;
+}
+
+.description {
+  color: #444;
+  font-size: var(--fs-sm);
+  line-height: 1.55;
+  margin: 0;
+  max-width: 38rem;
+}
+
+/* Frase de enganche: destaca sobre el párrafo principal. */
+.hook {
+  color: var(--institutional-red);
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: var(--fs-md);
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 1rem 0 0;
+  max-width: 34rem;
+}
+
+.media {
+  min-height: 15rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.media img {
+  object-fit: cover;
+}
+
+/*
+ * Ciencias de la Salud: la imagen ocupa más espacio y el texto queda
+ * en la columna izquierda, más ancha.
+ */
+.innerHealth {
+  gap: var(--faculty-gap, 1rem);
+  grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
+  max-width: var(--faculty-content-width, 1180px);
+}
+
+.innerHealth .media {
+  min-height: 25rem;
+}
+
+@media (max-width: 768px) {
+  .inner {
+    grid-template-columns: 1fr;
+  }
+
+  .media,
+  .innerHealth .media {
+    min-height: 13rem;
+  }
+}

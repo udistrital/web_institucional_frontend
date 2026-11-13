@@ -9,5 +9,13 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function CienciasSaludPage() {
-  return <FacultyPage heroStyle="diagonal" quickLinks slug={slug} />;
+  return (
+    <FacultyPage
+      aboutVariant="health"
+      heroStyle="diagonal"
+      quickLinks
+      showProgramCards
+      slug={slug}
+    />
+  );
 }

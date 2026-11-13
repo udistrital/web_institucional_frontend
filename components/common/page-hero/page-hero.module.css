@@ -585,6 +585,7 @@
   .hero.brandDiagonal .diagonalBelow {
     padding: 0 max(5vw, 1.25rem) 1.5rem 0;
   }
+
 }
 
 @media (max-width: 768px) {

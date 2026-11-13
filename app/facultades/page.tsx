@@ -8,7 +8,7 @@ import { getFaculties } from "@/services/facultades";
 import { slugFiltro } from "@/lib/filtros";
 import { getMapUrl } from "@/lib/maps";
 import { facultades as rutasFacultades } from "@/navegation/global";
-import FacultyContactDetails from "./components/FacultyContactDetails";
+import { FacultyContactDetails } from "./components/contacto";
 
 export const metadata: Metadata = {
   title: "Facultades",
