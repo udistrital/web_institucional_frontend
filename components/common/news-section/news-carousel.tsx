@@ -133,7 +133,7 @@ export default function NewsCarousel({ news }: NewsCarouselProps) {
         transition={{ duration: 0.4, ease: "easeOut" }}
       >
         <Link
-          className="group flex h-full flex-col overflow-hidden border border-black/5 bg-white shadow-[0_10px_30px_-12px_rgba(0,0,0,.18)] transition-shadow duration-300 hover:shadow-[0_18px_40px_-16px_rgba(0,0,0,.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--institutional-red)] focus-visible:ring-offset-2 lg:h-[560px] xl:h-auto 2xl:h-[560px]"
+          className="group flex h-full flex-col overflow-hidden border border-black/5 bg-white shadow-[0_10px_30px_-12px_rgba(0,0,0,.18)] transition-shadow duration-300 hover:shadow-[0_18px_40px_-16px_rgba(0,0,0,.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--institutional-red)] focus-visible:ring-offset-2 lg:h-[560px] xl:h-[560px] 2xl:h-[560px]"
           href={rutaContenido({ kind: "noticia", title: featuredNews.title })}
         >
           <div className="relative h-[240px] w-full shrink-0 overflow-hidden bg-[#ededed] lg:h-[300px]">

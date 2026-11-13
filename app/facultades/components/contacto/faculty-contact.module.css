@@ -10,7 +10,7 @@
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.5fr) minmax(0, 0.8fr);
   margin: 0 auto;
   max-width: 1180px;
-  padding: clamp(2.5rem, 5vw, 4rem) max(4vw, 1.25rem);
+  padding: clamp(1.75rem, 3.5vw, 2.5rem) max(4vw, 1.25rem);
   width: 100%;
 }
 
@@ -104,12 +104,15 @@
   display: inline-flex;
   height: 2.75rem;
   justify-content: center;
-  transition: background-color 150ms ease;
+  transition: background-color 150ms ease, color 150ms ease;
   width: 2.75rem;
 }
 
+/* Al pasar el cursor el botón se invierte: fondo dorado y ícono negro.
+   Los íconos usan `fill="currentColor"`, así que basta cambiar el color. */
 .socialLink:hover {
-  background: #1a1a1a;
+  background: var(--institutional-gold);
+  color: #000;
 }
 
 /* El foco global (contorno dorado + sombra) sigue la forma circular. */

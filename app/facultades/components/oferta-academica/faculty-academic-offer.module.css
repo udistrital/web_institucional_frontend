@@ -1,0 +1,342 @@
+.offer {
+  background: #1a1a1a;
+  color: #fff;
+  min-width: 0;
+  margin-left: calc(50% - 50vw);
+  padding: clamp(1.5rem, 3vw, 2.5rem)
+    max(
+      var(--faculty-gutter, 1rem),
+      calc((100vw - var(--faculty-content-width, 1180px)) / 2 + var(--faculty-gutter, 1rem))
+    );
+  position: relative;
+  width: 100vw;
+}
+
+.offerTextPanel {
+  background: #1a1a1a;
+  border: 1px solid rgb(255 255 255 / 12%);
+  color: #fff;
+  margin: 0 auto 2rem;
+  max-width: none;
+  padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.offer::before {
+  background-image: radial-gradient(rgb(255 255 255 / 16%) 1px, transparent 1px);
+  background-size: 1rem 1rem;
+  content: "";
+  height: 6rem;
+  opacity: 0.35;
+  pointer-events: none;
+  position: absolute;
+  right: -1rem;
+  top: -1rem;
+  width: 6rem;
+}
+
+.offerHeading {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  position: relative;
+  text-align: center;
+  z-index: 1;
+}
+
+.offerHeading::after {
+  background: var(--institutional-gold);
+  content: "";
+  height: 0.3rem;
+  width: 4rem;
+}
+
+.offerHeading h2,
+.statusMessage h2 {
+  color: #fff;
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: var(--faculty-section-title-size, 1.75rem);
+  font-weight: 700;
+  line-height: 0.95;
+  margin: 0;
+}
+
+/* Texto introductorio de la variante por programas. */
+.offerIntro {
+  color: rgb(255 255 255 / 90%);
+  font-size: var(--fs-sm);
+  line-height: 1.55;
+  margin: 0 auto 1.25rem;
+  max-width: 46rem;
+  position: relative;
+  text-align: center;
+  z-index: 1;
+}
+
+.healthOffer {
+  display: grid;
+  gap: var(--faculty-gap, 1rem);
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  align-items: center;
+}
+
+.healthOfferCopy .offerHeading {
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.healthOfferCopy .offerIntro {
+  margin: 0;
+  text-align: left;
+}
+
+.healthOfferCopy {
+  align-self: stretch;
+  display: flex;
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.healthOfferCopy .offerTextPanel {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0;
+  max-width: none;
+}
+
+.offerHook {
+  color: var(--institutional-gold);
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: var(--fs-md);
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 1rem 0 0;
+}
+
+.healthProgramCard {
+  border-radius: 0;
+  border: 1px solid rgb(255 255 255 / 12%);
+  box-shadow: 0 0.6rem 1.75rem rgb(0 0 0 / 45%);
+  display: block;
+  justify-self: end;
+  max-width: 34rem;
+  overflow: hidden;
+  text-decoration: none;
+  width: 100%;
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.healthProgramMedia {
+  aspect-ratio: 16 / 9;
+  background: #1a1a1a;
+  overflow: hidden;
+  position: relative;
+}
+
+.healthProgramCard:hover .levelImage,
+.healthProgramCard:focus-visible .levelImage {
+  transform: scale(1.04);
+}
+
+.healthProgramCard:hover .levelButton,
+.healthProgramCard:focus-visible .levelButton {
+  background: var(--institutional-red);
+  border-color: var(--institutional-red);
+  color: #fff;
+}
+
+.healthOffer > .enrollmentAction {
+  grid-column: 1 / -1;
+}
+
+.levelGrid {
+  display: grid;
+  gap: var(--faculty-gap, 1rem);
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  position: relative;
+  z-index: 1;
+}
+
+.levelCard {
+  background: #1a1a1a;
+  border-radius: 0;
+  border: 1px solid rgb(255 255 255 / 12%);
+  box-shadow: 0 0.6rem 1.75rem rgb(0 0 0 / 45%);
+  color: #fff;
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  text-decoration: none;
+  transition: box-shadow 200ms ease, transform 200ms ease;
+  width: 100%;
+}
+
+.levelCard:hover,
+.levelCard:focus-visible {
+  box-shadow: 0 0.75rem 2rem rgb(0 0 0 / 60%);
+  transform: translateY(-2px);
+}
+
+.levelMedia {
+  aspect-ratio: 5 / 4;
+  background: #1a1a1a;
+  overflow: hidden;
+  position: relative;
+}
+
+.levelImage {
+  object-fit: cover;
+  transition: transform 250ms ease;
+}
+
+/* Zoom leve de la imagen al interactuar con la tarjeta. */
+.levelCard:hover .levelImage,
+.levelCard:focus-visible .levelImage {
+  transform: scale(1.04);
+}
+
+.levelFallback {
+  align-items: center;
+  color: rgb(255 255 255 / 28%);
+  display: flex;
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 4rem;
+  font-weight: 700;
+  inset: 0;
+  justify-content: center;
+  position: absolute;
+}
+
+/* Botón visual sobre la imagen: en reposo es blanco con texto rojo. */
+.levelButton {
+  align-items: center;
+  background: rgb(255 255 255 / 92%);
+  border: 2px solid #fff;
+  border-radius: 999px;
+  bottom: 0.75rem;
+  color: var(--institutional-red);
+  display: flex;
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  justify-content: center;
+  left: 0.75rem;
+  line-height: 1.2;
+  min-height: 2.5rem;
+  overflow: hidden;
+  padding: 0.5rem 1.25rem;
+  position: absolute;
+  right: 0.75rem;
+  text-align: center;
+  transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
+}
+
+/* Degradado bajo el botón para que se lea con cualquier foto. */
+.levelScrim {
+  background: linear-gradient(
+    to top,
+    rgb(0 0 0 / 78%) 0,
+    rgb(0 0 0 / 34%) 45%,
+    rgb(0 0 0 / 0%) 100%
+  );
+  bottom: 0;
+  height: 55%;
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+}
+
+/* Al interactuar con la tarjeta, el botón se vuelve rojo con texto blanco. */
+.levelCard:hover .levelButton,
+.levelCard:focus-visible .levelButton {
+  background: var(--institutional-red);
+  border-color: var(--institutional-red);
+  color: #fff;
+}
+
+.enrollmentAction {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.25rem;
+  position: relative;
+  z-index: 1;
+}
+
+.enrollmentAction a {
+  border-radius: 999px;
+  max-width: 20rem;
+  min-height: 3rem;
+}
+
+.statusMessage {
+  background: #1a1a1a;
+  border-left: 4px solid var(--institutional-gold);
+  color: #fff;
+  padding: 1.5rem;
+}
+
+.statusMessage p {
+  color: rgb(255 255 255 / 82%);
+  margin: 0.5rem 0 0;
+}
+
+@media (max-width: 768px) {
+  .healthOffer {
+    grid-template-columns: 1fr;
+  }
+
+  .healthProgramCard {
+    grid-column: 1;
+    grid-row: 2;
+    order: 1;
+  }
+
+  .healthOfferCopy {
+    align-self: auto;
+    grid-column: 1;
+    grid-row: 1;
+    order: 1;
+  }
+
+  .healthOfferCopy .offerTextPanel {
+    margin: 0;
+  }
+
+  .healthOffer > .enrollmentAction {
+    grid-row: 3;
+    order: 3;
+  }
+
+  .healthOfferCopy .offerHeading {
+    align-items: center;
+    text-align: center;
+  }
+
+  .healthOfferCopy .offerIntro {
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .levelCard,
+  .levelImage,
+  .levelButton {
+    transition: none;
+  }
+
+  .levelCard:hover,
+  .levelCard:focus-visible {
+    transform: none;
+  }
+
+  .levelCard:hover .levelImage,
+  .levelCard:focus-visible .levelImage {
+    transform: none;
+  }
+}

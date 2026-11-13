@@ -1,0 +1,152 @@
+.highlights {
+  margin: 0 auto;
+  max-width: none;
+  padding: var(--faculty-section-gap, 2rem) 0;
+  width: 100%;
+}
+
+.inner {
+  display: grid;
+  gap: var(--faculty-gap, 1rem);
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  align-items: stretch;
+}
+
+.stats {
+  align-items: center;
+  background: linear-gradient(115deg, #730417, #a1021f 55%, #7a061a);
+  color: #fff;
+  display: flex;
+  isolation: isolate;
+  min-height: clamp(20rem, 42vh, 32rem);
+  overflow: hidden;
+  padding: clamp(2rem, 4vw, 3rem) clamp(1.25rem, 3vw, 2.5rem);
+  position: relative;
+}
+
+.statsBgImage {
+  filter: grayscale(35%) contrast(1.05);
+  object-fit: cover;
+  z-index: -2;
+}
+
+.statsOverlay {
+  background: linear-gradient(
+    115deg,
+    rgb(115 4 23 / 92%) 0%,
+    rgb(161 2 31 / 86%) 55%,
+    rgb(122 6 26 / 93%) 100%
+  );
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
+}
+
+.statList {
+  align-items: stretch;
+  display: grid;
+  gap: 1.5rem 0;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0;
+  position: relative;
+  width: 100%;
+}
+
+/* La cifra va arriba y la etiqueta debajo; en el DOM, dt precede a dd. */
+.stat {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  min-width: 0;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+.stat:not(:first-child) {
+  border-left: 1px solid rgb(255 255 255 / 18%);
+}
+
+.statIconWrap {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+  min-height: 2.25rem;
+}
+
+.statIcon {
+  color: rgb(255 255 255 / 86%);
+  height: 2.25rem;
+  width: 2.25rem;
+}
+
+.statValue {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: clamp(2.25rem, 3.4vw, 3.25rem);
+  font-variant-numeric: tabular-nums;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin: 0;
+}
+
+/* Sin mayúsculas: "investigación" en mayúsculas no cabe en la celda a 1024px. */
+.statLabel {
+  align-self: center;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  line-height: 1.3;
+  max-width: 14ch;
+  margin-top: 0.5rem;
+  min-height: 2.6em;
+  padding: 0 0.25rem;
+  width: 100%;
+}
+
+.media {
+  background: #111;
+  min-height: 14rem;
+  position: relative;
+}
+
+.video {
+  display: block;
+  height: 100%;
+  inset: 0;
+  object-fit: cover;
+  position: absolute;
+  width: 100%;
+}
+
+@media (max-width: 1023px) {
+  .inner {
+    grid-template-columns: 1fr;
+  }
+
+  .statList {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .stat:not(:first-child) {
+    border-left: 0;
+  }
+
+  .stat:nth-child(even) {
+    border-left: 1px solid rgb(255 255 255 / 18%);
+  }
+
+  .stat:nth-child(n + 3) {
+    border-top: 1px solid rgb(255 255 255 / 18%);
+    padding-top: 1.5rem;
+  }
+
+  .media {
+    aspect-ratio: 16 / 9;
+    min-height: 0;
+  }
+
+  .stats {
+    min-height: clamp(18rem, 45vh, 28rem);
+  }
+}

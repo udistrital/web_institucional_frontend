@@ -7,17 +7,20 @@ import { slugFiltro } from "@/lib/filtros";
 import NewsSection from "@/components/common/news-section/news-section";
 import BreadCrumbs from "@/components/common/bread-crumbs/bread-crumbs";
 import PageHero from "@/components/common/page-hero";
-import FacultyAcademicOffer, {
+import {
+  FacultyAcademicOffer,
   type AcademicLevel,
   type FacultyAcademicData,
   type FacultyProgram,
-} from "./FacultyAcademicOffer";
-import FacultyBannerCarousel from "./FacultyBannerCarousel";
-import FacultyContact from "./FacultyContact";
-import FacultyHighlights from "./FacultyHighlights";
-import FacultyQuickLinks from "./FacultyQuickLinks";
-import getFacultyLockup from "./faculty-lockup";
-import { getFacultyStats } from "./faculty-stats";
+} from "./oferta-academica";
+import {
+  FacultyBannerCarousel,
+  FacultyQuickLinks,
+  getFacultyLockup,
+} from "./hero";
+import { FacultyContact } from "./contacto";
+import { FacultyHighlights, getFacultyStats } from "./estadisticas";
+import { FacultyAbout } from "./sobre-nosotros";
 import styles from "./faculty-page.module.css";
 
 type FacultyPageProps = {
@@ -29,6 +32,13 @@ type FacultyPageProps = {
   heroStyle?: "banners" | "diagonal";
   /** Muestra los botones de secciones bajo el título (solo hero "diagonal"). */
   quickLinks?: boolean;
+  /** Variante visual de la sección Sobre nosotros. */
+  aboutVariant?: "default" | "health";
+  /**
+   * Muestra una tarjeta por programa en la oferta académica, en lugar de una
+   * por nivel. Para facultades con pocos programas, donde conviene nombrarlos.
+   */
+  showProgramCards?: boolean;
   slug: string;
 };
 
@@ -88,7 +98,9 @@ function unavailableMessage(message: string) {
 
 export default async function FacultyPage({
   heroStyle = "banners",
+  aboutVariant = "health",
   quickLinks = false,
+  showProgramCards = false,
   slug,
 }: FacultyPageProps) {
   const showBanners = heroStyle === "banners";
@@ -105,7 +117,7 @@ export default async function FacultyPage({
         <div className={styles.body}>{unavailableMessage(
           "No fue posible encontrar esta facultad. Intenta de nuevo más tarde.",
         )}</div>
-        <NewsSection news={news} events={events} />
+        <NewsSection className={styles.newsSection} news={news} events={events} />
       </section>
     );
   }
@@ -150,22 +162,38 @@ export default async function FacultyPage({
 
       <BreadCrumbs variant="faculty" />
 
-      <FacultyHighlights
-        // Si la oferta no cargó, se muestra "—" en lugar de un 0 engañoso.
-        programCount={offer.noDisponible ? undefined : programs.length}
-        stats={getFacultyStats(slug)}
+      <FacultyAbout
+        aboutVariant={aboutVariant}
+        facultyName={faculty.title}
+        facultyRouteSlug={slug}
       />
 
+      {/* Orden: sobre nosotros → oferta académica → noticias → estadísticas → contacto. */}
       <div className={styles.body}>
         <FacultyAcademicOffer
           faculty={facultyData}
+          facultyRouteSlug={slug}
           levels={levels}
           noDisponible={offer.noDisponible}
+          programs={programs}
+          showProgramCards={showProgramCards}
         />
       </div>
 
       <div aria-hidden="true" className={styles.newsTransition} />
-      <NewsSection news={news} events={events} title={`Noticias`} />
+      <NewsSection
+        className={styles.newsSection}
+        news={news}
+        events={events}
+        title={`Noticias`}
+      />
+
+      <FacultyHighlights
+        // Si la oferta no cargó, se muestra "—" en lugar de un 0 engañoso.
+        backgroundImageUrl={faculty.imageUrl}
+        programCount={offer.noDisponible ? undefined : programs.length}
+        stats={getFacultyStats(slug)}
+      />
 
       <FacultyContact attributes={faculty.attributes} title={faculty.title} />
     </section>
