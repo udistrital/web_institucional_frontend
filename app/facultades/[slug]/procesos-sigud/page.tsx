@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { generateFacultyMetadata } from "../../metadata";
+import { getFacultyNameForSigud } from "./content";
 
 const FACULTY_SLUGS = [
   "artes-asab",
@@ -23,9 +24,10 @@ export async function generateMetadata({
   params: { slug: string };
 }): Promise<Metadata> {
   const baseMeta = await generateFacultyMetadata(params.slug);
+  const facultyName = baseMeta.title || getFacultyNameForSigud(params.slug);
   return {
     ...baseMeta,
-    title: `Procesos SIGUD - ${baseMeta.title || "Facultad"}`,
+    title: `Procesos SIGUD - Facultad de ${facultyName}`,
   };
 }
 
