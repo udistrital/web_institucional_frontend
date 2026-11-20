@@ -1,0 +1,109 @@
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem max(2vw, 1rem);
+  background-color: #f5f5f5;
+}
+
+.embedContainer {
+  position: relative;
+  width: 100%;
+}
+
+.iframe {
+  width: 100%;
+  height: min(75vh, 56rem);
+  border: 1px solid #ccc;
+  display: block;
+}
+
+.loadingIndicator {
+  height: min(75vh, 56rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  position: relative;
+}
+
+/* Spinner animation */
+.loadingIndicator::after {
+  content: "";
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 3px solid #e4e4e4;
+  border-top-color: var(--institutional-gold, #d4a73a);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.fallbackCard {
+  border: 1px solid #ddd;
+  padding: 2rem;
+  text-align: center;
+  background-color: #fff;
+  min-height: min(75vh, 56rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.fallbackCard h3 {
+  margin: 0 0 1.5rem 0;
+  font-size: 1.25rem;
+  color: #333;
+}
+
+.fallbackButton {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--institutional-gold, #d4a73a);
+  color: #000;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: background-color 150ms ease, text-decoration 150ms ease;
+}
+
+.fallbackButton:hover {
+  background-color: #c29a2f;
+  text-decoration: underline;
+}
+
+.fallbackButton:focus-visible {
+  outline: 2px solid var(--institutional-red, #d4380d);
+  outline-offset: 2px;
+}
+
+.openInNewTab {
+  display: inline-block;
+  margin-top: 1rem;
+  color: var(--institutional-gold, #d4a73a);
+  text-decoration: underline;
+  font-weight: 600;
+  transition: color 150ms ease;
+}
+
+.openInNewTab:hover {
+  color: #c29a2f;
+}
+
+.openInNewTab:focus-visible {
+  outline: 2px solid var(--institutional-red, #d4a73a);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loadingIndicator::after {
+    animation: none;
+    border-top-color: #999;
+  }
+}
