@@ -5,6 +5,10 @@
   background-color: #f5f5f5;
 }
 
+.tabContent {
+  padding: 2rem 0;
+}
+
 .embedContainer {
   position: relative;
   width: 100%;
