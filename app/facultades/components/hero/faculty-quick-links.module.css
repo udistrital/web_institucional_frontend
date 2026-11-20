@@ -92,7 +92,17 @@
   outline-offset: -3px;
 }
 
+.linkActive {
+  background: #d4a73a;
+  color: #000;
+  transform: translateX(var(--quick-links-shift));
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .linkActive {
+    transform: none;
+  }
+
   /*
    * Estado final desde el HTML estático, antes de hidratar: anula el estado
    * inicial en línea de la entrada del hero (framer-motion).
