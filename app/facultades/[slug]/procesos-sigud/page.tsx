@@ -29,10 +29,11 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const baseMeta = await generateFacultyMetadata(params.slug);
-  const facultyName = baseMeta.title || getFacultyNameForSigud(params.slug);
+  const { slug } = await params;
+  const baseMeta = await generateFacultyMetadata(slug);
+  const facultyName = baseMeta.title || getFacultyNameForSigud(slug);
   return {
     ...baseMeta,
     title: `Procesos SIGUD - Facultad de ${facultyName}`,
@@ -42,9 +43,10 @@ export async function generateMetadata({
 export default async function ProcesosSignudPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const faculty = await getFacultyBySlug(params.slug);
+  const { slug } = await params;
+  const faculty = await getFacultyBySlug(slug);
   
   if (!faculty) {
     return (
@@ -70,7 +72,8 @@ export default async function ProcesosSignudPage({
         <EmbedPanel
           key={section.id}
           id={section.id}
-          title={section.title}
+          kicker="Procesos SIGUD"
+          title={section.label}
           url={section.url}
           embeddable={section.embeddable}
         />
@@ -81,12 +84,19 @@ export default async function ProcesosSignudPage({
   );
 
   return (
-    <>
+    <section className={styles.page} aria-label="Procesos SIGUD">
       <PageHero
+        belowTitle={
+          <FacultyQuickLinks
+            activeId="procesos-sigud"
+            href={`/facultades/${slug}`}
+            slug={slug}
+          />
+        }
         data={{
           eyebrow,
           title: name,
-          titleHref: `/facultades/${params.slug}`,
+          titleHref: `/facultades/${slug}`,
           imageUrl: faculty.imageUrl,
           imageAlt: faculty.imageAlt,
         }}
@@ -95,16 +105,12 @@ export default async function ProcesosSignudPage({
 
       <BreadCrumbs variant="onDark" />
 
-      <FacultyQuickLinks slug={params.slug} activeId="procesos-sigud" />
-
-      <div className={styles.page}>
-        <SectionTabs
-          sections={sectionLinks}
-          panels={panels}
-          ariaLabel="Secciones de Procesos SIGUD"
-          contentClassName={styles.tabContent}
-        />
-      </div>
-    </>
+      <SectionTabs
+        sections={sectionLinks}
+        panels={panels}
+        ariaLabel="Secciones de Procesos SIGUD"
+        contentClassName={styles.content}
+      />
+    </section>
   );
 }

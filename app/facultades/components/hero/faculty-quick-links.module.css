@@ -92,8 +92,12 @@
   outline-offset: -3px;
 }
 
+/*
+ * Botón de la sección actual: mismo aspecto que el hover (dorado institucional,
+ * texto negro y desplazado), para que se vea igual de vivo.
+ */
 .linkActive {
-  background: #d4a73a;
+  background: var(--institutional-gold);
   color: #000;
   transform: translateX(var(--quick-links-shift));
 }

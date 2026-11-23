@@ -35,31 +35,33 @@ export default function FacultyQuickLinks({
       <QuickLinksList className={styles.list}>
         {LABELS_WITH_IDS.map(({ id, label }) => {
           const isActive = activeId === id;
-          const linkHref = slug ? `/facultades/${slug}` : href;
+
+          // Construir el href según el botón:
+          // - "procesos-sigud" → /facultades/<slug>/procesos-sigud
+          // - Otros → /facultades/<slug> (página de la facultad)
+          let linkHref = href || "#";
+          if (slug) {
+            if (id === "procesos-sigud") {
+              linkHref = `/facultades/${slug}/procesos-sigud`;
+            } else {
+              linkHref = `/facultades/${slug}`;
+            }
+          }
 
           return (
             <QuickLinksItem className={styles.item} key={id}>
               {isActive ? (
                 <a
                   className={`${styles.link} ${styles.linkActive}`}
-                  href={linkHref || "#"}
+                  href={linkHref}
                   aria-current="page"
                 >
                   {label}
                 </a>
               ) : (
-                slug ? (
-                  <Link
-                    href={linkHref || "#"}
-                    className={styles.link}
-                  >
-                    {label}
-                  </Link>
-                ) : (
-                  <a className={styles.link} href={href || "#"}>
-                    {label}
-                  </a>
-                )
+                <Link href={linkHref} className={styles.link}>
+                  {label}
+                </Link>
               )}
             </QuickLinksItem>
           );

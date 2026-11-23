@@ -1,0 +1,2224 @@
+{
+  "base": "http://localhost:4330",
+  "label": "final",
+  "shots": [
+    {
+      "file": "ingenieria-1440-tab1-full.png",
+      "bytes": 924251,
+      "px": "1440x2391"
+    },
+    {
+      "file": "ingenieria-1440-tab1-viewport.png",
+      "bytes": 912430,
+      "px": "1440x900"
+    },
+    {
+      "file": "ingenieria-1440-tab1-full.png",
+      "bytes": 924251,
+      "px": "1440x2391"
+    },
+    {
+      "file": "ingenieria-1440-tab2-full.png",
+      "bytes": 920415,
+      "px": "1440x2391"
+    },
+    {
+      "file": "ingenieria-1440-tab3-full.png",
+      "bytes": 921013,
+      "px": "1440x2391"
+    },
+    {
+      "file": "ingenieria-1440-hash-gestion-docencia-full.png",
+      "bytes": 920415,
+      "px": "1440x2391"
+    },
+    {
+      "file": "ingenieria-1440-hash-gestion-laboratorios-full.png",
+      "bytes": 921013,
+      "px": "1440x2391"
+    },
+    {
+      "file": "ingenieria-1024-tab1-full.png",
+      "bytes": 611938,
+      "px": "1024x2423"
+    },
+    {
+      "file": "ingenieria-1024-tab1-full.png",
+      "bytes": 611938,
+      "px": "1024x2423"
+    },
+    {
+      "file": "ingenieria-1024-tab2-full.png",
+      "bytes": 609554,
+      "px": "1024x2423"
+    },
+    {
+      "file": "ingenieria-1024-tab3-full.png",
+      "bytes": 610910,
+      "px": "1024x2423"
+    },
+    {
+      "file": "ingenieria-390-tab1-full.png",
+      "bytes": 341759,
+      "px": "390x3501"
+    },
+    {
+      "file": "ingenieria-390-tab1-viewport.png",
+      "bytes": 228770,
+      "px": "390x900"
+    },
+    {
+      "file": "ingenieria-390-tab1-full.png",
+      "bytes": 341759,
+      "px": "390x3501"
+    },
+    {
+      "file": "ingenieria-390-tab2-full.png",
+      "bytes": 338586,
+      "px": "390x3466"
+    },
+    {
+      "file": "ingenieria-390-tab3-full.png",
+      "bytes": 339193,
+      "px": "390x3501"
+    },
+    {
+      "file": "artes-asab-1440-tab1-full.png",
+      "bytes": 648979,
+      "px": "1440x2391"
+    },
+    {
+      "file": "artes-asab-1440-tab1-viewport.png",
+      "bytes": 637461,
+      "px": "1440x900"
+    },
+    {
+      "file": "artes-asab-1440-tab1-full.png",
+      "bytes": 648979,
+      "px": "1440x2391"
+    },
+    {
+      "file": "artes-asab-1440-tab2-full.png",
+      "bytes": 645454,
+      "px": "1440x2391"
+    },
+    {
+      "file": "artes-asab-1440-tab3-full.png",
+      "bytes": 645961,
+      "px": "1440x2391"
+    },
+    {
+      "file": "artes-asab-1024-tab1-full.png",
+      "bytes": 484378,
+      "px": "1024x2423"
+    },
+    {
+      "file": "artes-asab-1024-tab1-full.png",
+      "bytes": 484378,
+      "px": "1024x2423"
+    },
+    {
+      "file": "artes-asab-1024-tab2-full.png",
+      "bytes": 481828,
+      "px": "1024x2423"
+    },
+    {
+      "file": "artes-asab-1024-tab3-full.png",
+      "bytes": 483313,
+      "px": "1024x2423"
+    },
+    {
+      "file": "artes-asab-390-tab1-full.png",
+      "bytes": 313228,
+      "px": "390x3501"
+    },
+    {
+      "file": "artes-asab-390-tab1-viewport.png",
+      "bytes": 199669,
+      "px": "390x900"
+    },
+    {
+      "file": "artes-asab-390-tab1-full.png",
+      "bytes": 313228,
+      "px": "390x3501"
+    },
+    {
+      "file": "artes-asab-390-tab2-full.png",
+      "bytes": 310125,
+      "px": "390x3466"
+    },
+    {
+      "file": "artes-asab-390-tab3-full.png",
+      "bytes": 310812,
+      "px": "390x3501"
+    },
+    {
+      "file": "ref-organigrama-1440-full.png",
+      "bytes": 611297,
+      "px": "1440x2893"
+    },
+    {
+      "file": "ref-organigrama-1440-viewport.png",
+      "bytes": 576880,
+      "px": "1440x900"
+    },
+    {
+      "file": "ref-organigrama-390-full.png",
+      "bytes": 311957,
+      "px": "390x3603"
+    },
+    {
+      "file": "ref-organigrama-390-viewport.png",
+      "bytes": 183621,
+      "px": "390x900"
+    },
+    {
+      "file": "lento-1440-t3s-viewport.png",
+      "bytes": 38025,
+      "px": "1440x900"
+    },
+    {
+      "file": "lento-1440-t14s-viewport.png",
+      "bytes": 44780,
+      "px": "1440x900"
+    },
+    {
+      "file": "lento-390-t14s-viewport.png",
+      "bytes": 27918,
+      "px": "390x900"
+    }
+  ],
+  "runs": {
+    "ingenieria-1440": {
+      "inicialLoadWait": 605,
+      "inicial": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-admisiones-registro-control",
+        "hash": "",
+        "docScrollWidth": 1440,
+        "innerWidth": 1440,
+        "hScroll": false,
+        "tablistScrollWidth": 1200,
+        "tablistClientWidth": 1200,
+        "tablistOverflows": false,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": false,
+            "iframe": true,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control",
+            "iframeTitle": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "inicialDaruma": [
+        {
+          "url": "index=939",
+          "type": "Document",
+          "status": 200,
+          "failed": "net::ERR_BLOCKED_BY_RESPONSE (other)",
+          "xfo": "SAMEORIGIN",
+          "csp": "frame-ancestors 'self' planeacionud.udistrital.edu.co;"
+        }
+      ],
+      "linkVisible": {
+        "innerHeight": 900,
+        "links": [
+          {
+            "text": "Abrir en una pestaña nueva",
+            "top": 713,
+            "bottom": 759,
+            "inViewportAtScroll0": true
+          }
+        ]
+      },
+      "clic1Load": 1,
+      "clic1": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-admisiones-registro-control",
+        "hash": "#admisiones-registro-control",
+        "docScrollWidth": 1440,
+        "innerWidth": 1440,
+        "hScroll": false,
+        "tablistScrollWidth": 1200,
+        "tablistClientWidth": 1200,
+        "tablistOverflows": false,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": false,
+            "iframe": true,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control",
+            "iframeTitle": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "clic1Daruma": [],
+      "clic2Load": 606,
+      "clic2": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-gestion-docencia",
+        "hash": "#gestion-docencia",
+        "docScrollWidth": 1440,
+        "innerWidth": 1440,
+        "hScroll": false,
+        "tablistScrollWidth": 1200,
+        "tablistClientWidth": 1200,
+        "tablistOverflows": false,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": true,
+            "iframe": true,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control",
+            "iframeTitle": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": false,
+            "iframe": true,
+            "loading": false,
+            "h2": "Gestión de Docencia",
+            "iframeTitle": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "clic2Daruma": [
+        {
+          "url": "index=946",
+          "type": "Document",
+          "status": 200,
+          "failed": "net::ERR_BLOCKED_BY_RESPONSE (other)",
+          "xfo": "SAMEORIGIN",
+          "csp": "frame-ancestors 'self' planeacionud.udistrital.edu.co;"
+        }
+      ],
+      "clic3Load": 302,
+      "clic3": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-gestion-laboratorios",
+        "hash": "#gestion-laboratorios",
+        "docScrollWidth": 1440,
+        "innerWidth": 1440,
+        "hScroll": false,
+        "tablistScrollWidth": 1200,
+        "tablistClientWidth": 1200,
+        "tablistOverflows": false,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": true,
+            "iframe": true,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control",
+            "iframeTitle": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": true,
+            "iframe": true,
+            "loading": false,
+            "h2": "Gestión de Docencia",
+            "iframeTitle": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": false,
+            "iframe": true,
+            "loading": false,
+            "h2": "Gestión de laboratorios",
+            "iframeTitle": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "clic3Daruma": [
+        {
+          "url": "index=950",
+          "type": "Document",
+          "status": 200,
+          "failed": "net::ERR_BLOCKED_BY_RESPONSE (other)",
+          "xfo": "SAMEORIGIN",
+          "csp": "frame-ancestors 'self' planeacionud.udistrital.edu.co;"
+        }
+      ],
+      "teclado": {
+        "tras1": "tab-gestion-docencia",
+        "tras2": "tab-gestion-laboratorios",
+        "tras3_izq": "tab-gestion-docencia",
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": true,
+            "iframe": true,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control",
+            "iframeTitle": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": false,
+            "iframe": true,
+            "loading": false,
+            "h2": "Gestión de Docencia",
+            "iframeTitle": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": true,
+            "iframe": true,
+            "loading": false,
+            "h2": "Gestión de laboratorios",
+            "iframeTitle": "Gestión de laboratorios"
+          }
+        ],
+        "daruma": [
+          {
+            "url": "index=946",
+            "type": "Document",
+            "status": 200,
+            "failed": "net::ERR_BLOCKED_BY_RESPONSE (other)",
+            "xfo": "SAMEORIGIN",
+            "csp": "frame-ancestors 'self' planeacionud.udistrital.edu.co;"
+          },
+          {
+            "url": "index=950",
+            "type": "Document",
+            "status": 200,
+            "failed": "net::ERR_BLOCKED_BY_RESPONSE (other)",
+            "xfo": "SAMEORIGIN",
+            "csp": "frame-ancestors 'self' planeacionud.udistrital.edu.co;"
+          }
+        ]
+      },
+      "hash_gestion-docencia": {
+        "state": {
+          "tabLabels": [
+            "Admisiones, Registro y Control",
+            "Gestión de Docencia",
+            "Gestión de laboratorios"
+          ],
+          "activeTab": "tab-gestion-docencia",
+          "hash": "#gestion-docencia",
+          "docScrollWidth": 1440,
+          "innerWidth": 1440,
+          "hScroll": false,
+          "tablistScrollWidth": 1200,
+          "tablistClientWidth": 1200,
+          "tablistOverflows": false,
+          "panels": [
+            {
+              "id": "panel-admisiones-registro-control",
+              "hidden": true,
+              "iframe": false,
+              "loading": false,
+              "h2": "Admisiones, Registro y Control"
+            },
+            {
+              "id": "panel-gestion-docencia",
+              "hidden": false,
+              "iframe": true,
+              "loading": false,
+              "h2": "Gestión de Docencia",
+              "iframeTitle": "Gestión de Docencia"
+            },
+            {
+              "id": "panel-gestion-laboratorios",
+              "hidden": true,
+              "iframe": false,
+              "loading": false,
+              "h2": "Gestión de laboratorios"
+            }
+          ]
+        },
+        "daruma": [
+          {
+            "url": "index=946",
+            "type": "Document",
+            "status": 200,
+            "failed": "net::ERR_BLOCKED_BY_RESPONSE (other)",
+            "xfo": "SAMEORIGIN",
+            "csp": "frame-ancestors 'self' planeacionud.udistrital.edu.co;"
+          }
+        ]
+      },
+      "hash_gestion-laboratorios": {
+        "state": {
+          "tabLabels": [
+            "Admisiones, Registro y Control",
+            "Gestión de Docencia",
+            "Gestión de laboratorios"
+          ],
+          "activeTab": "tab-gestion-laboratorios",
+          "hash": "#gestion-laboratorios",
+          "docScrollWidth": 1440,
+          "innerWidth": 1440,
+          "hScroll": false,
+          "tablistScrollWidth": 1200,
+          "tablistClientWidth": 1200,
+          "tablistOverflows": false,
+          "panels": [
+            {
+              "id": "panel-admisiones-registro-control",
+              "hidden": true,
+              "iframe": false,
+              "loading": false,
+              "h2": "Admisiones, Registro y Control"
+            },
+            {
+              "id": "panel-gestion-docencia",
+              "hidden": true,
+              "iframe": false,
+              "loading": false,
+              "h2": "Gestión de Docencia"
+            },
+            {
+              "id": "panel-gestion-laboratorios",
+              "hidden": false,
+              "iframe": true,
+              "loading": false,
+              "h2": "Gestión de laboratorios",
+              "iframeTitle": "Gestión de laboratorios"
+            }
+          ]
+        },
+        "daruma": [
+          {
+            "url": "index=950",
+            "type": "Document",
+            "status": 200,
+            "failed": "net::ERR_BLOCKED_BY_RESPONSE (other)",
+            "xfo": "SAMEORIGIN",
+            "csp": "frame-ancestors 'self' planeacionud.udistrital.edu.co;"
+          }
+        ]
+      }
+    },
+    "ingenieria-1024": {
+      "inicialLoadWait": 1,
+      "inicial": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-admisiones-registro-control",
+        "hash": "",
+        "docScrollWidth": 1024,
+        "innerWidth": 1024,
+        "hScroll": false,
+        "tablistScrollWidth": 1024,
+        "tablistClientWidth": 1024,
+        "tablistOverflows": false,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": false,
+            "iframe": true,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control",
+            "iframeTitle": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "inicialDaruma": [
+        {
+          "url": "index=939",
+          "type": "Document",
+          "status": 200,
+          "failed": "net::ERR_BLOCKED_BY_RESPONSE (other)",
+          "xfo": "SAMEORIGIN",
+          "csp": "frame-ancestors 'self' planeacionud.udistrital.edu.co;"
+        }
+      ],
+      "linkVisible": {
+        "innerHeight": 900,
+        "links": [
+          {
+            "text": "Abrir en una pestaña nueva",
+            "top": 756,
+            "bottom": 802,
+            "inViewportAtScroll0": true
+          }
+        ]
+      },
+      "clic1Load": 1,
+      "clic1": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-admisiones-registro-control",
+        "hash": "#admisiones-registro-control",
+        "docScrollWidth": 1024,
+        "innerWidth": 1024,
+        "hScroll": false,
+        "tablistScrollWidth": 1024,
+        "tablistClientWidth": 1024,
+        "tablistOverflows": false,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": false,
+            "iframe": true,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control",
+            "iframeTitle": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "clic1Daruma": [],
+      "clic2Load": 303,
+      "clic2": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-gestion-docencia",
+        "hash": "#gestion-docencia",
+        "docScrollWidth": 1024,
+        "innerWidth": 1024,
+        "hScroll": false,
+        "tablistScrollWidth": 1024,
+        "tablistClientWidth": 1024,
+        "tablistOverflows": false,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": true,
+            "iframe": true,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control",
+            "iframeTitle": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": false,
+            "iframe": true,
+            "loading": false,
+            "h2": "Gestión de Docencia",
+            "iframeTitle": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "clic2Daruma": [
+        {
+          "url": "index=946",
+          "type": "Document",
+          "status": 200,
+          "failed": "net::ERR_BLOCKED_BY_RESPONSE (other)",
+          "xfo": "SAMEORIGIN",
+          "csp": "frame-ancestors 'self' planeacionud.udistrital.edu.co;"
+        }
+      ],
+      "clic3Load": 304,
+      "clic3": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-gestion-laboratorios",
+        "hash": "#gestion-laboratorios",
+        "docScrollWidth": 1024,
+        "innerWidth": 1024,
+        "hScroll": false,
+        "tablistScrollWidth": 1024,
+        "tablistClientWidth": 1024,
+        "tablistOverflows": false,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": true,
+            "iframe": true,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control",
+            "iframeTitle": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": true,
+            "iframe": true,
+            "loading": false,
+            "h2": "Gestión de Docencia",
+            "iframeTitle": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": false,
+            "iframe": true,
+            "loading": false,
+            "h2": "Gestión de laboratorios",
+            "iframeTitle": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "clic3Daruma": [
+        {
+          "url": "index=950",
+          "type": "Document",
+          "status": 200,
+          "failed": "net::ERR_BLOCKED_BY_RESPONSE (other)",
+          "xfo": "SAMEORIGIN",
+          "csp": "frame-ancestors 'self' planeacionud.udistrital.edu.co;"
+        }
+      ]
+    },
+    "ingenieria-390": {
+      "inicialLoadWait": 1,
+      "inicial": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-admisiones-registro-control",
+        "hash": "",
+        "docScrollWidth": 390,
+        "innerWidth": 390,
+        "hScroll": false,
+        "tablistScrollWidth": 627,
+        "tablistClientWidth": 390,
+        "tablistOverflows": true,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": false,
+            "iframe": true,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control",
+            "iframeTitle": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "inicialDaruma": [
+        {
+          "url": "index=939",
+          "type": "Document",
+          "status": 200,
+          "failed": "net::ERR_BLOCKED_BY_RESPONSE (other)",
+          "xfo": "SAMEORIGIN",
+          "csp": "frame-ancestors 'self' planeacionud.udistrital.edu.co;"
+        }
+      ],
+      "linkVisible": {
+        "innerHeight": 900,
+        "links": [
+          {
+            "text": "Abrir en una pestaña nueva",
+            "top": 881,
+            "bottom": 926,
+            "inViewportAtScroll0": false
+          }
+        ]
+      },
+      "clic1Load": 1,
+      "clic1": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-admisiones-registro-control",
+        "hash": "#admisiones-registro-control",
+        "docScrollWidth": 390,
+        "innerWidth": 390,
+        "hScroll": false,
+        "tablistScrollWidth": 627,
+        "tablistClientWidth": 390,
+        "tablistOverflows": true,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": false,
+            "iframe": true,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control",
+            "iframeTitle": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "clic1Daruma": [],
+      "clic2Load": 304,
+      "clic2": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-gestion-docencia",
+        "hash": "#gestion-docencia",
+        "docScrollWidth": 390,
+        "innerWidth": 390,
+        "hScroll": false,
+        "tablistScrollWidth": 627,
+        "tablistClientWidth": 390,
+        "tablistOverflows": true,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": true,
+            "iframe": true,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control",
+            "iframeTitle": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": false,
+            "iframe": true,
+            "loading": false,
+            "h2": "Gestión de Docencia",
+            "iframeTitle": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "clic2Daruma": [
+        {
+          "url": "index=946",
+          "type": "Document",
+          "status": 200,
+          "failed": "net::ERR_BLOCKED_BY_RESPONSE (other)",
+          "xfo": "SAMEORIGIN",
+          "csp": "frame-ancestors 'self' planeacionud.udistrital.edu.co;"
+        }
+      ],
+      "clic3Load": 304,
+      "clic3": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-gestion-laboratorios",
+        "hash": "#gestion-laboratorios",
+        "docScrollWidth": 390,
+        "innerWidth": 390,
+        "hScroll": false,
+        "tablistScrollWidth": 627,
+        "tablistClientWidth": 390,
+        "tablistOverflows": true,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": true,
+            "iframe": true,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control",
+            "iframeTitle": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": true,
+            "iframe": true,
+            "loading": false,
+            "h2": "Gestión de Docencia",
+            "iframeTitle": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": false,
+            "iframe": true,
+            "loading": false,
+            "h2": "Gestión de laboratorios",
+            "iframeTitle": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "clic3Daruma": [
+        {
+          "url": "index=950",
+          "type": "Document",
+          "status": 200,
+          "failed": "net::ERR_BLOCKED_BY_RESPONSE (other)",
+          "xfo": "SAMEORIGIN",
+          "csp": "frame-ancestors 'self' planeacionud.udistrital.edu.co;"
+        }
+      ],
+      "teclado": {
+        "tras1": "tab-gestion-docencia",
+        "tras2": "tab-gestion-laboratorios",
+        "tras3_izq": "tab-gestion-docencia",
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": true,
+            "iframe": true,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control",
+            "iframeTitle": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": false,
+            "iframe": true,
+            "loading": false,
+            "h2": "Gestión de Docencia",
+            "iframeTitle": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": true,
+            "iframe": true,
+            "loading": false,
+            "h2": "Gestión de laboratorios",
+            "iframeTitle": "Gestión de laboratorios"
+          }
+        ],
+        "daruma": [
+          {
+            "url": "index=946",
+            "type": "Document",
+            "status": 200,
+            "failed": "net::ERR_BLOCKED_BY_RESPONSE (other)",
+            "xfo": "SAMEORIGIN",
+            "csp": "frame-ancestors 'self' planeacionud.udistrital.edu.co;"
+          },
+          {
+            "url": "index=950",
+            "type": "Document",
+            "status": 200,
+            "failed": "net::ERR_BLOCKED_BY_RESPONSE (other)",
+            "xfo": "SAMEORIGIN",
+            "csp": "frame-ancestors 'self' planeacionud.udistrital.edu.co;"
+          }
+        ]
+      },
+      "hash_gestion-docencia": {
+        "state": {
+          "tabLabels": [
+            "Admisiones, Registro y Control",
+            "Gestión de Docencia",
+            "Gestión de laboratorios"
+          ],
+          "activeTab": "tab-gestion-docencia",
+          "hash": "#gestion-docencia",
+          "docScrollWidth": 390,
+          "innerWidth": 390,
+          "hScroll": false,
+          "tablistScrollWidth": 627,
+          "tablistClientWidth": 390,
+          "tablistOverflows": true,
+          "panels": [
+            {
+              "id": "panel-admisiones-registro-control",
+              "hidden": true,
+              "iframe": false,
+              "loading": false,
+              "h2": "Admisiones, Registro y Control"
+            },
+            {
+              "id": "panel-gestion-docencia",
+              "hidden": false,
+              "iframe": true,
+              "loading": false,
+              "h2": "Gestión de Docencia",
+              "iframeTitle": "Gestión de Docencia"
+            },
+            {
+              "id": "panel-gestion-laboratorios",
+              "hidden": true,
+              "iframe": false,
+              "loading": false,
+              "h2": "Gestión de laboratorios"
+            }
+          ]
+        },
+        "daruma": [
+          {
+            "url": "index=946",
+            "type": "Document",
+            "status": 200,
+            "failed": "net::ERR_BLOCKED_BY_RESPONSE (other)",
+            "xfo": "SAMEORIGIN",
+            "csp": "frame-ancestors 'self' planeacionud.udistrital.edu.co;"
+          }
+        ]
+      },
+      "hash_gestion-laboratorios": {
+        "state": {
+          "tabLabels": [
+            "Admisiones, Registro y Control",
+            "Gestión de Docencia",
+            "Gestión de laboratorios"
+          ],
+          "activeTab": "tab-gestion-laboratorios",
+          "hash": "#gestion-laboratorios",
+          "docScrollWidth": 390,
+          "innerWidth": 390,
+          "hScroll": false,
+          "tablistScrollWidth": 627,
+          "tablistClientWidth": 390,
+          "tablistOverflows": true,
+          "panels": [
+            {
+              "id": "panel-admisiones-registro-control",
+              "hidden": true,
+              "iframe": false,
+              "loading": false,
+              "h2": "Admisiones, Registro y Control"
+            },
+            {
+              "id": "panel-gestion-docencia",
+              "hidden": true,
+              "iframe": false,
+              "loading": false,
+              "h2": "Gestión de Docencia"
+            },
+            {
+              "id": "panel-gestion-laboratorios",
+              "hidden": false,
+              "iframe": true,
+              "loading": false,
+              "h2": "Gestión de laboratorios",
+              "iframeTitle": "Gestión de laboratorios"
+            }
+          ]
+        },
+        "daruma": [
+          {
+            "url": "index=950",
+            "type": "Document",
+            "status": 200,
+            "failed": "net::ERR_BLOCKED_BY_RESPONSE (other)",
+            "xfo": "SAMEORIGIN",
+            "csp": "frame-ancestors 'self' planeacionud.udistrital.edu.co;"
+          }
+        ]
+      }
+    },
+    "artes-asab-1440": {
+      "inicialLoadWait": 1,
+      "inicial": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-admisiones-registro-control",
+        "hash": "",
+        "docScrollWidth": 1440,
+        "innerWidth": 1440,
+        "hScroll": false,
+        "tablistScrollWidth": 1200,
+        "tablistClientWidth": 1200,
+        "tablistOverflows": false,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": false,
+            "iframe": true,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control",
+            "iframeTitle": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "inicialDaruma": [
+        {
+          "url": "index=939",
+          "type": "Document",
+          "status": 200,
+          "failed": "net::ERR_BLOCKED_BY_RESPONSE (other)",
+          "xfo": "SAMEORIGIN",
+          "csp": "frame-ancestors 'self' planeacionud.udistrital.edu.co;"
+        }
+      ],
+      "linkVisible": {
+        "innerHeight": 900,
+        "links": [
+          {
+            "text": "Abrir en una pestaña nueva",
+            "top": 713,
+            "bottom": 759,
+            "inViewportAtScroll0": true
+          }
+        ]
+      },
+      "clic1Load": 1,
+      "clic1": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-admisiones-registro-control",
+        "hash": "#admisiones-registro-control",
+        "docScrollWidth": 1440,
+        "innerWidth": 1440,
+        "hScroll": false,
+        "tablistScrollWidth": 1200,
+        "tablistClientWidth": 1200,
+        "tablistOverflows": false,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": false,
+            "iframe": true,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control",
+            "iframeTitle": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "clic1Daruma": [],
+      "clic2Load": 302,
+      "clic2": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-gestion-docencia",
+        "hash": "#gestion-docencia",
+        "docScrollWidth": 1440,
+        "innerWidth": 1440,
+        "hScroll": false,
+        "tablistScrollWidth": 1200,
+        "tablistClientWidth": 1200,
+        "tablistOverflows": false,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": true,
+            "iframe": true,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control",
+            "iframeTitle": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": false,
+            "iframe": true,
+            "loading": false,
+            "h2": "Gestión de Docencia",
+            "iframeTitle": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "clic2Daruma": [
+        {
+          "url": "index=946",
+          "type": "Document",
+          "status": 200,
+          "failed": "net::ERR_BLOCKED_BY_RESPONSE (other)",
+          "xfo": "SAMEORIGIN",
+          "csp": "frame-ancestors 'self' planeacionud.udistrital.edu.co;"
+        }
+      ],
+      "clic3Load": 304,
+      "clic3": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-gestion-laboratorios",
+        "hash": "#gestion-laboratorios",
+        "docScrollWidth": 1440,
+        "innerWidth": 1440,
+        "hScroll": false,
+        "tablistScrollWidth": 1200,
+        "tablistClientWidth": 1200,
+        "tablistOverflows": false,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": true,
+            "iframe": true,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control",
+            "iframeTitle": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": true,
+            "iframe": true,
+            "loading": false,
+            "h2": "Gestión de Docencia",
+            "iframeTitle": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": false,
+            "iframe": true,
+            "loading": false,
+            "h2": "Gestión de laboratorios",
+            "iframeTitle": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "clic3Daruma": [
+        {
+          "url": "index=950",
+          "type": "Document",
+          "status": 200,
+          "failed": "net::ERR_BLOCKED_BY_RESPONSE (other)",
+          "xfo": "SAMEORIGIN",
+          "csp": "frame-ancestors 'self' planeacionud.udistrital.edu.co;"
+        }
+      ],
+      "teclado": {
+        "tras1": "tab-gestion-docencia",
+        "tras2": "tab-gestion-laboratorios",
+        "tras3_izq": "tab-gestion-docencia",
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": true,
+            "iframe": true,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control",
+            "iframeTitle": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": false,
+            "iframe": true,
+            "loading": false,
+            "h2": "Gestión de Docencia",
+            "iframeTitle": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": true,
+            "iframe": true,
+            "loading": false,
+            "h2": "Gestión de laboratorios",
+            "iframeTitle": "Gestión de laboratorios"
+          }
+        ],
+        "daruma": [
+          {
+            "url": "index=946",
+            "type": "Document",
+            "status": 200,
+            "failed": "net::ERR_BLOCKED_BY_RESPONSE (other)",
+            "xfo": "SAMEORIGIN",
+            "csp": "frame-ancestors 'self' planeacionud.udistrital.edu.co;"
+          },
+          {
+            "url": "index=950",
+            "type": "Document",
+            "status": 200,
+            "failed": "net::ERR_BLOCKED_BY_RESPONSE (other)",
+            "xfo": "SAMEORIGIN",
+            "csp": "frame-ancestors 'self' planeacionud.udistrital.edu.co;"
+          }
+        ]
+      },
+      "hash_gestion-docencia": {
+        "state": {
+          "tabLabels": [
+            "Admisiones, Registro y Control",
+            "Gestión de Docencia",
+            "Gestión de laboratorios"
+          ],
+          "activeTab": "tab-gestion-docencia",
+          "hash": "#gestion-docencia",
+          "docScrollWidth": 1440,
+          "innerWidth": 1440,
+          "hScroll": false,
+          "tablistScrollWidth": 1200,
+          "tablistClientWidth": 1200,
+          "tablistOverflows": false,
+          "panels": [
+            {
+              "id": "panel-admisiones-registro-control",
+              "hidden": true,
+              "iframe": false,
+              "loading": false,
+              "h2": "Admisiones, Registro y Control"
+            },
+            {
+              "id": "panel-gestion-docencia",
+              "hidden": false,
+              "iframe": true,
+              "loading": false,
+              "h2": "Gestión de Docencia",
+              "iframeTitle": "Gestión de Docencia"
+            },
+            {
+              "id": "panel-gestion-laboratorios",
+              "hidden": true,
+              "iframe": false,
+              "loading": false,
+              "h2": "Gestión de laboratorios"
+            }
+          ]
+        },
+        "daruma": [
+          {
+            "url": "index=946",
+            "type": "Document",
+            "status": 200,
+            "failed": "net::ERR_BLOCKED_BY_RESPONSE (other)",
+            "xfo": "SAMEORIGIN",
+            "csp": "frame-ancestors 'self' planeacionud.udistrital.edu.co;"
+          }
+        ]
+      },
+      "hash_gestion-laboratorios": {
+        "state": {
+          "tabLabels": [
+            "Admisiones, Registro y Control",
+            "Gestión de Docencia",
+            "Gestión de laboratorios"
+          ],
+          "activeTab": "tab-gestion-laboratorios",
+          "hash": "#gestion-laboratorios",
+          "docScrollWidth": 1440,
+          "innerWidth": 1440,
+          "hScroll": false,
+          "tablistScrollWidth": 1200,
+          "tablistClientWidth": 1200,
+          "tablistOverflows": false,
+          "panels": [
+            {
+              "id": "panel-admisiones-registro-control",
+              "hidden": true,
+              "iframe": false,
+              "loading": false,
+              "h2": "Admisiones, Registro y Control"
+            },
+            {
+              "id": "panel-gestion-docencia",
+              "hidden": true,
+              "iframe": false,
+              "loading": false,
+              "h2": "Gestión de Docencia"
+            },
+            {
+              "id": "panel-gestion-laboratorios",
+              "hidden": false,
+              "iframe": true,
+              "loading": false,
+              "h2": "Gestión de laboratorios",
+              "iframeTitle": "Gestión de laboratorios"
+            }
+          ]
+        },
+        "daruma": [
+          {
+            "url": "index=950",
+            "type": "Document",
+            "status": 200,
+            "failed": "net::ERR_BLOCKED_BY_RESPONSE (other)",
+            "xfo": "SAMEORIGIN",
+            "csp": "frame-ancestors 'self' planeacionud.udistrital.edu.co;"
+          }
+        ]
+      }
+    },
+    "artes-asab-1024": {
+      "inicialLoadWait": 303,
+      "inicial": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-admisiones-registro-control",
+        "hash": "",
+        "docScrollWidth": 1024,
+        "innerWidth": 1024,
+        "hScroll": false,
+        "tablistScrollWidth": 1024,
+        "tablistClientWidth": 1024,
+        "tablistOverflows": false,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": false,
+            "iframe": true,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control",
+            "iframeTitle": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "inicialDaruma": [
+        {
+          "url": "index=939",
+          "type": "Document",
+          "status": 200,
+          "failed": "net::ERR_BLOCKED_BY_RESPONSE (other)",
+          "xfo": "SAMEORIGIN",
+          "csp": "frame-ancestors 'self' planeacionud.udistrital.edu.co;"
+        }
+      ],
+      "linkVisible": {
+        "innerHeight": 900,
+        "links": [
+          {
+            "text": "Abrir en una pestaña nueva",
+            "top": 756,
+            "bottom": 802,
+            "inViewportAtScroll0": true
+          }
+        ]
+      },
+      "clic1Load": 1,
+      "clic1": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-admisiones-registro-control",
+        "hash": "#admisiones-registro-control",
+        "docScrollWidth": 1024,
+        "innerWidth": 1024,
+        "hScroll": false,
+        "tablistScrollWidth": 1024,
+        "tablistClientWidth": 1024,
+        "tablistOverflows": false,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": false,
+            "iframe": true,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control",
+            "iframeTitle": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "clic1Daruma": [],
+      "clic2Load": 304,
+      "clic2": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-gestion-docencia",
+        "hash": "#gestion-docencia",
+        "docScrollWidth": 1024,
+        "innerWidth": 1024,
+        "hScroll": false,
+        "tablistScrollWidth": 1024,
+        "tablistClientWidth": 1024,
+        "tablistOverflows": false,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": true,
+            "iframe": true,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control",
+            "iframeTitle": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": false,
+            "iframe": true,
+            "loading": false,
+            "h2": "Gestión de Docencia",
+            "iframeTitle": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "clic2Daruma": [
+        {
+          "url": "index=946",
+          "type": "Document",
+          "status": 200,
+          "failed": "net::ERR_BLOCKED_BY_RESPONSE (other)",
+          "xfo": "SAMEORIGIN",
+          "csp": "frame-ancestors 'self' planeacionud.udistrital.edu.co;"
+        }
+      ],
+      "clic3Load": 302,
+      "clic3": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-gestion-laboratorios",
+        "hash": "#gestion-laboratorios",
+        "docScrollWidth": 1024,
+        "innerWidth": 1024,
+        "hScroll": false,
+        "tablistScrollWidth": 1024,
+        "tablistClientWidth": 1024,
+        "tablistOverflows": false,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": true,
+            "iframe": true,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control",
+            "iframeTitle": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": true,
+            "iframe": true,
+            "loading": false,
+            "h2": "Gestión de Docencia",
+            "iframeTitle": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": false,
+            "iframe": true,
+            "loading": false,
+            "h2": "Gestión de laboratorios",
+            "iframeTitle": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "clic3Daruma": [
+        {
+          "url": "index=950",
+          "type": "Document",
+          "status": 200,
+          "failed": "net::ERR_BLOCKED_BY_RESPONSE (other)",
+          "xfo": "SAMEORIGIN",
+          "csp": "frame-ancestors 'self' planeacionud.udistrital.edu.co;"
+        }
+      ]
+    },
+    "artes-asab-390": {
+      "inicialLoadWait": 1,
+      "inicial": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-admisiones-registro-control",
+        "hash": "",
+        "docScrollWidth": 390,
+        "innerWidth": 390,
+        "hScroll": false,
+        "tablistScrollWidth": 627,
+        "tablistClientWidth": 390,
+        "tablistOverflows": true,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": false,
+            "iframe": true,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control",
+            "iframeTitle": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "inicialDaruma": [
+        {
+          "url": "index=939",
+          "type": "Document",
+          "status": 200,
+          "failed": "net::ERR_BLOCKED_BY_RESPONSE (other)",
+          "xfo": "SAMEORIGIN",
+          "csp": "frame-ancestors 'self' planeacionud.udistrital.edu.co;"
+        }
+      ],
+      "linkVisible": {
+        "innerHeight": 900,
+        "links": [
+          {
+            "text": "Abrir en una pestaña nueva",
+            "top": 881,
+            "bottom": 926,
+            "inViewportAtScroll0": false
+          }
+        ]
+      },
+      "clic1Load": 1,
+      "clic1": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-admisiones-registro-control",
+        "hash": "#admisiones-registro-control",
+        "docScrollWidth": 390,
+        "innerWidth": 390,
+        "hScroll": false,
+        "tablistScrollWidth": 627,
+        "tablistClientWidth": 390,
+        "tablistOverflows": true,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": false,
+            "iframe": true,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control",
+            "iframeTitle": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "clic1Daruma": [],
+      "clic2Load": 303,
+      "clic2": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-gestion-docencia",
+        "hash": "#gestion-docencia",
+        "docScrollWidth": 390,
+        "innerWidth": 390,
+        "hScroll": false,
+        "tablistScrollWidth": 627,
+        "tablistClientWidth": 390,
+        "tablistOverflows": true,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": true,
+            "iframe": true,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control",
+            "iframeTitle": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": false,
+            "iframe": true,
+            "loading": false,
+            "h2": "Gestión de Docencia",
+            "iframeTitle": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "clic2Daruma": [
+        {
+          "url": "index=946",
+          "type": "Document",
+          "status": 200,
+          "failed": "net::ERR_BLOCKED_BY_RESPONSE (other)",
+          "xfo": "SAMEORIGIN",
+          "csp": "frame-ancestors 'self' planeacionud.udistrital.edu.co;"
+        }
+      ],
+      "clic3Load": 1,
+      "clic3": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-gestion-laboratorios",
+        "hash": "#gestion-laboratorios",
+        "docScrollWidth": 390,
+        "innerWidth": 390,
+        "hScroll": false,
+        "tablistScrollWidth": 627,
+        "tablistClientWidth": 390,
+        "tablistOverflows": true,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": true,
+            "iframe": true,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control",
+            "iframeTitle": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": true,
+            "iframe": true,
+            "loading": false,
+            "h2": "Gestión de Docencia",
+            "iframeTitle": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": false,
+            "iframe": true,
+            "loading": false,
+            "h2": "Gestión de laboratorios",
+            "iframeTitle": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "clic3Daruma": [
+        {
+          "url": "index=950",
+          "type": "Document",
+          "status": 200,
+          "failed": "net::ERR_BLOCKED_BY_RESPONSE (other)",
+          "xfo": "SAMEORIGIN",
+          "csp": "frame-ancestors 'self' planeacionud.udistrital.edu.co;"
+        }
+      ],
+      "teclado": {
+        "tras1": "tab-gestion-docencia",
+        "tras2": "tab-gestion-laboratorios",
+        "tras3_izq": "tab-gestion-docencia",
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": true,
+            "iframe": true,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control",
+            "iframeTitle": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": false,
+            "iframe": true,
+            "loading": false,
+            "h2": "Gestión de Docencia",
+            "iframeTitle": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": true,
+            "iframe": true,
+            "loading": false,
+            "h2": "Gestión de laboratorios",
+            "iframeTitle": "Gestión de laboratorios"
+          }
+        ],
+        "daruma": [
+          {
+            "url": "index=946",
+            "type": "Document",
+            "status": 200,
+            "failed": "net::ERR_BLOCKED_BY_RESPONSE (other)",
+            "xfo": "SAMEORIGIN",
+            "csp": "frame-ancestors 'self' planeacionud.udistrital.edu.co;"
+          },
+          {
+            "url": "index=950",
+            "type": "Document",
+            "status": 200,
+            "failed": "net::ERR_BLOCKED_BY_RESPONSE (other)",
+            "xfo": "SAMEORIGIN",
+            "csp": "frame-ancestors 'self' planeacionud.udistrital.edu.co;"
+          }
+        ]
+      },
+      "hash_gestion-docencia": {
+        "state": {
+          "tabLabels": [
+            "Admisiones, Registro y Control",
+            "Gestión de Docencia",
+            "Gestión de laboratorios"
+          ],
+          "activeTab": "tab-gestion-docencia",
+          "hash": "#gestion-docencia",
+          "docScrollWidth": 390,
+          "innerWidth": 390,
+          "hScroll": false,
+          "tablistScrollWidth": 627,
+          "tablistClientWidth": 390,
+          "tablistOverflows": true,
+          "panels": [
+            {
+              "id": "panel-admisiones-registro-control",
+              "hidden": true,
+              "iframe": false,
+              "loading": false,
+              "h2": "Admisiones, Registro y Control"
+            },
+            {
+              "id": "panel-gestion-docencia",
+              "hidden": false,
+              "iframe": true,
+              "loading": false,
+              "h2": "Gestión de Docencia",
+              "iframeTitle": "Gestión de Docencia"
+            },
+            {
+              "id": "panel-gestion-laboratorios",
+              "hidden": true,
+              "iframe": false,
+              "loading": false,
+              "h2": "Gestión de laboratorios"
+            }
+          ]
+        },
+        "daruma": [
+          {
+            "url": "index=946",
+            "type": "Document",
+            "status": 200,
+            "failed": "net::ERR_BLOCKED_BY_RESPONSE (other)",
+            "xfo": "SAMEORIGIN",
+            "csp": "frame-ancestors 'self' planeacionud.udistrital.edu.co;"
+          }
+        ]
+      },
+      "hash_gestion-laboratorios": {
+        "state": {
+          "tabLabels": [
+            "Admisiones, Registro y Control",
+            "Gestión de Docencia",
+            "Gestión de laboratorios"
+          ],
+          "activeTab": "tab-gestion-laboratorios",
+          "hash": "#gestion-laboratorios",
+          "docScrollWidth": 390,
+          "innerWidth": 390,
+          "hScroll": false,
+          "tablistScrollWidth": 627,
+          "tablistClientWidth": 390,
+          "tablistOverflows": true,
+          "panels": [
+            {
+              "id": "panel-admisiones-registro-control",
+              "hidden": true,
+              "iframe": false,
+              "loading": false,
+              "h2": "Admisiones, Registro y Control"
+            },
+            {
+              "id": "panel-gestion-docencia",
+              "hidden": true,
+              "iframe": false,
+              "loading": false,
+              "h2": "Gestión de Docencia"
+            },
+            {
+              "id": "panel-gestion-laboratorios",
+              "hidden": false,
+              "iframe": true,
+              "loading": false,
+              "h2": "Gestión de laboratorios",
+              "iframeTitle": "Gestión de laboratorios"
+            }
+          ]
+        },
+        "daruma": [
+          {
+            "url": "index=950",
+            "type": "Document",
+            "status": 200,
+            "failed": "net::ERR_BLOCKED_BY_RESPONSE (other)",
+            "xfo": "SAMEORIGIN",
+            "csp": "frame-ancestors 'self' planeacionud.udistrital.edu.co;"
+          }
+        ]
+      }
+    }
+  },
+  "heldRequests": 1,
+  "slow": {
+    "t3s": {
+      "status": "Cargando documento…",
+      "iframe": true
+    },
+    "t14s": {
+      "status": "Cargando documento…\n\nEl documento tarda más de lo esperado.\n\nAbrir en una pestaña nueva",
+      "iframe": true,
+      "links": [
+        "page-module__5kCDjW__secondaryButton:Abrir en una pestaña nueva",
+        "page-module__5kCDjW__primaryButton:Abrir en una pestaña nueva"
+      ]
+    }
+  },
+  "colorsOrganigrama": {
+    "page": {
+      "background-color": "rgb(247, 247, 245)"
+    },
+    "card": {
+      "background-color": "rgb(255, 255, 255)",
+      "border-top": "4px solid rgb(253, 180, 0)",
+      "box-shadow": "rgba(0, 0, 0, 0.08) 0px 5px 18px 0px",
+      "padding": "36px"
+    },
+    "kicker": {
+      "color": "rgb(140, 25, 25)",
+      "font-size": "14px",
+      "font-weight": "700",
+      "letter-spacing": "1.4px",
+      "text-transform": "uppercase"
+    },
+    "h2": {
+      "font-size": "52px",
+      "font-family": "Montserrat, \"Montserrat Fallback\", sans-serif",
+      "color": "rgb(0, 0, 0)"
+    },
+    "tabActive": {
+      "color": "rgb(140, 25, 25)",
+      "border-bottom-color": "rgb(253, 180, 0)",
+      "font-size": "15px"
+    }
+  },
+  "colorsProcesos": {
+    "page": {
+      "background-color": "rgb(247, 247, 245)"
+    },
+    "card": {
+      "background-color": "rgb(255, 255, 255)",
+      "border-top": "4px solid rgb(253, 180, 0)",
+      "box-shadow": "rgba(0, 0, 0, 0.08) 0px 5px 18px 0px",
+      "padding": "36px"
+    },
+    "kicker": {
+      "color": "rgb(140, 25, 25)",
+      "font-size": "14px",
+      "font-weight": "700",
+      "letter-spacing": "1.4px",
+      "text-transform": "uppercase"
+    },
+    "h2": {
+      "font-size": "52px",
+      "font-family": "Montserrat, \"Montserrat Fallback\", sans-serif",
+      "color": "rgb(0, 0, 0)"
+    },
+    "tabActive": {
+      "color": "rgb(140, 25, 25)",
+      "border-bottom-color": "rgb(253, 180, 0)",
+      "font-size": "15px"
+    },
+    "heroActive": {
+      "text": "Procesos SIGUD",
+      "bg": "rgb(212, 167, 58)",
+      "color": "rgb(0, 0, 0)",
+      "transform": "matrix(1, 0, 0, 1, 8, 0)",
+      "href": "/facultades/ingenieria/procesos-sigud"
+    },
+    "heroLinks": [
+      "/facultades/ingenieria/procesos-sigud"
+    ]
+  },
+  "darumaPorPaso": {
+    "ingenieria-1440:inicial": [
+      "index=939 -> 200 FALLO net::ERR_BLOCKED_BY_RESPONSE (other)"
+    ],
+    "ingenieria-1440:clic-gestion-docencia": [
+      "index=946 -> 200 FALLO net::ERR_BLOCKED_BY_RESPONSE (other)"
+    ],
+    "ingenieria-1440:clic-gestion-laboratorios": [
+      "index=950 -> 200 FALLO net::ERR_BLOCKED_BY_RESPONSE (other)",
+      "index=939 -> 200 FALLO net::ERR_BLOCKED_BY_RESPONSE (other)"
+    ],
+    "ingenieria-1440:teclado": [
+      "index=946 -> 200 FALLO net::ERR_BLOCKED_BY_RESPONSE (other)",
+      "index=950 -> 200 FALLO net::ERR_BLOCKED_BY_RESPONSE (other)"
+    ],
+    "ingenieria-1440:hash-gestion-docencia": [
+      "index=946 -> 200 FALLO net::ERR_BLOCKED_BY_RESPONSE (other)"
+    ],
+    "ingenieria-1440:hash-gestion-laboratorios": [
+      "index=950 -> 200 FALLO net::ERR_BLOCKED_BY_RESPONSE (other)"
+    ],
+    "ingenieria-1024:inicial": [
+      "index=939 -> 200 FALLO net::ERR_BLOCKED_BY_RESPONSE (other)"
+    ],
+    "ingenieria-1024:clic-gestion-docencia": [
+      "index=946 -> 200 FALLO net::ERR_BLOCKED_BY_RESPONSE (other)"
+    ],
+    "ingenieria-1024:clic-gestion-laboratorios": [
+      "index=950 -> 200 FALLO net::ERR_BLOCKED_BY_RESPONSE (other)"
+    ],
+    "ingenieria-390:inicial": [
+      "index=939 -> 200 FALLO net::ERR_BLOCKED_BY_RESPONSE (other)"
+    ],
+    "ingenieria-390:clic-gestion-docencia": [
+      "index=946 -> 200 FALLO net::ERR_BLOCKED_BY_RESPONSE (other)"
+    ],
+    "ingenieria-390:clic-gestion-laboratorios": [
+      "index=950 -> 200 FALLO net::ERR_BLOCKED_BY_RESPONSE (other)",
+      "index=939 -> 200 FALLO net::ERR_BLOCKED_BY_RESPONSE (other)"
+    ],
+    "ingenieria-390:teclado": [
+      "index=946 -> 200 FALLO net::ERR_BLOCKED_BY_RESPONSE (other)",
+      "index=950 -> 200 FALLO net::ERR_BLOCKED_BY_RESPONSE (other)"
+    ],
+    "ingenieria-390:hash-gestion-docencia": [
+      "index=946 -> 200 FALLO net::ERR_BLOCKED_BY_RESPONSE (other)"
+    ],
+    "ingenieria-390:hash-gestion-laboratorios": [
+      "index=950 -> 200 FALLO net::ERR_BLOCKED_BY_RESPONSE (other)"
+    ],
+    "artes-asab-1440:inicial": [
+      "index=939 -> 200 FALLO net::ERR_BLOCKED_BY_RESPONSE (other)"
+    ],
+    "artes-asab-1440:clic-gestion-docencia": [
+      "index=946 -> 200 FALLO net::ERR_BLOCKED_BY_RESPONSE (other)"
+    ],
+    "artes-asab-1440:clic-gestion-laboratorios": [
+      "index=950 -> 200 FALLO net::ERR_BLOCKED_BY_RESPONSE (other)",
+      "index=939 -> 200 FALLO net::ERR_BLOCKED_BY_RESPONSE (other)"
+    ],
+    "artes-asab-1440:teclado": [
+      "index=946 -> 200 FALLO net::ERR_BLOCKED_BY_RESPONSE (other)",
+      "index=950 -> 200 FALLO net::ERR_BLOCKED_BY_RESPONSE (other)"
+    ],
+    "artes-asab-1440:hash-gestion-docencia": [
+      "index=946 -> 200 FALLO net::ERR_BLOCKED_BY_RESPONSE (other)"
+    ],
+    "artes-asab-1440:hash-gestion-laboratorios": [
+      "index=950 -> 200 FALLO net::ERR_BLOCKED_BY_RESPONSE (other)"
+    ],
+    "artes-asab-1024:inicial": [
+      "index=939 -> 200 FALLO net::ERR_BLOCKED_BY_RESPONSE (other)"
+    ],
+    "artes-asab-1024:clic-gestion-docencia": [
+      "index=946 -> 200 FALLO net::ERR_BLOCKED_BY_RESPONSE (other)"
+    ],
+    "artes-asab-1024:clic-gestion-laboratorios": [
+      "index=950 -> 200 FALLO net::ERR_BLOCKED_BY_RESPONSE (other)"
+    ],
+    "artes-asab-390:inicial": [
+      "index=939 -> 200 FALLO net::ERR_BLOCKED_BY_RESPONSE (other)"
+    ],
+    "artes-asab-390:clic-gestion-docencia": [
+      "index=946 -> 200 FALLO net::ERR_BLOCKED_BY_RESPONSE (other)"
+    ],
+    "artes-asab-390:clic-gestion-laboratorios": [
+      "index=950 -> 200 FALLO net::ERR_BLOCKED_BY_RESPONSE (other)",
+      "index=939 -> 200 FALLO net::ERR_BLOCKED_BY_RESPONSE (other)"
+    ],
+    "artes-asab-390:teclado": [
+      "index=946 -> 200 FALLO net::ERR_BLOCKED_BY_RESPONSE (other)",
+      "index=950 -> 200 FALLO net::ERR_BLOCKED_BY_RESPONSE (other)"
+    ],
+    "artes-asab-390:hash-gestion-docencia": [
+      "index=946 -> 200 FALLO net::ERR_BLOCKED_BY_RESPONSE (other)"
+    ],
+    "artes-asab-390:hash-gestion-laboratorios": [
+      "index=950 -> 200 FALLO net::ERR_BLOCKED_BY_RESPONSE (other)"
+    ],
+    "lento": [
+      "index=939 -> sin respuesta FALLO net::ERR_ABORTED",
+      "index=939 -> sin respuesta"
+    ]
+  }
+}

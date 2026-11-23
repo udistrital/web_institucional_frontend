@@ -1,113 +1,151 @@
 .page {
-  max-width: 1200px;
+  background: #f7f7f5;
+  min-height: 70vh;
+}
+
+.content {
   margin: 0 auto;
-  padding: 2rem max(2vw, 1rem);
-  background-color: #f5f5f5;
-}
-
-.tabContent {
-  padding: 2rem 0;
-}
-
-.embedContainer {
-  position: relative;
+  max-width: 1200px;
   width: 100%;
+  padding: clamp(1.25rem, 3vw, 2.25rem) max(2vw, 1rem) clamp(2.5rem, 6vw, 5rem);
 }
 
-.iframe {
-  width: 100%;
-  height: min(75vh, 56rem);
-  border: 1px solid #ccc;
-  display: block;
-}
+/* El panel activo recibe foco al navegar por teclado; evitamos un outline
+   duplicado sobre el contenedor (los controles internos ya son enfocables). */
+.content > [role="tabpanel"]:focus { outline: none; }
 
-.loadingIndicator {
-  height: min(75vh, 56rem);
-  display: flex;
+/* ---- Encabezado de sección ---- */
+.sectionHeading {
   align-items: center;
-  justify-content: center;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
 }
 
-/* Spinner animation */
-.loadingIndicator::after {
-  content: "";
-  width: 2.5rem;
-  height: 2.5rem;
-  border: 3px solid #e4e4e4;
-  border-top-color: var(--institutional-gold, #d4a73a);
-  border-radius: 50%;
+.sectionKicker {
+  color: var(--institutional-red);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: .1em;
+  margin: 0 0 .35rem;
+  text-transform: uppercase;
+}
+
+.sectionHeading h2 { font-size: var(--fs-h2); line-height: var(--lh-tight); margin: 0; }
+
+/* ---- Tarjeta blanca con el visor (misma que la de organigrama) ---- */
+.card {
+  background: #fff;
+  border-top: 4px solid var(--institutional-gold);
+  box-shadow: 0 5px 18px rgba(0, 0, 0, .08);
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.viewer {
+  background: #f4f3f1;
+  border: 1px solid #e4e4e4;
+  border-radius: 8px;
+  height: clamp(32rem, 75vh, 56rem);
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.frame {
+  background: #fff;
+  border: 0;
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+/* Capa de carga sobre el iframe; se retira cuando el iframe dispara onLoad. */
+.overlay {
+  align-items: center;
+  background: #f4f3f1;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  inset: 0;
+  justify-content: center;
+  padding: 1.5rem;
+  position: absolute;
+  text-align: center;
+}
+
+.overlay p { font-size: var(--fs-base); margin: 0; }
+.overlayHint { color: #555; }
+
+.spinner {
   animation: spin 1s linear infinite;
+  border: 3px solid #e4e4e4;
+  border-radius: 50%;
+  border-top-color: var(--institutional-red);
+  height: 2.5rem;
+  width: 2.5rem;
 }
 
 @keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
+  to { transform: rotate(360deg); }
 }
 
-.fallbackCard {
-  border: 1px solid #ddd;
-  padding: 2rem;
-  text-align: center;
-  background-color: #fff;
-  min-height: min(75vh, 56rem);
+
+.fallback {
+  align-items: flex-start;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  gap: 1.25rem;
 }
 
-.fallbackCard h3 {
-  margin: 0 0 1.5rem 0;
-  font-size: 1.25rem;
+.fallback p {
   color: #333;
+  font-size: var(--fs-base);
+  line-height: var(--lh-normal);
+  margin: 0;
+  max-width: 70rem;
 }
 
-.fallbackButton {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  background-color: var(--institutional-gold, #d4a73a);
-  color: #000;
-  text-decoration: none;
+/* ---- Botones ---- */
+.primaryButton,
+.secondaryButton {
+  border: 2px solid var(--institutional-red);
   border-radius: 4px;
-  font-weight: 600;
-  transition: background-color 150ms ease, text-decoration 150ms ease;
-}
-
-.fallbackButton:hover {
-  background-color: #c29a2f;
-  text-decoration: underline;
-}
-
-.fallbackButton:focus-visible {
-  outline: 2px solid var(--institutional-red, #d4380d);
-  outline-offset: 2px;
-}
-
-.openInNewTab {
   display: inline-block;
-  margin-top: 1rem;
-  color: var(--institutional-gold, #d4a73a);
-  text-decoration: underline;
-  font-weight: 600;
-  transition: color 150ms ease;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  padding: .6rem 1.1rem;
+  text-decoration: none;
+  transition: background-color 150ms ease, color 150ms ease;
 }
 
-.openInNewTab:hover {
-  color: #c29a2f;
+.primaryButton {
+  background: var(--institutional-red);
+  color: #fff;
 }
 
-.openInNewTab:focus-visible {
-  outline: 2px solid var(--institutional-red, #d4a73a);
+.primaryButton:hover {
+  background: var(--institutional-red-hover);
+  border-color: var(--institutional-red-hover);
+}
+
+.secondaryButton {
+  background: #fff;
+  color: var(--institutional-red);
+}
+
+.secondaryButton:hover { background: var(--institutional-red); color: #fff; }
+
+.primaryButton:focus-visible,
+.secondaryButton:focus-visible {
+  outline: 2px solid var(--institutional-gold);
   outline-offset: 2px;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .loadingIndicator::after {
-    animation: none;
-    border-top-color: #999;
-  }
+  .spinner { animation: none; }
+  .primaryButton,
+  .secondaryButton { transition: none; }
 }
