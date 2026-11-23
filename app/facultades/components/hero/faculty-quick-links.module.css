@@ -92,7 +92,21 @@
   outline-offset: -3px;
 }
 
+/*
+ * Botón de la sección actual: mismo aspecto que el hover (dorado institucional,
+ * texto negro y desplazado), para que se vea igual de vivo.
+ */
+.linkActive {
+  background: var(--institutional-gold);
+  color: #000;
+  transform: translateX(var(--quick-links-shift));
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .linkActive {
+    transform: none;
+  }
+
   /*
    * Estado final desde el HTML estático, antes de hidratar: anula el estado
    * inicial en línea de la entrada del hero (framer-motion).

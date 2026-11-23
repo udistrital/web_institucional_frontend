@@ -1,0 +1,151 @@
+.page {
+  background: #f7f7f5;
+  min-height: 70vh;
+}
+
+.content {
+  margin: 0 auto;
+  max-width: 1200px;
+  width: 100%;
+  padding: clamp(1.25rem, 3vw, 2.25rem) max(2vw, 1rem) clamp(2.5rem, 6vw, 5rem);
+}
+
+/* El panel activo recibe foco al navegar por teclado; evitamos un outline
+   duplicado sobre el contenedor (los controles internos ya son enfocables). */
+.content > [role="tabpanel"]:focus { outline: none; }
+
+/* ---- Encabezado de sección ---- */
+.sectionHeading {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.sectionKicker {
+  color: var(--institutional-red);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: .1em;
+  margin: 0 0 .35rem;
+  text-transform: uppercase;
+}
+
+.sectionHeading h2 { font-size: var(--fs-h2); line-height: var(--lh-tight); margin: 0; }
+
+/* ---- Tarjeta blanca con el visor (misma que la de organigrama) ---- */
+.card {
+  background: #fff;
+  border-top: 4px solid var(--institutional-gold);
+  box-shadow: 0 5px 18px rgba(0, 0, 0, .08);
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.viewer {
+  background: #f4f3f1;
+  border: 1px solid #e4e4e4;
+  border-radius: 8px;
+  height: clamp(32rem, 75vh, 56rem);
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.frame {
+  background: #fff;
+  border: 0;
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+/* Capa de carga sobre el iframe; se retira cuando el iframe dispara onLoad. */
+.overlay {
+  align-items: center;
+  background: #f4f3f1;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  inset: 0;
+  justify-content: center;
+  padding: 1.5rem;
+  position: absolute;
+  text-align: center;
+}
+
+.overlay p { font-size: var(--fs-base); margin: 0; }
+.overlayHint { color: #555; }
+
+.spinner {
+  animation: spin 1s linear infinite;
+  border: 3px solid #e4e4e4;
+  border-radius: 50%;
+  border-top-color: var(--institutional-red);
+  height: 2.5rem;
+  width: 2.5rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+
+.fallback {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.fallback p {
+  color: #333;
+  font-size: var(--fs-base);
+  line-height: var(--lh-normal);
+  margin: 0;
+  max-width: 70rem;
+}
+
+/* ---- Botones ---- */
+.primaryButton,
+.secondaryButton {
+  border: 2px solid var(--institutional-red);
+  border-radius: 4px;
+  display: inline-block;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  padding: .6rem 1.1rem;
+  text-decoration: none;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.primaryButton {
+  background: var(--institutional-red);
+  color: #fff;
+}
+
+.primaryButton:hover {
+  background: var(--institutional-red-hover);
+  border-color: var(--institutional-red-hover);
+}
+
+.secondaryButton {
+  background: #fff;
+  color: var(--institutional-red);
+}
+
+.secondaryButton:hover { background: var(--institutional-red); color: #fff; }
+
+.primaryButton:focus-visible,
+.secondaryButton:focus-visible {
+  outline: 2px solid var(--institutional-gold);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner { animation: none; }
+  .primaryButton,
+  .secondaryButton { transition: none; }
+}

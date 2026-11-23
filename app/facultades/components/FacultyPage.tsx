@@ -147,7 +147,7 @@ export default async function FacultyPage({
         }
         belowTitle={
           quickLinks ? (
-            <FacultyQuickLinks href={`/facultades/${slug}`} />
+            <FacultyQuickLinks href={`/facultades/${slug}`} slug={slug} />
           ) : undefined
         }
         data={{

@@ -1,0 +1,1661 @@
+{
+  "base": "http://localhost:4330",
+  "label": "final",
+  "shots": [
+    {
+      "file": "ingenieria-1440-tab1-full.png",
+      "bytes": 926058,
+      "px": "1440x1806"
+    },
+    {
+      "file": "ingenieria-1440-tab1-viewport.png",
+      "bytes": 914957,
+      "px": "1440x900"
+    },
+    {
+      "file": "ingenieria-1440-tab1-full.png",
+      "bytes": 926058,
+      "px": "1440x1806"
+    },
+    {
+      "file": "ingenieria-1440-tab2-full.png",
+      "bytes": 922395,
+      "px": "1440x1806"
+    },
+    {
+      "file": "ingenieria-1440-tab3-full.png",
+      "bytes": 922884,
+      "px": "1440x1806"
+    },
+    {
+      "file": "ingenieria-1440-hash-gestion-docencia-full.png",
+      "bytes": 922395,
+      "px": "1440x1806"
+    },
+    {
+      "file": "ingenieria-1440-hash-gestion-laboratorios-full.png",
+      "bytes": 922884,
+      "px": "1440x1806"
+    },
+    {
+      "file": "ingenieria-1024-tab1-full.png",
+      "bytes": 614873,
+      "px": "1024x1838"
+    },
+    {
+      "file": "ingenieria-1024-tab1-full.png",
+      "bytes": 614873,
+      "px": "1024x1838"
+    },
+    {
+      "file": "ingenieria-1024-tab2-full.png",
+      "bytes": 612471,
+      "px": "1024x1838"
+    },
+    {
+      "file": "ingenieria-1024-tab3-full.png",
+      "bytes": 613937,
+      "px": "1024x1838"
+    },
+    {
+      "file": "ingenieria-390-tab1-full.png",
+      "bytes": 343596,
+      "px": "390x2902"
+    },
+    {
+      "file": "ingenieria-390-tab1-viewport.png",
+      "bytes": 228792,
+      "px": "390x900"
+    },
+    {
+      "file": "ingenieria-390-tab1-full.png",
+      "bytes": 343596,
+      "px": "390x2902"
+    },
+    {
+      "file": "ingenieria-390-tab2-full.png",
+      "bytes": 340524,
+      "px": "390x2867"
+    },
+    {
+      "file": "ingenieria-390-tab3-full.png",
+      "bytes": 341011,
+      "px": "390x2902"
+    },
+    {
+      "file": "artes-asab-1440-tab1-full.png",
+      "bytes": 662736,
+      "px": "1440x1806"
+    },
+    {
+      "file": "artes-asab-1440-tab1-viewport.png",
+      "bytes": 652732,
+      "px": "1440x900"
+    },
+    {
+      "file": "artes-asab-1440-tab1-full.png",
+      "bytes": 662736,
+      "px": "1440x1806"
+    },
+    {
+      "file": "artes-asab-1440-tab2-full.png",
+      "bytes": 659184,
+      "px": "1440x1806"
+    },
+    {
+      "file": "artes-asab-1440-tab3-full.png",
+      "bytes": 659703,
+      "px": "1440x1806"
+    },
+    {
+      "file": "artes-asab-1024-tab1-full.png",
+      "bytes": 486767,
+      "px": "1024x1838"
+    },
+    {
+      "file": "artes-asab-1024-tab1-full.png",
+      "bytes": 486767,
+      "px": "1024x1838"
+    },
+    {
+      "file": "artes-asab-1024-tab2-full.png",
+      "bytes": 484258,
+      "px": "1024x1838"
+    },
+    {
+      "file": "artes-asab-1024-tab3-full.png",
+      "bytes": 485750,
+      "px": "1024x1838"
+    },
+    {
+      "file": "artes-asab-390-tab1-full.png",
+      "bytes": 314940,
+      "px": "390x2902"
+    },
+    {
+      "file": "artes-asab-390-tab1-viewport.png",
+      "bytes": 199689,
+      "px": "390x900"
+    },
+    {
+      "file": "artes-asab-390-tab1-full.png",
+      "bytes": 314940,
+      "px": "390x2902"
+    },
+    {
+      "file": "artes-asab-390-tab2-full.png",
+      "bytes": 311810,
+      "px": "390x2867"
+    },
+    {
+      "file": "artes-asab-390-tab3-full.png",
+      "bytes": 312345,
+      "px": "390x2902"
+    },
+    {
+      "file": "ref-organigrama-1440-full.png",
+      "bytes": 611297,
+      "px": "1440x2893"
+    },
+    {
+      "file": "ref-organigrama-1440-viewport.png",
+      "bytes": 576880,
+      "px": "1440x900"
+    },
+    {
+      "file": "ref-organigrama-390-full.png",
+      "bytes": 311957,
+      "px": "390x3603"
+    },
+    {
+      "file": "ref-organigrama-390-viewport.png",
+      "bytes": 183621,
+      "px": "390x900"
+    }
+  ],
+  "runs": {
+    "ingenieria-1440": {
+      "inicialLoadWait": "fallback",
+      "inicial": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-admisiones-registro-control",
+        "hash": "",
+        "docScrollWidth": 1440,
+        "innerWidth": 1440,
+        "hScroll": false,
+        "tablistScrollWidth": 1200,
+        "tablistClientWidth": 1200,
+        "tablistOverflows": false,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": false,
+            "iframe": false,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "inicialDaruma": [],
+      "clic1Load": "fallback",
+      "clic1": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-admisiones-registro-control",
+        "hash": "#admisiones-registro-control",
+        "docScrollWidth": 1440,
+        "innerWidth": 1440,
+        "hScroll": false,
+        "tablistScrollWidth": 1200,
+        "tablistClientWidth": 1200,
+        "tablistOverflows": false,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": false,
+            "iframe": false,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "clic1Daruma": [],
+      "clic2Load": "fallback",
+      "clic2": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-gestion-docencia",
+        "hash": "#gestion-docencia",
+        "docScrollWidth": 1440,
+        "innerWidth": 1440,
+        "hScroll": false,
+        "tablistScrollWidth": 1200,
+        "tablistClientWidth": 1200,
+        "tablistOverflows": false,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": false,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "clic2Daruma": [],
+      "clic3Load": "fallback",
+      "clic3": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-gestion-laboratorios",
+        "hash": "#gestion-laboratorios",
+        "docScrollWidth": 1440,
+        "innerWidth": 1440,
+        "hScroll": false,
+        "tablistScrollWidth": 1200,
+        "tablistClientWidth": 1200,
+        "tablistOverflows": false,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": false,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "clic3Daruma": [],
+      "teclado": {
+        "tras1": "tab-gestion-docencia",
+        "tras2": "tab-gestion-laboratorios",
+        "tras3_izq": "tab-gestion-docencia",
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": false,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de laboratorios"
+          }
+        ],
+        "daruma": []
+      },
+      "hash_gestion-docencia": {
+        "state": {
+          "tabLabels": [
+            "Admisiones, Registro y Control",
+            "Gestión de Docencia",
+            "Gestión de laboratorios"
+          ],
+          "activeTab": "tab-gestion-docencia",
+          "hash": "#gestion-docencia",
+          "docScrollWidth": 1440,
+          "innerWidth": 1440,
+          "hScroll": false,
+          "tablistScrollWidth": 1200,
+          "tablistClientWidth": 1200,
+          "tablistOverflows": false,
+          "panels": [
+            {
+              "id": "panel-admisiones-registro-control",
+              "hidden": true,
+              "iframe": false,
+              "loading": false,
+              "h2": "Admisiones, Registro y Control"
+            },
+            {
+              "id": "panel-gestion-docencia",
+              "hidden": false,
+              "iframe": false,
+              "loading": false,
+              "h2": "Gestión de Docencia"
+            },
+            {
+              "id": "panel-gestion-laboratorios",
+              "hidden": true,
+              "iframe": false,
+              "loading": false,
+              "h2": "Gestión de laboratorios"
+            }
+          ]
+        },
+        "daruma": []
+      },
+      "hash_gestion-laboratorios": {
+        "state": {
+          "tabLabels": [
+            "Admisiones, Registro y Control",
+            "Gestión de Docencia",
+            "Gestión de laboratorios"
+          ],
+          "activeTab": "tab-gestion-laboratorios",
+          "hash": "#gestion-laboratorios",
+          "docScrollWidth": 1440,
+          "innerWidth": 1440,
+          "hScroll": false,
+          "tablistScrollWidth": 1200,
+          "tablistClientWidth": 1200,
+          "tablistOverflows": false,
+          "panels": [
+            {
+              "id": "panel-admisiones-registro-control",
+              "hidden": true,
+              "iframe": false,
+              "loading": false,
+              "h2": "Admisiones, Registro y Control"
+            },
+            {
+              "id": "panel-gestion-docencia",
+              "hidden": true,
+              "iframe": false,
+              "loading": false,
+              "h2": "Gestión de Docencia"
+            },
+            {
+              "id": "panel-gestion-laboratorios",
+              "hidden": false,
+              "iframe": false,
+              "loading": false,
+              "h2": "Gestión de laboratorios"
+            }
+          ]
+        },
+        "daruma": []
+      }
+    },
+    "ingenieria-1024": {
+      "inicialLoadWait": "fallback",
+      "inicial": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-admisiones-registro-control",
+        "hash": "",
+        "docScrollWidth": 1024,
+        "innerWidth": 1024,
+        "hScroll": false,
+        "tablistScrollWidth": 1024,
+        "tablistClientWidth": 1024,
+        "tablistOverflows": false,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": false,
+            "iframe": false,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "inicialDaruma": [],
+      "clic1Load": "fallback",
+      "clic1": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-admisiones-registro-control",
+        "hash": "#admisiones-registro-control",
+        "docScrollWidth": 1024,
+        "innerWidth": 1024,
+        "hScroll": false,
+        "tablistScrollWidth": 1024,
+        "tablistClientWidth": 1024,
+        "tablistOverflows": false,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": false,
+            "iframe": false,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "clic1Daruma": [],
+      "clic2Load": "fallback",
+      "clic2": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-gestion-docencia",
+        "hash": "#gestion-docencia",
+        "docScrollWidth": 1024,
+        "innerWidth": 1024,
+        "hScroll": false,
+        "tablistScrollWidth": 1024,
+        "tablistClientWidth": 1024,
+        "tablistOverflows": false,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": false,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "clic2Daruma": [],
+      "clic3Load": "fallback",
+      "clic3": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-gestion-laboratorios",
+        "hash": "#gestion-laboratorios",
+        "docScrollWidth": 1024,
+        "innerWidth": 1024,
+        "hScroll": false,
+        "tablistScrollWidth": 1024,
+        "tablistClientWidth": 1024,
+        "tablistOverflows": false,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": false,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "clic3Daruma": []
+    },
+    "ingenieria-390": {
+      "inicialLoadWait": "fallback",
+      "inicial": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-admisiones-registro-control",
+        "hash": "",
+        "docScrollWidth": 390,
+        "innerWidth": 390,
+        "hScroll": false,
+        "tablistScrollWidth": 627,
+        "tablistClientWidth": 390,
+        "tablistOverflows": true,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": false,
+            "iframe": false,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "inicialDaruma": [],
+      "clic1Load": "fallback",
+      "clic1": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-admisiones-registro-control",
+        "hash": "#admisiones-registro-control",
+        "docScrollWidth": 390,
+        "innerWidth": 390,
+        "hScroll": false,
+        "tablistScrollWidth": 627,
+        "tablistClientWidth": 390,
+        "tablistOverflows": true,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": false,
+            "iframe": false,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "clic1Daruma": [],
+      "clic2Load": "fallback",
+      "clic2": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-gestion-docencia",
+        "hash": "#gestion-docencia",
+        "docScrollWidth": 390,
+        "innerWidth": 390,
+        "hScroll": false,
+        "tablistScrollWidth": 627,
+        "tablistClientWidth": 390,
+        "tablistOverflows": true,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": false,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "clic2Daruma": [],
+      "clic3Load": "fallback",
+      "clic3": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-gestion-laboratorios",
+        "hash": "#gestion-laboratorios",
+        "docScrollWidth": 390,
+        "innerWidth": 390,
+        "hScroll": false,
+        "tablistScrollWidth": 627,
+        "tablistClientWidth": 390,
+        "tablistOverflows": true,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": false,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "clic3Daruma": [],
+      "teclado": {
+        "tras1": "tab-gestion-docencia",
+        "tras2": "tab-gestion-laboratorios",
+        "tras3_izq": "tab-gestion-docencia",
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": false,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de laboratorios"
+          }
+        ],
+        "daruma": []
+      },
+      "hash_gestion-docencia": {
+        "state": {
+          "tabLabels": [
+            "Admisiones, Registro y Control",
+            "Gestión de Docencia",
+            "Gestión de laboratorios"
+          ],
+          "activeTab": "tab-gestion-docencia",
+          "hash": "#gestion-docencia",
+          "docScrollWidth": 390,
+          "innerWidth": 390,
+          "hScroll": false,
+          "tablistScrollWidth": 627,
+          "tablistClientWidth": 390,
+          "tablistOverflows": true,
+          "panels": [
+            {
+              "id": "panel-admisiones-registro-control",
+              "hidden": true,
+              "iframe": false,
+              "loading": false,
+              "h2": "Admisiones, Registro y Control"
+            },
+            {
+              "id": "panel-gestion-docencia",
+              "hidden": false,
+              "iframe": false,
+              "loading": false,
+              "h2": "Gestión de Docencia"
+            },
+            {
+              "id": "panel-gestion-laboratorios",
+              "hidden": true,
+              "iframe": false,
+              "loading": false,
+              "h2": "Gestión de laboratorios"
+            }
+          ]
+        },
+        "daruma": []
+      },
+      "hash_gestion-laboratorios": {
+        "state": {
+          "tabLabels": [
+            "Admisiones, Registro y Control",
+            "Gestión de Docencia",
+            "Gestión de laboratorios"
+          ],
+          "activeTab": "tab-gestion-laboratorios",
+          "hash": "#gestion-laboratorios",
+          "docScrollWidth": 390,
+          "innerWidth": 390,
+          "hScroll": false,
+          "tablistScrollWidth": 627,
+          "tablistClientWidth": 390,
+          "tablistOverflows": true,
+          "panels": [
+            {
+              "id": "panel-admisiones-registro-control",
+              "hidden": true,
+              "iframe": false,
+              "loading": false,
+              "h2": "Admisiones, Registro y Control"
+            },
+            {
+              "id": "panel-gestion-docencia",
+              "hidden": true,
+              "iframe": false,
+              "loading": false,
+              "h2": "Gestión de Docencia"
+            },
+            {
+              "id": "panel-gestion-laboratorios",
+              "hidden": false,
+              "iframe": false,
+              "loading": false,
+              "h2": "Gestión de laboratorios"
+            }
+          ]
+        },
+        "daruma": []
+      }
+    },
+    "artes-asab-1440": {
+      "inicialLoadWait": "fallback",
+      "inicial": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-admisiones-registro-control",
+        "hash": "",
+        "docScrollWidth": 1440,
+        "innerWidth": 1440,
+        "hScroll": false,
+        "tablistScrollWidth": 1200,
+        "tablistClientWidth": 1200,
+        "tablistOverflows": false,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": false,
+            "iframe": false,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "inicialDaruma": [],
+      "clic1Load": "fallback",
+      "clic1": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-admisiones-registro-control",
+        "hash": "#admisiones-registro-control",
+        "docScrollWidth": 1440,
+        "innerWidth": 1440,
+        "hScroll": false,
+        "tablistScrollWidth": 1200,
+        "tablistClientWidth": 1200,
+        "tablistOverflows": false,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": false,
+            "iframe": false,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "clic1Daruma": [],
+      "clic2Load": "fallback",
+      "clic2": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-gestion-docencia",
+        "hash": "#gestion-docencia",
+        "docScrollWidth": 1440,
+        "innerWidth": 1440,
+        "hScroll": false,
+        "tablistScrollWidth": 1200,
+        "tablistClientWidth": 1200,
+        "tablistOverflows": false,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": false,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "clic2Daruma": [],
+      "clic3Load": "fallback",
+      "clic3": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-gestion-laboratorios",
+        "hash": "#gestion-laboratorios",
+        "docScrollWidth": 1440,
+        "innerWidth": 1440,
+        "hScroll": false,
+        "tablistScrollWidth": 1200,
+        "tablistClientWidth": 1200,
+        "tablistOverflows": false,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": false,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "clic3Daruma": [],
+      "teclado": {
+        "tras1": "tab-gestion-docencia",
+        "tras2": "tab-gestion-laboratorios",
+        "tras3_izq": "tab-gestion-docencia",
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": false,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de laboratorios"
+          }
+        ],
+        "daruma": []
+      },
+      "hash_gestion-docencia": {
+        "state": {
+          "tabLabels": [
+            "Admisiones, Registro y Control",
+            "Gestión de Docencia",
+            "Gestión de laboratorios"
+          ],
+          "activeTab": "tab-gestion-docencia",
+          "hash": "#gestion-docencia",
+          "docScrollWidth": 1440,
+          "innerWidth": 1440,
+          "hScroll": false,
+          "tablistScrollWidth": 1200,
+          "tablistClientWidth": 1200,
+          "tablistOverflows": false,
+          "panels": [
+            {
+              "id": "panel-admisiones-registro-control",
+              "hidden": true,
+              "iframe": false,
+              "loading": false,
+              "h2": "Admisiones, Registro y Control"
+            },
+            {
+              "id": "panel-gestion-docencia",
+              "hidden": false,
+              "iframe": false,
+              "loading": false,
+              "h2": "Gestión de Docencia"
+            },
+            {
+              "id": "panel-gestion-laboratorios",
+              "hidden": true,
+              "iframe": false,
+              "loading": false,
+              "h2": "Gestión de laboratorios"
+            }
+          ]
+        },
+        "daruma": []
+      },
+      "hash_gestion-laboratorios": {
+        "state": {
+          "tabLabels": [
+            "Admisiones, Registro y Control",
+            "Gestión de Docencia",
+            "Gestión de laboratorios"
+          ],
+          "activeTab": "tab-gestion-laboratorios",
+          "hash": "#gestion-laboratorios",
+          "docScrollWidth": 1440,
+          "innerWidth": 1440,
+          "hScroll": false,
+          "tablistScrollWidth": 1200,
+          "tablistClientWidth": 1200,
+          "tablistOverflows": false,
+          "panels": [
+            {
+              "id": "panel-admisiones-registro-control",
+              "hidden": true,
+              "iframe": false,
+              "loading": false,
+              "h2": "Admisiones, Registro y Control"
+            },
+            {
+              "id": "panel-gestion-docencia",
+              "hidden": true,
+              "iframe": false,
+              "loading": false,
+              "h2": "Gestión de Docencia"
+            },
+            {
+              "id": "panel-gestion-laboratorios",
+              "hidden": false,
+              "iframe": false,
+              "loading": false,
+              "h2": "Gestión de laboratorios"
+            }
+          ]
+        },
+        "daruma": []
+      }
+    },
+    "artes-asab-1024": {
+      "inicialLoadWait": "fallback",
+      "inicial": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-admisiones-registro-control",
+        "hash": "",
+        "docScrollWidth": 1024,
+        "innerWidth": 1024,
+        "hScroll": false,
+        "tablistScrollWidth": 1024,
+        "tablistClientWidth": 1024,
+        "tablistOverflows": false,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": false,
+            "iframe": false,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "inicialDaruma": [],
+      "clic1Load": "fallback",
+      "clic1": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-admisiones-registro-control",
+        "hash": "#admisiones-registro-control",
+        "docScrollWidth": 1024,
+        "innerWidth": 1024,
+        "hScroll": false,
+        "tablistScrollWidth": 1024,
+        "tablistClientWidth": 1024,
+        "tablistOverflows": false,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": false,
+            "iframe": false,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "clic1Daruma": [],
+      "clic2Load": "fallback",
+      "clic2": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-gestion-docencia",
+        "hash": "#gestion-docencia",
+        "docScrollWidth": 1024,
+        "innerWidth": 1024,
+        "hScroll": false,
+        "tablistScrollWidth": 1024,
+        "tablistClientWidth": 1024,
+        "tablistOverflows": false,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": false,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "clic2Daruma": [],
+      "clic3Load": "fallback",
+      "clic3": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-gestion-laboratorios",
+        "hash": "#gestion-laboratorios",
+        "docScrollWidth": 1024,
+        "innerWidth": 1024,
+        "hScroll": false,
+        "tablistScrollWidth": 1024,
+        "tablistClientWidth": 1024,
+        "tablistOverflows": false,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": false,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "clic3Daruma": []
+    },
+    "artes-asab-390": {
+      "inicialLoadWait": "fallback",
+      "inicial": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-admisiones-registro-control",
+        "hash": "",
+        "docScrollWidth": 390,
+        "innerWidth": 390,
+        "hScroll": false,
+        "tablistScrollWidth": 627,
+        "tablistClientWidth": 390,
+        "tablistOverflows": true,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": false,
+            "iframe": false,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "inicialDaruma": [],
+      "clic1Load": "fallback",
+      "clic1": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-admisiones-registro-control",
+        "hash": "#admisiones-registro-control",
+        "docScrollWidth": 390,
+        "innerWidth": 390,
+        "hScroll": false,
+        "tablistScrollWidth": 627,
+        "tablistClientWidth": 390,
+        "tablistOverflows": true,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": false,
+            "iframe": false,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "clic1Daruma": [],
+      "clic2Load": "fallback",
+      "clic2": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-gestion-docencia",
+        "hash": "#gestion-docencia",
+        "docScrollWidth": 390,
+        "innerWidth": 390,
+        "hScroll": false,
+        "tablistScrollWidth": 627,
+        "tablistClientWidth": 390,
+        "tablistOverflows": true,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": false,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "clic2Daruma": [],
+      "clic3Load": "fallback",
+      "clic3": {
+        "tabLabels": [
+          "Admisiones, Registro y Control",
+          "Gestión de Docencia",
+          "Gestión de laboratorios"
+        ],
+        "activeTab": "tab-gestion-laboratorios",
+        "hash": "#gestion-laboratorios",
+        "docScrollWidth": 390,
+        "innerWidth": 390,
+        "hScroll": false,
+        "tablistScrollWidth": 627,
+        "tablistClientWidth": 390,
+        "tablistOverflows": true,
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": false,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de laboratorios"
+          }
+        ]
+      },
+      "clic3Daruma": [],
+      "teclado": {
+        "tras1": "tab-gestion-docencia",
+        "tras2": "tab-gestion-laboratorios",
+        "tras3_izq": "tab-gestion-docencia",
+        "panels": [
+          {
+            "id": "panel-admisiones-registro-control",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Admisiones, Registro y Control"
+          },
+          {
+            "id": "panel-gestion-docencia",
+            "hidden": false,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de Docencia"
+          },
+          {
+            "id": "panel-gestion-laboratorios",
+            "hidden": true,
+            "iframe": false,
+            "loading": false,
+            "h2": "Gestión de laboratorios"
+          }
+        ],
+        "daruma": []
+      },
+      "hash_gestion-docencia": {
+        "state": {
+          "tabLabels": [
+            "Admisiones, Registro y Control",
+            "Gestión de Docencia",
+            "Gestión de laboratorios"
+          ],
+          "activeTab": "tab-gestion-docencia",
+          "hash": "#gestion-docencia",
+          "docScrollWidth": 390,
+          "innerWidth": 390,
+          "hScroll": false,
+          "tablistScrollWidth": 627,
+          "tablistClientWidth": 390,
+          "tablistOverflows": true,
+          "panels": [
+            {
+              "id": "panel-admisiones-registro-control",
+              "hidden": true,
+              "iframe": false,
+              "loading": false,
+              "h2": "Admisiones, Registro y Control"
+            },
+            {
+              "id": "panel-gestion-docencia",
+              "hidden": false,
+              "iframe": false,
+              "loading": false,
+              "h2": "Gestión de Docencia"
+            },
+            {
+              "id": "panel-gestion-laboratorios",
+              "hidden": true,
+              "iframe": false,
+              "loading": false,
+              "h2": "Gestión de laboratorios"
+            }
+          ]
+        },
+        "daruma": []
+      },
+      "hash_gestion-laboratorios": {
+        "state": {
+          "tabLabels": [
+            "Admisiones, Registro y Control",
+            "Gestión de Docencia",
+            "Gestión de laboratorios"
+          ],
+          "activeTab": "tab-gestion-laboratorios",
+          "hash": "#gestion-laboratorios",
+          "docScrollWidth": 390,
+          "innerWidth": 390,
+          "hScroll": false,
+          "tablistScrollWidth": 627,
+          "tablistClientWidth": 390,
+          "tablistOverflows": true,
+          "panels": [
+            {
+              "id": "panel-admisiones-registro-control",
+              "hidden": true,
+              "iframe": false,
+              "loading": false,
+              "h2": "Admisiones, Registro y Control"
+            },
+            {
+              "id": "panel-gestion-docencia",
+              "hidden": true,
+              "iframe": false,
+              "loading": false,
+              "h2": "Gestión de Docencia"
+            },
+            {
+              "id": "panel-gestion-laboratorios",
+              "hidden": false,
+              "iframe": false,
+              "loading": false,
+              "h2": "Gestión de laboratorios"
+            }
+          ]
+        },
+        "daruma": []
+      }
+    }
+  },
+  "colorsOrganigrama": {
+    "page": {
+      "background-color": "rgb(247, 247, 245)"
+    },
+    "card": {
+      "background-color": "rgb(255, 255, 255)",
+      "border-top": "4px solid rgb(253, 180, 0)",
+      "box-shadow": "rgba(0, 0, 0, 0.08) 0px 5px 18px 0px",
+      "padding": "36px"
+    },
+    "kicker": {
+      "color": "rgb(140, 25, 25)",
+      "font-size": "14px",
+      "font-weight": "700",
+      "letter-spacing": "1.4px",
+      "text-transform": "uppercase"
+    },
+    "h2": {
+      "font-size": "52px",
+      "font-family": "Montserrat, \"Montserrat Fallback\", sans-serif",
+      "color": "rgb(0, 0, 0)"
+    },
+    "tabActive": {
+      "color": "rgb(140, 25, 25)",
+      "border-bottom-color": "rgb(253, 180, 0)",
+      "font-size": "15px"
+    }
+  },
+  "colorsProcesos": {
+    "page": {
+      "background-color": "rgb(247, 247, 245)"
+    },
+    "card": {
+      "background-color": "rgb(255, 255, 255)",
+      "border-top": "4px solid rgb(253, 180, 0)",
+      "box-shadow": "rgba(0, 0, 0, 0.08) 0px 5px 18px 0px",
+      "padding": "36px"
+    },
+    "kicker": {
+      "color": "rgb(140, 25, 25)",
+      "font-size": "14px",
+      "font-weight": "700",
+      "letter-spacing": "1.4px",
+      "text-transform": "uppercase"
+    },
+    "h2": {
+      "font-size": "52px",
+      "font-family": "Montserrat, \"Montserrat Fallback\", sans-serif",
+      "color": "rgb(0, 0, 0)"
+    },
+    "tabActive": {
+      "color": "rgb(140, 25, 25)",
+      "border-bottom-color": "rgb(253, 180, 0)",
+      "font-size": "15px"
+    },
+    "heroActive": {
+      "text": "Procesos SIGUD",
+      "bg": "rgb(212, 167, 58)",
+      "color": "rgb(0, 0, 0)",
+      "transform": "matrix(1, 0, 0, 1, 8, 0)",
+      "href": "/facultades/ingenieria/procesos-sigud"
+    },
+    "heroLinks": [
+      "/facultades/ingenieria/procesos-sigud"
+    ]
+  },
+  "darumaPorPaso": {}
+}
