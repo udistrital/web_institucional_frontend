@@ -26,11 +26,12 @@ const FOCUSABLE_SELECTOR =
  * Intro, conmutador de ley y mosaico de categorías de "Transparencia y acceso
  * a la información pública".
  *
- * El componente recibe las dos normas disponibles (Ley 1712 de 2014 y
- * Resolución 1519 de 2020) y mantiene en el cliente la ley activa. La intro
- * (kicker + párrafo) cambia con la ley seleccionada y vive en un panel blanco.
- * El conmutador es un segmented control (botones en escritorio, select en
- * móvil) que calca el patrón de normatividad.
+ * El componente recibe los dos esquemas de publicación disponibles
+ * (Resolución 3564 de 2015 y Resolución 1519 de 2020) y mantiene en el cliente
+ * el esquema activo. La intro (kicker + párrafo) cambia con el esquema
+ * seleccionado y vive en un panel blanco. El conmutador es un segmented
+ * control (botones en escritorio, select en móvil) que calca el patrón de
+ * normatividad.
  *
  * Cada tarjeta del mosaico es un botón con icono, título y descripción breve.
  * Al activarlo se abre un modal con las subsecciones de la categoría y, bajo
@@ -165,7 +166,7 @@ export default function TransparenciaMosaico({
         {/* Móvil: select nativo. */}
         <div className={styles.leySelectWrap}>
           <label className={styles.leySelectLabel} htmlFor={selectId}>
-            Norma de transparencia
+            Esquema de publicación
           </label>
           <select
             id={selectId}
@@ -185,7 +186,7 @@ export default function TransparenciaMosaico({
         <div
           className={styles.leyFiltros}
           role="tablist"
-          aria-label="Norma de transparencia"
+          aria-label="Esquema de publicación"
         >
           {leyes.map((ley, index) => {
             const esActivo = index === activaLey;

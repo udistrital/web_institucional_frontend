@@ -8,7 +8,7 @@ import { LEYES } from "./content";
 export const metadata: Metadata = {
   title: "Transparencia y acceso a la información pública",
   description:
-    "Consulta la información pública de la Universidad Distrital Francisco José de Caldas: el esquema de la Ley 1712 de 2014 (13 categorías) y el de la Resolución 1519 de 2020 de MinTIC (10 secciones).",
+    "Consulta la información pública de la Universidad Distrital Francisco José de Caldas, publicada en cumplimiento de la Ley 1712 de 2014: el esquema de la Resolución 3564 de 2015 (13 categorías) y el de la Resolución 1519 de 2020 de MinTIC (10 secciones).",
 };
 
 export default function TransparenciaPage() {
@@ -32,6 +32,20 @@ export default function TransparenciaPage() {
       <BreadCrumbs variant="onDark" />
 
       <div className={styles.content}>
+        {/* Bloque fijo del marco legal: la Ley 1712 de 2014 no cambia con el
+            conmutador, por eso es contenido estático en el server component. */}
+        <div className={styles.intro}>
+          <p className={styles.introKicker}>Ley 1712 de 2014</p>
+          <p className={styles.introText}>
+            La Ley 1712 de 2014 es la Ley de Transparencia y del Derecho de
+            Acceso a la Información Pública Nacional. En cumplimiento de ella, la
+            Universidad Distrital Francisco José de Caldas publica su información
+            pública para que cualquier persona pueda consultarla. A
+            continuación puedes revisarla según el esquema de la resolución de
+            MinTIC correspondiente.
+          </p>
+        </div>
+
         <TransparenciaMosaico leyes={LEYES} />
       </div>
     </section>

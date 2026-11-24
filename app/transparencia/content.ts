@@ -2,11 +2,12 @@
  * Contenido estático de la página "Transparencia y acceso a la información
  * pública".
  *
- * Reúne los enlaces exigidos por la Ley 1712 de 2014 (Ley de Transparencia y
- * del Derecho de Acceso a la Información Pública) organizados en las 13
- * categorías del esquema de publicación de la Universidad Distrital Francisco
- * José de Caldas, y el esquema de la Resolución 1519 de 2020 de MinTIC,
- * organizado en 10 secciones. Los títulos y las URLs se transcriben
+ * Reúne los enlaces que la Universidad Distrital Francisco José de Caldas
+ * publica en cumplimiento de la Ley 1712 de 2014 (Ley de Transparencia y del
+ * Derecho de Acceso a la Información Pública), organizados según el esquema de
+ * la Resolución 3564 de 2015 de MinTIC, con 13 categorías, y el de la
+ * Resolución 1519 de 2020 de MinTIC, con 10 secciones. Los títulos y las URLs
+ * se transcriben
  * literalmente de las fuentes oficiales; las descripciones cortas de cada
  * categoría se redactan aquí para orientar al ciudadano. Al ser información
  * institucional de baja frecuencia de cambio, se mantiene en el repositorio en
@@ -25,7 +26,7 @@ export type SubseccionTransparencia = {
 };
 
 export type CategoriaId =
-  // Ley 1712 de 2014 (13 categorías).
+  // Resolución 3564 de 2015 de MinTIC (13 categorías).
   | "mecanismos-de-contacto"
   | "informacion-de-interes"
   | "estructura-organica"
@@ -66,9 +67,9 @@ export type CategoriaTransparencia = {
 };
 
 /**
- * Agrupa las categorías de una norma de transparencia junto con los textos de
+ * Agrupa las categorías de un esquema de publicación junto con los textos de
  * la intro que las acompañan. Permite que el conmutador cambie de forma
- * uniforme entre la Ley 1712 de 2014 y la Resolución 1519 de 2020.
+ * uniforme entre la Resolución 3564 de 2015 y la Resolución 1519 de 2020.
  */
 export type LeyTransparencia = {
   id: string;
@@ -1219,17 +1220,20 @@ export const CATEGORIAS_RES_1519: CategoriaTransparencia[] = [
 ];
 
 /**
- * Normas de transparencia disponibles en el conmutador. La Ley 1712 de 2014 es
- * la opción por defecto (primer elemento).
+ * Esquemas de publicación disponibles en el conmutador. En cumplimiento de la
+ * Ley 1712 de 2014, la información se organiza según la resolución de MinTIC
+ * correspondiente: la Resolución 3564 de 2015 (esquema antiguo, con enlaces
+ * reales) es la opción por defecto (primer elemento) y la Resolución 1519 de
+ * 2020 (esquema nuevo) le sigue.
  */
 export const LEYES: LeyTransparencia[] = [
   {
-    id: "ley-1712",
-    etiqueta: "Ley 1712 de 2014",
-    etiquetaCorta: "Ley 1712 de 2014",
-    kicker: "Ley 1712 de 2014",
+    id: "res-3564",
+    etiqueta: "Resolución 3564 de 2015",
+    etiquetaCorta: "Res. 3564 de 2015",
+    kicker: "Resolución 3564 de 2015",
     introText:
-      "La Universidad Distrital Francisco José de Caldas pone a disposición de la ciudadanía su información pública, organizada en 13 categorías. Selecciona una categoría para ver sus subsecciones y los enlaces a la información oficial.",
+      "La Resolución 3564 de 2015 de MinTIC define el esquema de publicación anterior, organizado en 13 categorías. La Universidad Distrital Francisco José de Caldas pone a disposición de la ciudadanía su información pública conforme a este esquema; selecciona una categoría para ver sus subsecciones y los enlaces a la información oficial.",
     categorias: CATEGORIAS_LEY_1712,
   },
   {
@@ -1238,7 +1242,7 @@ export const LEYES: LeyTransparencia[] = [
     etiquetaCorta: "Resolución 1519 de 2020",
     kicker: "Resolución 1519 de 2020",
     introText:
-      "La Resolución 1519 de 2020 de MinTIC define un nuevo esquema de publicación de información pública, organizado en 10 secciones. La Universidad Distrital Francisco José de Caldas está cargando y actualizando su contenido; selecciona una sección para conocer su alcance.",
+      "La Resolución 1519 de 2020 de MinTIC define el nuevo esquema de publicación de información pública, organizado en 10 secciones. La Universidad Distrital Francisco José de Caldas está cargando y actualizando su contenido; selecciona una sección para conocer su alcance.",
     categorias: CATEGORIAS_RES_1519,
   },
 ];
