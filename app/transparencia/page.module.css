@@ -1,0 +1,284 @@
+.page {
+  background: #f7f7f5;
+  min-height: 70vh;
+}
+
+.content {
+  margin: 0 auto;
+  max-width: 1200px;
+  width: 100%;
+  padding: clamp(1.25rem, 3vw, 2.25rem) max(2vw, 1rem) clamp(2.5rem, 6vw, 5rem);
+}
+
+/* ---- Intro de la sección ---- */
+.intro {
+  border-left: 4px solid var(--institutional-gold);
+  margin: 0 0 clamp(1.75rem, 4vw, 2.5rem);
+  max-width: 60rem;
+  padding-left: clamp(1rem, 2vw, 1.25rem);
+}
+.introKicker {
+  color: var(--institutional-red);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: .1em;
+  margin: 0 0 .5rem;
+  text-transform: uppercase;
+}
+.introText {
+  color: #333;
+  font-size: var(--fs-md);
+  line-height: var(--lh-normal);
+  margin: 0;
+}
+
+/* ---- Mosaico de categorías ---- */
+.mosaico {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Cada tarjeta es un botón que abre la modal de la categoría. El acento de
+   color por tarjeta se construye con los tokens de marca. */
+.tarjeta {
+  align-items: flex-start;
+  background:
+    linear-gradient(135deg, rgba(140, 25, 25, .04), rgba(253, 180, 0, .06)),
+    #fff;
+  border: 0;
+  border-top: 4px solid var(--institutional-gold);
+  box-shadow: 0 5px 18px rgba(0, 0, 0, .08);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  font: inherit;
+  gap: .9rem;
+  height: 100%;
+  padding: clamp(1.4rem, 2.5vw, 1.9rem);
+  text-align: left;
+  transition: box-shadow 220ms ease, transform 220ms ease;
+  width: 100%;
+}
+.tarjeta:hover {
+  box-shadow: 0 12px 28px rgba(0, 0, 0, .14);
+  transform: translateY(-4px);
+}
+
+.tarjetaIcono {
+  align-items: center;
+  background: var(--institutional-red);
+  border-radius: 14px;
+  color: #fff;
+  display: flex;
+  flex-shrink: 0;
+  height: 3.5rem;
+  justify-content: center;
+  width: 3.5rem;
+}
+.tarjetaIcono svg { height: 1.9rem; width: 1.9rem; }
+
+.tarjetaNumero {
+  color: var(--institutional-red);
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: var(--fs-2xs);
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+.tarjetaTitulo {
+  color: #1a1a1a;
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  line-height: var(--lh-tight);
+  margin: .15rem 0 0;
+}
+.tarjetaDescripcion {
+  color: #444;
+  font-size: var(--fs-sm);
+  line-height: var(--lh-normal);
+  margin: 0;
+}
+.tarjetaVerMas {
+  align-items: center;
+  color: var(--institutional-red);
+  display: inline-flex;
+  font-size: var(--fs-2xs);
+  font-weight: 700;
+  gap: .3rem;
+  letter-spacing: .04em;
+  margin-top: auto;
+  padding-top: .35rem;
+  text-transform: uppercase;
+}
+.tarjetaVerMas svg { height: .9rem; width: .9rem; }
+
+/* ---- Modal de categoría (calca el patrón de sobre-nosotros) ---- */
+.overlay {
+  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, .7);
+  inset: 0;
+  position: fixed;
+  z-index: 80;
+}
+.modal {
+  background: #fff;
+  border-radius: .5rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .3);
+  display: flex;
+  flex-direction: column;
+  left: 50%;
+  max-height: 88vh;
+  max-height: 88dvh;
+  overflow: hidden;
+  position: fixed;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(52rem, calc(100vw - 3rem));
+  z-index: 81;
+}
+.modalClose {
+  align-items: center;
+  background: rgba(0, 0, 0, .5);
+  border: 0;
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  height: 2.5rem;
+  justify-content: center;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  transition: background 200ms ease;
+  width: 2.5rem;
+  z-index: 1;
+}
+.modalClose:hover { background: rgba(0, 0, 0, .75); }
+.modalClose svg { height: 1.25rem; width: 1.25rem; }
+
+.modalBody { overflow-y: auto; padding: clamp(1.75rem, 4vw, 2.5rem); }
+.modalHeader {
+  align-items: center;
+  border-bottom: 1px solid #ececec;
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+  padding: 0 3rem 1.25rem 0;
+}
+.modalHeaderIcono {
+  align-items: center;
+  background: var(--institutional-red);
+  border-radius: 12px;
+  color: #fff;
+  display: flex;
+  flex-shrink: 0;
+  height: 3rem;
+  justify-content: center;
+  width: 3rem;
+}
+.modalHeaderIcono svg { height: 1.6rem; width: 1.6rem; }
+.modalKicker {
+  color: var(--institutional-red);
+  font-size: var(--fs-2xs);
+  font-weight: 700;
+  letter-spacing: .1em;
+  margin: 0 0 .25rem;
+  text-transform: uppercase;
+}
+.modalTitulo {
+  font-size: var(--fs-h3);
+  line-height: var(--lh-tight);
+  margin: 0;
+}
+
+/* Subsección: subtítulo con barra dorada (calca .subheading). */
+.subseccion { margin-bottom: 1.75rem; }
+.subseccion:last-child { margin-bottom: 0; }
+.subseccionTitulo {
+  align-items: center;
+  color: #1a1a1a;
+  display: flex;
+  font-size: var(--fs-md);
+  gap: .75rem;
+  line-height: var(--lh-tight);
+  margin: 0 0 1rem;
+}
+.subseccionTitulo::before {
+  background: var(--institutional-gold);
+  border-radius: 2px;
+  content: "";
+  display: inline-block;
+  flex-shrink: 0;
+  height: 1.3em;
+  width: .35rem;
+}
+
+/* Grilla de enlaces (DocumentCard) dentro de cada subsección. */
+.enlacesGrid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Override local del fondo de la tarjeta compartida: fondo blanco con borde
+   suave para destacar sobre el cuerpo claro de la modal. Se usa !important por
+   la misma razón que en direccionamiento-estrategico (misma especificidad que
+   .card del módulo compartido y orden de carga no garantizable). */
+.documentCardWhite {
+  background: #fff !important;
+  border: 1px solid #ececec;
+}
+
+/* ---- Skeleton de carga ---- */
+.skeletonBreadcrumb {
+  background: #1a1a1a;
+  height: 3rem;
+  width: 100%;
+}
+.skeletonTarjeta {
+  background: #fff;
+  border-top: 4px solid #e4e4e4;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, .08);
+  height: 13rem;
+}
+.skeletonBloque {
+  animation: skeletonPulse 1.4s ease-in-out infinite;
+  background: linear-gradient(90deg, #ececec 25%, #f5f5f5 50%, #ececec 75%);
+  background-size: 200% 100%;
+}
+
+@keyframes skeletonPulse {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 560px) {
+  .mosaico { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 720px) {
+  /* Modal a pantalla completa en móvil */
+  .modal {
+    border-radius: 0;
+    height: 100dvh;
+    left: 0;
+    max-height: 100dvh;
+    top: 0;
+    transform: none;
+    width: 100vw;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tarjeta { transition: none; }
+  .tarjeta:hover { transform: none; }
+  .skeletonBloque { animation: none; }
+}
