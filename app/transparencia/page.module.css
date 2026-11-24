@@ -13,14 +13,18 @@
 /* ---- Intro de la sección ---- */
 /* Panel/tarjeta blanca con acento dorado a la izquierda, coherente con
    .tarjeta (misma box-shadow; esquinas suaves de 8px). */
-.intro {
+/* Paneles de texto (marco fijo de la Ley 1712 y resolución activa): panel
+   blanco con acento dorado, ancho completo del área de contenido y el mismo
+   aire, para que ambos queden alineados. El tamaño de fuente no cambia. */
+.intro,
+.introResolucion {
   background: #fff;
   border-left: 4px solid var(--institutional-gold);
   border-radius: 8px;
   box-shadow: 0 5px 18px rgba(0, 0, 0, .08);
-  margin: 0 0 clamp(1.75rem, 4vw, 2.5rem);
-  max-width: 60rem;
-  padding: clamp(1.25rem, 2.5vw, 1.75rem);
+  margin: 0 0 clamp(1.75rem, 4vw, 2.75rem);
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  width: 100%;
 }
 .introKicker {
   color: var(--institutional-red);
@@ -35,20 +39,6 @@
   font-size: var(--fs-md);
   line-height: var(--lh-normal);
   margin: 0;
-}
-
-/* Panel de la resolución activa: hereda el look de .intro (fondo blanco,
-   acento dorado, esquinas suaves y sombra) pero ocupa el ancho completo del
-   área de contenido y tiene más aire, para que destaque junto a sus
-   categorías. El tamaño de fuente del kicker/texto no cambia. */
-.introResolucion {
-  background: #fff;
-  border-left: 4px solid var(--institutional-gold);
-  border-radius: 8px;
-  box-shadow: 0 5px 18px rgba(0, 0, 0, .08);
-  margin: 0 0 clamp(1.75rem, 4vw, 2.75rem);
-  padding: clamp(1.5rem, 3vw, 2.25rem);
-  width: 100%;
 }
 
 /* ---- Conmutador entre leyes (calca el segmented control de
