@@ -410,7 +410,7 @@ export default function TransparenciaMosaico({
                 {resultados.length === 1 ? "resultado" : "resultados"} para{" "}
                 <strong>&ldquo;{terminoLimpio}&rdquo;</strong>
               </p>
-              <ul className={styles.enlacesGrid}>
+              <ul className={styles.resultadosGrid}>
                 {resultados.map((resultado) => (
                   <li
                     key={

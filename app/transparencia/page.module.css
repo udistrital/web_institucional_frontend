@@ -180,6 +180,22 @@
   margin: 0 0 1.25rem;
 }
 .resultadosContador strong { color: #1a1a1a; }
+
+/* Grilla de resultados de la búsqueda: igual que .enlacesGrid pero limitada a
+   un máximo de 3 columnas para que, a ancho completo del contenido, las
+   tarjetas no queden demasiado angostas ni la lista se estire a lo alto con
+   4 por fila. En pantallas estrechas sigue colapsando con auto-fit. */
+.resultadosGrid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+@media (min-width: 920px) {
+  .resultadosGrid { grid-template-columns: repeat(3, 1fr); }
+}
 .resultadosVacio {
   background: #fff;
   border: 1px solid #ececec;
