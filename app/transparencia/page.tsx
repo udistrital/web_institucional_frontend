@@ -3,12 +3,12 @@ import styles from "./page.module.css";
 import BreadCrumbs from "@/components/common/bread-crumbs/bread-crumbs";
 import PageHero from "@/components/common/page-hero";
 import TransparenciaMosaico from "./transparencia-mosaico";
-import { CATEGORIAS } from "./content";
+import { LEYES } from "./content";
 
 export const metadata: Metadata = {
   title: "Transparencia y acceso a la información pública",
   description:
-    "Consulta la información pública de la Universidad Distrital Francisco José de Caldas en cumplimiento de la Ley 1712 de 2014: contacto, estructura, presupuesto, planeación, contratación, control y más.",
+    "Consulta la información pública de la Universidad Distrital Francisco José de Caldas: el esquema de la Ley 1712 de 2014 (13 categorías) y el de la Resolución 1519 de 2020 de MinTIC (10 secciones).",
 };
 
 export default function TransparenciaPage() {
@@ -32,17 +32,7 @@ export default function TransparenciaPage() {
       <BreadCrumbs variant="onDark" />
 
       <div className={styles.content}>
-        <div className={styles.intro}>
-          <p className={styles.introKicker}>Ley 1712 de 2014</p>
-          <p className={styles.introText}>
-            La Universidad Distrital Francisco José de Caldas pone a disposición
-            de la ciudadanía su información pública, organizada en 13 categorías.
-            Selecciona una categoría para ver sus subsecciones y los enlaces a la
-            información oficial.
-          </p>
-        </div>
-
-        <TransparenciaMosaico categorias={CATEGORIAS} />
+        <TransparenciaMosaico leyes={LEYES} />
       </div>
     </section>
   );

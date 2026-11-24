@@ -5,11 +5,12 @@
  * Reúne los enlaces exigidos por la Ley 1712 de 2014 (Ley de Transparencia y
  * del Derecho de Acceso a la Información Pública) organizados en las 13
  * categorías del esquema de publicación de la Universidad Distrital Francisco
- * José de Caldas. Los títulos y las URLs se transcriben literalmente de las
- * fuentes oficiales; las descripciones cortas de cada categoría se redactan
- * aquí para orientar al ciudadano. Al ser información institucional de baja
- * frecuencia de cambio, se mantiene en el repositorio en lugar de consumirse
- * desde Drupal.
+ * José de Caldas, y el esquema de la Resolución 1519 de 2020 de MinTIC,
+ * organizado en 10 secciones. Los títulos y las URLs se transcriben
+ * literalmente de las fuentes oficiales; las descripciones cortas de cada
+ * categoría se redactan aquí para orientar al ciudadano. Al ser información
+ * institucional de baja frecuencia de cambio, se mantiene en el repositorio en
+ * lugar de consumirse desde Drupal.
  */
 
 export type EnlaceTransparencia = {
@@ -24,6 +25,7 @@ export type SubseccionTransparencia = {
 };
 
 export type CategoriaId =
+  // Ley 1712 de 2014 (13 categorías).
   | "mecanismos-de-contacto"
   | "informacion-de-interes"
   | "estructura-organica"
@@ -36,7 +38,18 @@ export type CategoriaId =
   | "instrumentos-gestion"
   | "transparencia-pasiva"
   | "accesibilidad-web"
-  | "habeas-data";
+  | "habeas-data"
+  // Resolución 1519 de 2020 de MinTIC (10 secciones).
+  | "info-entidad"
+  | "res-normativa"
+  | "res-contratacion"
+  | "planeacion-presupuesto-informes"
+  | "tramites"
+  | "participa"
+  | "datos-abiertos"
+  | "grupos-interes"
+  | "reporte-info-especifica"
+  | "info-tributaria";
 
 export type CategoriaTransparencia = {
   id: CategoriaId;
@@ -44,9 +57,29 @@ export type CategoriaTransparencia = {
   titulo: string;
   descripcion: string;
   subsecciones: SubseccionTransparencia[];
+  /**
+   * Marca una categoría cuyos enlaces oficiales aún no están publicados. El
+   * mosaico la muestra igual, pero el modal despliega un aviso de "información
+   * en proceso de publicación" en lugar de tarjetas de enlace.
+   */
+  pendiente?: boolean;
 };
 
-export const CATEGORIAS: CategoriaTransparencia[] = [
+/**
+ * Agrupa las categorías de una norma de transparencia junto con los textos de
+ * la intro que las acompañan. Permite que el conmutador cambie de forma
+ * uniforme entre la Ley 1712 de 2014 y la Resolución 1519 de 2020.
+ */
+export type LeyTransparencia = {
+  id: string;
+  etiqueta: string;
+  etiquetaCorta?: string;
+  kicker: string;
+  introText: string;
+  categorias: CategoriaTransparencia[];
+};
+
+export const CATEGORIAS_LEY_1712: CategoriaTransparencia[] = [
   {
     id: "mecanismos-de-contacto",
     numero: 1,
@@ -1082,5 +1115,130 @@ export const CATEGORIAS: CategoriaTransparencia[] = [
         ],
       },
     ],
+  },
+];
+
+/**
+ * Esquema de publicación de la Resolución 1519 de 2020 de MinTIC, organizado en
+ * 10 secciones. Los enlaces oficiales aún no se publican, por lo que cada
+ * sección se marca como `pendiente` y no trae subsecciones; el modal mostrará
+ * un aviso de información en proceso de publicación. Las descripciones cortas se
+ * redactan aquí para orientar al ciudadano.
+ */
+export const CATEGORIAS_RES_1519: CategoriaTransparencia[] = [
+  {
+    id: "info-entidad",
+    numero: 1,
+    titulo: "Información de la entidad",
+    descripcion:
+      "Datos generales, estructura, directorio y mecanismos de contacto de la Universidad.",
+    pendiente: true,
+    subsecciones: [],
+  },
+  {
+    id: "res-normativa",
+    numero: 2,
+    titulo: "Normativa",
+    descripcion:
+      "Normas, decretos y actos administrativos que rigen a la Universidad.",
+    pendiente: true,
+    subsecciones: [],
+  },
+  {
+    id: "res-contratacion",
+    numero: 3,
+    titulo: "Contratación",
+    descripcion:
+      "Procesos, ejecución y plan anual de adquisiciones de bienes y servicios.",
+    pendiente: true,
+    subsecciones: [],
+  },
+  {
+    id: "planeacion-presupuesto-informes",
+    numero: 4,
+    titulo: "Planeación, Presupuesto e Informes",
+    descripcion:
+      "Planes, presupuesto asignado e informes de gestión y rendición de cuentas.",
+    pendiente: true,
+    subsecciones: [],
+  },
+  {
+    id: "tramites",
+    numero: 5,
+    titulo: "Trámites",
+    descripcion:
+      "Guías y requisitos de los trámites y servicios que ofrece la Universidad.",
+    pendiente: true,
+    subsecciones: [],
+  },
+  {
+    id: "participa",
+    numero: 6,
+    titulo: "Participa",
+    descripcion:
+      "Espacios y mecanismos para participar en la gestión de la Universidad.",
+    pendiente: true,
+    subsecciones: [],
+  },
+  {
+    id: "datos-abiertos",
+    numero: 7,
+    titulo: "Datos abiertos",
+    descripcion:
+      "Conjuntos de datos públicos disponibles para su consulta y reutilización.",
+    pendiente: true,
+    subsecciones: [],
+  },
+  {
+    id: "grupos-interes",
+    numero: 8,
+    titulo: "Información Específica para Grupos de Interés",
+    descripcion:
+      "Información dirigida a la ciudadanía, estudiantes y demás grupos de interés.",
+    pendiente: true,
+    subsecciones: [],
+  },
+  {
+    id: "reporte-info-especifica",
+    numero: 9,
+    titulo: "Obligación de Reporte de Información Específica",
+    descripcion:
+      "Reportes que la Universidad debe publicar según sus obligaciones legales.",
+    pendiente: true,
+    subsecciones: [],
+  },
+  {
+    id: "info-tributaria",
+    numero: 10,
+    titulo: "Información Tributaria",
+    descripcion:
+      "Información sobre tributos y obligaciones tributarias a cargo de la Universidad.",
+    pendiente: true,
+    subsecciones: [],
+  },
+];
+
+/**
+ * Normas de transparencia disponibles en el conmutador. La Ley 1712 de 2014 es
+ * la opción por defecto (primer elemento).
+ */
+export const LEYES: LeyTransparencia[] = [
+  {
+    id: "ley-1712",
+    etiqueta: "Ley 1712 de 2014",
+    etiquetaCorta: "Ley 1712 de 2014",
+    kicker: "Ley 1712 de 2014",
+    introText:
+      "La Universidad Distrital Francisco José de Caldas pone a disposición de la ciudadanía su información pública, organizada en 13 categorías. Selecciona una categoría para ver sus subsecciones y los enlaces a la información oficial.",
+    categorias: CATEGORIAS_LEY_1712,
+  },
+  {
+    id: "res-1519",
+    etiqueta: "Resolución 1519 de 2020",
+    etiquetaCorta: "Resolución 1519 de 2020",
+    kicker: "Resolución 1519 de 2020",
+    introText:
+      "La Resolución 1519 de 2020 de MinTIC define un nuevo esquema de publicación de información pública, organizado en 10 secciones. La Universidad Distrital Francisco José de Caldas está cargando y actualizando su contenido; selecciona una sección para conocer su alcance.",
+    categorias: CATEGORIAS_RES_1519,
   },
 ];

@@ -5,7 +5,8 @@ import type { CategoriaId } from "./content";
  * Iconos de línea (estilo consistente con el resto del sitio: viewBox 24x24,
  * trazo de 2px, sin relleno) para el mosaico de categorías de la sección
  * "Transparencia y acceso a la información pública". Cada icono representa una
- * de las 13 categorías de la Ley 1712 de 2014.
+ * de las 13 categorías de la Ley 1712 de 2014; las 10 secciones de la
+ * Resolución 1519 de 2020 reutilizan estos mismos iconos.
  */
 
 const base: SVGProps<SVGSVGElement> = {
@@ -183,6 +184,17 @@ const ICONOS: Record<
   "transparencia-pasiva": TransparenciaPasivaIcon,
   "accesibilidad-web": AccesibilidadWebIcon,
   "habeas-data": HabeasDataIcon,
+  // Secciones de la Resolución 1519 de 2020: reutilizan iconos existentes.
+  "info-entidad": EstructuraOrganicaIcon,
+  "res-normativa": NormatividadIcon,
+  "res-contratacion": ContratacionIcon,
+  "planeacion-presupuesto-informes": PlaneacionIcon,
+  tramites: TramitesServiciosIcon,
+  participa: MecanismosContactoIcon,
+  "datos-abiertos": InformacionInteresIcon,
+  "grupos-interes": TransparenciaPasivaIcon,
+  "reporte-info-especifica": InstrumentosGestionIcon,
+  "info-tributaria": PresupuestoIcon,
 };
 
 export function CategoriaIcon({
