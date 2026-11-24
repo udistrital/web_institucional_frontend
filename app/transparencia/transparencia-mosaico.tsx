@@ -155,12 +155,6 @@ export default function TransparenciaMosaico({
 
   return (
     <>
-      {/* Intro con fondo blanco, refleja la ley activa. */}
-      <div className={styles.intro}>
-        <p className={styles.introKicker}>{leyActiva.kicker}</p>
-        <p className={styles.introText}>{leyActiva.introText}</p>
-      </div>
-
       {/* Conmutador entre leyes. */}
       <div className={styles.leyBrowser}>
         {/* Móvil: select nativo. */}
@@ -209,6 +203,13 @@ export default function TransparenciaMosaico({
             );
           })}
         </div>
+      </div>
+
+      {/* Panel de la resolución activa, junto a sus categorías. Refleja la
+          ley activa y ocupa el ancho completo del área de contenido. */}
+      <div className={styles.introResolucion}>
+        <p className={styles.introKicker}>{leyActiva.kicker}</p>
+        <p className={styles.introText}>{leyActiva.introText}</p>
       </div>
 
       <ul className={styles.mosaico} id="ley-mosaico">
