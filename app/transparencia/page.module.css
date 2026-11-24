@@ -106,6 +106,108 @@
 .leyFiltroActivo { background: var(--institutional-red); color: #fff; }
 .leyFiltroActivo:hover { color: #fff; }
 
+/* ---- Buscador por título de enlace (coherente con .leySelect: mismo borde,
+   radio y foco con el rojo institucional). ---- */
+.buscador {
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+  margin: 0 0 clamp(1.5rem, 3.5vw, 2.25rem);
+}
+.buscadorLabel {
+  color: #666;
+  font-size: var(--fs-2xs);
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.buscadorCampo {
+  align-items: center;
+  background: #fff;
+  border: 1px solid #d4d4d4;
+  border-radius: 8px;
+  display: flex;
+  gap: .5rem;
+  padding: 0 1rem;
+  transition: border-color 160ms ease;
+}
+.buscadorCampo:focus-within { border-color: var(--institutional-red); }
+.buscadorIcono {
+  align-items: center;
+  color: #8c1919;
+  display: flex;
+  flex-shrink: 0;
+}
+.buscadorIcono svg { height: 1.2rem; width: 1.2rem; }
+.buscadorInput {
+  background: none;
+  border: 0;
+  color: #1a1a1a;
+  flex: 1 1 auto;
+  font: inherit;
+  font-size: var(--fs-base);
+  min-width: 0;
+  padding: .85rem 0;
+}
+.buscadorInput:focus-visible { outline: none; }
+.buscadorInput:disabled { color: #888; cursor: not-allowed; }
+.buscadorInput::placeholder { color: #999; }
+/* Ocultar la cruz nativa de los input[type=search] para usar la propia. */
+.buscadorInput::-webkit-search-cancel-button { appearance: none; }
+.buscadorLimpiar {
+  align-items: center;
+  background: none;
+  border: 0;
+  border-radius: 50%;
+  color: #666;
+  cursor: pointer;
+  display: flex;
+  flex-shrink: 0;
+  height: 1.75rem;
+  justify-content: center;
+  transition: background 160ms ease, color 160ms ease;
+  width: 1.75rem;
+}
+.buscadorLimpiar:hover { background: #f0f0f0; color: var(--institutional-red); }
+.buscadorLimpiar svg { height: 1.1rem; width: 1.1rem; }
+
+/* ---- Resultados de la búsqueda ---- */
+.resultados { margin: 0; }
+.resultadosContador {
+  color: #444;
+  font-size: var(--fs-sm);
+  line-height: var(--lh-normal);
+  margin: 0 0 1.25rem;
+}
+.resultadosContador strong { color: #1a1a1a; }
+.resultadosVacio {
+  background: #fff;
+  border: 1px solid #ececec;
+  border-left: 4px solid var(--institutional-gold);
+  border-radius: 8px;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, .08);
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+}
+.resultadosVacioTexto {
+  color: #333;
+  font-size: var(--fs-md);
+  line-height: var(--lh-normal);
+  margin: 0 0 1rem;
+}
+.resultadosVacioBoton {
+  background: var(--institutional-red);
+  border: 0;
+  border-radius: 7px;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  padding: .7rem 1.25rem;
+  transition: background 160ms ease;
+}
+.resultadosVacioBoton:hover { background: #6f1414; }
+
 /* ---- Aviso de "información en proceso de publicación" (secciones pendientes
    de la Resolución 1519). Fondo dorado tenue y texto con buen contraste. ---- */
 .avisoPendiente {
@@ -397,5 +499,8 @@
   .tarjeta { transition: none; }
   .tarjeta:hover { transform: none; }
   .leyFiltro { transition: none; }
+  .buscadorCampo,
+  .buscadorLimpiar,
+  .resultadosVacioBoton { transition: none; }
   .skeletonBloque { animation: none; }
 }

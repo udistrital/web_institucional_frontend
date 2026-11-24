@@ -3,6 +3,7 @@
 import {
   useEffect,
   useId,
+  useMemo,
   useRef,
   useState,
   useSyncExternalStore,
@@ -21,6 +22,27 @@ type TransparenciaMosaicoProps = {
 // Selector de elementos enfocables para el focus-trap del modal.
 const FOCUSABLE_SELECTOR =
   'a[href], button:not([disabled]), input, textarea, select, [tabindex]:not([tabindex="-1"])';
+
+/**
+ * Normaliza un texto para comparar de forma insensible a mayúsculas y a
+ * acentos/diacríticos: descompone en NFD, elimina los marcadores combinantes
+ * (rango \u0300-\u036f) y pasa a minúsculas. Así "informacion" encuentra
+ * "información".
+ */
+const normalizar = (texto: string) =>
+  texto
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
+
+/** Resultado del buscador: un enlace con el rastro de su ubicación. */
+type ResultadoBusqueda = {
+  enlace: { titulo: string; url: string };
+  categoriaNumero: number;
+  categoriaTitulo: string;
+  subseccionNumero: string;
+  subseccionTitulo: string;
+};
 
 /**
  * Intro, conmutador de ley y mosaico de categorías de "Transparencia y acceso
@@ -49,13 +71,71 @@ export default function TransparenciaMosaico({
   const reduceMotion = useReducedMotion();
   const [activaLey, setActivaLey] = useState(0);
   const [activa, setActiva] = useState<CategoriaTransparencia | null>(null);
+  const [termino, setTermino] = useState("");
   const titleId = useId();
   const selectId = useId();
+  const buscadorId = useId();
 
   const modalRef = useRef<HTMLDivElement | null>(null);
   const triggerRef = useRef<HTMLElement | null>(null);
 
   const leyActiva = leyes[activaLey];
+
+  // Cuando la ley activa no tiene enlaces publicados (Resolución 1519, todas
+  // sus categorías están pendientes), no hay contenido buscable: el input se
+  // deshabilita y se muestra un aviso en lugar del estado vacío genérico.
+  const leySinContenido = useMemo(
+    () =>
+      leyActiva.categorias.every(
+        (categoria) =>
+          categoria.pendiente ||
+          categoria.subsecciones.every(
+            (subseccion) => subseccion.enlaces.length === 0,
+          ),
+      ),
+    [leyActiva],
+  );
+
+  // Término efectivo de búsqueda: se recorta y, si queda vacío, no hay búsqueda
+  // activa (se muestra el mosaico).
+  const terminoLimpio = termino.trim();
+  const busquedaActiva = terminoLimpio.length > 0;
+
+  // Resultados derivados del término + ley activa. Recorre solo la resolución
+  // activa y filtra por el título del enlace. Decisión de match: se exige que
+  // TODAS las palabras del término aparezcan como substring en el título
+  // normalizado (AND de palabras), de modo que "estados financieros" encuentre
+  // el enlace aunque el usuario invierta o separe las palabras. La
+  // normalización (NFD + minúsculas) hace la comparación insensible a
+  // mayúsculas y a acentos.
+  const resultados = useMemo<ResultadoBusqueda[]>(() => {
+    if (!busquedaActiva) return [];
+    const palabras = normalizar(terminoLimpio)
+      .split(/\s+/)
+      .filter(Boolean);
+    if (palabras.length === 0) return [];
+
+    const encontrados: ResultadoBusqueda[] = [];
+    for (const categoria of leyActiva.categorias) {
+      for (const subseccion of categoria.subsecciones) {
+        for (const enlace of subseccion.enlaces) {
+          const tituloNormalizado = normalizar(enlace.titulo);
+          if (palabras.every((palabra) => tituloNormalizado.includes(palabra))) {
+            encontrados.push({
+              enlace,
+              categoriaNumero: categoria.numero,
+              categoriaTitulo: categoria.titulo,
+              subseccionNumero: subseccion.numero,
+              subseccionTitulo: subseccion.titulo,
+            });
+          }
+        }
+      }
+    }
+    return encontrados;
+  }, [busquedaActiva, terminoLimpio, leyActiva]);
+
+  const rotuloCategoria = leyActiva.id === "res-1519" ? "Sección" : "Categoría";
 
   const mounted = useSyncExternalStore(
     () => () => {},
@@ -149,9 +229,13 @@ export default function TransparenciaMosaico({
 
   const cambiarLey = (indice: number) => {
     setActivaLey(indice);
-    // Al cambiar de ley, cerrar cualquier modal abierto.
+    // Al cambiar de ley, limpiar la búsqueda (volver al mosaico de la nueva
+    // ley) y cerrar cualquier modal abierto.
+    setTermino("");
     setActiva(null);
   };
+
+  const limpiarBusqueda = () => setTermino("");
 
   return (
     <>
@@ -212,28 +296,73 @@ export default function TransparenciaMosaico({
         <p className={styles.introText}>{leyActiva.introText}</p>
       </div>
 
-      <ul className={styles.mosaico} id="ley-mosaico">
-        {leyActiva.categorias.map((categoria) => (
-          <li key={categoria.id}>
+      {/* Buscador por título de enlace sobre la resolución activa. Filtra en
+          memoria; no modifica el contenido. */}
+      <div className={styles.buscador}>
+        <label className={styles.buscadorLabel} htmlFor={buscadorId}>
+          Buscar información
+        </label>
+        <div className={styles.buscadorCampo}>
+          <span className={styles.buscadorIcono} aria-hidden="true">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <circle cx="11" cy="11" r="7" />
+              <path d="m21 21-4.3-4.3" />
+            </svg>
+          </span>
+          <input
+            id={buscadorId}
+            type="search"
+            className={styles.buscadorInput}
+            value={termino}
+            onChange={(event) => setTermino(event.target.value)}
+            disabled={leySinContenido}
+            placeholder={
+              leySinContenido
+                ? "Esta resolución aún no tiene contenido buscable"
+                : "Busca un documento o enlace (ej. presupuesto, estados financieros)"
+            }
+            autoComplete="off"
+          />
+          {busquedaActiva && (
             <button
               type="button"
-              className={styles.tarjeta}
-              onClick={(event) => abrir(categoria, event)}
-              aria-haspopup="dialog"
+              className={styles.buscadorLimpiar}
+              onClick={limpiarBusqueda}
+              aria-label="Limpiar búsqueda"
             >
-              <span className={styles.tarjetaIcono} aria-hidden="true">
-                <CategoriaIcon id={categoria.id} />
-              </span>
-              <span className={styles.tarjetaNumero}>
-                {leyActiva.id === "res-1519" ? "Sección" : "Categoría"}{" "}
-                {categoria.numero}
-              </span>
-              <span className={styles.tarjetaTitulo}>{categoria.titulo}</span>
-              <span className={styles.tarjetaDescripcion}>
-                {categoria.descripcion}
-              </span>
-              <span className={styles.tarjetaVerMas} aria-hidden="true">
-                Ver información
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M18 6 6 18" />
+                <path d="m6 6 12 12" />
+              </svg>
+            </button>
+          )}
+        </div>
+      </div>
+
+      {busquedaActiva ? (
+        <div className={styles.resultados}>
+          {leySinContenido ? (
+            // Resolución pendiente: aviso específico en lugar del estado vacío.
+            <div className={styles.avisoPendiente} role="status">
+              <span
+                className={styles.avisoPendienteIcono}
+                aria-hidden="true"
+              >
                 <svg
                   viewBox="0 0 24 24"
                   fill="none"
@@ -242,14 +371,110 @@ export default function TransparenciaMosaico({
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 >
-                  <path d="M5 12h14" />
-                  <path d="m12 5 7 7-7 7" />
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 8h.01" />
+                  <path d="M11 12h1v4h1" />
                 </svg>
               </span>
-            </button>
-          </li>
-        ))}
-      </ul>
+              <div>
+                <p className={styles.avisoPendienteTitulo}>
+                  Contenido en proceso de publicación
+                </p>
+                <p className={styles.avisoPendienteTexto}>
+                  Los enlaces oficiales de esta resolución aún se están cargando
+                  y actualizando, por eso la búsqueda no arroja resultados.
+                  Vuelve a consultar más adelante.
+                </p>
+              </div>
+            </div>
+          ) : resultados.length === 0 ? (
+            // Estado vacío accesible, con opción para volver al mosaico.
+            <div className={styles.resultadosVacio} role="status">
+              <p className={styles.resultadosVacioTexto}>
+                No se encontraron resultados para{" "}
+                <strong>&ldquo;{terminoLimpio}&rdquo;</strong>. Prueba con otras
+                palabras o revisa las categorías.
+              </p>
+              <button
+                type="button"
+                className={styles.resultadosVacioBoton}
+                onClick={limpiarBusqueda}
+              >
+                Limpiar búsqueda
+              </button>
+            </div>
+          ) : (
+            <>
+              <p className={styles.resultadosContador} role="status">
+                {resultados.length}{" "}
+                {resultados.length === 1 ? "resultado" : "resultados"} para{" "}
+                <strong>&ldquo;{terminoLimpio}&rdquo;</strong>
+              </p>
+              <ul className={styles.enlacesGrid}>
+                {resultados.map((resultado) => (
+                  <li
+                    key={
+                      resultado.enlace.url +
+                      resultado.enlace.titulo +
+                      resultado.subseccionNumero
+                    }
+                  >
+                    <DocumentCard
+                      label={resultado.enlace.titulo}
+                      href={resultado.enlace.url}
+                      kind={
+                        resultado.enlace.url.toLowerCase().endsWith(".pdf")
+                          ? "pdf"
+                          : "enlace"
+                      }
+                      description={`${rotuloCategoria} ${resultado.categoriaNumero} · ${resultado.categoriaTitulo} › ${resultado.subseccionNumero} ${resultado.subseccionTitulo}`}
+                      className={styles.documentCardWhite}
+                    />
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
+        </div>
+      ) : (
+        <ul className={styles.mosaico} id="ley-mosaico">
+          {leyActiva.categorias.map((categoria) => (
+            <li key={categoria.id}>
+              <button
+                type="button"
+                className={styles.tarjeta}
+                onClick={(event) => abrir(categoria, event)}
+                aria-haspopup="dialog"
+              >
+                <span className={styles.tarjetaIcono} aria-hidden="true">
+                  <CategoriaIcon id={categoria.id} />
+                </span>
+                <span className={styles.tarjetaNumero}>
+                  {rotuloCategoria} {categoria.numero}
+                </span>
+                <span className={styles.tarjetaTitulo}>{categoria.titulo}</span>
+                <span className={styles.tarjetaDescripcion}>
+                  {categoria.descripcion}
+                </span>
+                <span className={styles.tarjetaVerMas} aria-hidden="true">
+                  Ver información
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                  </svg>
+                </span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
 
       {mounted &&
         createPortal(
@@ -303,8 +528,7 @@ export default function TransparenciaMosaico({
                       </span>
                       <div>
                         <p className={styles.modalKicker}>
-                          {leyActiva.id === "res-1519" ? "Sección" : "Categoría"}{" "}
-                          {activa.numero}
+                          {rotuloCategoria} {activa.numero}
                         </p>
                         <h3 id={titleId} className={styles.modalTitulo}>
                           {activa.titulo}
