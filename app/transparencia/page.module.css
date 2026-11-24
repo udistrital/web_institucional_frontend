@@ -12,7 +12,7 @@
 
 /* ---- Intro de la sección ---- */
 /* Panel/tarjeta blanca con acento dorado a la izquierda, coherente con
-   .tarjeta (mismo border-radius y box-shadow). */
+   .tarjeta (misma box-shadow; esquinas suaves de 8px). */
 .intro {
   background: #fff;
   border-left: 4px solid var(--institutional-gold);
