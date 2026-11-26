@@ -32,6 +32,10 @@ export default function DesktopNav({ onOpenSearch }: DesktopNavProps) {
     (menu: OpenMenu) => {
       cancelCloseMenu();
       setOpenMenu(menu);
+      // Avisa a otros menús del header (p. ej. Perfiles) para que se cierren.
+      window.dispatchEvent(
+        new CustomEvent("header:menu-open", { detail: "main" }),
+      );
     },
     [cancelCloseMenu],
   );
@@ -51,9 +55,19 @@ export default function DesktopNav({ onOpenSearch }: DesktopNavProps) {
       cancelCloseMenu();
       setOpenMenu(null);
     };
+    // Cierra el mega menú cuando otro menú del header (p. ej. Perfiles) se abre.
+    const closeOnOtherMenu = (e: Event) => {
+      const which = (e as CustomEvent<string>).detail;
+      if (which !== "main") {
+        cancelCloseMenu();
+        setOpenMenu(null);
+      }
+    };
     window.addEventListener("scroll", closeMenusOnScroll, { passive: true });
+    window.addEventListener("header:menu-open", closeOnOtherMenu);
     return () => {
       window.removeEventListener("scroll", closeMenusOnScroll);
+      window.removeEventListener("header:menu-open", closeOnOtherMenu);
       cancelCloseMenu();
     };
   }, [cancelCloseMenu]);
