@@ -113,6 +113,7 @@
   flex-direction: column;
   gap: .4rem;
   margin: 0 0 clamp(1.5rem, 3.5vw, 2.25rem);
+  scroll-margin-top: calc(var(--header-h, 72px) + 1rem);
 }
 .buscadorLabel {
   color: #666;
@@ -181,20 +182,14 @@
 }
 .resultadosContador strong { color: #1a1a1a; }
 
-/* Grilla de resultados de la búsqueda: igual que .enlacesGrid pero limitada a
-   un máximo de 3 columnas para que, a ancho completo del contenido, las
-   tarjetas no queden demasiado angostas ni la lista se estire a lo alto con
-   4 por fila. En pantallas estrechas sigue colapsando con auto-fit. */
+/* Resultados de búsqueda: una tarjeta por fila para facilitar la lectura. */
 .resultadosGrid {
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  grid-template-columns: 1fr;
   list-style: none;
   margin: 0;
   padding: 0;
-}
-@media (min-width: 920px) {
-  .resultadosGrid { grid-template-columns: repeat(3, 1fr); }
 }
 .resultadosVacio {
   background: #fff;
@@ -269,8 +264,8 @@
   padding: 0;
 }
 
-/* Cada tarjeta es un botón que abre la modal de la categoría. El acento de
-   color por tarjeta se construye con los tokens de marca. */
+/* Cada tarjeta es un botón que despliega el detalle de la categoría en la
+   página. El acento de color por tarjeta se construye con los tokens de marca. */
 .tarjeta {
   align-items: flex-start;
   background:
@@ -309,11 +304,9 @@
 .tarjetaIcono svg { height: 1.9rem; width: 1.9rem; }
 
 .tarjetaNumero {
-  color: var(--institutional-red);
+  color: #1a1a1a;
   font-family: var(--font-montserrat), sans-serif;
-  font-size: var(--fs-2xs);
   font-weight: 700;
-  letter-spacing: .08em;
 }
 .tarjetaTitulo {
   color: #1a1a1a;
@@ -341,62 +334,61 @@
   padding-top: .35rem;
   text-transform: uppercase;
 }
-.tarjetaVerMas svg { height: .9rem; width: .9rem; }
-
-/* ---- Modal de categoría (calca el patrón de sobre-nosotros) ---- */
-.overlay {
-  backdrop-filter: blur(4px);
-  background: rgba(0, 0, 0, .7);
-  inset: 0;
-  position: fixed;
-  z-index: 80;
+.tarjetaVerMasIcono {
+  height: .9rem;
+  transition: transform .2s ease;
+  width: .9rem;
 }
-.modal {
-  background: #fff;
-  border-radius: .5rem;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, .3);
-  display: flex;
-  flex-direction: column;
-  left: 50%;
-  max-height: 88vh;
-  max-height: 88dvh;
+.tarjeta:hover .tarjetaVerMasIcono { transform: translateX(3px); }
+
+/* ---- Detalle de categoría desplegado en la página ----
+   Panel a ancho completo bajo el mosaico. El contenedor externo lo anima
+   framer-motion (height/opacity); por eso aquí solo se da overflow hidden
+   para que el recorte de la animación de alto quede limpio. */
+.detalle {
   overflow: hidden;
-  position: fixed;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: min(52rem, calc(100vw - 3rem));
-  z-index: 81;
 }
-.modalClose {
-  align-items: center;
-  background: rgba(0, 0, 0, .5);
-  border: 0;
-  border-radius: 50%;
-  color: #fff;
-  cursor: pointer;
-  display: flex;
-  height: 2.5rem;
-  justify-content: center;
-  position: absolute;
-  right: 1rem;
-  top: 1rem;
-  transition: background 200ms ease;
-  width: 2.5rem;
-  z-index: 1;
+.detalleInner {
+  background: #fff;
+  border: 1px solid #ececec;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
+  padding: clamp(1.5rem, 3vw, 2.25rem);
 }
-.modalClose:hover { background: rgba(0, 0, 0, .75); }
-.modalClose svg { height: 1.25rem; width: 1.25rem; }
-
-.modalBody { overflow-y: auto; padding: clamp(1.75rem, 4vw, 2.5rem); }
-.modalHeader {
+.detalleHeader {
   align-items: center;
   border-bottom: 1px solid #ececec;
   display: flex;
-  gap: 1rem;
-  margin-bottom: 1.75rem;
-  padding: 0 3rem 1.25rem 0;
+  flex-wrap: wrap;
+  gap: .85rem 1rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1.25rem;
 }
-.modalHeaderIcono {
+/* Botón "Volver" al mosaico: ocupa su propia fila sobre el título. */
+.detalleVolver {
+  align-items: center;
+  background: none;
+  border: 0;
+  color: var(--institutional-red);
+  cursor: pointer;
+  display: inline-flex;
+  flex-basis: 100%;
+  font: inherit;
+  font-size: var(--fs-2xs);
+  font-weight: 700;
+  gap: .4rem;
+  letter-spacing: .04em;
+  padding: 0;
+  text-transform: uppercase;
+}
+.detalleVolver:hover { text-decoration: underline; }
+.detalleVolverIcono {
+  height: 1rem;
+  transition: transform .2s ease;
+  width: 1rem;
+}
+.detalleVolver:hover .detalleVolverIcono { transform: translateX(-3px); }
+.detalleHeaderIcono {
   align-items: center;
   background: var(--institutional-red);
   border-radius: 12px;
@@ -407,34 +399,48 @@
   justify-content: center;
   width: 3rem;
 }
-.modalHeaderIcono svg { height: 1.6rem; width: 1.6rem; }
-.modalKicker {
-  color: var(--institutional-red);
-  font-size: var(--fs-2xs);
+.detalleHeaderIcono svg { height: 1.6rem; width: 1.6rem; }
+.detalleNumero {
+  color: #1a1a1a;
   font-weight: 700;
-  letter-spacing: .1em;
-  margin: 0 0 .25rem;
-  text-transform: uppercase;
 }
-.modalTitulo {
+.detalleTitulo {
+  flex: 1;
   font-size: var(--fs-h3);
   line-height: var(--lh-tight);
   margin: 0;
 }
-
-/* Subsección: subtítulo con barra dorada (calca .subheading). */
-.subseccion { margin-bottom: 1.75rem; }
-.subseccion:last-child { margin-bottom: 0; }
-.subseccionTitulo {
-  align-items: center;
-  color: #1a1a1a;
+/* Lista de subsecciones (sub-acordeón) dentro del detalle. */
+.subsecciones {
   display: flex;
+  flex-direction: column;
+}
+.subseccion {
+  border-bottom: 1px solid #ececec;
+  margin-bottom: 0;
+}
+.subseccion:last-child { border-bottom: 0; }
+.subseccionTitulo {
+  margin: 0;
+}
+/* Botón que alterna la apertura de la subsección (toda la fila es clicable). */
+.subseccionToggle {
+  align-items: center;
+  background: none;
+  border: 0;
+  color: #1a1a1a;
+  cursor: pointer;
+  display: flex;
+  font-family: inherit;
   font-size: var(--fs-md);
+  font-weight: 700;
   gap: .75rem;
   line-height: var(--lh-tight);
-  margin: 0 0 1rem;
+  padding: 1rem 0;
+  text-align: left;
+  width: 100%;
 }
-.subseccionTitulo::before {
+.subseccionToggle::before {
   background: var(--institutional-gold);
   border-radius: 2px;
   content: "";
@@ -443,25 +449,29 @@
   height: 1.3em;
   width: .35rem;
 }
+.subseccionToggleTexto {
+  flex: 1;
+}
+.subseccionChevron {
+  flex-shrink: 0;
+  height: 1.25rem;
+  transition: transform .2s ease;
+  width: 1.25rem;
+}
+.subseccionToggle[aria-expanded="true"] .subseccionChevron {
+  transform: rotate(180deg);
+}
 
-/* Grilla de enlaces (DocumentCard) dentro de cada subsección. */
-.enlacesGrid {
+/* Lista de documentos/enlaces de una subsección: una tarjeta por fila. */
+.documentos {
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  grid-template-columns: 1fr;
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: .75rem 0 1.25rem;
 }
-
-/* Override local del fondo de la tarjeta compartida: fondo blanco con borde
-   suave para destacar sobre el cuerpo claro de la modal. Se usa !important por
-   la misma razón que en direccionamiento-estrategico (misma especificidad que
-   .card del módulo compartido y orden de carga no garantizable). */
-.documentCardWhite {
-  background: #fff !important;
-  border: 1px solid #ececec;
-}
+.documentos a:hover { position: relative; z-index: 1; }
 
 /* ---- Skeleton de carga ---- */
 .skeletonBreadcrumb {
@@ -498,22 +508,14 @@
   .mosaico { grid-template-columns: 1fr; }
 }
 
-@media (max-width: 720px) {
-  /* Modal a pantalla completa en móvil */
-  .modal {
-    border-radius: 0;
-    height: 100dvh;
-    left: 0;
-    max-height: 100dvh;
-    top: 0;
-    transform: none;
-    width: 100vw;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .tarjeta { transition: none; }
   .tarjeta:hover { transform: none; }
+  .tarjeta:hover .tarjetaVerMasIcono { transform: none; }
+  .tarjetaVerMasIcono,
+  .subseccionChevron,
+  .detalleVolverIcono { transition: none; }
+  .detalleVolver:hover .detalleVolverIcono { transform: none; }
   .leyFiltro { transition: none; }
   .buscadorCampo,
   .buscadorLimpiar,

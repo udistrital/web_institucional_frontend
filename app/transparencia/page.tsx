@@ -8,7 +8,7 @@ import { LEYES } from "./content";
 export const metadata: Metadata = {
   title: "Transparencia y acceso a la información pública",
   description:
-    "Consulta la información pública de la Universidad Distrital Francisco José de Caldas, publicada en cumplimiento de la Ley 1712 de 2014: el esquema de la Resolución 3564 de 2015 (13 categorías) y el de la Resolución 1519 de 2020 de MinTIC (10 secciones).",
+    "Consulta la información pública de la Universidad Distrital Francisco José de Caldas, publicada en cumplimiento de la Ley 1712 de 2014: el esquema de la Resolución 3564 de 2015 (antigua) y el de la Resolución 1519 de 2020 de MinTIC (nueva).",
 };
 
 export default function TransparenciaPage() {

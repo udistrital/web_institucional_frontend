@@ -1,14 +1,6 @@
 "use client";
 
-import {
-  useEffect,
-  useId,
-  useMemo,
-  useRef,
-  useState,
-  useSyncExternalStore,
-} from "react";
-import { createPortal } from "react-dom";
+import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import DocumentCard from "@/components/common/document-card/document-card";
 import type { CategoriaTransparencia, LeyTransparencia } from "./content";
@@ -18,10 +10,6 @@ import styles from "./page.module.css";
 type TransparenciaMosaicoProps = {
   leyes: LeyTransparencia[];
 };
-
-// Selector de elementos enfocables para el focus-trap del modal.
-const FOCUSABLE_SELECTOR =
-  'a[href], button:not([disabled]), input, textarea, select, [tabindex]:not([tabindex="-1"])';
 
 /**
  * Normaliza un texto para comparar de forma insensible a mayúsculas y a
@@ -56,28 +44,46 @@ type ResultadoBusqueda = {
  * normatividad.
  *
  * Cada tarjeta del mosaico es un botón con icono, título y descripción breve.
- * Al activarlo se abre un modal con las subsecciones de la categoría y, bajo
- * cada una, los enlaces oficiales (DocumentCard). Cuando la categoría está
- * pendiente (Resolución 1519, sin enlaces publicados aún) el modal muestra un
- * aviso de información en proceso de publicación. El modal replica el patrón de
- * accesibilidad del sitio (role="dialog", aria-modal, cierre con Escape y por
- * overlay, bloqueo del scroll del body, respeto de movimiento reducido) y
- * añade un focus-trap: al abrir enfoca el modal y cicla Tab/Shift+Tab solo
- * entre sus elementos; al cerrar devuelve el foco al disparador.
+ * Al activarla, su detalle se despliega en la misma página, en un panel a
+ * ancho completo situado debajo del mosaico (no un modal), con una animación
+ * suave de apertura. El detalle lista las subsecciones como un sub-acordeón:
+ * cada subsección arranca cerrada y, al abrirla, muestra sus enlaces oficiales
+ * (DocumentCard) en una lista de una tarjeta por fila.
+ * Cuando la categoría está pendiente (Resolución 1519, sin enlaces publicados
+ * aún) el detalle muestra un aviso de información en proceso de publicación.
  */
 export default function TransparenciaMosaico({
   leyes,
 }: TransparenciaMosaicoProps) {
   const reduceMotion = useReducedMotion();
   const [activaLey, setActivaLey] = useState(0);
+  // Categoría/sección desplegada en la página. null = ninguna abierta.
   const [activa, setActiva] = useState<CategoriaTransparencia | null>(null);
+  // Subsección abierta dentro del detalle (sub-acordeón). null = todas cerradas.
+  const [subseccionAbierta, setSubseccionAbierta] = useState<string | null>(
+    null,
+  );
   const [termino, setTermino] = useState("");
-  const titleId = useId();
   const selectId = useId();
   const buscadorId = useId();
 
-  const modalRef = useRef<HTMLDivElement | null>(null);
-  const triggerRef = useRef<HTMLElement | null>(null);
+  // Al abrir una categoría se lleva la vista hasta el buscador, de modo que el
+  // detalle que lo sustituye quede visible sin que el usuario tenga que
+  // desplazarse.
+  const buscadorRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (!activa) return;
+
+    const frame = window.requestAnimationFrame(() => {
+      buscadorRef.current?.scrollIntoView({
+        behavior: reduceMotion ? "auto" : "smooth",
+        block: "start",
+      });
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, [activa, reduceMotion]);
 
   const leyActiva = leyes[activaLey];
 
@@ -135,107 +141,26 @@ export default function TransparenciaMosaico({
     return encontrados;
   }, [busquedaActiva, terminoLimpio, leyActiva]);
 
-  const rotuloCategoria = leyActiva.id === "res-1519" ? "Sección" : "Categoría";
-
-  const mounted = useSyncExternalStore(
-    () => () => {},
-    () => true,
-    () => false,
-  );
-
-  // Bloquear el scroll del body mientras el modal está abierto.
-  useEffect(() => {
-    if (!activa) return;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [activa]);
-
-  // Cerrar con Escape.
-  useEffect(() => {
-    if (!activa) return;
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setActiva(null);
-    };
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [activa]);
-
-  // Focus-trap: al abrir enfoca el modal; al cerrar devuelve el foco al
-  // elemento que lo abrió (guardado en triggerRef al pulsar la tarjeta).
-  useEffect(() => {
-    if (!activa) return;
-    const nodo = modalRef.current;
-    if (!nodo) return;
-
-    const trigger = triggerRef.current;
-    nodo.focus();
-
-    return () => {
-      // Al cerrar, devolver el foco al disparador si sigue en el documento.
-      if (trigger && document.contains(trigger)) {
-        trigger.focus();
-      }
-      triggerRef.current = null;
-    };
-  }, [activa]);
-
-  // Interceptar Tab/Shift+Tab para ciclar el foco dentro del modal.
-  useEffect(() => {
-    if (!activa) return;
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key !== "Tab") return;
-      const nodo = modalRef.current;
-      if (!nodo) return;
-
-      const enfocables = Array.from(
-        nodo.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR),
-      ).filter((el) => el.offsetParent !== null || el === document.activeElement);
-
-      if (enfocables.length === 0) {
-        // Sin enfocables internos: mantener el foco en el contenedor.
-        event.preventDefault();
-        nodo.focus();
-        return;
-      }
-
-      const primero = enfocables[0];
-      const ultimo = enfocables[enfocables.length - 1];
-      const activo = document.activeElement;
-
-      if (event.shiftKey) {
-        if (activo === primero || activo === nodo) {
-          event.preventDefault();
-          ultimo.focus();
-        }
-      } else if (activo === ultimo) {
-        event.preventDefault();
-        primero.focus();
-      }
-    };
-
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [activa]);
-
-  const abrir = (
-    categoria: CategoriaTransparencia,
-    event: React.MouseEvent<HTMLButtonElement>,
-  ) => {
-    triggerRef.current = event.currentTarget;
-    setActiva(categoria);
+  // Abre el detalle de una categoría en la página (o lo cierra si ya estaba
+  // abierta). Al abrir una nueva, reinicia el sub-acordeón de subsecciones.
+  const alternarCategoria = (categoria: CategoriaTransparencia) => {
+    const cerrando = activa?.id === categoria.id;
+    setSubseccionAbierta(null);
+    setActiva(cerrando ? null : categoria);
   };
 
   const cambiarLey = (indice: number) => {
     setActivaLey(indice);
     // Al cambiar de ley, limpiar la búsqueda (volver al mosaico de la nueva
-    // ley) y cerrar cualquier modal abierto.
+    // ley) y cerrar cualquier detalle abierto.
     setTermino("");
     setActiva(null);
+    setSubseccionAbierta(null);
   };
 
   const limpiarBusqueda = () => setTermino("");
+
+  const duracion = reduceMotion ? 0 : 0.3;
 
   return (
     <>
@@ -298,7 +223,7 @@ export default function TransparenciaMosaico({
 
       {/* Buscador por título de enlace sobre la resolución activa. Filtra en
           memoria; no modifica el contenido. */}
-      <div className={styles.buscador}>
+      <div className={styles.buscador} ref={buscadorRef}>
         <label className={styles.buscadorLabel} htmlFor={buscadorId}>
           Buscar información
         </label>
@@ -359,10 +284,7 @@ export default function TransparenciaMosaico({
           {leySinContenido ? (
             // Resolución pendiente: aviso específico en lugar del estado vacío.
             <div className={styles.avisoPendiente} role="status">
-              <span
-                className={styles.avisoPendienteIcono}
-                aria-hidden="true"
-              >
+              <span className={styles.avisoPendienteIcono} aria-hidden="true">
                 <svg
                   viewBox="0 0 24 24"
                   fill="none"
@@ -427,8 +349,7 @@ export default function TransparenciaMosaico({
                           ? "pdf"
                           : "enlace"
                       }
-                      description={`${rotuloCategoria} ${resultado.categoriaNumero} · ${resultado.categoriaTitulo} › ${resultado.subseccionNumero} ${resultado.subseccionTitulo}`}
-                      className={styles.documentCardWhite}
+                      description={`${resultado.categoriaNumero} · ${resultado.categoriaTitulo} › ${resultado.subseccionNumero} ${resultado.subseccionTitulo}`}
                     />
                   </li>
                 ))}
@@ -437,170 +358,218 @@ export default function TransparenciaMosaico({
           )}
         </div>
       ) : (
-        <ul className={styles.mosaico} id="ley-mosaico">
-          {leyActiva.categorias.map((categoria) => (
-            <li key={categoria.id}>
-              <button
-                type="button"
-                className={styles.tarjeta}
-                onClick={(event) => abrir(categoria, event)}
-                aria-haspopup="dialog"
-              >
-                <span className={styles.tarjetaIcono} aria-hidden="true">
-                  <CategoriaIcon id={categoria.id} />
-                </span>
-                <span className={styles.tarjetaNumero}>
-                  {rotuloCategoria} {categoria.numero}
-                </span>
-                <span className={styles.tarjetaTitulo}>{categoria.titulo}</span>
-                <span className={styles.tarjetaDescripcion}>
-                  {categoria.descripcion}
-                </span>
-                <span className={styles.tarjetaVerMas} aria-hidden="true">
-                  Ver información
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M5 12h14" />
-                    <path d="m12 5 7 7-7 7" />
-                  </svg>
-                </span>
-              </button>
-            </li>
-          ))}
-        </ul>
-      )}
-
-      {mounted &&
-        createPortal(
-          <AnimatePresence>
-            {activa && (
-              <motion.div
-                className={styles.overlay}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: reduceMotion ? 0 : 0.2 }}
-                onClick={() => setActiva(null)}
-              >
-                <motion.div
-                  ref={modalRef}
-                  className={styles.modal}
-                  role="dialog"
-                  aria-modal="true"
-                  aria-labelledby={titleId}
-                  tabIndex={-1}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: reduceMotion ? 0 : 0.25 }}
-                  onClick={(event) => event.stopPropagation()}
-                >
+        // El mosaico y el detalle son mutuamente excluyentes: al elegir una
+        // categoría, el mosaico se oculta y en su lugar aparece solo el detalle
+        // de esa categoría; "Volver" regresa al mosaico.
+        <AnimatePresence mode="wait" initial={false}>
+          {!activa ? (
+            <motion.ul
+              key="mosaico"
+              className={styles.mosaico}
+              id="ley-mosaico"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: duracion, ease: "easeInOut" }}
+            >
+              {leyActiva.categorias.map((categoria) => (
+                <li key={categoria.id}>
                   <button
                     type="button"
-                    className={styles.modalClose}
+                    className={styles.tarjeta}
+                    onClick={() => alternarCategoria(categoria)}
+                    aria-controls="detalle-categoria"
+                  >
+                    <span className={styles.tarjetaIcono} aria-hidden="true">
+                      <CategoriaIcon id={categoria.id} />
+                    </span>
+                    <span className={styles.tarjetaTitulo}>
+                      <span className={styles.tarjetaNumero}>
+                        {categoria.numero}.
+                      </span>{" "}
+                      {categoria.titulo}
+                    </span>
+                    <span className={styles.tarjetaDescripcion}>
+                      {categoria.descripcion}
+                    </span>
+                    <span className={styles.tarjetaVerMas} aria-hidden="true">
+                      Ver información
+                      <svg
+                        className={styles.tarjetaVerMasIcono}
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="M5 12h14" />
+                        <path d="m12 5 7 7-7 7" />
+                      </svg>
+                    </span>
+                  </button>
+                </li>
+              ))}
+            </motion.ul>
+          ) : (
+            <motion.div
+              id="detalle-categoria"
+              key={activa.id}
+              className={styles.detalle}
+              initial={{ opacity: 0, y: reduceMotion ? 0 : 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: reduceMotion ? 0 : 8 }}
+              transition={{ duration: duracion, ease: "easeInOut" }}
+            >
+              <div className={styles.detalleInner}>
+                <div className={styles.detalleHeader}>
+                  <button
+                    type="button"
+                    className={styles.detalleVolver}
                     onClick={() => setActiva(null)}
-                    aria-label="Cerrar"
                   >
                     <svg
-                      aria-hidden="true"
+                      className={styles.detalleVolverIcono}
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
                       strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
+                      aria-hidden="true"
                     >
-                      <path d="M18 6 6 18" />
-                      <path d="m6 6 12 12" />
+                      <path d="M19 12H5" />
+                      <path d="m12 19-7-7 7-7" />
                     </svg>
+                    Volver
                   </button>
+                  <span
+                    className={styles.detalleHeaderIcono}
+                    aria-hidden="true"
+                  >
+                    <CategoriaIcon id={activa.id} />
+                  </span>
+                  <h3 className={styles.detalleTitulo}>
+                    <span className={styles.detalleNumero}>
+                      {activa.numero}.
+                    </span>{" "}
+                    {activa.titulo}
+                  </h3>
+                </div>
 
-                  <div className={styles.modalBody}>
-                    <div className={styles.modalHeader}>
-                      <span className={styles.modalHeaderIcono} aria-hidden="true">
-                        <CategoriaIcon id={activa.id} />
+                  {activa.pendiente || activa.subsecciones.length === 0 ? (
+                    <div className={styles.avisoPendiente} role="status">
+                      <span
+                        className={styles.avisoPendienteIcono}
+                        aria-hidden="true"
+                      >
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <circle cx="12" cy="12" r="10" />
+                          <path d="M12 8h.01" />
+                          <path d="M11 12h1v4h1" />
+                        </svg>
                       </span>
                       <div>
-                        <p className={styles.modalKicker}>
-                          {rotuloCategoria} {activa.numero}
+                        <p className={styles.avisoPendienteTitulo}>
+                          Información en proceso de publicación
                         </p>
-                        <h3 id={titleId} className={styles.modalTitulo}>
-                          {activa.titulo}
-                        </h3>
+                        <p className={styles.avisoPendienteTexto}>
+                          La Universidad está cargando y actualizando los
+                          enlaces oficiales de esta sección. Vuelve a
+                          consultarla más adelante.
+                        </p>
                       </div>
                     </div>
-
-                    {activa.pendiente || activa.subsecciones.length === 0 ? (
-                      <div className={styles.avisoPendiente} role="status">
-                        <span
-                          className={styles.avisoPendienteIcono}
-                          aria-hidden="true"
-                        >
-                          <svg
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
+                  ) : (
+                    <div className={styles.subsecciones}>
+                      {activa.subsecciones.map((subseccion) => {
+                        const subAbierta =
+                          subseccionAbierta === subseccion.numero;
+                        const panelId = `subseccion-${activa.id}-${subseccion.numero}`;
+                        return (
+                          <section
+                            className={styles.subseccion}
+                            key={subseccion.numero}
                           >
-                            <circle cx="12" cy="12" r="10" />
-                            <path d="M12 8h.01" />
-                            <path d="M11 12h1v4h1" />
-                          </svg>
-                        </span>
-                        <div>
-                          <p className={styles.avisoPendienteTitulo}>
-                            Información en proceso de publicación
-                          </p>
-                          <p className={styles.avisoPendienteTexto}>
-                            La Universidad está cargando y actualizando los
-                            enlaces oficiales de esta sección. Vuelve a
-                            consultarla más adelante.
-                          </p>
-                        </div>
-                      </div>
-                    ) : (
-                      activa.subsecciones.map((subseccion) => (
-                        <section
-                          className={styles.subseccion}
-                          key={subseccion.numero}
-                        >
-                          <h4 className={styles.subseccionTitulo}>
-                            {subseccion.numero}. {subseccion.titulo}
-                          </h4>
-                          <ul className={styles.enlacesGrid}>
-                            {subseccion.enlaces.map((enlace) => (
-                              <li key={enlace.url + enlace.titulo}>
-                                <DocumentCard
-                                  label={enlace.titulo}
-                                  href={enlace.url}
-                                  kind={
-                                    enlace.url.toLowerCase().endsWith(".pdf")
-                                      ? "pdf"
-                                      : "enlace"
-                                  }
-                                  className={styles.documentCardWhite}
-                                />
-                              </li>
-                            ))}
-                          </ul>
-                        </section>
-                      ))
-                    )}
-                  </div>
-                </motion.div>
+                            <h4 className={styles.subseccionTitulo}>
+                              <button
+                                type="button"
+                                className={styles.subseccionToggle}
+                                aria-expanded={subAbierta}
+                                aria-controls={panelId}
+                                onClick={() =>
+                                  setSubseccionAbierta(
+                                    subAbierta ? null : subseccion.numero,
+                                  )
+                                }
+                              >
+                                <span className={styles.subseccionToggleTexto}>
+                                  {subseccion.numero}. {subseccion.titulo}
+                                </span>
+                                <svg
+                                  className={styles.subseccionChevron}
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeWidth="2"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  aria-hidden="true"
+                                >
+                                  <polyline points="6 9 12 15 18 9" />
+                                </svg>
+                              </button>
+                            </h4>
+                            <AnimatePresence initial={false}>
+                              {subAbierta && (
+                                <motion.div
+                                  id={panelId}
+                                  initial={{ height: 0, opacity: 0 }}
+                                  animate={{ height: "auto", opacity: 1 }}
+                                  exit={{ height: 0, opacity: 0 }}
+                                  transition={{
+                                    duration: duracion,
+                                    ease: "easeInOut",
+                                  }}
+                                  style={{ overflow: "hidden" }}
+                                >
+                                  <ul className={styles.documentos}>
+                                    {subseccion.enlaces.map((enlace) => (
+                                      <li key={enlace.url + enlace.titulo}>
+                                        <DocumentCard
+                                          label={enlace.titulo}
+                                          href={enlace.url}
+                                          kind={
+                                            enlace.url
+                                              .toLowerCase()
+                                              .endsWith(".pdf")
+                                              ? "pdf"
+                                              : "enlace"
+                                          }
+                                        />
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </motion.div>
+                              )}
+                            </AnimatePresence>
+                          </section>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
               </motion.div>
-            )}
-          </AnimatePresence>,
-          document.body,
-        )}
+          )}
+        </AnimatePresence>
+      )}
     </>
   );
 }

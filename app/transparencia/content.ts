@@ -1229,18 +1229,18 @@ export const CATEGORIAS_RES_1519: CategoriaTransparencia[] = [
 export const LEYES: LeyTransparencia[] = [
   {
     id: "res-3564",
-    etiqueta: "Resolución 3564 de 2015",
-    etiquetaCorta: "Res. 3564 de 2015",
-    kicker: "Resolución 3564 de 2015",
+    etiqueta: "Resolución 3564 de 2015 (antigua)",
+    etiquetaCorta: "Res. 3564 de 2015 (antigua)",
+    kicker: "Resolución 3564 de 2015 (antigua)",
     introText:
       "La Resolución 3564 de 2015 de MinTIC define el esquema de publicación anterior, organizado en 13 categorías. La Universidad Distrital Francisco José de Caldas pone a disposición de la ciudadanía su información pública conforme a este esquema; selecciona una categoría para ver sus subsecciones y los enlaces a la información oficial.",
     categorias: CATEGORIAS_LEY_1712,
   },
   {
     id: "res-1519",
-    etiqueta: "Resolución 1519 de 2020",
-    etiquetaCorta: "Resolución 1519 de 2020",
-    kicker: "Resolución 1519 de 2020",
+    etiqueta: "Resolución 1519 de 2020 (nueva)",
+    etiquetaCorta: "Resolución 1519 de 2020 (nueva)",
+    kicker: "Resolución 1519 de 2020 (nueva)",
     introText:
       "La Resolución 1519 de 2020 de MinTIC define el nuevo esquema de publicación de información pública, organizado en 10 secciones. La Universidad Distrital Francisco José de Caldas está cargando y actualizando su contenido; selecciona una sección para conocer su alcance.",
     categorias: CATEGORIAS_RES_1519,
