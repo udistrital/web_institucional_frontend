@@ -1,0 +1,601 @@
+.page {
+  background: #f7f7f5;
+  min-height: 70vh;
+}
+
+.content {
+  margin: 0 auto;
+  max-width: 1200px;
+  width: 100%;
+  padding: clamp(1.25rem, 3vw, 2.25rem) max(2vw, 1rem) clamp(2.5rem, 6vw, 5rem);
+}
+
+/* ---- Intro de la sección ---- */
+/* Panel/tarjeta blanca con acento dorado a la izquierda, coherente con
+   .tarjeta (misma box-shadow; esquinas suaves de 8px). */
+/* Paneles de texto (marco fijo de la Ley 1712 y resolución activa): panel
+   blanco con acento dorado, ancho completo del área de contenido y el mismo
+   aire, para que ambos queden alineados. El tamaño de fuente no cambia. */
+.intro,
+.introResolucion {
+  background: #fff;
+  border-left: 4px solid var(--institutional-gold);
+  border-radius: 8px;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, .08);
+  margin: 0 0 clamp(1.75rem, 4vw, 2.75rem);
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  width: 100%;
+}
+.introKicker {
+  color: var(--institutional-red);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: .1em;
+  margin: 0 0 .5rem;
+  text-transform: uppercase;
+}
+.introText {
+  color: #333;
+  font-size: var(--fs-md);
+  line-height: var(--lh-normal);
+  margin: 0;
+}
+
+/* ---- Conmutador entre leyes (calca el segmented control de
+   direccionamiento-estratégico: botones en escritorio, select en móvil) ---- */
+.leyBrowser {
+  margin: 0 0 clamp(1rem, 2.5vw, 1.5rem);
+}
+
+/* Select nativo (visible solo en móvil). */
+.leySelectWrap { display: none; flex-direction: column; gap: .4rem; }
+.leySelectLabel {
+  color: #666;
+  font-size: var(--fs-2xs);
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.leySelect {
+  appearance: none;
+  background: #fff
+    url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238c1919' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")
+    no-repeat right 1rem center;
+  background-size: 1.1rem;
+  border: 1px solid #d4d4d4;
+  border-radius: 8px;
+  color: #1a1a1a;
+  cursor: pointer;
+  font: inherit;
+  font-size: var(--fs-base);
+  font-weight: 600;
+  padding: .85rem 2.75rem .85rem 1rem;
+  width: 100%;
+}
+.leySelect:focus-visible { border-color: var(--institutional-red); }
+
+/* Botones tipo segmented control (visible en escritorio). */
+.leyFiltros {
+  background: #fff;
+  border: 1px solid #e4e4e4;
+  border-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .25rem;
+  padding: .35rem;
+}
+.leyFiltro {
+  align-items: center;
+  background: none;
+  border: 0;
+  border-radius: 7px;
+  color: #444;
+  cursor: pointer;
+  display: inline-flex;
+  flex: 1 1 auto;
+  font: inherit;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  gap: .5rem;
+  justify-content: center;
+  padding: .7rem 1rem;
+  transition: background 160ms ease, color 160ms ease;
+  white-space: nowrap;
+}
+.leyFiltro:hover { color: var(--institutional-red); }
+.leyFiltroActivo { background: var(--institutional-red); color: #fff; }
+.leyFiltroActivo:hover { color: #fff; }
+
+/* ---- Buscador por título de enlace (coherente con .leySelect: mismo borde,
+   radio y foco con el rojo institucional). ---- */
+.buscador {
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+  margin: 0 0 clamp(1.5rem, 3.5vw, 2.25rem);
+  scroll-margin-top: calc(var(--header-h, 72px) + 1rem);
+}
+.buscadorLabel {
+  color: #666;
+  font-size: var(--fs-2xs);
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.buscadorCampo {
+  align-items: center;
+  background: #fff;
+  border: 1px solid #d4d4d4;
+  border-radius: 8px;
+  display: flex;
+  gap: .5rem;
+  padding: 0 1rem;
+  transition: border-color 160ms ease;
+}
+.buscadorCampo:focus-within { border-color: var(--institutional-red); }
+.buscadorIcono {
+  align-items: center;
+  color: #8c1919;
+  display: flex;
+  flex-shrink: 0;
+}
+.buscadorIcono svg { height: 1.2rem; width: 1.2rem; }
+.buscadorInput {
+  background: none;
+  border: 0;
+  color: #1a1a1a;
+  flex: 1 1 auto;
+  font: inherit;
+  font-size: var(--fs-base);
+  min-width: 0;
+  padding: .85rem 0;
+}
+.buscadorInput:focus-visible { outline: none; }
+.buscadorInput:disabled { color: #888; cursor: not-allowed; }
+.buscadorInput::placeholder { color: #999; }
+/* Ocultar la cruz nativa de los input[type=search] para usar la propia. */
+.buscadorInput::-webkit-search-cancel-button { appearance: none; }
+.buscadorLimpiar {
+  align-items: center;
+  background: none;
+  border: 0;
+  border-radius: 50%;
+  color: #666;
+  cursor: pointer;
+  display: flex;
+  flex-shrink: 0;
+  height: 1.75rem;
+  justify-content: center;
+  transition: background 160ms ease, color 160ms ease;
+  width: 1.75rem;
+}
+.buscadorLimpiar:hover { background: #f0f0f0; color: var(--institutional-red); }
+.buscadorLimpiar svg { height: 1.1rem; width: 1.1rem; }
+
+/* ---- Resultados de la búsqueda ---- */
+.resultados { margin: 0; }
+.resultadosContador {
+  color: #444;
+  font-size: var(--fs-sm);
+  line-height: var(--lh-normal);
+  margin: 0 0 1.25rem;
+}
+.resultadosContador strong { color: #1a1a1a; }
+
+/* Resultados de búsqueda: una tarjeta por fila para facilitar la lectura. */
+.resultadosGrid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.resultadosVacio {
+  background: #fff;
+  border: 1px solid #ececec;
+  border-left: 4px solid var(--institutional-gold);
+  border-radius: 8px;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, .08);
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+}
+.resultadosVacioTexto {
+  color: #333;
+  font-size: var(--fs-md);
+  line-height: var(--lh-normal);
+  margin: 0 0 1rem;
+}
+.resultadosVacioBoton {
+  background: var(--institutional-red);
+  border: 0;
+  border-radius: 7px;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  padding: .7rem 1.25rem;
+  transition: background 160ms ease;
+}
+.resultadosVacioBoton:hover { background: #6f1414; }
+
+/* ---- Aviso de "información en proceso de publicación" (secciones pendientes
+   de la Resolución 1519). Fondo dorado tenue y texto con buen contraste. ---- */
+.avisoPendiente {
+  align-items: flex-start;
+  background: rgba(253, 180, 0, .12);
+  border: 1px solid rgba(253, 180, 0, .5);
+  border-left: 4px solid var(--institutional-gold);
+  border-radius: 8px;
+  color: #1a1a1a;
+  display: flex;
+  gap: .9rem;
+  padding: clamp(1.1rem, 2.5vw, 1.5rem);
+}
+.avisoPendienteIcono {
+  align-items: center;
+  color: var(--institutional-red);
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+}
+.avisoPendienteIcono svg { height: 1.75rem; width: 1.75rem; }
+.avisoPendienteTitulo {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: var(--fs-md);
+  font-weight: 700;
+  line-height: var(--lh-tight);
+  margin: 0 0 .35rem;
+}
+.avisoPendienteTexto {
+  color: #333;
+  font-size: var(--fs-sm);
+  line-height: var(--lh-normal);
+  margin: 0;
+}
+
+/* ---- Mosaico de categorías ---- */
+.mosaico {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Cada tarjeta es un botón que despliega el detalle de la categoría en la
+   página. El acento de color por tarjeta se construye con los tokens de marca. */
+.tarjeta {
+  align-items: flex-start;
+  background:
+    linear-gradient(135deg, rgba(140, 25, 25, .04), rgba(253, 180, 0, .06)),
+    #fff;
+  border: 0;
+  border-top: 4px solid var(--institutional-gold);
+  box-shadow: 0 5px 18px rgba(0, 0, 0, .08);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  font: inherit;
+  gap: .9rem;
+  height: 100%;
+  padding: clamp(1.4rem, 2.5vw, 1.9rem);
+  text-align: left;
+  transition: box-shadow 220ms ease, transform 220ms ease;
+  width: 100%;
+}
+.tarjeta:hover {
+  box-shadow: 0 12px 28px rgba(0, 0, 0, .14);
+  transform: translateY(-4px);
+}
+
+.tarjetaIcono {
+  align-items: center;
+  background: var(--institutional-red);
+  border-radius: 14px;
+  color: #fff;
+  display: flex;
+  flex-shrink: 0;
+  height: 3.5rem;
+  justify-content: center;
+  width: 3.5rem;
+}
+.tarjetaIcono svg { height: 1.9rem; width: 1.9rem; }
+
+.tarjetaNumero {
+  color: #1a1a1a;
+  font-family: var(--font-montserrat), sans-serif;
+  font-weight: 700;
+}
+.tarjetaTitulo {
+  color: #1a1a1a;
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  line-height: var(--lh-tight);
+  margin: .15rem 0 0;
+}
+.tarjetaDescripcion {
+  color: #444;
+  font-size: var(--fs-sm);
+  line-height: var(--lh-normal);
+  margin: 0;
+}
+.tarjetaVerMas {
+  align-items: center;
+  color: var(--institutional-red);
+  display: inline-flex;
+  font-size: var(--fs-2xs);
+  font-weight: 700;
+  gap: .3rem;
+  letter-spacing: .04em;
+  margin-top: auto;
+  padding-top: .35rem;
+  text-transform: uppercase;
+}
+.tarjetaVerMasIcono {
+  height: .9rem;
+  transition: transform .2s ease;
+  width: .9rem;
+}
+.tarjeta:hover .tarjetaVerMasIcono { transform: translateX(3px); }
+
+/* ---- Detalle de categoría desplegado en la página ----
+   Panel a ancho completo bajo el mosaico. El contenedor externo lo anima
+   framer-motion (height/opacity); por eso aquí solo se da overflow hidden
+   para que el recorte de la animación de alto quede limpio. */
+.detalle {
+  overflow: hidden;
+}
+.detalleInner {
+  background: #fff;
+  border: 1px solid #ececec;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+}
+.detalleHeader {
+  align-items: center;
+  border-bottom: 1px solid #ececec;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .85rem 1rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+/* Botón "Volver" al mosaico: ocupa su propia fila sobre el título. */
+.detalleVolver {
+  align-items: center;
+  background: none;
+  border: 0;
+  color: var(--institutional-red);
+  cursor: pointer;
+  display: inline-flex;
+  flex-basis: 100%;
+  font: inherit;
+  font-size: var(--fs-2xs);
+  font-weight: 700;
+  gap: .4rem;
+  letter-spacing: .04em;
+  padding: 0;
+  text-transform: uppercase;
+}
+.detalleVolver:hover { text-decoration: underline; }
+.detalleVolverIcono {
+  height: 1rem;
+  transition: transform .2s ease;
+  width: 1rem;
+}
+.detalleVolver:hover .detalleVolverIcono { transform: translateX(-3px); }
+.detalleHeaderIcono {
+  align-items: center;
+  background: var(--institutional-red);
+  border-radius: 12px;
+  color: #fff;
+  display: flex;
+  flex-shrink: 0;
+  height: 3rem;
+  justify-content: center;
+  width: 3rem;
+}
+.detalleHeaderIcono svg { height: 1.6rem; width: 1.6rem; }
+.detalleNumero {
+  color: #1a1a1a;
+  font-weight: 700;
+}
+.detalleTitulo {
+  flex: 1;
+  font-size: var(--fs-h3);
+  line-height: var(--lh-tight);
+  margin: 0;
+}
+/* Lista de subsecciones (sub-acordeón) dentro del detalle. */
+.subsecciones {
+  display: flex;
+  flex-direction: column;
+}
+.subseccion {
+  border-bottom: 1px solid #ececec;
+  margin-bottom: 0;
+}
+.subseccion:last-child { border-bottom: 0; }
+.subseccionTitulo {
+  margin: 0;
+  scroll-margin-top: calc(var(--header-h, 72px) + 1rem);
+}
+/* Botón que alterna la apertura de la subsección (toda la fila es clicable). */
+.subseccionToggle {
+  align-items: center;
+  background: none;
+  border: 0;
+  color: #1a1a1a;
+  cursor: pointer;
+  display: flex;
+  font-family: inherit;
+  font-size: var(--fs-md);
+  font-weight: 700;
+  gap: .75rem;
+  line-height: var(--lh-tight);
+  padding: 1rem 0;
+  text-align: left;
+  width: 100%;
+}
+.subseccionToggle::before {
+  background: var(--institutional-gold);
+  border-radius: 2px;
+  content: "";
+  display: inline-block;
+  flex-shrink: 0;
+  height: 1.3em;
+  width: .35rem;
+}
+.subseccionToggleTexto {
+  flex: 1;
+}
+.subseccionChevron {
+  flex-shrink: 0;
+  height: 1.25rem;
+  transition: transform .2s ease;
+  width: 1.25rem;
+}
+.subseccionToggle[aria-expanded="true"] .subseccionChevron {
+  transform: rotate(180deg);
+}
+
+/* Lista de documentos/enlaces de una subsección: una tarjeta por fila. */
+.documentos {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+  list-style: none;
+  margin: 0;
+  padding: .75rem 0 1.25rem;
+}
+.documentos a:hover { position: relative; z-index: 1; }
+.comiteDocumentos { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.comiteOrden {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem 1rem;
+  justify-content: space-between;
+  margin-bottom: .5rem;
+}
+.comiteOrdenTexto {
+  color: #555;
+  font-size: var(--fs-sm);
+  margin: 0;
+}
+.comiteOrdenBoton {
+  align-items: center;
+  background: #fff;
+  border: 1px solid #d4d4d4;
+  border-radius: 7px;
+  color: var(--institutional-red);
+  cursor: pointer;
+  display: inline-flex;
+  font: inherit;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  gap: .5rem;
+  padding: .65rem .9rem;
+  transition: background 160ms ease, border-color 160ms ease;
+}
+.comiteOrdenBoton:hover {
+  background: #faf9f7;
+  border-color: var(--institutional-gold);
+}
+.comiteOrdenBoton svg { height: 1.1rem; width: 1.1rem; }
+
+/* ---- Normatividad interna y externa ---- */
+.normatividadSection + .normatividadSection {
+  border-top: 1px solid #ececec;
+  margin-top: clamp(2rem, 4vw, 2.5rem);
+  padding-top: clamp(1.5rem, 3vw, 2rem);
+}
+.normatividadTitulo {
+  align-items: center;
+  color: #1a1a1a;
+  display: flex;
+  font-size: var(--fs-h3);
+  gap: .75rem;
+  line-height: var(--lh-tight);
+  margin: 0 0 1.25rem;
+}
+.normatividadTitulo::before {
+  background: var(--institutional-gold);
+  border-radius: 2px;
+  content: "";
+  display: inline-block;
+  flex-shrink: 0;
+  height: 1.4em;
+  width: .35rem;
+}
+.normatividadGrupo {
+  margin-top: clamp(1.5rem, 3vw, 2rem);
+}
+.normatividadGrupoTitulo {
+  color: #333;
+  font-size: var(--fs-md);
+  font-weight: 700;
+  line-height: var(--lh-tight);
+  margin: 0 0 .75rem;
+}
+
+/* ---- Skeleton de carga ---- */
+.skeletonBreadcrumb {
+  background: #1a1a1a;
+  height: 3rem;
+  width: 100%;
+}
+.skeletonTarjeta {
+  background: #fff;
+  border-top: 4px solid #e4e4e4;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, .08);
+  height: 13rem;
+}
+.skeletonBloque {
+  animation: skeletonPulse 1.4s ease-in-out infinite;
+  background: linear-gradient(90deg, #ececec 25%, #f5f5f5 50%, #ececec 75%);
+  background-size: 200% 100%;
+}
+
+@keyframes skeletonPulse {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ---- Responsive ---- */
+/* En pantallas angostas el segmented control no cabe cómodo: lo sustituimos
+   por el select nativo, más compacto y familiar en móvil. */
+@media (max-width: 680px) {
+  .leySelectWrap { display: flex; }
+  .leyFiltros { display: none; }
+}
+
+@media (max-width: 560px) {
+  .mosaico { grid-template-columns: 1fr; }
+  .comiteDocumentos { grid-template-columns: 1fr; }
+  .comiteOrden { align-items: flex-start; flex-direction: column; }
+}
+
+@media (min-width: 561px) and (max-width: 920px) {
+  .comiteDocumentos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tarjeta { transition: none; }
+  .tarjeta:hover { transform: none; }
+  .tarjeta:hover .tarjetaVerMasIcono { transform: none; }
+  .tarjetaVerMasIcono,
+  .subseccionChevron,
+  .detalleVolverIcono { transition: none; }
+  .detalleVolver:hover .detalleVolverIcono { transform: none; }
+  .leyFiltro { transition: none; }
+  .comiteOrdenBoton { transition: none; }
+  .buscadorCampo,
+  .buscadorLimpiar,
+  .resultadosVacioBoton { transition: none; }
+  .skeletonBloque { animation: none; }
+}

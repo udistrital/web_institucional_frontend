@@ -18,6 +18,7 @@ type DocumentCardProps = {
    */
   meta?: string;
   className?: string;
+  hideArrowOnMobile?: boolean;
 };
 
 const TIPO_LABEL: Record<DocumentKind, string> = {
@@ -86,10 +87,17 @@ export default function DocumentCard({
   description,
   meta,
   className = "",
+  hideArrowOnMobile = false,
 }: DocumentCardProps) {
   return (
     <a
-      className={[styles.card, className].filter(Boolean).join(" ")}
+      className={[
+        styles.card,
+        className,
+        hideArrowOnMobile ? styles.hideArrowOnMobile : "",
+      ]
+        .filter(Boolean)
+        .join(" ")}
       href={href}
       target="_blank"
       rel="noopener noreferrer"

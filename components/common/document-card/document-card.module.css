@@ -102,6 +102,9 @@
   .card {
     flex-wrap: wrap;
   }
+  .hideArrowOnMobile .arrow {
+    display: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
