@@ -56,6 +56,7 @@ export default function TransparenciaMosaico({
   leyes,
 }: TransparenciaMosaicoProps) {
   const reduceMotion = useReducedMotion();
+  const duracion = reduceMotion ? 0 : 0.3;
   const [activaLey, setActivaLey] = useState(0);
   // Categoría/sección desplegada en la página. null = ninguna abierta.
   const [activa, setActiva] = useState<CategoriaTransparencia | null>(null);
@@ -63,6 +64,7 @@ export default function TransparenciaMosaico({
   const [subseccionAbierta, setSubseccionAbierta] = useState<string | null>(
     null,
   );
+  const [scrollTargetId, setScrollTargetId] = useState<string | null>(null);
   const [termino, setTermino] = useState("");
   const selectId = useId();
   const buscadorId = useId();
@@ -84,6 +86,51 @@ export default function TransparenciaMosaico({
 
     return () => window.cancelAnimationFrame(frame);
   }, [activa, reduceMotion]);
+
+  useEffect(() => {
+    if (!activa || !subseccionAbierta) return;
+
+    let frame = 0;
+    const timeout = window.setTimeout(() => {
+      frame = window.requestAnimationFrame(() => {
+        const heading = document.getElementById(
+          `subseccion-${activa.id}-${subseccionAbierta}-heading`,
+        );
+        if (!heading) return;
+
+        setScrollTargetId(heading.id);
+      });
+    }, duracion * 1000);
+
+    return () => {
+      window.clearTimeout(timeout);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, [activa, duracion, reduceMotion, subseccionAbierta]);
+
+  useEffect(() => {
+    if (!scrollTargetId) return;
+
+    const frame = window.requestAnimationFrame(() => {
+      const heading = document.getElementById(scrollTargetId);
+      if (!heading) return;
+
+      const margenSuperior = Number.parseFloat(
+        getComputedStyle(heading).scrollMarginTop,
+      );
+      const destino =
+        heading.getBoundingClientRect().top +
+        window.scrollY -
+        (Number.isFinite(margenSuperior) ? margenSuperior : 0);
+
+      window.scrollTo({
+        top: Math.max(0, destino),
+        behavior: reduceMotion ? "auto" : "smooth",
+      });
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, [reduceMotion, scrollTargetId]);
 
   const leyActiva = leyes[activaLey];
 
@@ -146,6 +193,7 @@ export default function TransparenciaMosaico({
   const alternarCategoria = (categoria: CategoriaTransparencia) => {
     const cerrando = activa?.id === categoria.id;
     setSubseccionAbierta(null);
+    setScrollTargetId(null);
     setActiva(cerrando ? null : categoria);
   };
 
@@ -156,11 +204,10 @@ export default function TransparenciaMosaico({
     setTermino("");
     setActiva(null);
     setSubseccionAbierta(null);
+    setScrollTargetId(null);
   };
 
   const limpiarBusqueda = () => setTermino("");
-
-  const duracion = reduceMotion ? 0 : 0.3;
 
   return (
     <>
@@ -344,6 +391,7 @@ export default function TransparenciaMosaico({
                     <DocumentCard
                       label={resultado.enlace.titulo}
                       href={resultado.enlace.url}
+                      hideArrowOnMobile
                       kind={
                         resultado.enlace.url.toLowerCase().endsWith(".pdf")
                           ? "pdf"
@@ -498,17 +546,21 @@ export default function TransparenciaMosaico({
                             className={styles.subseccion}
                             key={subseccion.numero}
                           >
-                            <h4 className={styles.subseccionTitulo}>
+                            <h4
+                              className={styles.subseccionTitulo}
+                              id={`${panelId}-heading`}
+                            >
                               <button
                                 type="button"
                                 className={styles.subseccionToggle}
                                 aria-expanded={subAbierta}
                                 aria-controls={panelId}
-                                onClick={() =>
+                                onClick={() => {
+                                  setScrollTargetId(null);
                                   setSubseccionAbierta(
                                     subAbierta ? null : subseccion.numero,
-                                  )
-                                }
+                                  );
+                                }}
                               >
                                 <span className={styles.subseccionToggleTexto}>
                                   {subseccion.numero}. {subseccion.titulo}
@@ -540,12 +592,15 @@ export default function TransparenciaMosaico({
                                   }}
                                   style={{ overflow: "hidden" }}
                                 >
-                                  <ul className={styles.documentos}>
+                                  <ul
+                                    className={styles.documentos}
+                                  >
                                     {subseccion.enlaces.map((enlace) => (
                                       <li key={enlace.url + enlace.titulo}>
                                         <DocumentCard
                                           label={enlace.titulo}
                                           href={enlace.url}
+                                          hideArrowOnMobile
                                           kind={
                                             enlace.url
                                               .toLowerCase()
